@@ -1,8 +1,8 @@
 import Database from "better-sqlite3";
 
-const db = new Database("./db/listings.db", {
+const listingImagesDb = new Database("./db/listing-images.db", {
      fileMustExist: true,
      verbose: console.log 
      });
 
-export default db;
+export default listingImagesDb;
