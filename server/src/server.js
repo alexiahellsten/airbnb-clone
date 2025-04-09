@@ -1,19 +1,19 @@
 import express from "express";
+import db from "../db/db.js";
 
 const port = 8000;
-
 const app = express();
 
 app.get("/api/listings", (req, res) => {
+  const listings = db.prepare("SELECT * FROM listings").all(); 
 
-    const listings = [
-        { id: 1, name: "Sjöstuga i Leksand" },
-        { id: 2, name: "Strandhus i Visby" },
-    ];
+  if (!listings) {
+    return res.status(500).json({ message: "Misslyckades med att hämta annonserna från databasen" });
+  }
 
-    res.json(listings);
+  res.json(listings);
 });
 
 app.listen(port, () => {
-    console.log(`Listening on port ${port}`);
+  console.log(`Listening on port ${port}`);
 });
