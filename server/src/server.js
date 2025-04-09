@@ -14,6 +14,18 @@ app.get("/api/listings", (req, res) => {
   res.json(listings);
 });
 
+
+app.get("/api/users", (req, res) => {
+  const users = db.prepare("SELECT * FROM users").all(); 
+
+  if (!users) {
+    return res.status(500).json({ message: "Misslyckades med att hämta användare från databasen" });
+  }
+
+  res.json(users);
+});
+
+
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
