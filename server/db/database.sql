@@ -101,3 +101,22 @@ CREATE TABLE IF NOT EXISTS bookings (
 -- listings_categories table links listings to categories, establishing a many-to-many relationship.
 
 -- bookings table stores information about user bookings, including the listing booked, the user, and the check-in/check-out dates.
+
+
+-- listings
+INSERT INTO listings (title, description, address, city, country, price_per_night, max_guests, bedrooms, bathrooms, host_id, created_at, updated_at) VALUES
+  ('Mysig studio i centrala Göteborg', 'En liten och mysig studio perfekt för ensamresenärer.', 'Vasagatan 1, 411 24 Göteborg', 'Göteborg', 'Sverige', 800.00, 2, 1, 1, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+  ('Lyxig 2-rumslägenhet vid havet', 'En lyxig 2-rumslägenhet med fantastisk havsutsikt.', 'Havsgatan 10, 426 78 Simrishamn', 'Simrishamn', 'Sverige', 2500.00, 4, 2, 2, 2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+  ('Charmig stuga i skogen', 'En fridfull och tyst stuga perfekt för en helgresa.', 'Skogsvägen 5, 442 35 Leksand', 'Leksand', 'Sverige', 1200.00, 4, 2, 1, 3, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+  ('Modern loft i hjärtat av staden', 'En elegant loftlägenhet med modern design i stadens centrum.', 'Storgatan 20, 411 35 Stockholm', 'Stockholm', 'Sverige', 2000.00, 3, 1, 1, 4, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+  ('Vacker trädgårdslägenhet', 'Spacious 2-rumslägenhet med tillgång till en privat trädgård.', 'Linnégatan 22, 413 08 Kristianstad', 'Kristianstad', 'Sverige', 1400.00, 4, 2, 1, 5, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+  ('Rustik stuga i bergen', 'En charmig stuga i bergen, perfekt för vandring och utomhusaktiviteter.', 'Bergvägen 15, 722 45 Helsingborg', 'Helsingborg', 'Sverige', 1000.00, 4, 2, 1, 6, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+  ('Stor takvåning med utsikt över staden', 'En 3-rumstakvåning med panoramautsikt över stadens skyline.', 'Lilla Bommen 7, 411 04 Sundsvall', 'Sundsvall', 'Sverige', 4000.00, 6, 3, 2, 2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+  ('Ljus och mysig lägenhet nära stranden', 'En charmig lägenhet bara några steg från stranden.', 'Beach Road 12, 411 33 Visby', 'Visby', 'Sverige', 1500.00, 4, 2, 1, 3, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+  ('Mysig lägenhet i Stockholm', 'En charmig och tyst lägenhet med nära till allt.', 'Sveavägen 50, 113 59 Stockholm', 'Stockholm', 'Sverige', 1800.00, 4, 2, 1, 7, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+  ('Stilren lägenhet i Uppsala centrum', 'En modern lägenhet med ett utmärkt läge nära restauranger, universitet och shopping.', 'Lilla Torg 10, 211 34 Uppsala', 'Uppsala', 'Sverige', 1500.00, 4, 2, 1, 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+  ('Lägenhet med fantastisk utsikt i Malmö', 'En modern lägenhet med fantastisk utsikt över Öresundsbron.', 'Västra Varvsgatan 12, 211 11 Malmö', 'Malmö', 'Sverige', 2500.00, 4, 2, 2, 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+  ('Vacker villa på Österlen', 'En lyxig villa på Österlen, perfekt för avkoppling vid havet.', 'Kullavägen 2, 271 77 Simrishamn', 'Simrishamn', 'Sverige', 4500.00, 6, 4, 3, 9, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+  ('Familjevänligt hus med pool', 'Ett stort familjehus med privat pool och trädgård.', 'Villa Road 3, 421 23 Linköping', 'Linköping', 'Sverige', 3500.00, 6, 4, 3, 2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+  ('Charmig stuga på landet', 'En mysig stuga på landet, perfekt för en helg i naturen.', 'Landvägen 3, 301 45 Halmstad', 'Halmstad', 'Sverige', 1400.00, 4, 2, 1, 10, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
