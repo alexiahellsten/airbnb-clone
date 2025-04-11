@@ -7,8 +7,9 @@
       [(ngModel)]="value"
       (focus)="onFocus()"
       (blur)="onBlur()"
-      (change)="onSelectChange($event)"
+      (change)="onInput($event)"
     >
+      >
       <option value="" disabled selected hidden>{{ placeholder }}</option>
       <option *ngFor="let option of options" [value]="option">
         {{ option }}

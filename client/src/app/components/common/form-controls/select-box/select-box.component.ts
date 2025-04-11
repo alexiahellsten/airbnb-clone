@@ -23,7 +23,7 @@ import {
 export class SelectBoxComponent implements ControlValueAccessor {
   @Input() label: string = '';
   @Input() placeholder: string = 'Select an option';
-
+  @Input() options: string[] = [];
   value: string = '';
   isFocused: boolean = false;
 
@@ -43,19 +43,19 @@ export class SelectBoxComponent implements ControlValueAccessor {
   }
 
   setDisabledState?(isDisabled: boolean): void {
-    // Om du vill hantera disabled-tillstånd för select-boxen kan du implementera detta här
+
   }
 
-  onFocus() {
+  onFocus(): void {
     this.isFocused = true;
   }
 
-  onBlur() {
+  onBlur(): void {
     this.isFocused = false;
     this.onTouched();
   }
 
-  onInput(event: Event) {
+  onInput(event: Event): void {
     const value = (event.target as HTMLSelectElement).value;
     this.value = value;
     this.onChange(value);
