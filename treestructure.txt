@@ -1,0 +1,40 @@
+├── client/
+│   ├── angular.json
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── public/
+│   │   └── favicon.ico
+│   ├── README.md
+│   ├── src/
+│   │   ├── app/
+│   │   │   ├── app.component.css
+│   │   │   ├── app.component.html
+│   │   │   ├── app.component.spec.ts
+│   │   │   ├── app.component.ts
+│   │   │   ├── app.config.ts
+│   │   │   ├── app.routes.ts
+│   │   │   └── components/
+│   │   │       └── common/
+│   │   │           └── button/
+│   │   │               ├── button.component.css
+│   │   │               ├── button.component.html
+│   │   │               ├── button.component.spec.ts
+│   │   │               └── button.component.ts
+│   │   ├── index.html
+│   │   ├── main.ts
+│   │   ├── proxy.conf.json
+│   │   └── styles.css
+│   ├── tailwind.config.js
+│   ├── tsconfig.app.json
+│   ├── tsconfig.json
+│   └── tsconfig.spec.json
+├── README.md
+└── server/
+    ├── db/
+    │   ├── airbnb.db
+    │   ├── database.sql
+    │   └── db.js
+    ├── package-lock.json
+    ├── package.json
+    └── src/
+        └── server.js
