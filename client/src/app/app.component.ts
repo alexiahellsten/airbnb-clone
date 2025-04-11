@@ -3,11 +3,18 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ButtonComponent } from './components/common/button/button.component';
 import { TextInputComponent } from './components/common/form-controls/text-input/text-input.component';
+import { SelectBoxComponent } from './components/common/form-controls/select-box/select-box.component';
 import { FormsModule } from '@angular/forms'; // Lägg till denna import
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, ButtonComponent, TextInputComponent, FormsModule],
+  imports: [
+    RouterOutlet,
+    ButtonComponent,
+    TextInputComponent,
+    SelectBoxComponent,
+    FormsModule,
+  ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
