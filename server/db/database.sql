@@ -85,6 +85,17 @@ CREATE TABLE IF NOT EXISTS bookings (
   FOREIGN KEY (listing_id) REFERENCES listings(id) ON DELETE CASCADE -- Foreign key to listings table
 );
 
+CREATE TABLE reviews (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,       -- Auto-incrementing primary key
+  user_id INTEGER NOT NULL,                   -- ID of the user who wrote the review
+  listing_id INTEGER NOT NULL,                -- ID of the listing being reviewed
+  rating INTEGER NOT NULL CHECK (rating >= 1 AND rating <= 5),  -- Rating between 1 and 5
+  comment TEXT,                               -- The comment left by the user
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP, -- Timestamp of when the review was created
+  FOREIGN KEY (user_id) REFERENCES users(id),   -- Foreign key reference to the users table
+  FOREIGN KEY (listing_id) REFERENCES listings(id)  -- Foreign key reference to the listings table
+);
+
 
 -- users table stores user information. Each user can be either a regular user or a host (is_host flag).
 
@@ -102,6 +113,7 @@ CREATE TABLE IF NOT EXISTS bookings (
 
 -- bookings table stores information about user bookings, including the listing booked, the user, and the check-in/check-out dates.
 
+-- reviews table stores information about reviews
 
 -- listings
 INSERT INTO listings (title, description, address, city, country, price_per_night, max_guests, bedrooms, bathrooms, host_id, created_at, updated_at) VALUES
@@ -295,3 +307,22 @@ INSERT INTO bookings (user_id, listing_id, start_date, end_date, total_price, gu
 (14, 14, '2025-06-10', '2025-06-15', 10500.00, 4, 'cancelled', CURRENT_TIMESTAMP), -- Booking for listing 14 (Loft i trendigt område)
 (15, 15, '2025-07-05', '2025-07-10', 9000.00, 3, 'confirmed', CURRENT_TIMESTAMP),  -- Booking for listing 15 (Modern lägenhet i Uppsala)
 (16, 16, '2025-05-01', '2025-05-07', 6000.00, 4, 'pending', CURRENT_TIMESTAMP); -- Booking for listing 16 (Fjällstuga i Åre)
+
+-- reviews 
+INSERT INTO reviews (user_id, listing_id, rating, comment, created_at) VALUES
+(1, 1, 4, 'Mysig studio i centrala Göteborg. Perfekt för en helgresa, men lite trång.', CURRENT_TIMESTAMP),  -- Review for listing 1 (Mysig studio i Göteborg)
+(2, 2, 5, 'Fantastisk 2-rumslägenhet vid havet! Utsikten är otrolig och lägenheten är mycket modern.', CURRENT_TIMESTAMP),  -- Review for listing 2 (Lyxig 2-rumslägenhet)
+(3, 3, 3, 'Charmig stuga men något sliten inuti. Bra för en avkopplande helg.', CURRENT_TIMESTAMP),  -- Review for listing 3 (Charmig stuga)
+(4, 4, 5, 'Mycket elegant loft. Centralt läge och mycket rymligt.', CURRENT_TIMESTAMP),  -- Review for listing 4 (Modern loft)
+(5, 5, 4, 'Stilig studio med ett bra läge i Göteborg. Perfekt för ett kortare besök.', CURRENT_TIMESTAMP),  -- Review for listing 5 (Stilig studio)
+(6, 6, 5, 'Vacker trädgårdslägenhet med perfekt läge nära allt. Rekommenderar starkt.', CURRENT_TIMESTAMP),  -- Review for listing 6 (Trädgårdslägenhet)
+(7, 7, 3, 'Stugan var fin men ganska långt bort från staden. Värt det om du söker en avlägsen plats.', CURRENT_TIMESTAMP),  -- Review for listing 7 (Rustik stuga)
+(8, 8, 5, 'Utsikten från takvåningen är fantastisk, mycket rymlig och modern.', CURRENT_TIMESTAMP),  -- Review for listing 8 (Takvåning)
+(9, 9, 4, 'Enkel men fin lägenhet nära stranden. Jag rekommenderar den för en avkopplande helg.', CURRENT_TIMESTAMP),  -- Review for listing 9 (Lägenhet nära stranden)
+(10, 10, 2, 'Huset är stort men jag blev besviken på att det inte var så väl underhållet.', CURRENT_TIMESTAMP),  -- Review for listing 10 (Förortshus)
+(11, 11, 4, 'Lägenheten var charmig och hade mycket karaktär. Låg i ett trevligt område.', CURRENT_TIMESTAMP),  -- Review for listing 11 (Lägenhet i historiskt område)
+(12, 12, 3, 'Bra lägenhet men den var ganska liten och inte så bra utrustad.', CURRENT_TIMESTAMP),  -- Review for listing 12 (1-rumslägenhet)
+(13, 13, 5, 'Fantastisk villa, stor och väl utrustad. Perfekt för en familjesemester.', CURRENT_TIMESTAMP),  -- Review for listing 13 (Familjevilla med pool)
+(14, 14, 4, 'Loftet är modernt och fint, men området kan vara lite livligt på kvällarna.', CURRENT_TIMESTAMP),  -- Review for listing 14 (Loft i trendigt område)
+(15, 15, 5, 'En mycket modern lägenhet med bra faciliteter. Vi hade en fantastisk vistelse.', CURRENT_TIMESTAMP),  -- Review for listing 15 (Modern lägenhet i Uppsala)
+(16, 16, 4, 'Fjällstugan var fantastisk. Stort och bekvämt, men saknade lite moderna faciliteter.', CURRENT_TIMESTAMP);  -- Review for listing 16 (Fjällstuga i Åre)
