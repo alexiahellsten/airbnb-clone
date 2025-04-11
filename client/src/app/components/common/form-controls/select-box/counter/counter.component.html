@@ -1,0 +1,20 @@
+<div class="flex flex-row w-full justify-between p-4 text-[#222]">
+  <div>
+    <div class="font-semibold mb-1">Vuxna</div>
+    <div class="text-sm">13 år och äldre</div>
+  </div>
+  <div class="counter-container">
+    <button
+      class="counter-button"
+      (click)="decrease()"
+      [disabled]="value === 0"
+      [ngClass]="{ '': value === 0 }"
+    >
+      <i class="bi bi-dash"></i>
+    </button>
+    <span class="counter-value">{{ value }}</span>
+    <button class="counter-button" (click)="increase()">
+      <i class="bi bi-plus"></i>
+    </button>
+  </div>
+</div>
