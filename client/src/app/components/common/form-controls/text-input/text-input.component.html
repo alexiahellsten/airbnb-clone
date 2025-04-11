@@ -1,0 +1,11 @@
+<div class="input-container" [class.focused]="isFocused || value">
+  <label for="input" class="floating-label">{{ label }}</label>
+  <input
+    id="input"
+    type="{{ inputType }}"
+    [(ngModel)]="value"
+    [ngClass]="inputClasses"
+    (focus)="onFocus()"
+    (blur)="onBlur()"
+  />
+</div>

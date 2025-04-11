@@ -1,0 +1,15 @@
+.input-container {
+  @apply flex flex-col relative  w-fit border border-[#8c8c8c] focus:border-2 rounded-lg box-border;
+}
+
+.form-input {
+  @apply text-[#222] text-base leading-6 pt-6 pb-2 px-3 w-fit bg-transparent rounded-lg border-none;
+}
+
+.floating-label {
+  @apply absolute left-3 top-3.5 text-base transition-all duration-200 ease-in-out text-[#8c8c8c] pointer-events-none;
+}
+
+.input-container.focused .floating-label {
+  @apply top-[8px] text-xs text-[#6a6a6a];
+}
