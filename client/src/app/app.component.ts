@@ -1,10 +1,11 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ButtonComponent } from './components/common/button/button.component';
 import { TextInputComponent } from './components/common/form-controls/text-input/text-input.component';
 import { SelectBoxComponent } from './components/common/form-controls/select-box/select-box.component';
-import { FormsModule } from '@angular/forms'; // Lägg till denna import
+import { FormsModule } from '@angular/forms';
+import { ModalComponent } from './components/common/modal/modal.component';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,7 @@ import { FormsModule } from '@angular/forms'; // Lägg till denna import
     TextInputComponent,
     SelectBoxComponent,
     FormsModule,
+    ModalComponent,
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
@@ -26,9 +28,14 @@ export class AppComponent {
   email: string = '';
   password: string = '';
 
+  @ViewChild('modal') modal!: ModalComponent;
+
   constructor(private http: HttpClient) {
     this.http.get('/api/listings').subscribe((listings) => {
       console.log(listings);
     });
+  }
+  openModal() {
+    this.modal.open();
   }
 }
