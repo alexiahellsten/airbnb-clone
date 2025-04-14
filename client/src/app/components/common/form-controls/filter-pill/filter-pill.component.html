@@ -1,0 +1,10 @@
+<div
+  (click)="toggleSelection()"
+  class="flex items-center py-2 px-5 text-sm w-fit rounded-full text-brand-black cursor-pointer border border-brand-mediumGray"
+  [ngClass]="{
+    'outline outline-2 outline-brand-black bg-brand-lightGray': isSelected
+  }"
+>
+  <i class="bi bi-rocket-takeoff text-2xl mr-3"></i>
+  Detta är en kategori
+</div>
