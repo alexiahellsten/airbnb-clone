@@ -7,6 +7,7 @@ import { SelectBoxComponent } from './components/common/form-controls/select-box
 import { FormsModule } from '@angular/forms';
 import { ModalLgComponent } from './components/common/modal-lg/modal-lg.component';
 import { ModalSmComponent } from './components/common/modal-sm/modal-sm.component';
+import { HeaderComponent } from './header/header.component';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +18,8 @@ import { ModalSmComponent } from './components/common/modal-sm/modal-sm.componen
     TextInputComponent,
     SelectBoxComponent,
     FormsModule,
-    ModalLgComponent, ModalSmComponent
+    ModalLgComponent, ModalSmComponent,
+    HeaderComponent
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],

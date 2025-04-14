@@ -1,0 +1,81 @@
+<div class="w-full px-4 md:hidden">
+  <app-button buttonType="pill" class="w-full md:hidden">
+    <span class="flex justify-between gap-4">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="lucide lucide-search-icon lucide-search"
+      >
+        <circle cx="11" cy="11" r="8" />
+        <path d="m21 21-4.3-4.3" />
+      </svg>
+      Påbörja din sökning
+    </span>
+  </app-button>
+</div>
+
+<div class="hidden md:block">
+  <div
+    class="w-full max-w-4xl mx-auto rounded-full shadow-lg border flex items-center divide-x bg-white overflow-hidden"
+  >
+    <!-- Destination -->
+    <div class="flex-1 px-4 py-3">
+      <label class="block text-xs font-semibold text-gray-500 mb-1">Var</label>
+      <input
+        type="text"
+        [(ngModel)]="destination"
+        placeholder="Vart vill du åka?"
+        class="w-full outline-none text-sm"
+      />
+    </div>
+
+    <!-- Incheckning -->
+    <div class="flex-1 px-4 py-3">
+      <label class="block text-xs font-semibold text-gray-500 mb-1"
+        >Incheckning</label
+      >
+      <input
+        type="date"
+        [(ngModel)]="checkIn"
+        class="w-full outline-none text-sm"
+      />
+    </div>
+
+    <!-- Utcheckning -->
+    <div class="flex-1 px-4 py-3">
+      <label class="block text-xs font-semibold text-gray-500 mb-1"
+        >Utcheckning</label
+      >
+      <input
+        type="date"
+        [(ngModel)]="checkOut"
+        class="w-full outline-none text-sm"
+      />
+    </div>
+
+    <!-- Gäster-->
+    <div class="flex-1 px-4 py-3 relative">
+      <label class="block text-xs font-semibold text-gray-500 mb-1">Vem</label>
+      <input
+        type="number"
+        [(ngModel)]="guests"
+        min="1"
+        class="w-full outline-none text-sm"
+      />
+    </div>
+
+    <!-- Sökknapp -->
+    <div class="px-4 py-3">
+      <app-button buttonType="icon" (click)="search()"
+        ><i class="bi bi-search"></i
+      ></app-button>
+    </div>
+  </div>
+</div>
