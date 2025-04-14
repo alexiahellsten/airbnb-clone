@@ -1,21 +1,23 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, ViewChild } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterOutlet } from '@angular/router';
 import { ButtonComponent } from './components/common/button/button.component';
 import { TextInputComponent } from './components/common/form-controls/text-input/text-input.component';
 import { SelectBoxComponent } from './components/common/form-controls/select-box/select-box.component';
 import { FormsModule } from '@angular/forms';
-import { ModalComponent } from './components/common/modal/modal.component';
+import { ModalLgComponent } from './components/common/modal-lg/modal-lg.component';
+import { ModalSmComponent } from './components/common/modal-sm/modal-sm.component';
 
 @Component({
   selector: 'app-root',
   imports: [
+    RouterLink,
     RouterOutlet,
     ButtonComponent,
     TextInputComponent,
     SelectBoxComponent,
     FormsModule,
-    ModalComponent,
+    ModalLgComponent, ModalSmComponent
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
@@ -28,14 +30,20 @@ export class AppComponent {
   email: string = '';
   password: string = '';
 
-  @ViewChild('modal') modal!: ModalComponent;
+  @ViewChild('modalLg') modalLg!: ModalLgComponent;
+  @ViewChild('modalSm') modalSm!: ModalSmComponent;
 
   constructor(private http: HttpClient) {
     this.http.get('/api/listings').subscribe((listings) => {
       console.log(listings);
     });
   }
-  openModal() {
-    this.modal.open();
+  openLargeModal() {
+    this.modalLg.open();
+  }
+
+  openSmallModal() {
+    this.modalSm.open();
   }
 }
+

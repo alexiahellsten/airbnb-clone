@@ -3,14 +3,14 @@ import { CommonModule } from '@angular/common';
 import { ButtonComponent } from '../button/button.component';
 
 @Component({
-  selector: 'app-modal',
+  selector: 'app-modal-lg',
   standalone: true,
   imports: [CommonModule, ButtonComponent],
-  templateUrl: './modal.component.html',
-  styleUrls: ['./modal.component.css'],
+  templateUrl: './modal-lg.component.html',
+  styleUrls: ['./modal-lg.component.css'],
 })
 
-export class ModalComponent {
+export class ModalLgComponent {
   @Input() title: string = '';
   @Input() h2: string = '';
   @Input() paragraph: string = '';
