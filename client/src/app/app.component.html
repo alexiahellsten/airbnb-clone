@@ -1,47 +1,23 @@
 <main class="main">
   <div class="content">
-    <h1>Hello, {{ title }}</h1>
+    <h1>Components</h1>
+    <h2>Text input</h2>
     <app-text-input
       [inputType]="'text'"
       [label]="'Telefonnummer'"
       [(ngModel)]="name"
     ></app-text-input>
 
-    <p>Congratulations! Your app is running. 🎉</p>
+    <h2>Buttons</h2>
+    <h3>Primary button</h3>
     <app-button buttonType="primary">Reservera</app-button>
+    <h3>Secondary button</h3>
     <app-button buttonType="secondary">Visa alla bekvämligheter</app-button>
+    <h3>Icon button</h3>
     <app-button buttonType="icon"><i class="bi bi-search"></i></app-button>
 
-    <!-- Använd select-box för att visa ett antal vuxna -->
+    <h2>Select box with couunter option</h2>
     <app-select-box label="Gäster" [uniqueId]="'Number of Guests'">
-      <app-counter-option
-        label="Vuxna"
-        description="13 år och äldre"
-        [value]="1"
-      ></app-counter-option>
-      <app-counter-option
-        label="Barn"
-        description="2-12 år"
-        [value]="0"
-      ></app-counter-option>
-      <app-counter-option
-        label="Spädbarn"
-        description="Under 2 år"
-        [value]="0"
-      ></app-counter-option>
-      <app-counter-option
-        label="Husdjur"
-        [value]="0"
-        description="Tar du med ett tjänstdjur?"
-      ></app-counter-option>
-    </app-select-box>
-
-    <app-counter-option
-      label="Vuxna"
-      description="Antal vuxna"
-    ></app-counter-option>
-
-    <app-select-box label="Gäster" [uniqueId]="'Something else'">
       <app-counter-option
         label="Vuxna"
         description="13 år och äldre"
