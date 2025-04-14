@@ -1,30 +1,7 @@
-.input-container {
-  @apply relative border border-[#8c8c8c] focus:border-2 rounded-lg box-border w-52;
-}
-
 .label {
-  @apply absolute top-2 left-3 text-xs font-bold cursor-pointer uppercase text-[#222];
   font-size-adjust: ex-height 0.4;
 }
 
-/* wrapper för att lägga in custom pil */
-.select-wrapper {
-  @apply relative;
-}
-
-select.form-select {
-  @apply bg-blue-200 text-[#222] text-base leading-6 pt-5 pb-3.5 pr-10 pl-2 w-full bg-transparent rounded-lg border-none appearance-none;
-  line-height: 1.5;
-}
-
-/* Anpassa focus-style separat */
-select:focus {
-  @apply bg-teal-200 border-2 border-[#6a6a6a];
-}
-
-/* custom pil */
-.select-wrapper::after {
-  content: "⌄"; /* eller använd en SVG som bakgrund */
-  @apply pointer-events-none absolute top-1/2 right-3 text-[#222] text-xs;
-  transform: translateY(-50%);
+.dropdown {
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 6px;
 }

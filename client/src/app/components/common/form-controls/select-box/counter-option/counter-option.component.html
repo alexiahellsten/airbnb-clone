@@ -1,14 +1,13 @@
-<div class="flex flex-row w-full justify-between p-4 text-[#222]">
+<div class="flex flex-row justify-between p-4 text-[#222] w-full">
   <div>
-    <div class="font-semibold mb-1">Vuxna</div>
-    <div class="text-sm">13 år och äldre</div>
+    <div class="font-semibold">{{ label }}</div>
+    <div>{{ description }}</div>
   </div>
   <div class="counter-container">
     <button
       class="counter-button"
       (click)="decrease()"
       [disabled]="value === 0"
-      [ngClass]="{ '': value === 0 }"
     >
       <i class="bi bi-dash"></i>
     </button>
