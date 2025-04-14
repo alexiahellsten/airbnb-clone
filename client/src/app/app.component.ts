@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common'; // Lägg till denna import
 
 // Komponenter
 import { ButtonComponent } from './components/common/button/button.component';
+import { LinkComponent } from './components/common/link/link.component';
 import { TextInputComponent } from './components/common/form-controls/text-input/text-input.component';
 import { SelectBoxComponent } from './components/common/form-controls/select-box/select-box.component';
 import { CounterOptionComponent } from './components/common/form-controls/select-box/counter-option/counter-option.component'; // Importera CounterOptionComponent här
@@ -17,6 +18,7 @@ import { FilterPillComponent } from './components/common/form-controls/filter-pi
     CommonModule, // Lägg till CommonModule här för att få tillgång till *ngFor
     RouterOutlet,
     ButtonComponent,
+    LinkComponent,
     TextInputComponent,
     SelectBoxComponent,
     CounterOptionComponent, // Lägg till CounterOptionComponent här också
