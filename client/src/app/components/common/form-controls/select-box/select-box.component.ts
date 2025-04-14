@@ -56,11 +56,11 @@ export class SelectBoxComponent
     this.onTouched = fn;
   }
 
-  onFocus() {
+  onFocus(): void {
     this.isFocused = true;
   }
 
-  onBlur() {
+  onBlur(): void {
     this.isFocused = false;
     this.onTouched();
   }
