@@ -1,0 +1,9 @@
+h3 {
+  @apply mb-2;
+}
+ul {
+  @apply flex flex-col gap-3;
+}
+.list-container {
+  @apply w-1/3;
+}
