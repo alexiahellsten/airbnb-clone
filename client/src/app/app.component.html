@@ -26,8 +26,9 @@
     <h3>Icon button</h3>
     <app-button buttonType="icon"><i class="bi bi-search"></i></app-button>
 
+    <h2>Links</h2>
     <div class="flex flex-col">
-      <app-link linkType="primary">Städavgift</app-link>
+      <app-link linkType="default">Städavgift</app-link>
       <app-link linkType="secondary">Visa alla</app-link>
       <app-link linkType="icon">Rensa datum</app-link>
       <app-link linkType="report">Rapportera den här annonsen</app-link>
@@ -59,6 +60,9 @@
 
     <h2>Filter pill</h2>
     <app-filter-pill></app-filter-pill>
+
+    <h2>Tab bar</h2>
+    <app-tab-bar [tabs]="['Alla typer', 'Rum', 'Helt boende']"></app-tab-bar>
   </div>
 </main>
 <router-outlet />

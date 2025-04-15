@@ -11,6 +11,7 @@ import { TextInputComponent } from './components/common/form-controls/text-input
 import { SelectBoxComponent } from './components/common/form-controls/select-box/select-box.component';
 import { CounterOptionComponent } from './components/common/form-controls/select-box/counter-option/counter-option.component'; // Importera CounterOptionComponent här
 import { FilterPillComponent } from './components/common/form-controls/filter-pill/filter-pill.component';
+import { TabBarComponent } from './components/common/tab-bar/tab-bar.component';
 
 @Component({
   selector: 'app-root',
@@ -23,6 +24,7 @@ import { FilterPillComponent } from './components/common/form-controls/filter-pi
     SelectBoxComponent,
     CounterOptionComponent, // Lägg till CounterOptionComponent här också
     FilterPillComponent,
+    TabBarComponent,
     FormsModule, // Lägg till FormsModule här för ngModel
   ],
   templateUrl: './app.component.html',
