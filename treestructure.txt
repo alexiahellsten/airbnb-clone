@@ -2,6 +2,7 @@
 │   ├── angular.json
 │   ├── package-lock.json
 │   ├── package.json
+│   ├── postcss.config.ts
 │   ├── public/
 │   │   └── favicon.ico
 │   ├── README.md
@@ -15,26 +16,64 @@
 │   │   │   ├── app.routes.ts
 │   │   │   └── components/
 │   │   │       └── common/
-│   │   │           └── button/
-│   │   │               ├── button.component.css
-│   │   │               ├── button.component.html
-│   │   │               ├── button.component.spec.ts
-│   │   │               └── button.component.ts
+│   │   │           ├── badge/
+│   │   │           ├── button/
+│   │   │           │   ├── button.component.css
+│   │   │           │   ├── button.component.html
+│   │   │           │   ├── button.component.spec.ts
+│   │   │           │   └── button.component.ts
+│   │   │           ├── form-controls/
+│   │   │           │   ├── checkbox/
+│   │   │           │   │   ├── checkbox.component.css
+│   │   │           │   │   ├── checkbox.component.html
+│   │   │           │   │   ├── checkbox.component.spec.ts
+│   │   │           │   │   └── checkbox.component.ts
+│   │   │           │   ├── filter-pill/
+│   │   │           │   │   ├── filter-pill.component.css
+│   │   │           │   │   ├── filter-pill.component.html
+│   │   │           │   │   ├── filter-pill.component.spec.ts
+│   │   │           │   │   └── filter-pill.component.ts
+│   │   │           │   ├── select-box/
+│   │   │           │   │   ├── counter-option/
+│   │   │           │   │   │   ├── counter-option.component.css
+│   │   │           │   │   │   ├── counter-option.component.html
+│   │   │           │   │   │   ├── counter-option.component.spec.ts
+│   │   │           │   │   │   └── counter-option.component.ts
+│   │   │           │   │   ├── select-box.component.css
+│   │   │           │   │   ├── select-box.component.html
+│   │   │           │   │   ├── select-box.component.spec.ts
+│   │   │           │   │   └── select-box.component.ts
+│   │   │           │   └── text-input/
+│   │   │           │       ├── text-input.component.css
+│   │   │           │       ├── text-input.component.html
+│   │   │           │       ├── text-input.component.spec.ts
+│   │   │           │       └── text-input.component.ts
+│   │   │           ├── link/
+│   │   │           │   ├── link.component.css
+│   │   │           │   ├── link.component.html
+│   │   │           │   ├── link.component.spec.ts
+│   │   │           │   └── link.component.ts
+│   │   │           └── tab-bar/
+│   │   │               ├── tab-bar.component.css
+│   │   │               ├── tab-bar.component.html
+│   │   │               ├── tab-bar.component.spec.ts
+│   │   │               └── tab-bar.component.ts
 │   │   ├── index.html
 │   │   ├── main.ts
 │   │   ├── proxy.conf.json
 │   │   └── styles.css
-│   ├── tailwind.config.js
+│   ├── tailwind.config.ts
 │   ├── tsconfig.app.json
 │   ├── tsconfig.json
 │   └── tsconfig.spec.json
 ├── README.md
-└── server/
-    ├── db/
-    │   ├── airbnb.db
-    │   ├── database.sql
-    │   └── db.js
-    ├── package-lock.json
-    ├── package.json
-    └── src/
-        └── server.js
+├── server/
+│   ├── db/
+│   │   ├── airbnb.db
+│   │   ├── database.sql
+│   │   └── db.js
+│   ├── package-lock.json
+│   ├── package.json
+│   └── src/
+│       └── server.js
+└── treestructure.txt

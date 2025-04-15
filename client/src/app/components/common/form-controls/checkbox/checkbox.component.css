@@ -1,11 +1,7 @@
-/* Inget behövs egentligen om du använder Tailwind helt, 
-   men om du vill lägga till animeringar eller liknande, så kan du göra det här. */
-
 :host {
   display: inline-block;
 }
 
-/* Exempel på att lägga till en liten hover-effekt */
 div:hover {
   filter: brightness(95%);
 }
