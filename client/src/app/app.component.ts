@@ -12,6 +12,7 @@ import { SelectBoxComponent } from './components/common/form-controls/select-box
 import { CounterOptionComponent } from './components/common/form-controls/select-box/counter-option/counter-option.component'; // Importera CounterOptionComponent här
 import { FilterPillComponent } from './components/common/form-controls/filter-pill/filter-pill.component';
 import { TabBarComponent } from './components/common/tab-bar/tab-bar.component';
+import { CheckboxComponent } from './components/common/form-controls/checkbox/checkbox.component'; // Importera CheckboxComponent här
 
 @Component({
   selector: 'app-root',
@@ -25,6 +26,7 @@ import { TabBarComponent } from './components/common/tab-bar/tab-bar.component';
     CounterOptionComponent, // Lägg till CounterOptionComponent här också
     FilterPillComponent,
     TabBarComponent,
+    CheckboxComponent, // Lägg till CheckboxComponent här
     FormsModule, // Lägg till FormsModule här för ngModel
   ],
   templateUrl: './app.component.html',
