@@ -1,4 +1,6 @@
-<section class="header w-full mx-auto py-4 relative z-50 shadow-md">
+<section
+  class="header w-full mx-auto py-4 px-12 relative z-50 shadow-md shadow-neutral-200"
+>
   <div
     class="header-navigation relative flex justify-between items-center px-4 py-2 bg-white"
   >
@@ -10,9 +12,7 @@
       />
     </div>
 
-    <nav
-      class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 hidden md:flex gap-8 z-0"
-    >
+    <nav class="hidden md:flex flex-wrap justify-center gap-8 z-0 ml-[190px]">
       <a
         href="#"
         class="text-lg font-semibold text-gray-700 hover:text-gray-900 transition-colors"
@@ -21,25 +21,31 @@
       </a>
       <a
         href="#"
-        class="text-lg font-semibold text-gray-700 hover:text-gray-900 transition-colors"
+        class="text-lg text-gray-500 hover:text-gray-900 transition-colors"
       >
         Upplevelser
       </a>
     </nav>
-    <div class="flex items-center gap-4 z-10">
-      <div class="hidden md:block">
-        <lucide-icon name="globe"></lucide-icon>
-      </div>
 
-      <div class="relative inline-block hidden md:block">
+    <div class="flex items-center gap-4 z-10">
+      <a
+        href="#"
+        class="hidden md:block text-md font-semibold text-gray-700 hover:text-gray-900 transition-colors mr-4"
+      >
+        Hyr ut ditt boende på Airbnb
+      </a>
+      <div class="hidden md:block">
+        <lucide-icon name="globe" class="w-5"></lucide-icon>
+      </div>
+      <div class="relative hidden md:block">
         <app-button buttonType="pill" (click)="modalSm.toggle()">
           <div class="flex justify-between items-center gap-2">
-            <lucide-icon name="menu"></lucide-icon>
-            <lucide-icon name="user"></lucide-icon>
+            <lucide-icon name="menu" class="w-5 h-5"></lucide-icon>
+            <lucide-icon name="user" class="w-5 h-5"></lucide-icon>
           </div>
         </app-button>
 
-        <app-modal-sm #modalSm>
+        <app-modal-sm #modalSm class="relative z-50">
           <ul class="py-2">
             <li class="font-semibold">
               <a
@@ -96,7 +102,7 @@
     </div>
   </div>
 
-  <div class="sticky top-0 z-40 bg-white shadow-sm transition-all w-full">
+  <div class="sticky top-0 z-30 w-full p-4">
     <app-search-bar></app-search-bar>
   </div>
 </section>
