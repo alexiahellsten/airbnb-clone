@@ -14,6 +14,7 @@ import { FilterPillComponent } from './components/common/form-controls/filter-pi
 import { TabBarComponent } from './components/common/tab-bar/tab-bar.component';
 import { CheckboxComponent } from './components/common/form-controls/checkbox/checkbox.component'; // Importera CheckboxComponent här
 import { ListingBadgeComponent } from './components/common/listings/listing-badge/listing-badge.component'; // Importera ListingBadgeComponent här
+import { FooterComponent } from './components/common/footer/footer.component';
 
 @Component({
   selector: 'app-root',
@@ -29,6 +30,7 @@ import { ListingBadgeComponent } from './components/common/listings/listing-badg
     TabBarComponent,
     CheckboxComponent, // Lägg till CheckboxComponent här
     ListingBadgeComponent,
+    FooterComponent,
     FormsModule, // Lägg till FormsModule här för ngModel
   ],
   templateUrl: './app.component.html',
