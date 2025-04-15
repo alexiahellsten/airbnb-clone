@@ -1,0 +1,4 @@
+/* För den valda tabben */
+.selected {
+  @apply bg-brand-lightGray border-2 border-brand-black rounded-xl;
+}

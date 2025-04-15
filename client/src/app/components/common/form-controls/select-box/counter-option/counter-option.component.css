@@ -1,0 +1,11 @@
+.counter-container {
+  @apply flex items-center gap-4;
+}
+
+.counter-button {
+  @apply text-xl pb-1 text-[#737373] font-bold border border-[#b0b0b0] rounded-full w-8 h-8;
+}
+
+.counter-button:disabled {
+  @apply cursor-not-allowed text-[#ebebeb] border-[#ebebeb];
+}

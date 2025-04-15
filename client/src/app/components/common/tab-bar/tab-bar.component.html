@@ -1,0 +1,19 @@
+<!-- Loopar genom tabs och visar en separator mellan varje tab -->
+<ul
+  class="flex flex-row h-14 border border-brand-mediumGray w-fit text-base rounded-lg p-1 font-semibold"
+>
+  <li
+    *ngFor="let tab of tabs; let i = index; let isLast = last"
+    (click)="selectTab(tab)"
+    [class.selected]="tab === selectedTab"
+    class="relative w-40 text-center flex items-center justify-center cursor-pointer"
+  >
+    {{ tab }}
+
+    <!-- Visa inte separatorn efter den sista tabben, eller om någon av tabbarna bredvid är vald -->
+    <div
+      *ngIf="!isLast && selectedTab !== tab && selectedTab !== tabs[i + 1]"
+      class="absolute top-0 right-0 h-5/6 mt-1 w-px bg-gray-300"
+    ></div>
+  </li>
+</ul>

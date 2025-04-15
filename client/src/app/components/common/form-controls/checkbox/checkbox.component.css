@@ -1,0 +1,7 @@
+:host {
+  display: inline-block;
+}
+
+div:hover {
+  filter: brightness(95%);
+}

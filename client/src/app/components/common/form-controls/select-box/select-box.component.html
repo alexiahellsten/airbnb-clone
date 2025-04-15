@@ -1,19 +1,27 @@
-<div class="input-container">
-  <label for="select" class="label">{{ label }}</label>
-  <div class="select-wrapper">
-    <select
-      id="select"
-      class="form-select"
-      [(ngModel)]="value"
-      (focus)="onFocus()"
-      (blur)="onBlur()"
-      (change)="onInput($event)"
-    >
+<div class="w-96 relative" [id]="uniqueId">
+  <div
+    class="relative rounded-lg border border-[#222] cursor-pointer"
+    (click)="toggleDropdown()"
+    [class.focused]="isFocused || value"
+  >
+    <div class="absolute flex items-center right-3 h-full text-[#222]">
+      <i class="bi bi-chevron-down h-fit" [class.rotate-180]="isOpen"></i>
+    </div>
+    <div class="ml-3">
+      <label
+        for="select"
+        class="label text-xs font-bold uppercase text-[#222]"
+        >{{ label }}</label
       >
-      <option value="" disabled selected hidden>{{ placeholder }}</option>
-      <option *ngFor="let option of options" [value]="option">
-        {{ option }}
-      </option>
-    </select>
+    </div>
+
+    <div class="ml-3 pb-2 text-sm">{{ summary }}</div>
+  </div>
+  <div
+    *ngIf="isOpen"
+    class="dropdown bg-white absolute w-full rounded-lg border border-[#e5e5e5] z-50"
+  >
+    <!-- När dropdownen är öppen, visa counter-option komponenterna -->
+    <ng-content></ng-content>
   </div>
 </div>
