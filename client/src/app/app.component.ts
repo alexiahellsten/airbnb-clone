@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, ViewChild } from '@angular/core';
+import { RouterLink, RouterOutlet } from '@angular/router';
 import { FormsModule } from '@angular/forms'; // Importera FormsModule
 import { CommonModule } from '@angular/common'; // Lägg till denna import
 
@@ -15,12 +15,15 @@ import { TabBarComponent } from './components/common/tab-bar/tab-bar.component';
 import { CheckboxComponent } from './components/common/form-controls/checkbox/checkbox.component'; // Importera CheckboxComponent här
 import { ListingBadgeComponent } from './components/common/listings/listing-badge/listing-badge.component'; // Importera ListingBadgeComponent här
 import { FooterComponent } from './components/common/footer/footer.component';
+import { ModalLgComponent } from './components/common/modal-lg/modal-lg.component';
+import { ModalSmComponent } from './components/common/modal-sm/modal-sm.component';
 
 @Component({
   selector: 'app-root',
   imports: [
-    CommonModule, // Lägg till CommonModule här för att få tillgång till *ngFor
     RouterOutlet,
+    RouterLink,
+    CommonModule,
     ButtonComponent,
     LinkComponent,
     TextInputComponent,
@@ -32,6 +35,8 @@ import { FooterComponent } from './components/common/footer/footer.component';
     ListingBadgeComponent,
     FooterComponent,
     FormsModule, // Lägg till FormsModule här för ngModel
+    ModalLgComponent,
+    ModalSmComponent,
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
@@ -45,9 +50,19 @@ export class AppComponent {
   email: string = '';
   password: string = '';
 
+  @ViewChild('modalLg') modalLg!: ModalLgComponent;
+  @ViewChild('modalSm') modalSm!: ModalSmComponent;
+
   constructor(private http: HttpClient) {
     this.http.get('/api/listings').subscribe((listings) => {
       console.log(listings);
     });
+  }
+  openLargeModal() {
+    this.modalLg.open();
+  }
+
+  openSmallModal() {
+    this.modalSm.open();
   }
 }
