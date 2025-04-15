@@ -1,0 +1,13 @@
+<div
+  class="w-full overflow-x-auto border-t border-gray-200 bg-white shadow-sm z-30"
+>
+  <div class="flex gap-6 px-6 py-3 min-w-max">
+    <ng-container *ngFor="let category of categories">
+      <button
+        class="text-sm font-medium text-gray-600 hover:text-black transition"
+      >
+        {{ category }}
+      </button>
+    </ng-container>
+  </div>
+</div>

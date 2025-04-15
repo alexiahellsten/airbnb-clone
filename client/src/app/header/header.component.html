@@ -1,130 +1,94 @@
-<section class="header w-full mx-auto">
-  <div class="header-navigation flex justify-between items-center px-4 py-2">
-    <div class="flex items-center gap-2">
+<section class="header w-full mx-auto py-4 relative z-50 shadow-md">
+  <div
+    class="header-navigation relative flex justify-between items-center px-4 py-2 bg-white"
+  >
+    <div class="hidden md:block z-10">
       <img
-        src="https://placehold.co/20x10.png"
+        src="https://placehold.co/120x40?text=Airbnb"
         alt="Airbnb Logo"
         class="w-32"
       />
     </div>
 
-    <!-- Navigation Links -->
-    <div class="hidden md:flex gap-6">
+    <nav
+      class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 hidden md:flex gap-8 z-0"
+    >
       <a
         href="#"
-        class="text-lg font-semibold text-gray-700 hover:text-gray-900"
-        >Boenden</a
+        class="text-lg font-semibold text-gray-700 hover:text-gray-900 transition-colors"
       >
-      <a href="#" class="text-lg text-gray-600 hover:text-gray-900"
-        >Upplevelser</a
-      >
-    </div>
-
-    <div class="flex items-center gap-4">
+        Boenden
+      </a>
       <a
         href="#"
-        class="text-lg font-semibold text-gray-700 hover:text-gray-900"
-        >Hyr ut ditt boende på Airbnb</a
+        class="text-lg font-semibold text-gray-700 hover:text-gray-900 transition-colors"
       >
+        Upplevelser
+      </a>
+    </nav>
+    <div class="flex items-center gap-4 z-10">
+      <div class="hidden md:block">
+        <lucide-icon name="globe"></lucide-icon>
+      </div>
 
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        class="lucide lucide-globe-icon lucide-globe"
-      >
-        <circle cx="12" cy="12" r="10" />
-        <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
-        <path d="M2 12h20" />
-      </svg>
-
-      <!-- Modal Small -->
-      <div class="relative inline-block">
+      <div class="relative inline-block hidden md:block">
         <app-button buttonType="pill" (click)="modalSm.toggle()">
-          <div class="flex justify-between gap-2">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="lucide lucide-align-justify-icon lucide-align-justify"
-            >
-              <path d="M3 12h18" />
-              <path d="M3 18h18" />
-              <path d="M3 6h18" />
-            </svg>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="lucide lucide-user-round-icon lucide-user-round"
-            >
-              <circle cx="12" cy="8" r="5" />
-              <path d="M20 21a8 8 0 0 0-16 0" />
-            </svg>
+          <div class="flex justify-between items-center gap-2">
+            <lucide-icon name="menu"></lucide-icon>
+            <lucide-icon name="user"></lucide-icon>
           </div>
         </app-button>
+
         <app-modal-sm #modalSm>
-          <ul>
+          <ul class="py-2">
             <li class="font-semibold">
               <a
                 routerLink="#"
-                class="block px-4 py-2 hover:bg-gray-100 text-sm"
-                >Bli medlem</a
+                class="block px-4 py-2 hover:bg-gray-100 text-sm transition-colors"
               >
+                Bli medlem
+              </a>
             </li>
             <li>
               <a
                 routerLink="#"
-                class="block px-4 py-2 hover:bg-gray-100 text-sm"
-                >Logga in</a
+                class="block px-4 py-2 hover:bg-gray-100 text-sm transition-colors"
               >
+                Logga in
+              </a>
             </li>
-            <div class="h-px bg-gray-200 my-2 mx-0"></div>
+            <div class="h-px bg-gray-200 my-2"></div>
             <li>
               <a
                 routerLink="#"
-                class="block px-4 py-2 hover:bg-gray-100 text-sm"
-                >Presentkort</a
+                class="block px-4 py-2 hover:bg-gray-100 text-sm transition-colors"
               >
-            </li>
-            <li>
-              <a
-                routerLink="#"
-                class="block px-4 py-2 hover:bg-gray-100 text-sm"
-                >Hyr ut ditt boende på Airbnb</a
-              >
+                Presentkort
+              </a>
             </li>
             <li>
               <a
                 routerLink="#"
-                class="block px-4 py-2 hover:bg-gray-100 text-sm"
-                >Var värd för en upplevelse</a
+                class="block px-4 py-2 hover:bg-gray-100 text-sm transition-colors"
               >
+                Hyr ut ditt boende på Airbnb
+              </a>
             </li>
             <li>
               <a
                 routerLink="#"
-                class="block px-4 py-2 hover:bg-gray-100 text-sm"
-                >Hjälpcenter</a
+                class="block px-4 py-2 hover:bg-gray-100 text-sm transition-colors"
               >
+                Var värd för en upplevelse
+              </a>
+            </li>
+            <li>
+              <a
+                routerLink="#"
+                class="block px-4 py-2 hover:bg-gray-100 text-sm transition-colors"
+              >
+                Hjälpcenter
+              </a>
             </li>
           </ul>
         </app-modal-sm>
@@ -132,7 +96,7 @@
     </div>
   </div>
 
-  <app-search-bar></app-search-bar>
-
-  <!-- TODO: Fixa categoryScroller-komponent och importera här -->
+  <div class="sticky top-0 z-40 bg-white shadow-sm transition-all w-full">
+    <app-search-bar></app-search-bar>
+  </div>
 </section>
