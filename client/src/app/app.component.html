@@ -1,182 +1,45 @@
-<header>
+<header class="relative">
   <app-header></app-header>
-  <app-category-scroller></app-category-scroller>
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="flex items-center justify-between">
+      <div class="flex-1">
+        <app-category-scroller></app-category-scroller>
+      </div>
+      <button
+        class="flex items-center gap-2 px-4 py-2 ml-4 mt-1 border border-gray-300 rounded-lg bg-white cursor-pointer transition-all hover:shadow-md"
+        (click)="openFilterModal()"
+      >
+        <svg
+          viewBox="0 0 16 16"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+          role="presentation"
+          focusable="false"
+          class="h-4 w-4 fill-current"
+        >
+          <path
+            d="M5 8c1.306 0 2.418.835 2.83 2H14v2H7.829A3.001 3.001 0 1 1 5 8zm0 2a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm6-8a3 3 0 1 1-2.829 4H2V4h6.17A3.001 3.001 0 0 1 11 2zm0 2a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"
+          ></path>
+        </svg>
+        <span class="text-sm font-medium">Filter</span>
+      </button>
+    </div>
+  </div>
 </header>
 
-<main class="main">
-  <div class="content">
-    <h1>Style library</h1>
-    ---------------------
-    <h1>Heading 1</h1>
-    <h2>Heading 2</h2>
-    <h3>Heading 3</h3>
-    <p>This is a paragraph</p>
-    <p class="sub-paragraph">This is a sub paragraph</p>
-    ---------------------
-    <h1>Component library</h1>
-    <h2>Text input</h2>
-    <app-text-input
-      [inputType]="'text'"
-      [label]="'Telefonnummer'"
-      [(ngModel)]="name"
-    ></app-text-input>
+<router-outlet></router-outlet>
 
-    <h2>Buttons</h2>
-    <h3>Primary button</h3>
-    <app-button buttonType="primary">Reservera</app-button>
+<app-footer></app-footer>
 
-    <h3>Secondary button</h3>
-    <app-button buttonType="secondary">Visa alla bekvämligheter</app-button>
-
-    <h3>Icon button</h3>
-    <app-button buttonType="icon"><i class="bi bi-search"></i></app-button>
-
-    <h2>Links</h2>
-    <div class="flex flex-col">
-      <app-link linkType="default">Städavgift</app-link>
-      <app-link linkType="secondary">Visa alla</app-link>
-      <app-link linkType="icon">Rensa datum</app-link>
-      <app-link linkType="report">Rapportera den här annonsen</app-link>
-    </div>
-
-    <h2>Select box with counter options</h2>
-    <app-select-box label="Gäster" [uniqueId]="'Number of Guests'">
-      <app-counter-option
-        label="Vuxna"
-        description="13 år och äldre"
-        [value]="1"
-      ></app-counter-option>
-      <app-counter-option
-        label="Barn"
-        description="2-12 år"
-        [value]="0"
-      ></app-counter-option>
-      <app-counter-option
-        label="Spädbarn"
-        description="Under 2 år"
-        [value]="0"
-      ></app-counter-option>
-      <app-counter-option
-        label="Husdjur"
-        [value]="0"
-        description="Tar du med ett tjänstdjur?"
-      ></app-counter-option>
-    </app-select-box>
-
-    <h2>Filter pill</h2>
-    <app-filter-pill></app-filter-pill>
-
-    <h2>Tab bar</h2>
-    <app-tab-bar [tabs]="['Alla typer', 'Rum', 'Helt boende']"></app-tab-bar>
-
-    <h2>Checkbox</h2>
-    <app-checkbox label="Acceptera villkoren"></app-checkbox>
-
-    <h1>Listing components</h1>
-    <h2>Listing badge</h2>
-    <app-listing-badge></app-listing-badge>
-
-    <!-- Modal Large -->
-    <app-button buttonType="secondary" (click)="modalLg.open()"
-      >Öppna modal</app-button
-    >
-
-    <!-- Skickar dynamiskt innehåll till modalkomponenten -->
-    <app-modal-lg
-      #modalLg
-      [title]="'Titel'"
-      [leftButtonText]="'Avbryt'"
-      [rightButtonText]="'Bekräfta'"
-      [h2]="'Rubrik'"
-      [paragraph]="
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat ea
-  molestiae maxime doloremque unde est fuga. Saepe vero eaque quis
-  exercitationem odio voluptatem, doloremque, velit, corrupti illum
-  perspiciatis nostrum doloribus?'
-      "
-    >
-      <button
-        (click)="modalLg.close()"
-        class="mt-4 px-4 py-2 text-white rounded"
-      >
-        Stäng
-      </button>
-    </app-modal-lg>
-
-    <!-- Modal Small -->
-    <div class="relative inline-block">
-      <app-button buttonType="pill" (click)="modalSm.toggle()">
-        <div class="flex justify-between gap-2">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="lucide lucide-align-justify-icon lucide-align-justify"
-          >
-            <path d="M3 12h18" />
-            <path d="M3 18h18" />
-            <path d="M3 6h18" />
-          </svg>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="lucide lucide-user-round-icon lucide-user-round"
-          >
-            <circle cx="12" cy="8" r="5" />
-            <path d="M20 21a8 8 0 0 0-16 0" />
-          </svg>
-        </div>
-      </app-button>
-      <app-modal-sm #modalSm>
-        <ul>
-          <li class="font-semibold">
-            <a routerLink="#" class="block px-4 py-2 hover:bg-gray-100 text-sm"
-              >Bli medlem</a
-            >
-          </li>
-          <li>
-            <a routerLink="#" class="block px-4 py-2 hover:bg-gray-100 text-sm"
-              >Logga in</a
-            >
-          </li>
-          <div class="h-px bg-gray-200 my-2 mx-0"></div>
-          <li>
-            <a routerLink="#" class="block px-4 py-2 hover:bg-gray-100 text-sm"
-              >Presentkort</a
-            >
-          </li>
-          <li>
-            <a routerLink="#" class="block px-4 py-2 hover:bg-gray-100 text-sm"
-              >Hyr ut ditt boende på Airbnb</a
-            >
-          </li>
-          <li>
-            <a routerLink="#" class="block px-4 py-2 hover:bg-gray-100 text-sm"
-              >Var värd för en upplevelse</a
-            >
-          </li>
-          <li>
-            <a routerLink="#" class="block px-4 py-2 hover:bg-gray-100 text-sm"
-              >Hjälpcenter</a
-            >
-          </li>
-        </ul>
-      </app-modal-sm>
-    </div>
-    <app-footer></app-footer>
+<app-modal-lg
+  #filterModal
+  [title]="'Filter'"
+  [leftButtonText]="'Rensa alla'"
+  [rightButtonText]="'Visa boenden'"
+  [h2]="'Boendetyp'"
+  [paragraph]="'Använd filtren för att hitta exakt vad du letar efter.'"
+>
+  <div class="p-4">
+    <h3 class="text-lg font-semibold mb-4">Prisintervall</h3>
   </div>
-</main>
-<router-outlet />
+</app-modal-lg>

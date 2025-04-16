@@ -4,6 +4,7 @@ import { ButtonComponent } from '../components/common/button/button.component';
 import { SearchBarComponent } from '../search-bar/search-bar.component';
 import { ModalSmComponent } from '../components/common/modal-sm/modal-sm.component';
 import { LucideAngularModule, Menu, Globe, User } from 'lucide-angular';
+import { LogoComponent } from '../components/logo/logo.component';
 
 @Component({
   selector: 'app-header',
@@ -13,7 +14,8 @@ import { LucideAngularModule, Menu, Globe, User } from 'lucide-angular';
     ButtonComponent,
     SearchBarComponent,
     ModalSmComponent,
-    LucideAngularModule
+    LucideAngularModule,
+    LogoComponent
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'

@@ -1,20 +1,71 @@
-<div
-  class="w-full overflow-x-auto border-t border-gray-200 bg-white shadow-sm z-30"
->
-  <div class="flex gap-6 px-6 py-3 min-w-max">
-    <ng-container *ngFor="let category of categories">
-      <button
-        class="flex flex-col items-center justify-center text-sm font-medium text-gray-600 hover:text-black transition"
-      >
-        <!-- <ng-container *ngComponentOutlet="category.icon"></ng-container> -->
-        <img
-          [src]="'/icons/' + category.icon"
-          [alt]="category.name"
-          class="w-6 h-6"
-        />
+<section class="relative w-full max-w-6xl mx-auto">
+  <div class="relative">
+    <div
+      class="absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-white to-transparent z-10"
+    ></div>
 
-        <span class="mt-1 hover:underline">{{ category.name }}</span>
-      </button>
-    </ng-container>
+    <div
+      class="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-white to-transparent z-10"
+    ></div>
+    <button
+      class="absolute left-0 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white shadow-md flex items-center justify-center cursor-pointer z-20 transition-all hover:shadow-lg"
+      (click)="scrollLeft()"
+    >
+      <svg
+        viewBox="0 0 32 32"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+        role="presentation"
+        focusable="false"
+        class="block h-3 w-3 stroke-current stroke-[4] overflow-visible"
+      >
+        <path
+          d="m20 28-11.29289322-11.2928932c-.39052429-.3905243-.39052429-1.0236893 0-1.4142136l11.29289322-11.2928932"
+        ></path>
+      </svg>
+    </button>
+
+    <!-- Scrollbara kategorier -->
+    <div
+      class="flex gap-6 py-3 overflow-x-auto whitespace-nowrap scroll-smooth scrollbar-hide px-12"
+      #scrollContainer
+      (scroll)="onScroll()"
+    >
+      <ng-container *ngFor="let category of categories">
+        <button
+          class="flex flex-col items-center justify-center px-4 py-2 cursor-pointer border-b-2 border-transparent transition-all hover:border-gray-300"
+          [class.border-black]="category.name === selectedCategory"
+          [class.text-black]="category.name === selectedCategory"
+          (click)="selectCategory(category.name)"
+        >
+          <div class="w-6 h-6 mb-1">
+            <img
+              class="w-full h-full object-contain"
+              [src]="'/icons/' + category.icon"
+              [alt]="category.name"
+            />
+          </div>
+          <span class="text-sm font-medium">{{ category.name }}</span>
+        </button>
+      </ng-container>
+    </div>
+
+    <button
+      class="absolute right-0 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white shadow-md flex items-center justify-center cursor-pointer z-20 transition-all hover:shadow-lg"
+      (click)="scrollRight()"
+    >
+      <svg
+        viewBox="0 0 32 32"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+        role="presentation"
+        focusable="false"
+        class="block h-3 w-3 stroke-current stroke-[4] overflow-visible"
+      >
+        <path
+          d="m12 4 11.2928932 11.2928932c.3905243.3905243.3905243 1.0236893 0 1.4142136L12 28"
+        ></path>
+      </svg>
+    </button>
   </div>
-</div>
+</section>
