@@ -8,7 +8,7 @@ const config: Config = {
         brand: {
           black: '#222222', // Dark black text color
           blue: '#00A699', // Brand blue
-          dark: '#333333', // Dark text color
+          dark: '#333333', // Dark text & background color
           error: '#D9534F', // Error color (dark red)
           lightGray: '#F7F7F7', // Background light gray
           mediumGray: '#DDDDDD', // Medium gray

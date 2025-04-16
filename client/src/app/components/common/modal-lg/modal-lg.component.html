@@ -1,0 +1,42 @@
+<div
+  *ngIf="isOpen"
+  class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
+>
+  <div class="bg-white rounded-3xl shadow-lg w-full max-w-lg relative">
+    <div class="relative border-b pb-4 mb-2">
+      <h2 class="text-lg font-semibold text-center p-4">
+        {{ title }}
+      </h2>
+
+      <button
+        (click)="close()"
+        aria-label="Close"
+        class="absolute top-0 right-0 p-4 text-brand-dark hover:text-brand-black"
+      >
+        <lucide-icon name="x"></lucide-icon>
+      </button>
+    </div>
+
+    <div class="flex justify-between">
+      <span class="flex flex-col">
+        <h2 class="text-xl font-semibold px-4 py-2">{{ h2 }}</h2>
+        <p class="px-4 py-2 mb-4">
+          {{ paragraph }}
+        </p>
+      </span>
+      <!-- Här placeras dynamiskt innehåll som skickas från app.component.html -->
+      <!-- <ng-content></ng-content> -->
+    </div>
+
+    <div class="border-t shadow-[0px_-2px_2px_rgba(0,0,0,0.1)]">
+      <div class="sticky bottom-2 bg-white z-10 flex justify-between m-2">
+        <app-button buttonType="link" (click)="close()" class="py-2 -ml-3">{{
+          leftButtonText
+        }}</app-button>
+        <app-button buttonType="dark" class="p-2">{{
+          rightButtonText
+        }}</app-button>
+      </div>
+    </div>
+  </div>
+</div>
