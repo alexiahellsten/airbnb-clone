@@ -1,3 +1,13 @@
-<p>listing-card works!</p>
-<app-listing-badge></app-listing-badge>
-<app-image-gallery-slider></app-image-gallery-slider>
+<app-image-gallery-slider [images]="images" />
+
+<div class="relative mt-5">
+  <div class="font-semibold">{{ location }}</div>
+  <div class="text-brand-textLight">{{ hostType }}</div>
+  <div class="text-brand-textLight">{{ date }}</div>
+  <div class="font-bold mt-2">
+    {{ price }} <span class="font-normal">natt</span>
+  </div>
+  <div class="absolute top-0 right-0 font-semibold">
+    <i class="bi bi-star-fill"></i> {{ rating }}
+  </div>
+</div>

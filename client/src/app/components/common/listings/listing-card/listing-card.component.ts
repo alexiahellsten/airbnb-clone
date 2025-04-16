@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ImageGallerySliderComponent } from '../image-gallery-slider/image-gallery-slider.component';
 import { ListingBadgeComponent } from '../listing-badge/listing-badge.component';
 
@@ -9,4 +9,11 @@ import { ListingBadgeComponent } from '../listing-badge/listing-badge.component'
   templateUrl: './listing-card.component.html',
   styleUrl: './listing-card.component.css',
 })
-export class ListingCardComponent {}
+export class ListingCardComponent {
+  @Input() images: string[] = [];
+  @Input() location: string = '';
+  @Input() hostType: string = '';
+  @Input() date: string = '';
+  @Input() price: string = '';
+  @Input() rating: string = '';
+}
