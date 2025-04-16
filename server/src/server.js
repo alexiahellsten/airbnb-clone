@@ -1,8 +1,13 @@
 import express from "express";
 import db from "../db/db.js";
+import categoryRoutes from "./routes/categories.js";
 
 const port = 8000;
 const app = express();
+
+app.use(express.json());
+
+app.use("/api", categoryRoutes);
 
 app.get("/api/listings", (req, res) => {
   const listings = db.prepare("SELECT * FROM listings").all(); 

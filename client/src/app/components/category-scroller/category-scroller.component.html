@@ -4,9 +4,16 @@
   <div class="flex gap-6 px-6 py-3 min-w-max">
     <ng-container *ngFor="let category of categories">
       <button
-        class="text-sm font-medium text-gray-600 hover:text-black transition"
+        class="flex flex-col items-center justify-center text-sm font-medium text-gray-600 hover:text-black transition"
       >
-        {{ category }}
+        <!-- <ng-container *ngComponentOutlet="category.icon"></ng-container> -->
+        <img
+          [src]="'/icons/' + category.icon"
+          [alt]="category.name"
+          class="w-6 h-6"
+        />
+
+        <span class="mt-1 hover:underline">{{ category.name }}</span>
       </button>
     </ng-container>
   </div>

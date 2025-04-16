@@ -18,6 +18,7 @@ import { FooterComponent } from './components/common/footer/footer.component';
 import { ModalLgComponent } from './components/common/modal-lg/modal-lg.component';
 import { ModalSmComponent } from './components/common/modal-sm/modal-sm.component';
 import { HeaderComponent } from './header/header.component';
+import { CategoryScrollerComponent } from './components/category-scroller/category-scroller.component';
 
 @Component({
   selector: 'app-root',
@@ -38,7 +39,8 @@ import { HeaderComponent } from './header/header.component';
     FormsModule,
     ModalLgComponent,
     ModalSmComponent,
-    HeaderComponent
+    HeaderComponent,
+    CategoryScrollerComponent
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
