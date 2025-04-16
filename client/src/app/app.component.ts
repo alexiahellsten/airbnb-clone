@@ -13,7 +13,7 @@ import { CounterOptionComponent } from './components/common/form-controls/select
 import { FilterPillComponent } from './components/common/form-controls/filter-pill/filter-pill.component';
 import { TabBarComponent } from './components/common/tab-bar/tab-bar.component';
 import { CheckboxComponent } from './components/common/form-controls/checkbox/checkbox.component'; // Importera CheckboxComponent här
-import { ListingBadgeComponent } from './components/common/listings/listing-badge/listing-badge.component'; // Importera ListingBadgeComponent här
+import { ListingCardComponent } from './components/common/listings/listing-card/listing-card.component'; // Importera ListingCardComponent här
 
 @Component({
   selector: 'app-root',
@@ -28,7 +28,7 @@ import { ListingBadgeComponent } from './components/common/listings/listing-badg
     FilterPillComponent,
     TabBarComponent,
     CheckboxComponent, // Lägg till CheckboxComponent här
-    ListingBadgeComponent,
+    ListingCardComponent,
     FormsModule, // Lägg till FormsModule här för ngModel
   ],
   templateUrl: './app.component.html',

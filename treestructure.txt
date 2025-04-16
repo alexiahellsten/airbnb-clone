@@ -53,6 +53,22 @@
 │   │   │           │   ├── link.component.html
 │   │   │           │   ├── link.component.spec.ts
 │   │   │           │   └── link.component.ts
+│   │   │           ├── listings/
+│   │   │           │   ├── image-gallery-slider/
+│   │   │           │   │   ├── image-gallery-slider.component.css
+│   │   │           │   │   ├── image-gallery-slider.component.html
+│   │   │           │   │   ├── image-gallery-slider.component.spec.ts
+│   │   │           │   │   └── image-gallery-slider.component.ts
+│   │   │           │   ├── listing-badge/
+│   │   │           │   │   ├── listing-badge.component.css
+│   │   │           │   │   ├── listing-badge.component.html
+│   │   │           │   │   ├── listing-badge.component.spec.ts
+│   │   │           │   │   └── listing-badge.component.ts
+│   │   │           │   └── listing-card/
+│   │   │           │       ├── listing-card.component.css
+│   │   │           │       ├── listing-card.component.html
+│   │   │           │       ├── listing-card.component.spec.ts
+│   │   │           │       └── listing-card.component.ts
 │   │   │           └── tab-bar/
 │   │   │               ├── tab-bar.component.css
 │   │   │               ├── tab-bar.component.html
