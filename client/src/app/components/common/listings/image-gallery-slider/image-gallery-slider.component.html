@@ -11,16 +11,12 @@
     (click)="prevImage()"
     class="absolute top-1/2 left-2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 transition-opacity duration-200 group-hover:opacity-100 opacity-0"
     *ngIf="currentIndex > 0"
-  >
-    <lucide-icon name="chevron-left" class="w-6 h-6"></lucide-icon>
-  </button>
+  ></button>
 
   <!-- Höger pil -->
   <button
     (click)="nextImage()"
     class="absolute top-1/2 right-2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 transition-opacity duration-200 group-hover:opacity-100 opacity-0"
     *ngIf="currentIndex < images.length - 1"
-  >
-    <lucide-icon name="chevron-right" class="w-6 h-6"></lucide-icon>
-  </button>
+  ></button>
 </div>

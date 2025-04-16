@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
-import { LucideAngularModule } from 'lucide-angular';
 
 @Component({
   selector: 'app-global-footer',
-  imports: [LucideAngularModule],
+  imports: [],
   templateUrl: './global-footer.component.html',
   styleUrl: './global-footer.component.css',
 })
