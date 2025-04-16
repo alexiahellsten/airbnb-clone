@@ -12,6 +12,7 @@ import { ListingBadgeComponent } from '../listing-badge/listing-badge.component'
 })
 export class ImageGallerySliderComponent {
   @Input() images: string[] = [];
+  @Input() hasBadge: boolean = false; // Lägg till input för badge
 
   currentIndex = 0;
 

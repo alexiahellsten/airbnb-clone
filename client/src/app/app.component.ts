@@ -78,6 +78,7 @@ export class AppComponent {
       date: '1–6 maj',
       price: '1200 kr',
       rating: '4,9',
+      hasBadge: true, // Badge ska synas
     },
     {
       images: [
@@ -89,29 +90,40 @@ export class AppComponent {
       date: '10–15 maj',
       price: '980 kr',
       rating: '5,0',
+      hasBadge: false, // Badge ska inte synas
     },
     {
       images: [
         'https://placehold.co/600x400?text=1',
         'https://placehold.co/600x400?text=2',
         'https://placehold.co/600x400?text=3',
+        'https://placehold.co/600x400?text=4',
+        'https://placehold.co/600x400?text=5',
       ],
       location: 'New York, USA',
       hostType: 'Privat värd',
       date: '15–20 juni',
       price: '2500 kr',
       rating: '4,8',
+      hasBadge: true, // Badge ska synas
     },
     {
       images: [
         'https://placehold.co/600x400?text=1',
         'https://placehold.co/600x400?text=2',
+        'https://placehold.co/600x400?text=3',
+        'https://placehold.co/600x400?text=4',
+        'https://placehold.co/600x400?text=5',
+        'https://placehold.co/600x400?text=6',
+        'https://placehold.co/600x400?text=7',
+        'https://placehold.co/600x400?text=8',
       ],
       location: 'Tokyo, Japan',
       hostType: 'Superhost',
       date: '5–10 juli',
       price: '1500 kr',
       rating: '4,7',
+      hasBadge: false, // Badge ska inte synas
     },
     {
       images: [
@@ -123,6 +135,7 @@ export class AppComponent {
       date: '25–30 juni',
       price: '1900 kr',
       rating: '4,9',
+      hasBadge: true, // Badge ska synas
     },
   ];
 }

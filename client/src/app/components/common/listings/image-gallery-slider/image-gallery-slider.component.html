@@ -36,6 +36,10 @@
       ></div>
     </ng-container>
   </div>
-  <app-listing-badge class="absolute top-3.5 left-3"></app-listing-badge>
+  <app-listing-badge
+    *ngIf="hasBadge"
+    class="absolute top-3.5 left-3"
+  ></app-listing-badge>
+
   <i class="absolute top-2.5 right-4 text-white text-2xl bi bi-heart"></i>
 </div>
