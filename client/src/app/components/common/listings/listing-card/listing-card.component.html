@@ -1,0 +1,16 @@
+<app-image-gallery-slider
+  [images]="images"
+  [hasBadge]="hasBadge"
+></app-image-gallery-slider>
+
+<div class="relative mt-5">
+  <div class="font-semibold">{{ location }}</div>
+  <div class="text-brand-textLight">{{ hostType }}</div>
+  <div class="text-brand-textLight">{{ date }}</div>
+  <div class="font-bold mt-2">
+    Pris <span class="font-normal">{{ price }}</span>
+  </div>
+  <div class="absolute top-0 right-0 font-semibold">
+    <i class="bi bi-star-fill"></i> {{ rating }}
+  </div>
+</div>

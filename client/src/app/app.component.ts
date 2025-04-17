@@ -13,10 +13,10 @@ import { CounterOptionComponent } from './components/common/form-controls/select
 import { FilterPillComponent } from './components/common/form-controls/filter-pill/filter-pill.component';
 import { TabBarComponent } from './components/common/tab-bar/tab-bar.component';
 import { CheckboxComponent } from './components/common/form-controls/checkbox/checkbox.component'; // Importera CheckboxComponent här
-import { ListingBadgeComponent } from './components/common/listings/listing-badge/listing-badge.component'; // Importera ListingBadgeComponent här
 import { FooterComponent } from './components/common/footer/footer.component';
 import { ModalLgComponent } from './components/common/modal-lg/modal-lg.component';
 import { ModalSmComponent } from './components/common/modal-sm/modal-sm.component';
+import { ListingGridComponent } from './components/common/listings/listing-grid/listing-grid.component';
 
 @Component({
   selector: 'app-root',
@@ -32,7 +32,7 @@ import { ModalSmComponent } from './components/common/modal-sm/modal-sm.componen
     FilterPillComponent,
     TabBarComponent,
     CheckboxComponent, // Lägg till CheckboxComponent här
-    ListingBadgeComponent,
+    ListingGridComponent, // Lägg till ListingGridComponent här
     FooterComponent,
     FormsModule, // Lägg till FormsModule här för ngModel
     ModalLgComponent,
@@ -65,4 +65,77 @@ export class AppComponent {
   openSmallModal() {
     this.modalSm.open();
   }
+
+  listings = [
+    {
+      images: [
+        'https://placehold.co/600x400?text=1',
+        'https://placehold.co/600x400?text=2',
+        'https://placehold.co/600x400?text=3',
+      ],
+      location: 'Paris, Frankrike',
+      hostType: 'Privat värd',
+      date: '1–6 maj',
+      price: '1200 kr',
+      rating: '4,9',
+      hasBadge: true, // Badge ska synas
+    },
+    {
+      images: [
+        'https://placehold.co/600x400?text=1',
+        'https://placehold.co/600x400?text=2',
+      ],
+      location: 'Rom, Italien',
+      hostType: 'Superhost',
+      date: '10–15 maj',
+      price: '980 kr',
+      rating: '5,0',
+      hasBadge: false, // Badge ska inte synas
+    },
+    {
+      images: [
+        'https://placehold.co/600x400?text=1',
+        'https://placehold.co/600x400?text=2',
+        'https://placehold.co/600x400?text=3',
+        'https://placehold.co/600x400?text=4',
+        'https://placehold.co/600x400?text=5',
+      ],
+      location: 'New York, USA',
+      hostType: 'Privat värd',
+      date: '15–20 juni',
+      price: '2500 kr',
+      rating: '4,8',
+      hasBadge: true, // Badge ska synas
+    },
+    {
+      images: [
+        'https://placehold.co/600x400?text=1',
+        'https://placehold.co/600x400?text=2',
+        'https://placehold.co/600x400?text=3',
+        'https://placehold.co/600x400?text=4',
+        'https://placehold.co/600x400?text=5',
+        'https://placehold.co/600x400?text=6',
+        'https://placehold.co/600x400?text=7',
+        'https://placehold.co/600x400?text=8',
+      ],
+      location: 'Tokyo, Japan',
+      hostType: 'Superhost',
+      date: '5–10 juli',
+      price: '1500 kr',
+      rating: '4,7',
+      hasBadge: false, // Badge ska inte synas
+    },
+    {
+      images: [
+        'https://placehold.co/600x400?text=1',
+        'https://placehold.co/600x400?text=2',
+      ],
+      location: 'Sydney, Australien',
+      hostType: 'Privat värd',
+      date: '25–30 juni',
+      price: '1900 kr',
+      rating: '4,9',
+      hasBadge: true, // Badge ska synas
+    },
+  ];
 }

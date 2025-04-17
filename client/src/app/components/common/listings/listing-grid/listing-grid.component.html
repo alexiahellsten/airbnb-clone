@@ -1,0 +1,12 @@
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-11">
+  <app-listing-card
+    *ngFor="let listing of listings"
+    [images]="listing.images"
+    [location]="listing.location"
+    [hostType]="listing.hostType"
+    [date]="listing.date"
+    [price]="listing.price"
+    [rating]="listing.rating"
+    [hasBadge]="listing.hasBadge"
+  ></app-listing-card>
+</div>
