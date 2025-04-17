@@ -1,11 +1,10 @@
 import { Component, ElementRef, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ButtonComponent } from '../button/button.component';
 
 @Component({
   selector: 'app-modal-sm',
   standalone: true,
-  imports: [CommonModule, ButtonComponent],
+  imports: [CommonModule],
   templateUrl: './modal-sm.component.html',
   styleUrls: ['./modal-sm.component.css'],
 })
