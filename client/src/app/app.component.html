@@ -7,7 +7,7 @@
       </div>
       <button
         class="flex items-center gap-2 px-4 py-2 ml-4 mt-1 border border-gray-300 rounded-lg bg-white cursor-pointer transition-all hover:shadow-md"
-        (click)="openFilterModal()"
+        (click)="filterModal.open()"
       >
         <svg
           viewBox="0 0 16 16"
@@ -28,18 +28,322 @@
 </header>
 
 <router-outlet></router-outlet>
-
 <app-footer></app-footer>
 
+<!-- Modal -->
 <app-modal-lg
   #filterModal
-  [title]="'Filter'"
-  [leftButtonText]="'Rensa alla'"
-  [rightButtonText]="'Visa boenden'"
-  [h2]="'Boendetyp'"
-  [paragraph]="'Använd filtren för att hitta exakt vad du letar efter.'"
+  [heading]="'Filter'"
+  [primaryButtonText]="'Rensa alla'"
+  [secondaryButtonText]="'Visa boenden'"
+  [section1Title]="'Boendetyp'"
+  [section2Title]="'Prisintervall'"
+  [section2Description]="'Priser per natt inklusive avgifter och skatt'"
+  [section3Title]="'Rum och sängar'"
+  [section4Title]="'Bekvämligheter'"
+  [section5Title]="'Bokningsalternativ'"
+  [section6Title]="'Enastående boenden'"
 >
-  <div class="p-4">
-    <h3 class="text-lg font-semibold mb-4">Prisintervall</h3>
+  <!-- Sektion 1: Boendetyp -->
+  <div section1 class="space-y-4">
+    <div class="flex items-center justify-between">
+      <app-tab-bar [tabs]="['Alla typer', 'Rum', 'Helt boende']"></app-tab-bar>
+    </div>
+  </div>
+
+  <!-- Sektion 2: Prisintervall -->
+  <div section2 class="space-y-4">
+    <div class="flex items-center justify-between">
+      <span class="font-semibold text-sm py-2">Maxpris:</span>
+      <span class="text-sm font-semibold">{{ priceRange }} kr</span>
+    </div>
+    <div class="relative flex items-center">
+      <button
+        (click)="decreasePrice()"
+        class="absolute left-0 p-2 text-gray-500 hover:text-gray-700"
+        aria-label="Minska pris"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M15 18l-6-6 6-6" />
+        </svg>
+      </button>
+      <input
+        type="range"
+        [(ngModel)]="priceRange"
+        (ngModelChange)="onSliderChange()"
+        [min]="minPrice"
+        [max]="5000"
+        class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer mx-8"
+      />
+      <button
+        (click)="increasePrice()"
+        class="absolute right-0 p-2 text-gray-500 hover:text-gray-700"
+        aria-label="Öka pris"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M9 18l6-6-6-6" />
+        </svg>
+      </button>
+    </div>
+    <div class="flex justify-between text-xs text-gray-500">
+      <div class="flex flex-col space-y-2">
+        <span>Lägst</span>
+        <span>{{ minPrice }} kr</span>
+      </div>
+      <div class="flex flex-col space-y-2">
+        <span>Högst</span>
+        <span>{{ maxPrice }} kr</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sektion 3: Rum och sängar -->
+  <div section3 class="space-y-4">
+    <div class="grid grid-cols-1 gap-4">
+      <div class="flex items-center justify-between">
+        <label class="text-sm font-medium text-gray-900">Sovrum</label>
+        <div class="flex items-center gap-2">
+          <button
+            class="p-1.5 text-gray-500 hover:text-gray-900 disabled:text-gray-300 disabled:cursor-not-allowed"
+            (click)="decreaseRooms()"
+            [disabled]="rooms <= 1"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+            </svg>
+          </button>
+          <span class="text-base font-medium text-gray-900">{{
+            rooms === 1 ? "Alla" : rooms
+          }}</span>
+          <button
+            class="p-1.5 text-gray-500 hover:text-gray-900 disabled:text-gray-300 disabled:cursor-not-allowed"
+            (click)="increaseRooms()"
+            [disabled]="rooms >= 10"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M12 5v14M5 12h14" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between">
+        <label class="text-sm font-medium text-gray-900">Sängar</label>
+        <div class="flex items-center gap-2">
+          <button
+            class="p-1.5 text-gray-500 hover:text-gray-900 disabled:text-gray-300 disabled:cursor-not-allowed"
+            (click)="decreaseBeds()"
+            [disabled]="beds <= 1"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+            </svg>
+          </button>
+          <span class="text-base font-medium text-gray-900">{{
+            beds === 1 ? "Alla" : beds
+          }}</span>
+          <button
+            class="p-1.5 text-gray-500 hover:text-gray-900 disabled:text-gray-300 disabled:cursor-not-allowed"
+            (click)="increaseBeds()"
+            [disabled]="beds >= 10"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M12 5v14M5 12h14" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between">
+        <label class="text-sm font-medium text-gray-900">Badrum</label>
+        <div class="flex items-center gap-2">
+          <button
+            class="p-1.5 text-gray-500 hover:text-gray-900 disabled:text-gray-300 disabled:cursor-not-allowed"
+            (click)="decreaseBathrooms()"
+            [disabled]="bathrooms <= 1"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+            </svg>
+          </button>
+          <span class="text-base font-medium text-gray-900">{{
+            bathrooms === 1 ? "Alla" : bathrooms
+          }}</span>
+          <button
+            class="p-1.5 text-gray-500 hover:text-gray-900 disabled:text-gray-300 disabled:cursor-not-allowed"
+            (click)="increaseBathrooms()"
+            [disabled]="bathrooms >= 10"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M12 5v14M5 12h14" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sektion 4: Bekvämligheter -->
+  <div section4 class="space-y-4">
+    <div class="flex flex-wrap gap-3">
+      <app-filter-pill
+        *ngFor="let amenity of amenities"
+        [(isSelected)]="amenity.selected"
+        (isSelectedChange)="toggleAmenity(amenity.id)"
+      >
+        {{ amenity.name }}
+      </app-filter-pill>
+    </div>
+  </div>
+
+  <!-- Sektion 5: Bokningsalternativ -->
+  <div section5 class="space-y-2">
+    <div class="flex flex-wrap gap-3">
+      <app-filter-pill
+        *ngFor="let option of bookingOptions"
+        [(isSelected)]="option.selected"
+        (isSelectedChange)="onButtonSelect(option, 'booking')"
+      >
+        <span class="text-sm">{{ option.label }}</span>
+      </app-filter-pill>
+    </div>
+  </div>
+
+  <!-- Sektion 6: Enastående boenden -->
+  <div section6 class="space-y-2">
+    <div class="flex flex-wrap gap-3">
+      <app-filter-pill
+        *ngFor="let option of uniqueOptions"
+        [(isSelected)]="option.selected"
+        (isSelectedChange)="onButtonSelect(option, 'unique')"
+      >
+        {{ option.label }}
+      </app-filter-pill>
+    </div>
+  </div>
+
+  <!-- Sektion 7: Fastighetstyp Accordion -->
+  <div section7>
+    <app-accordion title="Typ av fastighet">
+      <div class="flex flex-wrap gap-3">
+        <app-filter-pill
+          *ngFor="let property of propertyTypes"
+          [(isSelected)]="property.selected"
+          (isSelectedChange)="toggleProperty(property.id)"
+        >
+          {{ property.name }}
+        </app-filter-pill>
+      </div>
+    </app-accordion>
+  </div>
+
+  <!-- Sektion 8: Tillgänglighet Accordion -->
+  <div section8>
+    <app-accordion title="Tillgänglighet">
+      <div class="flex flex-wrap gap-3">
+        <app-filter-pill
+          *ngFor="let feature of accessibilityFeatures"
+          [(isSelected)]="feature.selected"
+          (isSelectedChange)="toggleAccessibility(feature.id)"
+        >
+          {{ feature.name }}
+        </app-filter-pill>
+      </div>
+    </app-accordion>
+  </div>
+
+  <!-- Sektion 9: Värdspråk Accordion -->
+  <div section9>
+    <app-accordion title="Värdspråk">
+      <div class="flex flex-wrap gap-3">
+        <app-filter-pill
+          *ngFor="let language of hostLanguages"
+          [(isSelected)]="language.selected"
+          (isSelectedChange)="toggleLanguage(language.id)"
+        >
+          {{ language.name }}
+        </app-filter-pill>
+      </div>
+    </app-accordion>
   </div>
 </app-modal-lg>

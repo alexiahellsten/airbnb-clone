@@ -1,8 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CategoryService, Category } from '../../services/category.service';
-import { ModalLgComponent } from '../common/modal-lg/modal-lg.component';
-import { ButtonComponent } from '../common/button/button.component';
+import { DatabaseService, Category } from '../../services/database.service';
 import { LucideAngularModule } from 'lucide-angular';
 
 @Component({
@@ -10,8 +8,6 @@ import { LucideAngularModule } from 'lucide-angular';
   standalone: true,
   imports: [
     CommonModule,
-    ModalLgComponent,
-    ButtonComponent,
     LucideAngularModule
   ],
   templateUrl: './category-scroller.component.html',
@@ -27,14 +23,13 @@ export class CategoryScrollerComponent implements OnInit, AfterViewInit {
   canScrollRight = false;
 
   @ViewChild('scrollContainer') scrollContainer!: ElementRef;
-  @ViewChild('filterModal') filterModal!: ModalLgComponent;
 
-  constructor(private categoryService: CategoryService) {}
+  constructor(private databaseService: DatabaseService) {}
 
   ngOnInit(): void {
-    this.categoryService.getCategories().subscribe({
+    this.databaseService.getCategories().subscribe({
       next: (data) => this.categories = data,
-      error: (err) => console.error('Failed to load categories:', err)
+      error: (err) => console.error('Misslyckades med att hämta kategorier:', err)
     });
   }
 
