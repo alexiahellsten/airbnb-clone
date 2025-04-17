@@ -14,96 +14,118 @@
 │   │   │   ├── app.component.ts
 │   │   │   ├── app.config.ts
 │   │   │   ├── app.routes.ts
-│   │   │   └── components/
-│   │   │       ├── common/
-│   │   │       │   ├── badge/
-│   │   │       │   ├── button/
-│   │   │       │   │   ├── button.component.css
-│   │   │       │   │   ├── button.component.html
-│   │   │       │   │   ├── button.component.spec.ts
-│   │   │       │   │   └── button.component.ts
-│   │   │       │   ├── footer/
-│   │   │       │   │   ├── footer-sections/
-│   │   │       │   │   │   ├── global-footer/
-│   │   │       │   │   │   │   ├── global-footer.component.css
-│   │   │       │   │   │   │   ├── global-footer.component.html
-│   │   │       │   │   │   │   ├── global-footer.component.spec.ts
-│   │   │       │   │   │   │   └── global-footer.component.ts
-│   │   │       │   │   │   └── primary-footer/
-│   │   │       │   │   │       ├── primary-footer.component.css
-│   │   │       │   │   │       ├── primary-footer.component.html
-│   │   │       │   │   │       └── primary-footer.component.ts
-│   │   │       │   │   ├── footer.component.css
-│   │   │       │   │   ├── footer.component.html
-│   │   │       │   │   ├── footer.component.spec.ts
-│   │   │       │   │   └── footer.component.ts
-│   │   │       │   ├── form-controls/
-│   │   │       │   │   ├── checkbox/
-│   │   │       │   │   │   ├── checkbox.component.css
-│   │   │       │   │   │   ├── checkbox.component.html
-│   │   │       │   │   │   ├── checkbox.component.spec.ts
-│   │   │       │   │   │   └── checkbox.component.ts
-│   │   │       │   │   ├── filter-pill/
-│   │   │       │   │   │   ├── filter-pill.component.css
-│   │   │       │   │   │   ├── filter-pill.component.html
-│   │   │       │   │   │   ├── filter-pill.component.spec.ts
-│   │   │       │   │   │   └── filter-pill.component.ts
-│   │   │       │   │   ├── select-box/
-│   │   │       │   │   │   ├── counter-option/
-│   │   │       │   │   │   │   ├── counter-option.component.css
-│   │   │       │   │   │   │   ├── counter-option.component.html
-│   │   │       │   │   │   │   ├── counter-option.component.spec.ts
-│   │   │       │   │   │   │   └── counter-option.component.ts
-│   │   │       │   │   │   ├── select-box.component.css
-│   │   │       │   │   │   ├── select-box.component.html
-│   │   │       │   │   │   ├── select-box.component.spec.ts
-│   │   │       │   │   │   └── select-box.component.ts
-│   │   │       │   │   └── text-input/
-│   │   │       │   │       ├── text-input.component.css
-│   │   │       │   │       ├── text-input.component.html
-│   │   │       │   │       ├── text-input.component.spec.ts
-│   │   │       │   │       └── text-input.component.ts
-│   │   │       │   ├── link/
-│   │   │       │   │   ├── link.component.css
-│   │   │       │   │   ├── link.component.html
-│   │   │       │   │   ├── link.component.spec.ts
-│   │   │       │   │   └── link.component.ts
-│   │   │       │   ├── listings/
-│   │   │       │   │   ├── image-gallery-slider/
-│   │   │       │   │   │   ├── image-gallery-slider.component.css
-│   │   │       │   │   │   ├── image-gallery-slider.component.html
-│   │   │       │   │   │   ├── image-gallery-slider.component.spec.ts
-│   │   │       │   │   │   └── image-gallery-slider.component.ts
-│   │   │       │   │   ├── listing-badge/
-│   │   │       │   │   │   ├── listing-badge.component.css
-│   │   │       │   │   │   ├── listing-badge.component.html
-│   │   │       │   │   │   ├── listing-badge.component.spec.ts
-│   │   │       │   │   │   └── listing-badge.component.ts
-│   │   │       │   │   └── listing-card/
-│   │   │       │   │       ├── listing-card.component.css
-│   │   │       │   │       ├── listing-card.component.html
-│   │   │       │   │       ├── listing-card.component.spec.ts
-│   │   │       │   │       └── listing-card.component.ts
-│   │   │       │   ├── modal-lg/
-│   │   │       │   │   ├── modal-lg.component.css
-│   │   │       │   │   ├── modal-lg.component.html
-│   │   │       │   │   ├── modal-lg.component.spec.ts
-│   │   │       │   │   └── modal-lg.component.ts
-│   │   │       │   ├── modal-sm/
-│   │   │       │   │   ├── modal-sm.component.css
-│   │   │       │   │   ├── modal-sm.component.html
-│   │   │       │   │   ├── modal-sm.component.spec.ts
-│   │   │       │   │   └── modal-sm.component.ts
-│   │   │       │   └── tab-bar/
-│   │   │       │       ├── tab-bar.component.css
-│   │   │       │       ├── tab-bar.component.html
-│   │   │       │       ├── tab-bar.component.spec.ts
-│   │   │       │       └── tab-bar.component.ts
-│   │   │       └── component-library/
-│   │   │           ├── component-library.component.css
-│   │   │           ├── component-library.component.html
-│   │   │           ├── component-library.component.spec.ts
-│   │   │           └── component-library.component.ts
+│   │   │   ├── components/
+│   │   │   │   ├── common/
+│   │   │   │   │   ├── badge/
+│   │   │   │   │   ├── button/
+│   │   │   │   │   │   ├── button.component.css
+│   │   │   │   │   │   ├── button.component.html
+│   │   │   │   │   │   ├── button.component.spec.ts
+│   │   │   │   │   │   └── button.component.ts
+│   │   │   │   │   ├── footer/
+│   │   │   │   │   │   ├── footer-sections/
+│   │   │   │   │   │   │   ├── global-footer/
+│   │   │   │   │   │   │   │   ├── global-footer.component.css
+│   │   │   │   │   │   │   │   ├── global-footer.component.html
+│   │   │   │   │   │   │   │   ├── global-footer.component.spec.ts
+│   │   │   │   │   │   │   │   └── global-footer.component.ts
+│   │   │   │   │   │   │   └── primary-footer/
+│   │   │   │   │   │   │       ├── primary-footer.component.css
+│   │   │   │   │   │   │       ├── primary-footer.component.html
+│   │   │   │   │   │   │       └── primary-footer.component.ts
+│   │   │   │   │   │   ├── footer.component.css
+│   │   │   │   │   │   ├── footer.component.html
+│   │   │   │   │   │   ├── footer.component.spec.ts
+│   │   │   │   │   │   └── footer.component.ts
+│   │   │   │   │   ├── form-controls/
+│   │   │   │   │   │   ├── checkbox/
+│   │   │   │   │   │   │   ├── checkbox.component.css
+│   │   │   │   │   │   │   ├── checkbox.component.html
+│   │   │   │   │   │   │   ├── checkbox.component.spec.ts
+│   │   │   │   │   │   │   └── checkbox.component.ts
+│   │   │   │   │   │   ├── filter-pill/
+│   │   │   │   │   │   │   ├── filter-pill.component.css
+│   │   │   │   │   │   │   ├── filter-pill.component.html
+│   │   │   │   │   │   │   ├── filter-pill.component.spec.ts
+│   │   │   │   │   │   │   └── filter-pill.component.ts
+│   │   │   │   │   │   ├── select-box/
+│   │   │   │   │   │   │   ├── counter-option/
+│   │   │   │   │   │   │   │   ├── counter-option.component.css
+│   │   │   │   │   │   │   │   ├── counter-option.component.html
+│   │   │   │   │   │   │   │   ├── counter-option.component.spec.ts
+│   │   │   │   │   │   │   │   └── counter-option.component.ts
+│   │   │   │   │   │   │   ├── select-box.component.css
+│   │   │   │   │   │   │   ├── select-box.component.html
+│   │   │   │   │   │   │   ├── select-box.component.spec.ts
+│   │   │   │   │   │   │   └── select-box.component.ts
+│   │   │   │   │   │   └── text-input/
+│   │   │   │   │   │       ├── text-input.component.css
+│   │   │   │   │   │       ├── text-input.component.html
+│   │   │   │   │   │       ├── text-input.component.spec.ts
+│   │   │   │   │   │       └── text-input.component.ts
+│   │   │   │   │   ├── link/
+│   │   │   │   │   │   ├── link.component.css
+│   │   │   │   │   │   ├── link.component.html
+│   │   │   │   │   │   ├── link.component.spec.ts
+│   │   │   │   │   │   └── link.component.ts
+│   │   │   │   │   ├── listings/
+│   │   │   │   │   │   ├── image-gallery-slider/
+│   │   │   │   │   │   │   ├── image-gallery-slider.component.css
+│   │   │   │   │   │   │   ├── image-gallery-slider.component.html
+│   │   │   │   │   │   │   ├── image-gallery-slider.component.spec.ts
+│   │   │   │   │   │   │   └── image-gallery-slider.component.ts
+│   │   │   │   │   │   ├── listing-badge/
+│   │   │   │   │   │   │   ├── listing-badge.component.css
+│   │   │   │   │   │   │   ├── listing-badge.component.html
+│   │   │   │   │   │   │   ├── listing-badge.component.spec.ts
+│   │   │   │   │   │   │   └── listing-badge.component.ts
+│   │   │   │   │   │   ├── listing-card/
+│   │   │   │   │   │   │   ├── listing-card.component.css
+│   │   │   │   │   │   │   ├── listing-card.component.html
+│   │   │   │   │   │   │   ├── listing-card.component.spec.ts
+│   │   │   │   │   │   │   └── listing-card.component.ts
+│   │   │   │   │   │   └── listing-grid/
+│   │   │   │   │   │       ├── listing-grid.component.css
+│   │   │   │   │   │       ├── listing-grid.component.html
+│   │   │   │   │   │       ├── listing-grid.component.spec.ts
+│   │   │   │   │   │       └── listing-grid.component.ts
+│   │   │   │   │   ├── modal-lg/
+│   │   │   │   │   │   ├── modal-lg.component.css
+│   │   │   │   │   │   ├── modal-lg.component.html
+│   │   │   │   │   │   ├── modal-lg.component.spec.ts
+│   │   │   │   │   │   └── modal-lg.component.ts
+│   │   │   │   │   ├── modal-sm/
+│   │   │   │   │   │   ├── modal-sm.component.css
+│   │   │   │   │   │   ├── modal-sm.component.html
+│   │   │   │   │   │   ├── modal-sm.component.spec.ts
+│   │   │   │   │   │   └── modal-sm.component.ts
+│   │   │   │   │   ├── slider-arrow-button/
+│   │   │   │   │   │   ├── slider-arrow-button.component.css
+│   │   │   │   │   │   ├── slider-arrow-button.component.html
+│   │   │   │   │   │   ├── slider-arrow-button.component.spec.ts
+│   │   │   │   │   │   └── slider-arrow-button.component.ts
+│   │   │   │   │   └── tab-bar/
+│   │   │   │   │       ├── tab-bar.component.css
+│   │   │   │   │       ├── tab-bar.component.html
+│   │   │   │   │       ├── tab-bar.component.spec.ts
+│   │   │   │   │       └── tab-bar.component.ts
+│   │   │   │   └── listing-details/
+│   │   │   │       ├── ld-amenities-section/
+│   │   │   │       │   ├── ld-amenities-section.component.css
+│   │   │   │       │   ├── ld-amenities-section.component.html
+│   │   │   │       │   ├── ld-amenities-section.component.spec.ts
+│   │   │   │       │   └── ld-amenities-section.component.ts
+│   │   │   │       └── ld-bedroom-section/
+│   │   │   │           ├── ld-bedroom-section.component.css
+│   │   │   │           ├── ld-bedroom-section.component.html
+│   │   │   │           ├── ld-bedroom-section.component.spec.ts
+│   │   │   │           └── ld-bedroom-section.component.ts
+│   │   │   └── views/
+│   │   │       └── listing-details/
+│   │   │           ├── listing-details.component.css
+│   │   │           ├── listing-details.component.html
+│   │   │           ├── listing-details.component.spec.ts
+│   │   │           └── listing-details.component.ts
 │   │   ├── index.html
 │   │   ├── main.ts
 │   │   ├── proxy.conf.json
