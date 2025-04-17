@@ -18,6 +18,9 @@ import { ModalLgComponent } from './components/common/modal-lg/modal-lg.componen
 import { ModalSmComponent } from './components/common/modal-sm/modal-sm.component';
 import { ListingGridComponent } from './components/common/listings/listing-grid/listing-grid.component';
 
+//Views
+import { ListingDetailsComponent } from './views/listing-details/listing-details.component';
+
 @Component({
   selector: 'app-root',
   imports: [
@@ -37,6 +40,7 @@ import { ListingGridComponent } from './components/common/listings/listing-grid/
     FormsModule, // Lägg till FormsModule här för ngModel
     ModalLgComponent,
     ModalSmComponent,
+    ListingDetailsComponent,
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
