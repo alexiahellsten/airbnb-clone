@@ -326,3 +326,26 @@ INSERT INTO reviews (user_id, listing_id, rating, comment, created_at) VALUES
 (14, 14, 4, 'Loftet är modernt och fint, men området kan vara lite livligt på kvällarna.', CURRENT_TIMESTAMP),  -- Review for listing 14 (Loft i trendigt område)
 (15, 15, 5, 'En mycket modern lägenhet med bra faciliteter. Vi hade en fantastisk vistelse.', CURRENT_TIMESTAMP),  -- Review for listing 15 (Modern lägenhet i Uppsala)
 (16, 16, 4, 'Fjällstugan var fantastisk. Stort och bekvämt, men saknade lite moderna faciliteter.', CURRENT_TIMESTAMP);  -- Review for listing 16 (Fjällstuga i Åre)
+
+-- categories data
+INSERT OR REPLACE INTO categories (id, name, description, icon) VALUES
+(1, 'Stugor', 'Traditionella stugor i naturnära miljöer, perfekta för avkoppling.', 'cabin.webp'),
+(2, 'Lägenheter', 'Moderna lägenheter i stad och landsbygd, ofta med bekväma faciliteter.', 'design.webp'),
+(3, 'Villor', 'Rymliga villor för större grupper eller familjer, ofta med trädgård.', 'big-mansion.webp'),
+(4, 'Vid stranden', 'Boenden nära havet eller sjöar med fantastisk utsikt och tillgång till strand.', 'beach.webp'),
+(5, 'Stadsliv', 'Boenden mitt i stadens hjärta med närhet till restauranger och kultur.', 'city.webp'),
+(6, 'Fjällstugor', 'Bo nära naturen i fjällmiljö, perfekt för skidåkning eller vandring.', 'pist.webp'),
+(7, 'Familjevänligt', 'Anpassade för barnfamiljer med gott om plats och bekvämligheter.', 'room.webp'),
+(8, 'Wow!', 'Unika eller lyxiga boenden som sticker ut – trädkojor, slott eller designerhus.', 'wow.webp'),
+(9, 'Tiny Homes', 'Små men smart planerade bostäder med charm och funktion i fokus.', 'tiny.webp'),
+(10, 'Jordnära', 'Boenden i grottor, jordhus eller liknande naturnära arkitektur.', 'earth.webp'),
+(11, 'Lantligt', 'Charmiga hus och gårdar på landsbygden – lugn och ro garanterad.', 'farm.webp'),
+(12, 'Historiskt', 'Boenden med historisk betydelse – slott, herresäten eller gamla kyrkor.', 'castle.webp'),
+(13, 'Lyx', 'Exklusiva och påkostade boenden med premiumbekvämligheter.', 'luxury.webp'),
+(14, 'Nationalparker', 'Boenden nära eller i nationalparker, perfekt för naturälskare.', 'national-park.webp'),
+(15, 'Sjöar', 'Bo nära vattnet med möjlighet till bad, paddling och avkoppling.', 'lake.webp'),
+(16, 'Arbetsvänligt', 'Boenden med skrivbord och snabb Wi-Fi – perfekt för distansarbete.', 'work.webp'),
+(17, 'Öken', 'Unika vistelser i ökenmiljöer med magiska solnedgångar.', 'islands.webp'),
+(18, 'Skidåkning', 'Boenden med direkt tillgång till backarna eller nära liftsystem.', 'skiing.webp'),
+(19, 'Surf', 'Bo nära havet med närhet till bra surfställen och strandkultur.', 'surf.webp'),
+(20, 'Camping', 'Tält, yurts och glamping – upplev naturen på ditt sätt.', 'camping.webp');
