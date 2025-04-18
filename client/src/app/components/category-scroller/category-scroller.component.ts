@@ -2,13 +2,15 @@ import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angula
 import { CommonModule } from '@angular/common';
 import { DatabaseService, Category } from '../../services/database.service';
 import { LucideAngularModule } from 'lucide-angular';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-category-scroller',
   standalone: true,
   imports: [
     CommonModule,
-    LucideAngularModule
+    LucideAngularModule,
+    RouterLink
   ],
   templateUrl: './category-scroller.component.html',
   styleUrl: './category-scroller.component.css'
@@ -16,11 +18,11 @@ import { LucideAngularModule } from 'lucide-angular';
 export class CategoryScrollerComponent implements OnInit, AfterViewInit {
   categories: Category[] = [];
 
-  //Används för att highlighta den kategori som valts
+  // Används för att highlighta den kategori som valts
   selectedCategory: string | null = null;
 
   canScrollLeft = false;
-  canScrollRight = false;
+  canScrollRight = true; // Initialize as true to show right button initially
 
   @ViewChild('scrollContainer') scrollContainer!: ElementRef;
 
@@ -28,34 +30,52 @@ export class CategoryScrollerComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.databaseService.getCategories().subscribe({
-      next: (data) => this.categories = data,
+      next: (data) => {
+        this.categories = data;
+        // Check scroll buttons after categories are loaded and rendered
+        setTimeout(() => this.checkScrollButtons(), 300);
+      },
       error: (err) => console.error('Misslyckades med att hämta kategorier:', err)
     });
   }
 
   ngAfterViewInit(): void {
-    this.checkScrollButtons();
+    // Initial check might be too early, so we delay it
+    setTimeout(() => this.checkScrollButtons(), 300);
+    
+    // Add resize listener to handle responsive layout changes
+    window.addEventListener('resize', () => {
+      this.checkScrollButtons();
+    });
   }
 
-  //Håller koll på vilken kategori som är aktiv för att styla den
-  //Anropas när användaren klickat på en kategori
+  // Håller koll på vilken kategori som är aktiv för att styla den
+  // Anropas när användaren klickt på en kategori
   selectCategory(categoryName: string): void {
     this.selectedCategory = categoryName;
     // Här kan vi lägga in filtreringslogik
   }
 
   scrollLeft(): void {
+    console.log("Scrolling left");
     if (this.scrollContainer) {
       const container = this.scrollContainer.nativeElement;
-      container.scrollLeft -= 200;
+      // Use a smaller scroll distance on smaller screens
+      const scrollDistance = window.innerWidth < 768 ? 150 : 200;
+      container.scrollLeft -= scrollDistance;
+      // Force check after scrolling
       setTimeout(() => this.checkScrollButtons(), 100);
     }
   }
 
   scrollRight(): void {
+    console.log("Scrolling right");
     if (this.scrollContainer) {
       const container = this.scrollContainer.nativeElement;
-      container.scrollLeft += 200;
+      // Use a smaller scroll distance on smaller screens
+      const scrollDistance = window.innerWidth < 768 ? 150 : 200;
+      container.scrollLeft += scrollDistance;
+      // Force check after scrolling
       setTimeout(() => this.checkScrollButtons(), 100);
     }
   }
@@ -67,8 +87,25 @@ export class CategoryScrollerComponent implements OnInit, AfterViewInit {
   private checkScrollButtons(): void {
     if (this.scrollContainer) {
       const container = this.scrollContainer.nativeElement;
-      this.canScrollLeft = container.scrollLeft > 0;
-      this.canScrollRight = container.scrollLeft < (container.scrollWidth - container.clientWidth);
+      
+      // Check if scroll is available
+      const hasScrollWidth = container.scrollWidth > container.clientWidth;
+      
+      // Check if scrolled to the left edge
+      this.canScrollLeft = container.scrollLeft > 10;
+      
+      // Check if scrolled to the right edge
+      const maxScrollLeft = container.scrollWidth - container.clientWidth;
+      this.canScrollRight = hasScrollWidth && container.scrollLeft < maxScrollLeft - 10;
+      
+      console.log({
+        scrollWidth: container.scrollWidth,
+        clientWidth: container.clientWidth,
+        scrollLeft: container.scrollLeft,
+        maxScrollLeft: maxScrollLeft,
+        canScrollLeft: this.canScrollLeft,
+        canScrollRight: this.canScrollRight
+      });
     }
   }
 }

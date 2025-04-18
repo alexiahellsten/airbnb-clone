@@ -1,70 +1,88 @@
-<section class="relative w-full max-w-6xl mx-auto">
+<section class="relative w-full overflow-hidden">
   <div class="relative">
+    <!-- Gradient overlays -->
     <div
-      class="absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-white to-transparent z-10"
+      class="absolute left-0 top-0 bottom-0 w-8 md:w-12 bg-gradient-to-r from-white to-transparent z-10"
+    ></div>
+    <div
+      class="absolute right-0 top-0 bottom-0 w-8 md:w-12 bg-gradient-to-l from-white to-transparent z-10"
     ></div>
 
-    <div
-      class="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-white to-transparent z-10"
-    ></div>
+    <!-- Left scroll button -->
     <button
-      class="absolute left-0 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white shadow-md flex items-center justify-center cursor-pointer z-20 transition-all hover:shadow-lg"
+      class="absolute left-0 top-1/2 -translate-y-1/2 w-8 h-8 md:w-10 md:h-10 rounded-full bg-white shadow-md flex items-center justify-center cursor-pointer z-20 transition-all hover:shadow-lg"
       (click)="scrollLeft()"
+      [class.opacity-50]="!canScrollLeft"
     >
       <svg
-        viewBox="0 0 32 32"
+        class="h-4 w-4 md:h-5 md:w-5 text-gray-600"
+        viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
         aria-hidden="true"
         role="presentation"
         focusable="false"
-        class="block h-3 w-3 stroke-current stroke-[4] overflow-visible"
       >
         <path
-          d="m20 28-11.29289322-11.2928932c-.39052429-.3905243-.39052429-1.0236893 0-1.4142136l11.29289322-11.2928932"
-        ></path>
+          d="M15 18l-6-6 6-6"
+          stroke="currentColor"
+          stroke-width="2"
+          fill="none"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
       </svg>
     </button>
 
-    <!-- Scrollbara kategorier -->
+    <!-- Scrollable categories container -->
     <div
-      class="flex gap-6 py-3 overflow-x-auto whitespace-nowrap scroll-smooth scrollbar-hide px-12"
+      class="flex gap-3 md:gap-6 py-3 overflow-x-auto scroll-smooth scrollbar-hide px-8 md:px-12 whitespace-nowrap"
       #scrollContainer
       (scroll)="onScroll()"
     >
       <ng-container *ngFor="let category of categories">
         <button
-          class="flex flex-col items-center justify-center px-4 py-2 cursor-pointer border-b-2 border-transparent transition-all hover:border-gray-300"
+          routerLink="#"
+          class="flex flex-col items-center justify-center px-2 md:px-4 py-2 cursor-pointer border-b-2 border-transparent transition-all hover:border-gray-300 min-w-max"
           [class.border-black]="category.name === selectedCategory"
           [class.text-black]="category.name === selectedCategory"
           (click)="selectCategory(category.name)"
         >
-          <div class="w-6 h-6 mb-1">
+          <div class="w-5 h-5 md:w-6 md:h-6 mb-1">
             <img
               class="w-full h-full object-contain"
               [src]="'/icons/' + category.icon"
               [alt]="category.name"
             />
           </div>
-          <span class="text-sm font-medium">{{ category.name }}</span>
+          <span class="text-xs md:text-sm font-medium">{{
+            category.name
+          }}</span>
         </button>
       </ng-container>
     </div>
 
+    <!-- Right scroll button -->
     <button
-      class="absolute right-0 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white shadow-md flex items-center justify-center cursor-pointer z-20 transition-all hover:shadow-lg"
+      class="absolute right-0 top-1/2 -translate-y-1/2 w-8 h-8 md:w-10 md:h-10 rounded-full bg-white shadow-md flex items-center justify-center cursor-pointer z-20 transition-all hover:shadow-lg"
       (click)="scrollRight()"
+      [class.opacity-50]="!canScrollRight"
     >
       <svg
-        viewBox="0 0 32 32"
+        class="h-4 w-4 md:h-5 md:w-5 text-gray-600"
+        viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
         aria-hidden="true"
         role="presentation"
         focusable="false"
-        class="block h-3 w-3 stroke-current stroke-[4] overflow-visible"
       >
         <path
-          d="m12 4 11.2928932 11.2928932c.3905243.3905243.3905243 1.0236893 0 1.4142136L12 28"
-        ></path>
+          d="M9 18l6-6-6-6"
+          stroke="currentColor"
+          stroke-width="2"
+          fill="none"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
       </svg>
     </button>
   </div>
