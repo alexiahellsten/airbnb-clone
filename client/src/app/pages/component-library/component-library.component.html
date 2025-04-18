@@ -79,13 +79,13 @@
     <!-- Skickar dynamiskt innehåll till modalkomponenten -->
     <app-modal-lg
       #modalLg
-      [title]="'Titel'"
-      [leftButtonText]="'Avbryt'"
-      [rightButtonText]="'Bekräfta'"
-      [h2]="'Rubrik'"
-      [paragraph]="
+      [heading]="'Titel'"
+      [subheading]="'Rubrik'"
+      [description]="
         'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat ea molestiae maxime doloremque unde est fuga. Saepe vero eaque quis exercitationem odio voluptatem, doloremque, velit, corrupti illum perspiciatis nostrum doloribus?'
       "
+      [primaryButtonText]="'Avbryt'"
+      [secondaryButtonText]="'Bekräfta'"
     >
       <button
         (click)="modalLg.close()"

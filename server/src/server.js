@@ -30,6 +30,15 @@ app.get("/api/users", (req, res) => {
   res.json(users);
 });
 
+app.get("/api/amenities", (req, res) => {
+  const amenities = db.prepare("SELECT * FROM amenities").all();
+
+  if (!amenities) {
+    return res.status(500).json({ message: "Misslyckades med att hämta bekvämligheter från databasen" });
+  }
+
+  res.json(amenities);
+});
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
