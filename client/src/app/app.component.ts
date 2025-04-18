@@ -9,7 +9,6 @@ import { ModalLgComponent } from './components/common/modal-lg/modal-lg.componen
 import { ButtonComponent } from './components/common/button/button.component';
 import { CounterOptionComponent } from './components/common/form-controls/select-box/counter-option/counter-option.component';
 import { TabBarComponent } from './components/common/tab-bar/tab-bar.component';
-import { TextInputComponent } from './components/common/form-controls/text-input/text-input.component';
 import { DatabaseService, Amenity } from './services/database.service';
 import { FilterPillComponent } from './components/common/form-controls/filter-pill/filter-pill.component';
 import { AccordionComponent } from './components/common/accordion/accordion.component';
@@ -28,7 +27,6 @@ import { AccordionComponent } from './components/common/accordion/accordion.comp
     ButtonComponent,
     CounterOptionComponent,
     TabBarComponent,
-    TextInputComponent,
     FilterPillComponent,
     AccordionComponent
   ],

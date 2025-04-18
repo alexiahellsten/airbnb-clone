@@ -349,3 +349,119 @@ INSERT OR REPLACE INTO categories (id, name, description, icon) VALUES
 (18, 'Skidåkning', 'Boenden med direkt tillgång till backarna eller nära liftsystem.', 'skiing.webp'),
 (19, 'Surf', 'Bo nära havet med närhet till bra surfställen och strandkultur.', 'surf.webp'),
 (20, 'Camping', 'Tält, yurts och glamping – upplev naturen på ditt sätt.', 'camping.webp');
+
+-- listing_images data
+
+INSERT INTO listing_images (id, listing_id, image_url) VALUES
+  -- Listing 1
+  (1, 1, 'https://images.unsplash.com/photo-1560185127-6c9f1d8d3c4e'),
+  (2, 1, 'https://images.unsplash.com/photo-1572120360610-d971b9b63903'),
+  (3, 1, 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c'),
+  (4, 1, 'https://images.unsplash.com/photo-1599423300746-b62533397364'),
+  (5, 1, 'https://images.unsplash.com/photo-1600585154204-3b3b7b3b3b3b'),
+
+  -- Listing 2
+  (6, 2, 'https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg'),
+  (7, 2, 'https://images.pexels.com/photos/259588/pexels-photo-259588.jpeg'),
+  (8, 2, 'https://images.pexels.com/photos/259962/pexels-photo-259962.jpeg'),
+  (9, 2, 'https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg'),
+  (10, 2, 'https://images.pexels.com/photos/276528/pexels-photo-276528.jpeg'),
+
+  -- Listing 3
+  (11, 3, 'https://cdn.pixabay.com/photo/2016/11/29/09/32/architecture-1867187_1280.jpg'),
+  (12, 3, 'https://cdn.pixabay.com/photo/2016/11/29/04/17/architecture-1867187_1280.jpg'),
+  (13, 3, 'https://cdn.pixabay.com/photo/2017/01/18/17/14/house-1993640_1280.jpg'),
+  (14, 3, 'https://cdn.pixabay.com/photo/2017/01/18/17/14/house-1993640_1280.jpg'),
+  (15, 3, 'https://cdn.pixabay.com/photo/2017/01/18/17/14/house-1993640_1280.jpg'),
+
+  -- Listing 4
+  (16, 4, 'https://images.unsplash.com/photo-1507089947368-19c1da9775ae'),
+  (17, 4, 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267'),
+  (18, 4, 'https://images.unsplash.com/photo-1572120360610-d971b9b63903'),
+  (19, 4, 'https://images.unsplash.com/photo-1599423300746-b62533397364'),
+  (20, 4, 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c');
+
+-- Listing 5
+INSERT INTO listing_images (id, listing_id, image_url) VALUES
+(21, 5, 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2'),
+(22, 5, 'https://images.unsplash.com/photo-1572120360610-17930d10549b'),
+(23, 5, 'https://images.unsplash.com/photo-1600585154171-7283ddedc1bc'),
+(24, 5, 'https://images.unsplash.com/photo-1595526114035-0d15a7da6a5e'),
+(25, 5, 'https://images.unsplash.com/photo-1600047501427-0d84f3f7ecca'),
+
+-- Listing 6
+(26, 6, 'https://images.pexels.com/photos/259580/pexels-photo-259580.jpeg'),
+(27, 6, 'https://images.pexels.com/photos/2102587/pexels-photo-2102587.jpeg'),
+(28, 6, 'https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg'),
+(29, 6, 'https://images.pexels.com/photos/276551/pexels-photo-276551.jpeg'),
+(30, 6, 'https://images.pexels.com/photos/259597/pexels-photo-259597.jpeg'),
+
+-- Listing 7
+(31, 7, 'https://cdn.pixabay.com/photo/2018/05/23/22/56/home-3429674_1280.jpg'),
+(32, 7, 'https://cdn.pixabay.com/photo/2017/03/28/12/10/home-2187177_1280.jpg'),
+(33, 7, 'https://cdn.pixabay.com/photo/2016/11/29/05/08/architecture-1867188_1280.jpg'),
+(34, 7, 'https://cdn.pixabay.com/photo/2016/11/29/12/54/architecture-1867190_1280.jpg'),
+(35, 7, 'https://cdn.pixabay.com/photo/2018/09/07/20/19/home-3663222_1280.jpg'),
+
+-- Listing 8
+(36, 8, 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914'),
+(37, 8, 'https://images.unsplash.com/photo-1616486233029-651a6a143e3f'),
+(38, 8, 'https://images.unsplash.com/photo-1620419731729-f9be2a6677b4'),
+(39, 8, 'https://images.unsplash.com/photo-1613545325263-f7b38e7a21de'),
+(40, 8, 'https://images.unsplash.com/photo-1613977257363-b3c0d5c4d1f6'),
+
+-- Listing 9
+(41, 9, 'https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg'),
+(42, 9, 'https://images.pexels.com/photos/276583/pexels-photo-276583.jpeg'),
+(43, 9, 'https://images.pexels.com/photos/208736/pexels-photo-208736.jpeg'),
+(44, 9, 'https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg'),
+(45, 9, 'https://images.pexels.com/photos/276554/pexels-photo-276554.jpeg'),
+
+-- Listing 10
+(46, 10, 'https://cdn.pixabay.com/photo/2016/12/30/10/07/home-1940172_1280.jpg'),
+(47, 10, 'https://cdn.pixabay.com/photo/2017/07/12/10/29/home-2499236_1280.jpg'),
+(48, 10, 'https://cdn.pixabay.com/photo/2020/01/15/08/46/house-4768264_1280.jpg'),
+(49, 10, 'https://cdn.pixabay.com/photo/2016/11/29/09/42/architecture-1867186_1280.jpg'),
+(50, 10, 'https://cdn.pixabay.com/photo/2020/01/03/06/54/villa-4738629_1280.jpg'),
+
+-- Listing 11
+(51, 11, 'https://images.unsplash.com/photo-1600585154204-3b3b7b3b3b3b'),
+(52, 11, 'https://images.unsplash.com/photo-1600047501427-0d84f3f7ecca'),
+(53, 11, 'https://images.unsplash.com/photo-1599423300746-b62533397364'),
+(54, 11, 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c'),
+(55, 11, 'https://images.unsplash.com/photo-1572120360610-d971b9b63903'),
+
+-- Listing 12
+(56, 12, 'https://images.pexels.com/photos/276715/pexels-photo-276715.jpeg'),
+(57, 12, 'https://images.pexels.com/photos/276530/pexels-photo-276530.jpeg'),
+(58, 12, 'https://images.pexels.com/photos/259574/pexels-photo-259574.jpeg'),
+(59, 12, 'https://images.pexels.com/photos/276583/pexels-photo-276583.jpeg'),
+(60, 12, 'https://images.pexels.com/photos/271816/pexels-photo-271816.jpeg'),
+
+-- Listing 13
+(61, 13, 'https://cdn.pixabay.com/photo/2020/01/03/06/54/villa-4738629_1280.jpg'),
+(62, 13, 'https://cdn.pixabay.com/photo/2017/01/18/17/14/house-1993640_1280.jpg'),
+(63, 13, 'https://cdn.pixabay.com/photo/2016/11/29/04/17/architecture-1867187_1280.jpg'),
+(64, 13, 'https://cdn.pixabay.com/photo/2017/03/28/12/10/home-2187177_1280.jpg'),
+(65, 13, 'https://cdn.pixabay.com/photo/2018/05/23/22/56/home-3429674_1280.jpg'),
+
+-- Listing 14
+(66, 14, 'https://images.unsplash.com/photo-1599423300746-b62533397364'),
+(67, 14, 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c'),
+(68, 14, 'https://images.unsplash.com/photo-1600585154204-3b3b7b3b3b3b'),
+(69, 14, 'https://images.unsplash.com/photo-1560185127-6c9f1d8d3c4e'),
+(70, 14, 'https://images.unsplash.com/photo-1572120360610-d971b9b63903'),
+
+-- Listing 15
+(71, 15, 'https://images.pexels.com/photos/259580/pexels-photo-259580.jpeg'),
+(72, 15, 'https://images.pexels.com/photos/276528/pexels-photo-276528.jpeg'),
+(73, 15, 'https://images.pexels.com/photos/259597/pexels-photo-259597.jpeg'),
+(74, 15, 'https://images.pexels.com/photos/259588/pexels-photo-259588.jpeg'),
+(75, 15, 'https://images.pexels.com/photos/2102587/pexels-photo-2102587.jpeg'),
+
+-- Listing 16
+(76, 16, 'https://cdn.pixabay.com/photo/2016/12/30/10/07/home-1940172_1280.jpg'),
+(77, 16, 'https://cdn.pixabay.com/photo/2017/07/12/10/29/home-2499236_1280.jpg'),
+(78, 16, 'https://cdn.pixabay.com/photo/2020/01/15/08/46/house-4768264_1280.jpg'),
+(79, 16, 'https://cdn.pixabay.com/photo/2018/09/07/20/19/home-3663222_1280.jpg'),
+(80, 16, 'https://cdn.pixabay.com/photo/2018/09/07/20/19/home-3663222_1280.jpg');
