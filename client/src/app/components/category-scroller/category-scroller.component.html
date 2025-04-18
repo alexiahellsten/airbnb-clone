@@ -1,6 +1,5 @@
 <section class="relative w-full overflow-hidden">
   <div class="relative">
-    <!-- Gradient overlays -->
     <div
       class="absolute left-0 top-0 bottom-0 w-8 md:w-12 bg-gradient-to-r from-white to-transparent z-10"
     ></div>
@@ -8,7 +7,6 @@
       class="absolute right-0 top-0 bottom-0 w-8 md:w-12 bg-gradient-to-l from-white to-transparent z-10"
     ></div>
 
-    <!-- Left scroll button -->
     <button
       class="absolute left-0 top-1/2 -translate-y-1/2 w-8 h-8 md:w-10 md:h-10 rounded-full bg-white shadow-md flex items-center justify-center cursor-pointer z-20 transition-all hover:shadow-lg"
       (click)="scrollLeft()"
@@ -33,7 +31,6 @@
       </svg>
     </button>
 
-    <!-- Scrollable categories container -->
     <div
       class="flex gap-3 md:gap-6 py-3 overflow-x-auto scroll-smooth scrollbar-hide px-8 md:px-12 whitespace-nowrap"
       #scrollContainer
@@ -61,7 +58,6 @@
       </ng-container>
     </div>
 
-    <!-- Right scroll button -->
     <button
       class="absolute right-0 top-1/2 -translate-y-1/2 w-8 h-8 md:w-10 md:h-10 rounded-full bg-white shadow-md flex items-center justify-center cursor-pointer z-20 transition-all hover:shadow-lg"
       (click)="scrollRight()"
