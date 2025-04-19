@@ -5,9 +5,10 @@ import { LdBedroomSectionComponent } from '../../components/listing-details/ld-b
 import { ListingGridComponent } from '../../components/common/listings/listing-grid/listing-grid.component';
 import { ListingBadgeComponent } from '../../components/common/listings/listing-badge/listing-badge.component';
 import { ListingCardComponent } from '../../components/common/listings/listing-card/listing-card.component';
-import { ImageGallerySliderComponent } from '../../components/common/listings/image-gallery-slider/image-gallery-slider.component';
+//import { ImageGallerySliderComponent } from '../../components/common/listings/image-gallery-slider/image-gallery-slider.component';
 import { FooterComponent } from '../../components/common/footer/footer.component';
 import { DatabaseService } from '../../services/database.service'; // Import only the service
+import { LdHeaderSectionComponent } from '../../components/listing-details/ld-header-section/ld-header-section.component';
 
 @Component({
   selector: 'app-listing-details',
@@ -19,8 +20,9 @@ import { DatabaseService } from '../../services/database.service'; // Import onl
     ListingGridComponent,
     ListingBadgeComponent,
     ListingCardComponent,
-    ImageGallerySliderComponent,
-    FooterComponent
+    //ImageGallerySliderComponent,
+    FooterComponent,
+    LdHeaderSectionComponent
   ],
   templateUrl: './listing-details.component.html',
   styleUrl: './listing-details.component.css'
@@ -28,6 +30,7 @@ import { DatabaseService } from '../../services/database.service'; // Import onl
 export class ListingDetailsComponent implements OnInit {
   listingImages: any[] = [];
   amenities: any[] = [];
+  headerData: any;
   
   constructor(private databaseService: DatabaseService) {}
   

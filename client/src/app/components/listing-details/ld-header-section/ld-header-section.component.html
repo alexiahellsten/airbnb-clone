@@ -1,0 +1,30 @@
+<section class="m-4">
+  <div class="flex justify-between items-center">
+    <h1 class="font-semibold p-4">{{ headerData?.title || "Titel" }}</h1>
+
+    <div class="flex flex-row">
+      <div>
+        <ul class="flex space-x-4">
+          <li>
+            <app-link linkType="icon">
+              <a routerLink="#">
+                <i class="bi bi-box-arrow-in-up mx-1"></i>
+                Dela</a
+              >
+            </app-link>
+          </li>
+
+          <li>
+            <app-link linkType="icon">
+              <a routerLink="#"><i class="bi bi-heart mx-1"></i>Spara</a>
+            </app-link>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-4">
+    <app-image-gallery-slider [images]="images"></app-image-gallery-slider>
+  </div>
+</section>
