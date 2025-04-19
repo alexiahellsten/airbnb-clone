@@ -1,30 +1,95 @@
-<section class="m-4">
-  <div class="flex justify-between items-center">
-    <h1 class="font-semibold p-4">{{ headerData?.title || "Titel" }}</h1>
+<section class="px-6 md:px-10 lg:px-20 py-6">
+  <div class="flex justify-between items-center flex-wrap gap-4">
+    <h1 class="text-2xl font-semibold">
+      {{ headerData?.title || "Titel" }}
+    </h1>
 
-    <div class="flex flex-row">
-      <div>
-        <ul class="flex space-x-4">
-          <li>
-            <app-link linkType="icon">
-              <a routerLink="#">
-                <i class="bi bi-box-arrow-in-up mx-1"></i>
-                Dela</a
-              >
-            </app-link>
-          </li>
+    <ul class="flex space-x-4 text-sm text-gray-700">
+      <li>
+        <app-link linkType="icon">
+          <a routerLink="#" class="flex items-center">
+            <i class="bi bi-box-arrow-in-up mr-1"></i>Dela
+          </a>
+        </app-link>
+      </li>
+      <li>
+        <app-link linkType="icon">
+          <a routerLink="#" class="flex items-center">
+            <i class="bi bi-heart mr-1"></i>Spara
+          </a>
+        </app-link>
+      </li>
+    </ul>
+  </div>
 
-          <li>
-            <app-link linkType="icon">
-              <a routerLink="#"><i class="bi bi-heart mx-1"></i>Spara</a>
-            </app-link>
-          </li>
-        </ul>
-      </div>
+  <!-- Bildgalleri. TODO: Hämta bilder från backend API:et -->
+  <div
+    class="grid grid-cols-1 md:grid-cols-4 gap-2 mt-4 rounded-xl overflow-hidden"
+  >
+    <div class="md:col-span-2 row-span-2">
+      <img
+        src="https://placehold.co/800x600"
+        alt="Main"
+        class="w-full h-full object-cover"
+      />
+    </div>
+    <div>
+      <img
+        src="https://placehold.co/400x300"
+        alt="Alt 1"
+        class="w-full h-full object-cover"
+      />
+    </div>
+    <div>
+      <img
+        src="https://placehold.co/400x300"
+        alt="Alt 2"
+        class="w-full h-full object-cover"
+      />
+    </div>
+    <div>
+      <img
+        src="https://placehold.co/400x300"
+        alt="Alt 3"
+        class="w-full h-full object-cover"
+      />
+    </div>
+    <div class="relative">
+      <img
+        src="https://placehold.co/400x300"
+        alt="Alt 4"
+        class="w-full h-full object-cover"
+      />
+
+      <button
+        class="absolute bottom-2 right-2 bg-white bg-opacity-90 text-gray-950 border border-gray-950 leading-5 cursor-pointer text-sm font-medium px-4 py-2 rounded-lg shadow-md hover:bg-opacity-100 transition"
+      >
+        <i class="bi bi-grid-3x3-gap"></i>
+        Visa alla foton
+      </button>
     </div>
   </div>
 
-  <div class="mt-4">
-    <app-image-gallery-slider [images]="images"></app-image-gallery-slider>
-  </div>
+  <section class="mt-6">
+    <div class="text-lg font-medium">Titel</div>
+
+    <!-- TODO: Ersätt med data från api:et -->
+    <div class="text-sm text-gray-600 mt-1">
+      2 gäster · 1 sovrum · 1 säng · 1 badrum
+    </div>
+
+    <section class="rating flex justify-between">
+      <div class="flex items-center text-sm text-gray-600 mt-1">
+        <i class="bi bi-star-fill text-black mr-1"></i>
+        <span class="text-black font-medium">4,92</span>
+        <span class="mx-1">·</span>
+        <span class="underline cursor-pointer">280 omdömen</span>
+      </div>
+      <div
+        class="inline-block text-brand-dark text-sm font-semibold rounded-xl shadow-md border px-4 py-2 border-gray-200"
+      >
+        💎 Sällsynt fynd! Detta ställe är vanligtvis bokat
+      </div>
+    </section>
+  </section>
 </section>
