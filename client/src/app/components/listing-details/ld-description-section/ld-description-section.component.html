@@ -1,0 +1,23 @@
+<section class="pt-8 pb-12">
+  <h2>Om detta boende</h2>
+  <p class="description pb-4" [class.open]="isModalOpen">
+    {{ description | slice : 0 : 500 }}...
+  </p>
+
+  <!-- Visa mer länk som öppnar modalen -->
+  <app-link linkType="secondary" (click)="openModal()" class="cursor-pointer"
+    >Visa mer <i class="bi bi-chevron-right"></i
+  ></app-link>
+</section>
+
+<!-- Modal som öppnas för att visa hela texten -->
+<app-modal-lg
+  #modalDescription
+  (close)="closeModal()"
+  [heading]="'Om detta boende'"
+>
+  <div class="modal-content">
+    <p>{{ description }}</p>
+    <!-- Visar hela texten här -->
+  </div>
+</app-modal-lg>

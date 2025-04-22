@@ -1,7 +1,7 @@
 import { Component, HostListener, Input, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-//Components
+// Components
 import { ButtonComponent } from '../../common/button/button.component';
 import { ModalLgComponent } from '../../common/modal-lg/modal-lg.component';
 
@@ -9,11 +9,11 @@ import { ModalLgComponent } from '../../common/modal-lg/modal-lg.component';
   selector: 'app-ld-amenities-section',
   imports: [CommonModule, ButtonComponent, ModalLgComponent],
   templateUrl: './ld-amenities-section.component.html',
-  styleUrl: './ld-amenities-section.component.css',
+  styleUrls: ['./ld-amenities-section.component.css'],
 })
 export class LdAmenitiesSectionComponent {
   @Input() amenities: { icon: string; text: string }[] = [];
-  @ViewChild('modalRef') modalRef!: ModalLgComponent; //För att kunna öppna modalen
+  @ViewChild('modalAmenities') modalAmenities!: ModalLgComponent; // Referens till modalen
 
   visibleAmenitiesCount: number = 5; // Initialvärde, så den är alltid definierad
 
@@ -34,9 +34,12 @@ export class LdAmenitiesSectionComponent {
       this.visibleAmenitiesCount = 5; // Visa 5 objekt på mindre skärmar
     }
   }
+
   openModal(): void {
     // Skicka amenities-listan till modalen när den öppnas
-    this.modalRef.amenities = this.amenities;
-    this.modalRef.open();
+    if (this.modalAmenities) {
+      this.modalAmenities.amenities = this.amenities; // Skickar amenities till modalen
+      this.modalAmenities.open(); // Öppnar modalen
+    }
   }
 }

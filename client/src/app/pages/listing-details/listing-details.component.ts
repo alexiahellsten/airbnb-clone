@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 //Components
 import { LdAmenitiesSectionComponent } from '../../components/listing-details/ld-amenities-section/ld-amenities-section.component';
 import { LdBedroomSectionComponent } from '../../components/listing-details/ld-bedroom-section/ld-bedroom-section.component';
-import { FooterComponent } from '../../components/common/footer/footer.component';
+import { LdDescriptionSectionComponent } from '../../components/listing-details/ld-description-section/ld-description-section.component';
 
 @Component({
   selector: 'app-listing-details',
@@ -12,12 +12,15 @@ import { FooterComponent } from '../../components/common/footer/footer.component
     CommonModule,
     LdAmenitiesSectionComponent,
     LdBedroomSectionComponent,
-    FooterComponent,
+    LdDescriptionSectionComponent,
   ],
   templateUrl: './listing-details.component.html',
   styleUrl: './listing-details.component.css',
 })
 export class ListingDetailsComponent {
+  description: string =
+    'Unna dig en unik vistelse i vårt trädhus mitt i Skånes vackra landskap. Njut av 180-graders panoramavy genom golv-till-tak glasfönster. Perfekt för stillhet och avkoppling, boendet passar enskilda gäster eller par. Inkluderar fina teer, kaffe och två timmars privat användning av vårt spabad. En oförglömlig känsla att sova här, passa på att besöka denna meditativa och lyxiga upplevelse uppe bland trädkronorna. Glamping på nästa nivå! Boendet Sov i lyxiga bambulakan högt upp i trädkronorna med en 180-graders panoramavy genom golv-till-tak glasfönster, hållen av trädkojan med omtänksamt eleganta detaljer för att göra din vistelse mindful. Ligg i hängmattan medan ljusstrålarna bryter igenom löven på de gamla ekarna runt omkring och fylls av frid från att se de ultra-avslappnade kohjordarna som går förbi på fälten... låt dig svepas med i fridfullhet och harmoni. Trädhuset är en underbar upplevelse för en eller två vuxna, och erbjuder en lugnande avskild plats uppe bland träden. Här finns allt ni behöver för att njuta av stillheten med ett urval av fina teer och kaffe. Trädhuset har ett litet pentry med vattenkokare och kyl men fullutrustat kök ingår inte, ni kommer att få en lista med rekommenderade restauranger i närheten, som alla ligger ungefär 15-20 minuters bilfärd bort. En liten butik och en busshållplats finns även cirka 2200 meter från trädhuset. Trädhuset ligger två kilometer från motorvägen mitt i Skåne, vilket gör det lättillgängligt och till en perfekt utgångspunkt för att utforska det omgivande vackra landskapet. Priset inkluderar två timmars privat användning av vårt spabad, med storslagen utsikt över landskapet och stjärnhimlen. Toalett och dusch finns tillgängliga i vårt bostadshus. Besök oss med en vän eller kanske en romantisk afton med en partner för att fördjupa er relation och dela en unik och upplevelse tillsammans. Gästers tillgång Trädhuset är avskilt beläget i en skogsdunge, bara 50 meter längs en mysig stig från bostadshuset. Som gäster har ni tillgång till toalett och dusch i bostadshuset, men de övriga delarna av huset står inte till ert förfogande. Köket och andra gemensamma ytor i bostadshuset ingår inte i ert boende i trädhuset. Ni har även tillgång till spabadet vid bostadshuset under två timmar under er vistelse. Vänligen meddela oss vilka tider ni önskar använda det. Under din vistelse Jag bor själv i en husvagn på andra sidan om bostadshuset. Ibland är jag på plats och ibland är jag iväg. När jag inte är här kan ni låsa upp trädhuset med en kod. Trädhuset självt är placerat så att det är insynsskyddat med träd mellan det och huvudhuset.';
+
   amenities = [
     { icon: 'bi bi-house-door', text: 'Utsikt mot gården' },
     { icon: 'bi bi-house', text: 'Utsikt mot havet' },
