@@ -73,6 +73,19 @@
       </div>
     </div>
 
+    <!-- Sektion för amenities -->
+    <div *ngIf="amenities.length > 0">
+      <ul class="px-6">
+        <li *ngFor="let amenity of amenities">
+          <div class="flex flex-row items-center my-5">
+            <i [class]="amenity.icon + ' text-2xl mr-4'"></i>
+            {{ amenity.text }}
+          </div>
+          <div class="h-[1px] w-full bg-brand-shadowGray"></div>
+        </li>
+      </ul>
+    </div>
+
     <!-- Knappar -->
     <div
       *ngIf="primaryButtonText || secondaryButtonText"
