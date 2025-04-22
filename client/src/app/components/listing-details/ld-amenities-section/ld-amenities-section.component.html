@@ -1,0 +1,19 @@
+<section class="py-12">
+  <h2>Vad detta boende erbjuder</h2>
+  <ul class="grid grid-cols-1 lg:grid-cols-2 gap-3">
+    <li
+      *ngFor="let amenity of amenities | slice : 0 : visibleAmenitiesCount"
+      class="items-center flex flex-row content-center"
+    >
+      <i [class]="amenity.icon + ' text-2xl mr-4'"></i>
+      {{ amenity.text }}
+    </li>
+  </ul>
+  <div class="mt-6">
+    <app-button buttonType="secondary" (click)="openModal()"
+      >Visa alla 49 bekvämligheter</app-button
+    >
+  </div>
+</section>
+<app-modal-lg #modalAmenities [heading]="'Vad detta boende erbjuder'">
+</app-modal-lg>
