@@ -1,0 +1,149 @@
+<section class="mb-8">
+  <h2 class="hidden md:block text-2xl font-semibold mb-2 text-brand-black">
+    Bra att veta
+  </h2>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-12 leading-6">
+    <div>
+      <h3 class="text-xl font-semibold mb-4 text-brand-black">Husregler</h3>
+      <ul class="space-y-2 text-brand-textLight md:text-brand-black">
+        <li>Incheckning är 15:00–00:00</li>
+        <li>Utcheckning innan kl. 10:00</li>
+        <li>Max. 2 gäster</li>
+      </ul>
+      <button
+        (click)="openHouseRulesModal()"
+        class="mt-4 text-base font-semibold underline text-brand-dark hover:text-black"
+      >
+        Visa mer
+      </button>
+    </div>
+
+    <div>
+      <h3 class="text-xl font-semibold mb-4 text-brand-black">
+        Säkerhet och egendom
+      </h3>
+      <ul class="space-y-2 text-brand-textLight md:text-brand-black">
+        <li>Inget kolmonoxidlarm har rapporterats</li>
+        <li>Brandvarnare</li>
+      </ul>
+      <button
+        (click)="openSafetyModal()"
+        class="mt-4 text-base font-semibold underline text-brand-dark hover:text-brand-black"
+      >
+        Visa mer
+      </button>
+    </div>
+
+    <div>
+      <h3 class="text-xl font-semibold mb-4 text-brand-black">
+        Avbokningspolicy
+      </h3>
+      <ul class="space-y-2 text-brand-textLight md:text-brand-black">
+        <li>
+          Gratis avbokning innan 12 juni. Avboka innan den 5 juli för en delvis
+          återbetalning.
+        </li>
+        <li class="mt-2">
+          Granska denna värds fullständiga policy för mer information.
+        </li>
+      </ul>
+      <button
+        (click)="openCancellationModal()"
+        class="mt-4 text-base font-semibold underline text-brand-dark hover:text-brand-black"
+      >
+        Visa mer
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- Husregler-modal -->
+<app-modal-lg
+  #houseRulesModal
+  [heading]="'Husregler'"
+  [section1Title]="'In- och utcheckning'"
+  [section2Title]="'Under din vistelse'"
+  [section3Title]="'Innan du lämnar'"
+  [description]="
+    'Du kommer att bo i någons hem, så behandla det med hänsyn och respekt.'
+  "
+>
+  <div section1>
+    <ul class="space-y-2">
+      <li>Incheckning är 15:00–00:00</li>
+      <li>Utcheckning innan kl. 10:00</li>
+      <li>Självständig incheckning med låst nyckelskåp</li>
+    </ul>
+  </div>
+  <div section2>
+    <ul class="space-y-2">
+      <li>Max. 2 gäster</li>
+      <li>Husdjur tillåtna</li>
+      <li>Inga partyn eller tillställningar</li>
+      <li>Ingen kommersiell fotografering</li>
+      <li>Ingen rökning</li>
+    </ul>
+  </div>
+  <div section3>
+    <ul class="space-y-2">
+      <li>Kasta sopor</li>
+    </ul>
+  </div>
+</app-modal-lg>
+
+<!-- Säkerhetsmodal -->
+<app-modal-lg
+  #safetyModal
+  [heading]="'Säkerhet och egendom'"
+  [section1Title]="'Säkerhetsfunktioner'"
+>
+  <div section1>
+    <ul class="space-y-4">
+      <li>
+        <h4 class="font-semibold">Brandskydd</h4>
+        <p>Brandvarnare finns installerade i alla rum</p>
+      </li>
+      <li>
+        <h4 class="font-semibold">Kolmonoxid</h4>
+        <p>Inget kolmonoxidlarm har rapporterats</p>
+      </li>
+      <li>
+        <h4 class="font-semibold">Säkerhetslås</h4>
+        <p>Digital låskod för säker incheckning</p>
+      </li>
+      <li>
+        <h4 class="font-semibold">Första hjälpen</h4>
+        <p>Första hjälpen-kit finns tillgängligt</p>
+      </li>
+    </ul>
+  </div>
+</app-modal-lg>
+
+<!-- Avbokningsmodal -->
+<app-modal-lg
+  #cancellationModal
+  [heading]="'Avbokningspolicy'"
+  [section1Title]="'Avbokningsregler'"
+>
+  <div section1>
+    <ul class="space-y-4">
+      <li>
+        <h4 class="font-semibold">Gratis avbokning</h4>
+        <p>Gratis avbokning innan 12 juni</p>
+      </li>
+      <li>
+        <h4 class="font-semibold">Delvis återbetalning</h4>
+        <p>Avboka innan den 5 juli för en delvis återbetalning</p>
+      </li>
+      <li>
+        <h4 class="font-semibold">Sen avbokning</h4>
+        <p>Ingen återbetalning vid avbokning efter 5 juli</p>
+      </li>
+      <li>
+        <h4 class="font-semibold">Force majeure</h4>
+        <p>Specialregler gäller vid oförutsedda händelser</p>
+      </li>
+    </ul>
+  </div>
+</app-modal-lg>

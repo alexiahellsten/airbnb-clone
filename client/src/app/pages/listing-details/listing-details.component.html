@@ -16,6 +16,10 @@
     <app-ld-header-section [listing_id]="listing_id" [headerData]="headerData">
     </app-ld-header-section>
 
+    <div class="mt-8">
+      <div class="h-[1px] bg-brand-shadowGray"></div>
+      <app-ld-bedroom-section></app-ld-bedroom-section>
+    </div>
     <app-ld-description-section
       [description]="description"
     ></app-ld-description-section>
@@ -25,11 +29,29 @@
 
     <div class="h-[1px] bg-brand-shadowGray"></div>
 
+    <div class="mt-8">
+      <div class="h-[1px] bg-brand-shadowGray"></div>
+      <app-ld-amenities-section
+        [amenities]="amenities"
+      ></app-ld-amenities-section>
+    </div>
+    <app-ld-description-section
+      [description]="description"
+    ></app-ld-description-section>
+
+    <div class="h-[1px] bg-brand-shadowGray my-8"></div>
+    <app-ld-bedroom-section></app-ld-bedroom-section>
+
+    <app-ld-information-section></app-ld-information-section>
+    <div class="h-[1px] bg-brand-shadowGray"></div>
+
     <app-ld-amenities-section
       [amenities]="amenities"
     ></app-ld-amenities-section>
 
     <div class="h-[1px] bg-brand-shadowGray"></div>
   </ng-container>
+
+  <app-ld-information-section></app-ld-information-section>
 </div>
 <div class="h-[1px] bg-brand-shadowGray"></div>

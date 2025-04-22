@@ -13,13 +13,19 @@ import {
 } from '../../services/database.service';
 import { LdHeaderSectionComponent } from '../../components/listing-details/ld-header-section/ld-header-section.component';
 import { ActivatedRoute } from '@angular/router';
-
+import { LdInformationSectionComponent } from '../../components/listing-details/ld-information-section/ld-information-section.component';
 @Component({
   selector: 'app-listing-details',
   imports: [
     CommonModule,
     LdAmenitiesSectionComponent,
     LdBedroomSectionComponent,
+    ListingGridComponent,
+    ListingBadgeComponent,
+    ListingCardComponent,
+    FooterComponent,
+    LdHeaderSectionComponent,
+    LdInformationSectionComponent
     LdDescriptionSectionComponent,
     LdHeaderSectionComponent,
   ],
