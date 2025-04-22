@@ -2,40 +2,108 @@
   *ngIf="isOpen"
   class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
 >
-  <div class="bg-white rounded-3xl shadow-lg w-full max-w-lg relative">
-    <div class="relative border-b pb-4 mb-2">
-      <h2 class="text-lg font-semibold text-center p-4">
-        {{ title }}
-      </h2>
-
+  <div
+    class="bg-white rounded-3xl w-full max-w-3xl relative overflow-y-auto max-h-[90vh] scrollbar-hide"
+    [ngClass]="{ 'shadow-lg': shadow }"
+  >
+    <!-- Sidhuvud -->
+    <div class="relative" [ngClass]="{ 'border-b pb-4 mb-2': divider }">
+      <h2 class="text-lg font-semibold text-center p-4">{{ heading }}</h2>
       <button
         (click)="close()"
-        aria-label="Close"
+        aria-label="Stäng"
         class="absolute top-0 right-0 p-4 text-brand-dark hover:text-brand-black"
       >
-        <lucide-icon name="x"></lucide-icon>
+        <lucide-icon [name]="'x'"></lucide-icon>
       </button>
     </div>
 
-    <div class="flex justify-between">
-      <span class="flex flex-col">
-        <h2 class="text-xl font-semibold px-4 py-2">{{ h2 }}</h2>
-        <p class="px-4 py-2 mb-4">
-          {{ paragraph }}
-        </p>
-      </span>
-      <!-- Här placeras dynamiskt innehåll som skickas från app.component.html -->
-      <!-- <ng-content></ng-content> -->
+    <!-- Huvudinnehåll -->
+    <div class="px-4 pb-6">
+      <p *ngIf="description" class="mb-4" [innerHTML]="description">
+        {{ description }}
+      </p>
+      <h3 *ngIf="subheading" class="text-xl font-semibold mb-4">
+        {{ subheading }}
+      </h3>
+
+      <!-- Sektion 1 -->
+      <div *ngIf="section1Title" class="border-b pb-4 mb-2">
+        <h4 class="text-lg font-semibold mb-2">{{ section1Title }}</h4>
+        <ng-content select="[section1]"></ng-content>
+      </div>
+
+      <!-- Sektion 2 -->
+      <div *ngIf="section2Title" class="border-b pb-4 mb-2">
+        <h4 class="text-lg font-semibold mb-2">{{ section2Title }}</h4>
+        <span *ngIf="section2Description" class="text-sm py-2">{{
+          section2Description
+        }}</span>
+        <ng-content select="[section2]"></ng-content>
+      </div>
+
+      <!-- Sektion 3 -->
+      <div *ngIf="section3Title" class="border-b pb-4 mb-2">
+        <h4 class="text-lg font-semibold mb-2">{{ section3Title }}</h4>
+        <ng-content select="[section3]"></ng-content>
+      </div>
+
+      <!-- Sektion 4 -->
+      <div *ngIf="section4Title" class="border-b pb-4 mb-2">
+        <h4 class="text-lg font-semibold mb-2">{{ section4Title }}</h4>
+        <ng-content select="[section4]"></ng-content>
+      </div>
+
+      <!-- Sektion 5 -->
+      <div *ngIf="section5Title" class="border-b pb-4 mb-2">
+        <h4 class="text-lg font-semibold mb-2">{{ section5Title }}</h4>
+        <ng-content select="[section5]"></ng-content>
+      </div>
+
+      <!-- Sektion 6 -->
+      <div *ngIf="section6Title" class="border-b pb-4 mb-2">
+        <h4 class="text-lg font-semibold mb-2">{{ section6Title }}</h4>
+        <ng-content select="[section6]"></ng-content>
+      </div>
+
+      <!-- Accordion med sektion 7-10 -->
+      <div class="space-y-2">
+        <ng-content select="[section7]"></ng-content>
+        <ng-content select="[section8]"></ng-content>
+        <ng-content select="[section9]"></ng-content>
+        <ng-content select="[section10]"></ng-content>
+      </div>
     </div>
 
-    <div class="border-t shadow-[0px_-2px_2px_rgba(0,0,0,0.1)]">
+    <!-- Sektion för amenities -->
+    <div *ngIf="amenities.length > 0">
+      <ul class="px-6">
+        <li *ngFor="let amenity of amenities">
+          <div class="flex flex-row items-center my-5">
+            <i [class]="amenity.icon + ' text-2xl mr-4'"></i>
+            {{ amenity.text }}
+          </div>
+          <div class="h-[1px] w-full bg-brand-shadowGray"></div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Knappar -->
+    <div
+      *ngIf="primaryButtonText || secondaryButtonText"
+      [ngClass]="{ 'border-t shadow-[0px_-2px_2px_rgba(0,0,0,0.1)]': divider }"
+    >
       <div class="sticky bottom-2 bg-white z-10 flex justify-between m-2">
-        <app-button buttonType="link" (click)="close()" class="py-2 -ml-3">{{
-          leftButtonText
-        }}</app-button>
-        <app-button buttonType="dark" class="p-2">{{
-          rightButtonText
-        }}</app-button>
+        <ng-container *ngIf="primaryButtonText">
+          <app-button buttonType="link" (click)="close()" class="py-2 -ml-3">
+            {{ primaryButtonText }}
+          </app-button>
+        </ng-container>
+        <ng-container *ngIf="secondaryButtonText">
+          <app-button buttonType="dark" class="p-2">
+            {{ secondaryButtonText }}
+          </app-button>
+        </ng-container>
       </div>
     </div>
   </div>
