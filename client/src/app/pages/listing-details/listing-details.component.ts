@@ -9,7 +9,7 @@ import { FooterComponent } from '../../components/common/footer/footer.component
 import { DatabaseService, Listing, ListingImage } from '../../services/database.service';
 import { LdHeaderSectionComponent } from '../../components/listing-details/ld-header-section/ld-header-section.component';
 import { ActivatedRoute } from '@angular/router';
-
+import { LdInformationSectionComponent } from '../../components/listing-details/ld-information-section/ld-information-section.component';
 @Component({
   selector: 'app-listing-details',
   standalone: true,
@@ -21,7 +21,8 @@ import { ActivatedRoute } from '@angular/router';
     ListingBadgeComponent,
     ListingCardComponent,
     FooterComponent,
-    LdHeaderSectionComponent
+    LdHeaderSectionComponent,
+    LdInformationSectionComponent
   ],
   templateUrl: './listing-details.component.html',
   styleUrl: './listing-details.component.css'
