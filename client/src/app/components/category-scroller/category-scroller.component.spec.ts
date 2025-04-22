@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { CategoryScrollerComponent } from './category-scroller.component';
 
 describe('CategoryScrollerComponent', () => {

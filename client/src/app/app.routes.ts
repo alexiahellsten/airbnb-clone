@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { ListingDetailsComponent } from './views/listing-details/listing-details.component';
 
 export const routes: Routes = [
   {
@@ -14,7 +13,9 @@ export const routes: Routes = [
   {
     path: 'component-library',
     loadComponent: () => import('./pages/component-library/component-library.component').then(m => m.ComponentLibraryComponent)
+  },
+  {
+    path: 'listing-details',
+    loadComponent: () => import('./pages/listing-details/listing-details.component').then(m => m.ListingDetailsComponent),
   }
-  path: 'listing-details',
-    component: ListingDetailsComponent,
 ];

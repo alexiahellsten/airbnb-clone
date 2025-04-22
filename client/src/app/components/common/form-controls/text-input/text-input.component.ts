@@ -21,7 +21,7 @@ import {
   ],
 })
 export class TextInputComponent implements ControlValueAccessor {
-  @Input() inputType: 'text' | 'password' | 'email' = 'text';
+  @Input() inputType: 'text' | 'password' | 'number' | 'email' = 'text';
   @Input() label: string = '';
 
   value: string = '';
@@ -66,6 +66,8 @@ export class TextInputComponent implements ControlValueAccessor {
       case 'text':
         return 'form-input';
       case 'password':
+        return 'form-input';
+      case 'number':
         return 'form-input';
       case 'email':
         return 'form-input';
