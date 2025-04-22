@@ -1,18 +1,33 @@
-<app-ld-header-section [headerData]="headerData" [images]="listingImages">
-</app-ld-header-section>
+<div class="container mx-auto px-4 py-8">
+  <!-- Visas om innehållet laddas -->
+  <div *ngIf="isLoading" class="animate-pulse">
+    <div class="h-8 bg-gray-200 rounded w-3/4 mb-4"></div>
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div class="md:col-span-2 row-span-2 bg-gray-200 h-96 rounded"></div>
+      <div class="bg-gray-200 h-48 rounded"></div>
+      <div class="bg-gray-200 h-48 rounded"></div>
+      <div class="bg-gray-200 h-48 rounded"></div>
+      <div class="bg-gray-200 h-48 rounded"></div>
+    </div>
+  </div>
 
-<div class="max-w-7xl px-6 md:px-10 lg:px-20">
-  <app-ld-bedroom-section></app-ld-bedroom-section>
-  <div class="h-[1px] bg-brand-shadowGray"></div>
+  <!-- Visas om innehållet laddas -->
+  <ng-container *ngIf="!isLoading && currentListing">
+    <app-ld-header-section [listing_id]="listing_id" [headerData]="headerData">
+    </app-ld-header-section>
 
-  <app-ld-amenities-section [amenities]="amenities"></app-ld-amenities-section>
+    <div class="mt-8">
+      <app-ld-bedroom-section></app-ld-bedroom-section>
+    </div>
+
+    <div class="mt-8">
+      <app-ld-amenities-section
+        [amenities]="amenities"
+      ></app-ld-amenities-section>
+    </div>
+
+    <div class="h-[1px] bg-brand-shadowGray my-8"></div>
+  </ng-container>
+
+  <app-footer></app-footer>
 </div>
-<div class="h-[1px] bg-brand-shadowGray"></div>
-
-<app-listing-badge></app-listing-badge>
-<app-listing-card></app-listing-card>
-
-<app-listing-grid> </app-listing-grid>
-<!-- <app-ld-amenities-section></app-ld-amenities-section> -->
-<!-- <app-ld-bedroom-section></app-ld-bedroom-section> -->
-<app-footer></app-footer>

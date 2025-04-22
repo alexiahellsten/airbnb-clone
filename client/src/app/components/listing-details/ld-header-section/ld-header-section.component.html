@@ -1,7 +1,7 @@
 <section class="px-6 md:px-10 lg:px-20 py-6">
   <div class="flex justify-between items-center flex-wrap gap-4">
     <h1 class="text-2xl font-semibold">
-      {{ headerData?.title || "Titel" }}
+      {{ headerData?.title || "Laddar..." }}
     </h1>
 
     <ul class="flex space-x-4 text-sm text-gray-700">
@@ -22,46 +22,59 @@
     </ul>
   </div>
 
-  <!-- Bildgalleri. TODO: Hämta bilder från backend API:et -->
+  <!-- Vid laddning av data visas tomma divs med animerade laddningsindikatorer -->
   <div
+    *ngIf="isLoading"
     class="grid grid-cols-1 md:grid-cols-4 gap-2 mt-4 rounded-xl overflow-hidden"
   >
-    <div class="md:col-span-2 row-span-2">
-      <img
-        src="https://placehold.co/800x600"
-        alt="Main"
-        class="w-full h-full object-cover"
-      />
-    </div>
-    <div>
-      <img
-        src="https://placehold.co/400x300"
-        alt="Alt 1"
-        class="w-full h-full object-cover"
-      />
-    </div>
-    <div>
-      <img
-        src="https://placehold.co/400x300"
-        alt="Alt 2"
-        class="w-full h-full object-cover"
-      />
-    </div>
-    <div>
-      <img
-        src="https://placehold.co/400x300"
-        alt="Alt 3"
-        class="w-full h-full object-cover"
-      />
-    </div>
-    <div class="relative">
-      <img
-        src="https://placehold.co/400x300"
-        alt="Alt 4"
-        class="w-full h-full object-cover"
-      />
+    <div class="md:col-span-2 row-span-2 bg-gray-200 animate-pulse h-96"></div>
+    <div class="bg-gray-200 animate-pulse h-48"></div>
+    <div class="bg-gray-200 animate-pulse h-48"></div>
+    <div class="bg-gray-200 animate-pulse h-48"></div>
+    <div class="bg-gray-200 animate-pulse h-48"></div>
+  </div>
 
+  <div *ngIf="error" class="mt-4 p-4 bg-red-100 text-red-700 rounded-lg">
+    {{ error }}
+  </div>
+
+  <!-- Bildgalleri som visas när data är laddad -->
+  <div
+    *ngIf="!isLoading && !error"
+    class="grid grid-cols-1 md:grid-cols-4 gap-2 mt-4 rounded-xl overflow-hidden"
+  >
+    <!-- Huvudbild -->
+    <div class="md:col-span-2 row-span-2" *ngIf="images[0]">
+      <img
+        [src]="images[0].image_url"
+        [alt]="'Huvudbild för ' + headerData?.title"
+        class="w-full h-full object-cover"
+        (error)="handleImageError($event)"
+      />
+    </div>
+
+    <!-- Sekundära bilder -->
+    <ng-container *ngFor="let image of images.slice(1, 5); let i = index">
+      <div *ngIf="image">
+        <img
+          [src]="image.image_url"
+          [alt]="'Bild ' + (i + 2) + ' för ' + headerData?.title"
+          class="w-full h-full object-cover"
+          (error)="handleImageError($event)"
+        />
+      </div>
+    </ng-container>
+
+    <!-- "Visa alla"-knapp -->
+    <div class="relative" *ngIf="images.length > 5">
+      <img
+        [src]="images[4].image_url"
+        [alt]="'Bild 5 för ' + headerData?.title"
+        class="w-full h-full object-cover"
+        (error)="handleImageError($event)"
+      />
       <button
+        (click)="toggleShowAllPhotos()"
         class="absolute bottom-2 right-2 bg-white bg-opacity-90 text-gray-950 border border-gray-950 leading-5 cursor-pointer text-sm font-medium px-4 py-2 rounded-lg shadow-md hover:bg-opacity-100 transition"
       >
         <i class="bi bi-grid-3x3-gap"></i>
@@ -70,14 +83,45 @@
     </div>
   </div>
 
-  <section class="mt-6">
-    <div class="text-lg font-medium">Titel</div>
+  <!-- Modal - Fullständigt bildgalleri -->
+  <div
+    *ngIf="showAllPhotos"
+    class="fixed inset-0 bg-black bg-opacity-90 z-50 overflow-y-auto"
+  >
+    <div class="container mx-auto px-4 py-8">
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="text-2xl font-semibold text-white">Alla foton</h2>
+        <button
+          (click)="toggleShowAllPhotos()"
+          class="text-white hover:text-gray-300"
+        >
+          <i class="bi bi-x-lg text-2xl"></i>
+        </button>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <ng-container *ngFor="let image of images">
+          <div class="relative">
+            <img
+              [src]="image.image_url"
+              [alt]="'Bild för ' + headerData?.title"
+              class="w-full h-64 object-cover rounded-lg"
+              (error)="handleImageError($event)"
+            />
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
 
-    <!-- TODO: Ersätt med data från api:et -->
+  <!-- Detaljer om lägenheten -->
+  <section class="mt-6">
+    <div class="text-lg font-medium">{{ headerData?.title }}</div>
     <div class="text-sm text-gray-600 mt-1">
-      2 gäster · 1 sovrum · 1 säng · 1 badrum
+      {{ headerData?.guests }} gäster · {{ headerData?.bedrooms }} sovrum ·
+      {{ headerData?.bathrooms }} badrum
     </div>
 
+    <!-- Betyg och omdömen. TODO: Ersätt med faktiska data -->
     <section class="rating flex justify-between">
       <div class="flex items-center text-sm text-gray-600 mt-1">
         <i class="bi bi-star-fill text-black mr-1"></i>
