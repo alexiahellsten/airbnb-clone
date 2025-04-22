@@ -1,8 +1,17 @@
 <div class="relative group mx-auto overflow-hidden">
+  <div
+    *ngIf="imageUrls.length === 0"
+    class="w-full h-64 bg-gray-200 flex items-center justify-center rounded-3xl"
+  >
+    <span class="text-gray-500">No image available</span>
+  </div>
+
   <img
-    [src]="images[currentIndex]"
+    *ngIf="imageUrls.length > 0"
+    [src]="imageUrls[currentIndex]"
     alt="Listing image"
     class="w-full h-auto object-cover aspect-square rounded-3xl"
+    (error)="handleImageError($event)"
   />
 
   <!-- Vänsterpil -->

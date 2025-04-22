@@ -1,17 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-filter-pill',
   standalone: true,
-  imports: [CommonModule], // 👈 lägg till detta
-  templateUrl: './filter-pill.component.html',
-  styleUrl: './filter-pill.component.css',
+  imports: [CommonModule],
+  templateUrl: './filter-pill.component.html'
 })
 export class FilterPillComponent {
-  isSelected = false;
+  @Input() isSelected = false;
+  @Output() isSelectedChange = new EventEmitter<boolean>();
 
   toggleSelection() {
     this.isSelected = !this.isSelected;
+    this.isSelectedChange.emit(this.isSelected);
   }
 }

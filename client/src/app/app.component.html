@@ -1,177 +1,349 @@
-<main class="main">
-  <div class="content">
-    <h1>Style library</h1>
-    ---------------------
-    <h1>Heading 1</h1>
-    <h2>Heading 2</h2>
-    <h3>Heading 3</h3>
-    <p>This is a paragraph</p>
-    <p class="sub-paragraph">This is a sub paragraph</p>
-    ---------------------
-    <h1>Component library</h1>
-    <h2>Text input</h2>
-    <app-text-input
-      [inputType]="'text'"
-      [label]="'Telefonnummer'"
-      [(ngModel)]="name"
-    ></app-text-input>
+<app-header></app-header>
 
-    <h2>Buttons</h2>
-    <h3>Primary button</h3>
-    <app-button buttonType="primary">Reservera</app-button>
-
-    <h3>Secondary button</h3>
-    <app-button buttonType="secondary">Visa alla bekvämligheter</app-button>
-
-    <h3>Icon button</h3>
-    <app-button buttonType="icon"><i class="bi bi-search"></i></app-button>
-
-    <h2>Links</h2>
-    <div class="flex flex-col">
-      <app-link linkType="default">Städavgift</app-link>
-      <app-link linkType="secondary">Visa alla</app-link>
-      <app-link linkType="icon">Rensa datum</app-link>
-      <app-link linkType="report">Rapportera den här annonsen</app-link>
-    </div>
-
-    <h2>Select box with counter options</h2>
-    <app-select-box label="Gäster" [uniqueId]="'Number of Guests'">
-      <app-counter-option
-        label="Vuxna"
-        description="13 år och äldre"
-        [value]="1"
-      ></app-counter-option>
-      <app-counter-option
-        label="Barn"
-        description="2-12 år"
-        [value]="0"
-      ></app-counter-option>
-      <app-counter-option
-        label="Spädbarn"
-        description="Under 2 år"
-        [value]="0"
-      ></app-counter-option>
-      <app-counter-option
-        label="Husdjur"
-        [value]="0"
-        description="Tar du med ett tjänstdjur?"
-      ></app-counter-option>
-    </app-select-box>
-
-    <h2>Filter pill</h2>
-    <app-filter-pill></app-filter-pill>
-
-    <h2>Tab bar</h2>
-    <app-tab-bar [tabs]="['Alla typer', 'Rum', 'Helt boende']"></app-tab-bar>
-
-    <h2>Checkbox</h2>
-    <app-checkbox label="Acceptera villkoren"></app-checkbox>
-
-    <h1>Listing components</h1>
-    <h2>Listing card</h2>
-    <app-listing-grid [listings]="listings"></app-listing-grid>
-
-    <!-- Modal Large -->
-    <app-button buttonType="secondary" (click)="modalLg.open()"
-      >Öppna modal</app-button
-    >
-
-    <!-- Skickar dynamiskt innehåll till modalkomponenten -->
-    <app-modal-lg
-      #modalLg
-      [title]="'Titel'"
-      [leftButtonText]="'Avbryt'"
-      [rightButtonText]="'Bekräfta'"
-      [h2]="'Rubrik'"
-      [paragraph]="
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat ea
-  molestiae maxime doloremque unde est fuga. Saepe vero eaque quis
-  exercitationem odio voluptatem, doloremque, velit, corrupti illum
-  perspiciatis nostrum doloribus?'
-      "
-    >
+<div class="w-full bg-white">
+  <div class="w-full px-2 md:px-4 mx-auto">
+    <div class="flex items-center justify-between">
+      <div class="flex-1 overflow-hidden pr-2">
+        <app-category-scroller></app-category-scroller>
+      </div>
       <button
-        (click)="modalLg.close()"
-        class="mt-4 px-4 py-2 text-white rounded"
+        class="flex items-center gap-1 md:gap-2 px-2 md:px-4 py-1 md:py-2 ml-2 md:ml-4 mt-1 border border-gray-300 rounded-lg bg-white cursor-pointer transition-all hover:shadow-md flex-shrink-0"
+        (click)="filterModal.open()"
       >
-        Stäng
+        <svg
+          viewBox="0 0 16 16"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+          role="presentation"
+          focusable="false"
+          class="h-3 w-3 md:h-4 md:w-4 fill-current"
+        >
+          <path
+            d="M5 8c1.306 0 2.418.835 2.83 2H14v2H7.829A3.001 3.001 0 1 1 5 8zm0 2a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm6-8a3 3 0 1 1-2.829 4H2V4h6.17A3.001 3.001 0 0 1 11 2zm0 2a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"
+          ></path>
+        </svg>
+        <span class="text-xs md:text-sm font-medium">Filter</span>
       </button>
-    </app-modal-lg>
-
-    <!-- Modal Small -->
-    <div class="relative inline-block">
-      <app-button buttonType="pill" (click)="modalSm.toggle()">
-        <div class="flex justify-between gap-2">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="lucide lucide-align-justify-icon lucide-align-justify"
-          >
-            <path d="M3 12h18" />
-            <path d="M3 18h18" />
-            <path d="M3 6h18" />
-          </svg>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="lucide lucide-user-round-icon lucide-user-round"
-          >
-            <circle cx="12" cy="8" r="5" />
-            <path d="M20 21a8 8 0 0 0-16 0" />
-          </svg>
-        </div>
-      </app-button>
-      <app-modal-sm #modalSm>
-        <ul>
-          <li class="font-semibold">
-            <a routerLink="#" class="block px-4 py-2 hover:bg-gray-100 text-sm"
-              >Bli medlem</a
-            >
-          </li>
-          <li>
-            <a routerLink="#" class="block px-4 py-2 hover:bg-gray-100 text-sm"
-              >Logga in</a
-            >
-          </li>
-          <div class="h-px bg-gray-200 my-2 mx-0"></div>
-          <li>
-            <a routerLink="#" class="block px-4 py-2 hover:bg-gray-100 text-sm"
-              >Presentkort</a
-            >
-          </li>
-          <li>
-            <a routerLink="#" class="block px-4 py-2 hover:bg-gray-100 text-sm"
-              >Hyr ut ditt boende på Airbnb</a
-            >
-          </li>
-          <li>
-            <a routerLink="#" class="block px-4 py-2 hover:bg-gray-100 text-sm"
-              >Var värd för en upplevelse</a
-            >
-          </li>
-          <li>
-            <a routerLink="#" class="block px-4 py-2 hover:bg-gray-100 text-sm"
-              >Hjälpcenter</a
-            >
-          </li>
-        </ul>
-      </app-modal-sm>
     </div>
-    <app-footer></app-footer>
   </div>
-</main>
-<router-outlet />
+</div>
+
+<router-outlet></router-outlet>
+<app-footer></app-footer>
+
+<app-modal-lg
+  #filterModal
+  [heading]="'Filter'"
+  [primaryButtonText]="'Rensa alla'"
+  [secondaryButtonText]="'Visa boenden'"
+  [section1Title]="'Boendetyp'"
+  [section2Title]="'Prisintervall'"
+  [section2Description]="'Priser per natt inklusive avgifter och skatt'"
+  [section3Title]="'Rum och sängar'"
+  [section4Title]="'Bekvämligheter'"
+  [section5Title]="'Bokningsalternativ'"
+  [section6Title]="'Enastående boenden'"
+>
+  <!-- Sektion 1: Boendetyp -->
+  <div section1 class="space-y-4">
+    <div class="flex items-center justify-between">
+      <app-tab-bar [tabs]="['Alla typer', 'Rum', 'Helt boende']"></app-tab-bar>
+    </div>
+  </div>
+
+  <!-- Sektion 2: Prisintervall -->
+  <div section2 class="space-y-4">
+    <div class="flex items-center justify-between">
+      <span class="font-semibold text-sm py-2">Maxpris:</span>
+      <span class="text-sm font-semibold">{{ priceRange }} kr</span>
+    </div>
+    <div class="relative flex items-center">
+      <button
+        (click)="decreasePrice()"
+        class="absolute left-0 p-2 text-gray-500 hover:text-gray-700"
+        aria-label="Minska pris"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M15 18l-6-6 6-6" />
+        </svg>
+      </button>
+      <input
+        type="range"
+        [(ngModel)]="priceRange"
+        (ngModelChange)="onSliderChange()"
+        [min]="minPrice"
+        [max]="5000"
+        class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer mx-8"
+      />
+      <button
+        (click)="increasePrice()"
+        class="absolute right-0 p-2 text-gray-500 hover:text-gray-700"
+        aria-label="Öka pris"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M9 18l6-6-6-6" />
+        </svg>
+      </button>
+    </div>
+    <div class="flex justify-between text-xs text-gray-500">
+      <div class="flex flex-col space-y-2">
+        <span>Lägst</span>
+        <span>{{ minPrice }} kr</span>
+      </div>
+      <div class="flex flex-col space-y-2">
+        <span>Högst</span>
+        <span>{{ maxPrice }} kr</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sektion 3: Rum och sängar -->
+  <div section3 class="space-y-4">
+    <div class="grid grid-cols-1 gap-4">
+      <div class="flex items-center justify-between">
+        <label class="text-sm font-medium text-gray-900">Sovrum</label>
+        <div class="flex items-center gap-2">
+          <button
+            class="p-1.5 text-gray-500 hover:text-gray-900 disabled:text-gray-300 disabled:cursor-not-allowed"
+            (click)="decreaseRooms()"
+            [disabled]="rooms <= 1"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+            </svg>
+          </button>
+          <span class="text-base font-medium text-gray-900">{{
+            rooms === 1 ? "Alla" : rooms
+          }}</span>
+          <button
+            class="p-1.5 text-gray-500 hover:text-gray-900 disabled:text-gray-300 disabled:cursor-not-allowed"
+            (click)="increaseRooms()"
+            [disabled]="rooms >= 10"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M12 5v14M5 12h14" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between">
+        <label class="text-sm font-medium text-gray-900">Sängar</label>
+        <div class="flex items-center gap-2">
+          <button
+            class="p-1.5 text-gray-500 hover:text-gray-900 disabled:text-gray-300 disabled:cursor-not-allowed"
+            (click)="decreaseBeds()"
+            [disabled]="beds <= 1"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+            </svg>
+          </button>
+          <span class="text-base font-medium text-gray-900">{{
+            beds === 1 ? "Alla" : beds
+          }}</span>
+          <button
+            class="p-1.5 text-gray-500 hover:text-gray-900 disabled:text-gray-300 disabled:cursor-not-allowed"
+            (click)="increaseBeds()"
+            [disabled]="beds >= 10"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M12 5v14M5 12h14" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between">
+        <label class="text-sm font-medium text-gray-900">Badrum</label>
+        <div class="flex items-center gap-2">
+          <button
+            class="p-1.5 text-gray-500 hover:text-gray-900 disabled:text-gray-300 disabled:cursor-not-allowed"
+            (click)="decreaseBathrooms()"
+            [disabled]="bathrooms <= 1"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+            </svg>
+          </button>
+          <span class="text-base font-medium text-gray-900">{{
+            bathrooms === 1 ? "Alla" : bathrooms
+          }}</span>
+          <button
+            class="p-1.5 text-gray-500 hover:text-gray-900 disabled:text-gray-300 disabled:cursor-not-allowed"
+            (click)="increaseBathrooms()"
+            [disabled]="bathrooms >= 10"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M12 5v14M5 12h14" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sektion 4: Bekvämligheter -->
+  <div section4 class="space-y-4">
+    <div class="flex flex-wrap gap-3">
+      <app-filter-pill
+        *ngFor="let amenity of amenities"
+        [(isSelected)]="amenity.selected"
+        (isSelectedChange)="toggleAmenity(amenity.id)"
+      >
+        {{ amenity.name }}
+      </app-filter-pill>
+    </div>
+  </div>
+
+  <!-- Sektion 5: Bokningsalternativ -->
+  <div section5 class="space-y-2">
+    <div class="flex flex-wrap gap-3">
+      <app-filter-pill
+        *ngFor="let option of bookingOptions"
+        [(isSelected)]="option.selected"
+        (isSelectedChange)="onButtonSelect(option, 'booking')"
+      >
+        <span class="text-sm">{{ option.label }}</span>
+      </app-filter-pill>
+    </div>
+  </div>
+
+  <!-- Sektion 6: Enastående boenden -->
+  <div section6 class="space-y-2">
+    <div class="flex flex-wrap gap-3">
+      <app-filter-pill
+        *ngFor="let option of uniqueOptions"
+        [(isSelected)]="option.selected"
+        (isSelectedChange)="onButtonSelect(option, 'unique')"
+      >
+        {{ option.label }}
+      </app-filter-pill>
+    </div>
+  </div>
+
+  <!-- Sektion 7: Fastighetstyp Accordion -->
+  <div section7>
+    <app-accordion title="Typ av fastighet">
+      <div class="flex flex-wrap gap-3">
+        <app-filter-pill
+          *ngFor="let property of propertyTypes"
+          [(isSelected)]="property.selected"
+          (isSelectedChange)="toggleProperty(property.id)"
+        >
+          {{ property.name }}
+        </app-filter-pill>
+      </div>
+    </app-accordion>
+  </div>
+
+  <!-- Sektion 8: Tillgänglighet Accordion -->
+  <div section8>
+    <app-accordion title="Tillgänglighet">
+      <div class="flex flex-wrap gap-3">
+        <app-filter-pill
+          *ngFor="let feature of accessibilityFeatures"
+          [(isSelected)]="feature.selected"
+          (isSelectedChange)="toggleAccessibility(feature.id)"
+        >
+          {{ feature.name }}
+        </app-filter-pill>
+      </div>
+    </app-accordion>
+  </div>
+
+  <!-- Sektion 9: Värdspråk Accordion -->
+  <div section9>
+    <app-accordion title="Värdspråk">
+      <div class="flex flex-wrap gap-3">
+        <app-filter-pill
+          *ngFor="let language of hostLanguages"
+          [(isSelected)]="language.selected"
+          (isSelectedChange)="toggleLanguage(language.id)"
+        >
+          {{ language.name }}
+        </app-filter-pill>
+      </div>
+    </app-accordion>
+  </div>
+</app-modal-lg>
