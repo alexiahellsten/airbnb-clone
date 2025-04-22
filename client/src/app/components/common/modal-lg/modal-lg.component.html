@@ -20,7 +20,9 @@
 
     <!-- Huvudinnehåll -->
     <div class="px-4 pb-6">
-      <p *ngIf="description" class="mb-4">{{ description }}</p>
+      <p *ngIf="description" class="mb-4" [innerHTML]="description">
+        {{ description }}
+      </p>
       <h3 *ngIf="subheading" class="text-xl font-semibold mb-4">
         {{ subheading }}
       </h3>

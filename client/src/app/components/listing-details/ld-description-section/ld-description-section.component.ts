@@ -1,6 +1,5 @@
 import { Component, ViewChild, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { ModalLgComponent } from '../../common/modal-lg/modal-lg.component';
 import { LinkComponent } from '../../common/link/link.component';
 
@@ -26,5 +25,9 @@ export class LdDescriptionSectionComponent {
 
   closeModal() {
     this.isModalOpen = false; // När modalen stängs, sätt flaggan till false
+  }
+  // Får den första 500 tecknen för att visa som begränsad text
+  get limitedDescription() {
+    return this.description.slice(0, 500) + '...'; // De första 500 tecknen
   }
 }
