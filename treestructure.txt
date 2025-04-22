@@ -4,7 +4,32 @@
 │   ├── package.json
 │   ├── postcss.config.ts
 │   ├── public/
-│   │   └── favicon.ico
+│   │   ├── favicon.ico
+│   │   └── icons/
+│   │       ├── accessible.webp
+│   │       ├── bandb.webp
+│   │       ├── barn.webp
+│   │       ├── beach.webp
+│   │       ├── big-mansion.webp
+│   │       ├── cabin.webp
+│   │       ├── camping.webp
+│   │       ├── castle.webp
+│   │       ├── city.webp
+│   │       ├── countryside.webp
+│   │       ├── design.webp
+│   │       ├── fantastic-pools.webp
+│   │       ├── fantastic-view.webp
+│   │       ├── farm.webp
+│   │       ├── golf.webp
+│   │       ├── islands.webp
+│   │       ├── lake.webp
+│   │       ├── pist.webp
+│   │       ├── popular.webp
+│   │       ├── room.webp
+│   │       ├── surf.webp
+│   │       ├── tiny.webp
+│   │       ├── treehouse.webp
+│   │       └── wow.webp
 │   ├── README.md
 │   ├── src/
 │   │   ├── app/
@@ -15,7 +40,14 @@
 │   │   │   ├── app.config.ts
 │   │   │   ├── app.routes.ts
 │   │   │   ├── components/
+│   │   │   │   ├── category-scroller/
+│   │   │   │   │   ├── category-scroller.component.css
+│   │   │   │   │   ├── category-scroller.component.html
+│   │   │   │   │   ├── category-scroller.component.spec.ts
+│   │   │   │   │   └── category-scroller.component.ts
 │   │   │   │   ├── common/
+│   │   │   │   │   ├── accordion/
+│   │   │   │   │   │   └── accordion.component.ts
 │   │   │   │   │   ├── badge/
 │   │   │   │   │   ├── button/
 │   │   │   │   │   │   ├── button.component.css
@@ -109,23 +141,72 @@
 │   │   │   │   │       ├── tab-bar.component.html
 │   │   │   │   │       ├── tab-bar.component.spec.ts
 │   │   │   │   │       └── tab-bar.component.ts
+│   │   │   │   ├── listing-details/
+│   │   │   │   │   ├── ld-amenities-section/
+│   │   │   │   │   │   ├── ld-amenities-section.component.css
+│   │   │   │   │   │   ├── ld-amenities-section.component.html
+│   │   │   │   │   │   ├── ld-amenities-section.component.spec.ts
+│   │   │   │   │   │   └── ld-amenities-section.component.ts
+│   │   │   │   │   └── ld-bedroom-section/
+│   │   │   │   │       ├── ld-bedroom-section.component.css
+│   │   │   │   │       ├── ld-bedroom-section.component.html
+│   │   │   │   │       ├── ld-bedroom-section.component.spec.ts
+│   │   │   │   │       └── ld-bedroom-section.component.ts
+│   │   │   │   └── logo/
+│   │   │   │       ├── logo.component.css
+│   │   │   │       ├── logo.component.html
+│   │   │   │       └── logo.component.ts
+│   │   │   ├── header/
+│   │   │   │   ├── header.component.css
+│   │   │   │   ├── header.component.html
+│   │   │   │   ├── header.component.spec.ts
+│   │   │   │   └── header.component.ts
+│   │   │   ├── pages/
+│   │   │   │   ├── component-library/
+│   │   │   │   │   ├── component-library.component.html
+│   │   │   │   │   └── component-library.component.ts
+│   │   │   │   ├── home/
+│   │   │   │   │   └── home.component.ts
 │   │   │   │   └── listing-details/
-│   │   │   │       ├── ld-amenities-section/
-│   │   │   │       │   ├── ld-amenities-section.component.css
-│   │   │   │       │   ├── ld-amenities-section.component.html
-│   │   │   │       │   ├── ld-amenities-section.component.spec.ts
-│   │   │   │       │   └── ld-amenities-section.component.ts
-│   │   │   │       └── ld-bedroom-section/
-│   │   │   │           ├── ld-bedroom-section.component.css
-│   │   │   │           ├── ld-bedroom-section.component.html
-│   │   │   │           ├── ld-bedroom-section.component.spec.ts
-│   │   │   │           └── ld-bedroom-section.component.ts
-│   │   │   └── views/
-│   │   │       └── listing-details/
-│   │   │           ├── listing-details.component.css
-│   │   │           ├── listing-details.component.html
-│   │   │           ├── listing-details.component.spec.ts
-│   │   │           └── listing-details.component.ts
+│   │   │   │       ├── listing-details.component.css
+│   │   │   │       ├── listing-details.component.html
+│   │   │   │       ├── listing-details.component.spec.ts
+│   │   │   │       └── listing-details.component.ts
+│   │   │   ├── search-bar/
+│   │   │   │   ├── search-bar.component.css
+│   │   │   │   ├── search-bar.component.html
+│   │   │   │   ├── search-bar.component.spec.ts
+│   │   │   │   └── search-bar.component.ts
+│   │   │   └── services/
+│   │   │       └── database.service.ts
+│   │   ├── assets/
+│   │   │   └── icons/
+│   │   │       ├── accessible.webp
+│   │   │       ├── bandb.webp
+│   │   │       ├── barn.webp
+│   │   │       ├── beach.webp
+│   │   │       ├── big-mansion.webp
+│   │   │       ├── cabin.webp
+│   │   │       ├── camping.webp
+│   │   │       ├── castle.webp
+│   │   │       ├── city.webp
+│   │   │       ├── countryside.webp
+│   │   │       ├── design.webp
+│   │   │       ├── fantastic-pools.webp
+│   │   │       ├── fantastic-view.webp
+│   │   │       ├── farm.webp
+│   │   │       ├── golf.webp
+│   │   │       ├── islands.webp
+│   │   │       ├── lake.webp
+│   │   │       ├── luxe.webp
+│   │   │       ├── nationalparks.webp
+│   │   │       ├── pist.webp
+│   │   │       ├── popular.webp
+│   │   │       ├── room.webp
+│   │   │       ├── surf.webp
+│   │   │       ├── tiny.webp
+│   │   │       ├── treehouse.webp
+│   │   │       └── wow.webp
 │   │   ├── index.html
 │   │   ├── main.ts
 │   │   ├── proxy.conf.json
@@ -145,5 +226,7 @@
 │   ├── package-lock.json
 │   ├── package.json
 │   └── src/
+│       ├── routes/
+│       │   └── categories.js
 │       └── server.js
 └── treestructure.txt

@@ -26,7 +26,7 @@ import { AccordionComponent } from './components/common/accordion/accordion.comp
     CounterOptionComponent,
     TabBarComponent,
     FilterPillComponent,
-    AccordionComponent
+    AccordionComponent,
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
@@ -40,7 +40,7 @@ export class AppComponent implements OnInit {
   priceRange: number = 2500;
   minPrice: number = 100;
   maxPrice: number = 3800;
-  priceStep: number = 100; 
+  priceStep: number = 100;
 
   // Rum och sängar
   rooms: number = 1;
@@ -60,7 +60,7 @@ export class AppComponent implements OnInit {
     { id: 'apartment', name: 'Lägenhet', selected: false },
     { id: 'cabin', name: 'Stuga', selected: false },
     { id: 'villa', name: 'Villa', selected: false },
-    { id: 'cottage', name: 'Sommarstuga', selected: false }
+    { id: 'cottage', name: 'Sommarstuga', selected: false },
   ];
   selectedProperties: Set<string> = new Set();
 
@@ -70,7 +70,7 @@ export class AppComponent implements OnInit {
     { id: 'elevator', name: 'Hiss', selected: false },
     { id: 'high_bed', name: 'Höjd säng', selected: false },
     { id: 'high_toilet', name: 'Höjd toalett', selected: false },
-    { id: 'step_free', name: 'Stegfritt', selected: false }
+    { id: 'step_free', name: 'Stegfritt', selected: false },
   ];
   selectedAccessibility: Set<string> = new Set();
 
@@ -80,7 +80,7 @@ export class AppComponent implements OnInit {
     { id: 'english', name: 'English', selected: false },
     { id: 'espanol', name: 'Español', selected: false },
     { id: 'francais', name: 'Français', selected: false },
-    { id: 'deutsch', name: 'Deutsch', selected: false }
+    { id: 'deutsch', name: 'Deutsch', selected: false },
   ];
   selectedLanguages: Set<string> = new Set();
 
@@ -93,9 +93,9 @@ export class AppComponent implements OnInit {
   loadAmenities() {
     this.databaseService.getAmenities().subscribe(
       (amenities) => {
-        this.amenities = amenities.map(amenity => ({
+        this.amenities = amenities.map((amenity) => ({
           ...amenity,
-          selected: amenity.selected ?? false
+          selected: amenity.selected ?? false,
         }));
       },
       (error) => {
@@ -105,7 +105,7 @@ export class AppComponent implements OnInit {
   }
 
   toggleAmenity(amenityId: string) {
-    const amenity = this.amenities.find(a => a.id === amenityId);
+    const amenity = this.amenities.find((a) => a.id === amenityId);
     if (amenity) {
       amenity.selected = !amenity.selected;
       if (amenity.selected) {
@@ -122,7 +122,7 @@ export class AppComponent implements OnInit {
 
   // Toggle methods
   toggleProperty(id: string) {
-    const property = this.propertyTypes.find(p => p.id === id);
+    const property = this.propertyTypes.find((p) => p.id === id);
     if (property) {
       property.selected = !property.selected;
       if (property.selected) {
@@ -134,7 +134,7 @@ export class AppComponent implements OnInit {
   }
 
   toggleAccessibility(id: string) {
-    const feature = this.accessibilityFeatures.find(f => f.id === id);
+    const feature = this.accessibilityFeatures.find((f) => f.id === id);
     if (feature) {
       feature.selected = !feature.selected;
       if (feature.selected) {
@@ -146,7 +146,7 @@ export class AppComponent implements OnInit {
   }
 
   toggleLanguage(id: string) {
-    const language = this.hostLanguages.find(l => l.id === id);
+    const language = this.hostLanguages.find((l) => l.id === id);
     if (language) {
       language.selected = !language.selected;
       if (language.selected) {
@@ -170,13 +170,13 @@ export class AppComponent implements OnInit {
   bookingOptions = [
     { label: 'Boka direkt', selected: false },
     { label: 'Själv-incheckning', selected: false },
-    { label: 'Tillåter husdjur', selected: false }
+    { label: 'Tillåter husdjur', selected: false },
   ];
 
   // Unika möjligheter
   uniqueOptions = [
     { label: 'Tillgång till pool', selected: false },
-    { label: 'Frukost ingår', selected: false }
+    { label: 'Frukost ingår', selected: false },
   ];
 
   // Hantera checkbox-förändringar
@@ -205,18 +205,18 @@ export class AppComponent implements OnInit {
     this.priceRange = 2500;
     this.selectedAmenities.clear();
     this.selectedAccessibility.clear();
-    
+
     // Rensa fastighetsval
-    this.propertyTypes.forEach(p => p.selected = false);
+    this.propertyTypes.forEach((p) => (p.selected = false));
     this.selectedProperties.clear();
-    
+
     // Rensa tillgänglighetsval
-    this.accessibilityFeatures.forEach(f => f.selected = false);
+    this.accessibilityFeatures.forEach((f) => (f.selected = false));
     this.selectedAccessibility.clear();
-    
+
     // Rensa val av bokningar & unika möjligheter
-    this.bookingOptions.forEach(opt => opt.selected = false);
-    this.uniqueOptions.forEach(opt => opt.selected = false);
+    this.bookingOptions.forEach((opt) => (opt.selected = false));
+    this.uniqueOptions.forEach((opt) => (opt.selected = false));
   }
 
   openFilterModal() {
@@ -266,7 +266,10 @@ export class AppComponent implements OnInit {
   // Minskar priset steg för steg
   decreasePrice() {
     if (this.priceRange > this.minPrice) {
-      this.priceRange = Math.max(this.priceRange - this.priceStep, this.minPrice);
+      this.priceRange = Math.max(
+        this.priceRange - this.priceStep,
+        this.minPrice
+      );
       this.maxPrice = this.priceRange;
     }
   }
