@@ -6,7 +6,6 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './components/common/footer/footer.component';
 import { CategoryScrollerComponent } from './components/category-scroller/category-scroller.component';
 import { ModalLgComponent } from './components/common/modal-lg/modal-lg.component';
-//import { ButtonComponent } from './components/common/button/button.component';
 import { CounterOptionComponent } from './components/common/form-controls/select-box/counter-option/counter-option.component';
 import { TabBarComponent } from './components/common/tab-bar/tab-bar.component';
 import { DatabaseService, Amenity } from './services/database.service';
@@ -24,7 +23,6 @@ import { AccordionComponent } from './components/common/accordion/accordion.comp
     FooterComponent,
     CategoryScrollerComponent,
     ModalLgComponent,
-   // ButtonComponent,
     CounterOptionComponent,
     TabBarComponent,
     FilterPillComponent,
