@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ButtonComponent } from '../components/common/button/button.component';
-import { SearchBarComponent } from '../search-bar/search-bar.component';
+import { SearchBarComponent } from '../header/search-bar/search-bar.component';
 import { ModalSmComponent } from '../components/common/modal-sm/modal-sm.component';
 import { LucideAngularModule, Menu, Globe, User } from 'lucide-angular';
-import { LogoComponent } from '../components/logo/logo.component';
+import { LogoComponent } from '../header/logo/logo.component';
 
 @Component({
   selector: 'app-header',

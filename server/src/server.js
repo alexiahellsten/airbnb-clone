@@ -22,8 +22,14 @@ app.get("/api/listings", (req, res) => {
 
 app.get("/api/listing-images", (req, res) => {
   try {
-    console.log("Fetching listing images");
-    const listingImages = db.prepare("SELECT * FROM listing_images").all();
+    const listing_id = req.query.listing_id;
+    console.log("Fetching listing images for listing_id:", listing_id);
+    
+    if (!listing_id) {
+      return res.status(400).json({ message: "listing_id is required" });
+    }
+
+    const listingImages = db.prepare("SELECT * FROM listing_images WHERE listing_id = ?").all(listing_id);
     console.log("Found images:", listingImages);
     res.json(listingImages);
   } catch (error) {

@@ -24,19 +24,19 @@ export interface Listing {
   address: string;
   city: string;
   country: string;
-  pricePerNight: number;
-  maxGuests: number;
+  price_per_night: number;
+  max_guests: number;
   bedrooms: number;
   bathrooms: number;
-  hostId: number;
-  createdAt: Date;
-  updatedAt: Date;
+  host_id: number;
+  created_at: string;
+  updated_at: string;
 }
 
 export interface ListingImage {
   id: number;
-  listingId: number;
-  imageUrl: string;
+  listing_id: number;
+  image_url: string;
 }
 
 @Injectable({
@@ -44,7 +44,7 @@ export interface ListingImage {
 })
 
 export class DatabaseService {
-  private apiUrl = 'http://localhost:4200/api';
+  private apiUrl = '/api';
 
   constructor(private http: HttpClient) {}
 
@@ -54,6 +54,10 @@ export class DatabaseService {
 
   getListingImages(): Observable<ListingImage[]> {
     return this.http.get<ListingImage[]>(`${this.apiUrl}/listing-images`);
+  }
+
+  getListingImagesById(listing_id: number): Observable<ListingImage[]> {
+    return this.http.get<ListingImage[]>(`${this.apiUrl}/listing-images?listing_id=${listing_id}`);
   }
 
   getAmenities(): Observable<Amenity[]> {

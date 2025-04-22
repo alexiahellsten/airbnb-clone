@@ -31,10 +31,10 @@ export class ListingGridComponent implements OnInit {
           const listingImages = images
 
           //Filtrerar ut bilder som tillhör den nuvarande annonsen
-            .filter(img => img.listingId === listing.id)
+            .filter(img => img.listing_id === listing.id)
 
-          //Hämtar ut imageUrl-fältet från varje filtrerad bild & sparar det i arrayen listingImages
-            .map(img => img.imageUrl);
+          //Hämtar ut image_url-fältet från varje filtrerad bild & sparar det i arrayen listingImages
+            .map(img => img.image_url);
     
           return {
             id: listing.id,
