@@ -13,7 +13,8 @@ import {
 } from '../../services/database.service';
 import { LdHeaderSectionComponent } from '../../components/listing-details/ld-header-section/ld-header-section.component';
 import { ActivatedRoute } from '@angular/router';
-
+import { LdInformationSectionComponent } from '../../components/listing-details/ld-information-section/ld-information-section.component';
+import { LdLocationSectionComponent } from '../../components/listing-details/ld-location-section/ld-location-section.component';
 @Component({
   selector: 'app-listing-details',
   imports: [
@@ -22,6 +23,8 @@ import { ActivatedRoute } from '@angular/router';
     LdBedroomSectionComponent,
     LdDescriptionSectionComponent,
     LdHeaderSectionComponent,
+    LdInformationSectionComponent,
+    LdLocationSectionComponent,
   ],
   templateUrl: './listing-details.component.html',
   styleUrl: './listing-details.component.css',
