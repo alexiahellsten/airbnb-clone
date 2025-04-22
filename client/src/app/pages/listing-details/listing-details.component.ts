@@ -1,15 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser'; //För att tillåta HTML i strängar
 
 //Components
 import { LdAmenitiesSectionComponent } from '../../components/listing-details/ld-amenities-section/ld-amenities-section.component';
 import { LdBedroomSectionComponent } from '../../components/listing-details/ld-bedroom-section/ld-bedroom-section.component';
-import { ListingGridComponent } from '../../components/common/listings/listing-grid/listing-grid.component';
-import { ListingBadgeComponent } from '../../components/common/listings/listing-badge/listing-badge.component';
-import { ListingCardComponent } from '../../components/common/listings/listing-card/listing-card.component';
 import { LdDescriptionSectionComponent } from '../../components/listing-details/ld-description-section/ld-description-section.component';
-import { FooterComponent } from '../../components/common/footer/footer.component';
 import {
   DatabaseService,
   Listing,
@@ -24,11 +20,7 @@ import { ActivatedRoute } from '@angular/router';
     CommonModule,
     LdAmenitiesSectionComponent,
     LdBedroomSectionComponent,
-    ListingGridComponent,
-    ListingBadgeComponent,
-    ListingCardComponent,
     LdDescriptionSectionComponent,
-    FooterComponent,
     LdHeaderSectionComponent,
   ],
   templateUrl: './listing-details.component.html',
@@ -41,12 +33,6 @@ export class ListingDetailsComponent implements OnInit {
   // Sanerad version av beskrivningen
   safeDescription: SafeHtml;
 
-  constructor(private sanitizer: DomSanitizer) {
-    // Sanera HTML-strängen
-    this.safeDescription = this.sanitizer.bypassSecurityTrustHtml(
-      this.description
-    );
-  }
   amenities = [
     { icon: 'bi bi-house-door', text: 'Utsikt mot gården' },
     { icon: 'bi bi-house', text: 'Utsikt mot havet' },
@@ -122,12 +108,15 @@ export class ListingDetailsComponent implements OnInit {
   isLoading: boolean = true;
 
   constructor(
-    //Injicerar databasen så data kan hämtas från databasen
     private databaseService: DatabaseService,
-
-    //Läser parametrar från URL:en
-    private route: ActivatedRoute
-  ) {}
+    private route: ActivatedRoute,
+    private sanitizer: DomSanitizer
+  ) {
+    // Sanera HTML-strängen
+    this.safeDescription = this.sanitizer.bypassSecurityTrustHtml(
+      this.description
+    );
+  }
 
   //Komponentens livscykelstart - körs vid initiering av komponenten
   ngOnInit(): void {
