@@ -21,6 +21,8 @@ export class LdBedroomSectionComponent {
     { name: 'Sovrum 6', beds: '2 enkelsängar' },
   ];
 
+  // Properties for slider functionality
+  // currentIndex = 0; // Flyttad till constructor för att undvika undefined error
   currentIndex = 0;
   itemsPerPage = 2;
 
@@ -30,6 +32,7 @@ export class LdBedroomSectionComponent {
     }
   }
 
+  // Kolla om det finns fler objekt att visa
   goToNext() {
     const maxIndex = this.bedroomItems.length - this.itemsPerPage;
     if (this.currentIndex < maxIndex) {
@@ -41,6 +44,7 @@ export class LdBedroomSectionComponent {
     return `translateX(-${(100 / this.itemsPerPage) * this.currentIndex}%)`;
   }
 
+  //TODO: Justera när vi fått till extra tabell för sovrum/sovplatser
   getNumberOfBeds(beds: string): number {
     const match = beds.match(/\d+/);
     return match ? parseInt(match[0], 10) : 1;

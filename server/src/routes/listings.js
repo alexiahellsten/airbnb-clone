@@ -3,6 +3,7 @@ import db from '../../db/db.js';
 
 const router = Router();
 
+// Hämta alla listningar med en bild (den första bilden för varje listing)
 router.get('/listings', (req, res) => {
   try {
     const query = `

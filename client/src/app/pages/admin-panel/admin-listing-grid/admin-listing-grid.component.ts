@@ -10,5 +10,7 @@ import { NgFor } from '@angular/common';
   styleUrl: './admin-listing-grid.component.css',
 })
 export class AdminListingGridComponent {
+  // Array of listings to be displayed in the admin panel
+  // This will be populated by the database service
   @Input() listings: Listing[] = [];
 }
