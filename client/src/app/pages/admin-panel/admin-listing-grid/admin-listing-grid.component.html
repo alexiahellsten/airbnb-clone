@@ -1,7 +1,6 @@
 <div class="grid grid-col-1 md:grid-cols-2 lg:grid-cols-3 gap-6 py-12">
-  <app-admin-listing-card></app-admin-listing-card>
-  <app-admin-listing-card></app-admin-listing-card>
-  <app-admin-listing-card></app-admin-listing-card>
-  <app-admin-listing-card></app-admin-listing-card>
-  <app-admin-listing-card></app-admin-listing-card>
+  <app-admin-listing-card 
+    *ngFor="let listing of listings"
+    [listing]="listing">
+  </app-admin-listing-card>
 </div>

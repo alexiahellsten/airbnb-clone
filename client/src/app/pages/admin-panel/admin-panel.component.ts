@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
+import { DatabaseService, Listing } from '../../services/database.service';
 import { IconButtonComponent } from './icon-button/icon-button.component';
 import { AdminListingGridComponent } from './admin-listing-grid/admin-listing-grid.component';
 
@@ -9,4 +9,19 @@ import { AdminListingGridComponent } from './admin-listing-grid/admin-listing-gr
   templateUrl: './admin-panel.component.html',
   styleUrl: './admin-panel.component.css',
 })
-export class AdminPanelComponent {}
+export class AdminPanelComponent implements OnInit {
+  listings: Listing[] = [];
+
+  constructor(private databaseService: DatabaseService) {}
+
+  ngOnInit() {
+    this.databaseService.getListings().subscribe({
+      next: (listings) => {
+        this.listings = listings;
+      },
+      error: (error) => {
+        console.error('Error fetching listings:', error);
+      }
+    });
+  }
+}
