@@ -1,20 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser'; //För att tillåta HTML i strängar
+import { ActivatedRoute } from '@angular/router';
 
 //Components
 import { LdAmenitiesSectionComponent } from '../../components/listing-details/ld-amenities-section/ld-amenities-section.component';
 import { LdBedroomSectionComponent } from '../../components/listing-details/ld-bedroom-section/ld-bedroom-section.component';
 import { LdDescriptionSectionComponent } from '../../components/listing-details/ld-description-section/ld-description-section.component';
+import { LdInformationSectionComponent } from '../../components/listing-details/ld-information-section/ld-information-section.component';
+import { LdLocationSectionComponent } from '../../components/listing-details/ld-location-section/ld-location-section.component';
+import { LdHostSectionComponent } from '../../components/listing-details/ld-host-section/ld-host-section.component';
+import { LdHeaderSectionComponent } from '../../components/listing-details/ld-header-section/ld-header-section.component';
+
 import {
   DatabaseService,
   Listing,
   ListingImage,
 } from '../../services/database.service';
-import { LdHeaderSectionComponent } from '../../components/listing-details/ld-header-section/ld-header-section.component';
-import { ActivatedRoute } from '@angular/router';
-import { LdInformationSectionComponent } from '../../components/listing-details/ld-information-section/ld-information-section.component';
-import { LdLocationSectionComponent } from '../../components/listing-details/ld-location-section/ld-location-section.component';
+
 @Component({
   selector: 'app-listing-details',
   imports: [
@@ -25,6 +28,7 @@ import { LdLocationSectionComponent } from '../../components/listing-details/ld-
     LdHeaderSectionComponent,
     LdInformationSectionComponent,
     LdLocationSectionComponent,
+    LdHostSectionComponent,
   ],
   templateUrl: './listing-details.component.html',
   styleUrl: './listing-details.component.css',
@@ -95,7 +99,7 @@ export class ListingDetailsComponent implements OnInit {
     { icon: 'bi bi-hdd', text: 'Hårddisklagring' },
   ];
 
-  headerData: any = {
+  headerData: any = { 
     title: 'Laddar...',
     description: '',
     location: '',
@@ -109,7 +113,7 @@ export class ListingDetailsComponent implements OnInit {
   currentListing: Listing | null = null;
   listingImages: ListingImage[] = [];
   isLoading: boolean = true;
-
+  
   constructor(
     private databaseService: DatabaseService,
     private route: ActivatedRoute,
@@ -120,13 +124,13 @@ export class ListingDetailsComponent implements OnInit {
       this.description
     );
   }
-
+  
   //Komponentens livscykelstart - körs vid initiering av komponenten
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       //Hämtar ID från URL:en
       const id = params['id'];
-
+      
       //Kontrollerar om ID är giltigt & inte är NaN
       if (id && !isNaN(+id)) {
         //Sparar ID i listing_id
@@ -149,7 +153,7 @@ export class ListingDetailsComponent implements OnInit {
       next: (listings) => {
         //Hämtar annonsdata från databasen
         const listing = listings.find((l) => l.id === this.listing_id);
-
+        
         //Kontrollerar om annonsdata finns
         if (listing) {
           //Sparar annonsdata i currentListing
@@ -174,36 +178,36 @@ export class ListingDetailsComponent implements OnInit {
 
   //Uppdaterar headerData (skickas in i ld-header-section via headerData)
   private updateHeaderData(listing: Listing): void {
-    this.headerData = {
-      title: listing.title,
-      description: listing.description,
-      location: `${listing.city}, ${listing.country}`,
-      price: listing.price_per_night,
-      guests: listing.max_guests,
-      bedrooms: listing.bedrooms,
+          this.headerData = {
+            title: listing.title,
+            description: listing.description,
+            location: `${listing.city}, ${listing.country}`,
+            price: listing.price_per_night,
+            guests: listing.max_guests,
+            bedrooms: listing.bedrooms,
       bathrooms: listing.bathrooms,
-    };
+          };
   }
 
   //Hämtar bilderna från databasen
   private fetchListingImages(): void {
     //Kontrollerar om listing_id är giltigt
-    if (this.listing_id !== null) {
+          if (this.listing_id !== null) {
       //Observable för att hämta bilderna från databasen via listing_id
-      this.databaseService.getListingImagesById(this.listing_id).subscribe({
+            this.databaseService.getListingImagesById(this.listing_id).subscribe({
         //next körs vid lyckat svar, error körs vid fel
-        next: (images) => {
+              next: (images) => {
           //Sparar bilderna i listingImages-arrayen
-          this.listingImages = images;
+                this.listingImages = images;
 
           //Sätts laddningsindikatorn till false
-          this.isLoading = false;
-        },
+                this.isLoading = false;
+              },
         error: () => {
           //Om det uppstår ett fel, sätts laddningsindikatorn till false
           this.isLoading = false;
-        },
+      },
       });
-    }
+      }
   }
 }
