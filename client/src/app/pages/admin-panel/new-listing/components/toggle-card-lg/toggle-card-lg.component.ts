@@ -2,16 +2,17 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-toggle-card',
+  selector: 'app-toggle-card-lg',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './toggle-card.component.html',
-  styleUrl: './toggle-card.component.css',
+  templateUrl: './toggle-card-lg.component.html',
+  styleUrl: './toggle-card-lg.component.css',
 })
-export class ToggleCardComponent {
+export class ToggleCardLgComponent {
   @Input() isSelected = false;
   @Input() icon: string = ''; // Skapar möjlighet att sätta en ikon i kortet
   @Input() title: string = ''; // Skapar möjlighet att sätta en titel i kortet
+  @Input() description: string = ''; // Skapar möjlighet att sätta en beskrivning i kortet
   @Input() mode: 'checkbox' | 'radio' = 'checkbox'; //Gör det möjligt att bestämma beteende för korten, checkbox eller radio
 
   @Output() isSelectedChange = new EventEmitter<boolean>();
