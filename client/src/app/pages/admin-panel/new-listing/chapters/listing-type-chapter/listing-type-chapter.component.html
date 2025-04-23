@@ -1,15 +1,11 @@
 <h1 class="mb-8">Vilken av dessa beskriver bäst ditt boende?</h1>
 <div class="grid grid-cols-2 gap-3 md:grid-cols-3">
-  <app-toggle-card [icon]="'house-door'" [title]="'Hus'"></app-toggle-card>
-  <app-toggle-card [icon]="'building'" [title]="'Lägenhet'"></app-toggle-card>
   <app-toggle-card
-    [icon]="'cup-hot'"
-    [title]="'Bed and breakfast'"
+    *ngFor="let type of types"
+    [icon]="type.icon"
+    [title]="type.title"
+    [mode]="'radio'"
+    [isSelected]="selectedType === type.title"
+    (isSelectedChange)="onSelectType(type.title)"
   ></app-toggle-card>
-  <app-toggle-card [icon]="'buildings'" [title]="'Hotell'"></app-toggle-card>
-  <app-toggle-card [icon]="'fire'" [title]="'Tält'"></app-toggle-card>
-  <app-toggle-card [icon]="'houses'" [title]="'Bungalows'"></app-toggle-card>
-  <app-toggle-card [icon]="'ladder'" [title]="'Loft'"></app-toggle-card>
-  <app-toggle-card [icon]="'rocket'" [title]="'Rymdraket'"></app-toggle-card>
-  <app-toggle-card [icon]="'truck'" [title]="'Skåpbil'"></app-toggle-card>
 </div>

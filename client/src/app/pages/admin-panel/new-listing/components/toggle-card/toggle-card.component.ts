@@ -11,11 +11,18 @@ import { CommonModule } from '@angular/common';
 export class ToggleCardComponent {
   @Input() isSelected = false;
   @Input() icon: string = ''; // Skapar möjlighet att sätta en ikon i kortet
-  @Input() title: string = ''; // tSkapar möjlighet att sätta en titel i kortet
+  @Input() title: string = ''; // Skapar möjlighet att sätta en titel i kortet
+  @Input() mode: 'checkbox' | 'radio' = 'checkbox'; //Gör det möjligt att bestämma beteende för korten, checkbox eller radio
+
   @Output() isSelectedChange = new EventEmitter<boolean>();
 
   toggleSelection() {
-    this.isSelected = !this.isSelected;
-    this.isSelectedChange.emit(this.isSelected);
+    if (this.mode === 'checkbox') {
+      this.isSelected = !this.isSelected;
+      this.isSelectedChange.emit(this.isSelected);
+    } else if (this.mode === 'radio' && !this.isSelected) {
+      // Bara emit om inte redan vald
+      this.isSelectedChange.emit(true);
+    }
   }
 }
