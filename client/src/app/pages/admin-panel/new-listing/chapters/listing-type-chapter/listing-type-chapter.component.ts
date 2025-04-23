@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ToggleCardComponent } from '../../components/toggle-card/toggle-card.component';
+import { ToggleCardSmComponent } from '../../components/toggle-card-sm/toggle-card-sm.component';
 
 @Component({
   selector: 'app-listing-type-chapter',
-  imports: [CommonModule, ToggleCardComponent],
+  imports: [CommonModule, ToggleCardSmComponent],
   templateUrl: './listing-type-chapter.component.html',
   styleUrl: './listing-type-chapter.component.css',
 })
