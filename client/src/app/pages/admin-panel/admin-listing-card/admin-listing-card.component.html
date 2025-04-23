@@ -1,15 +1,19 @@
 <div>
-  <div class="bg-gray-200 w-full aspect-square rounded-3xl flex items-center justify-center">
+  <div
+    class="bg-gray-200 w-full aspect-square rounded-3xl flex items-center justify-center"
+  >
     <img
       *ngIf="listing.image_url"
       [src]="listing.image_url"
       class="w-full h-full object-cover rounded-3xl"
-      (error)="listing.image_url = null"
+      (error)="listing.image_url = undefined"
     />
     <div *ngIf="!listing.image_url" class="text-gray-400">
       <i class="bi bi-image text-4xl"></i>
     </div>
   </div>
-  <div class="font-semibold mt-2">{{listing.title}}</div>
-  <div class="text-brand-textLight">{{listing.address}}, {{listing.city}}</div>
+  <div class="font-semibold mt-2">{{ listing.title }}</div>
+  <div class="text-brand-textLight">
+    {{ listing.address }}, {{ listing.city }}
+  </div>
 </div>
