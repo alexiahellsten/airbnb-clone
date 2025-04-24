@@ -99,7 +99,8 @@ export class ListingDetailsComponent implements OnInit {
     { icon: 'bi bi-hdd', text: 'Hårddisklagring' },
   ];
 
-  headerData: any = { 
+  //headerData är data om listing från backend och skickas till ld-header-section
+  headerData: any = {
     title: 'Laddar...',
     description: '',
     location: '',
@@ -113,24 +114,24 @@ export class ListingDetailsComponent implements OnInit {
   currentListing: Listing | null = null;
   listingImages: ListingImage[] = [];
   isLoading: boolean = true;
-  
+
   constructor(
     private databaseService: DatabaseService,
     private route: ActivatedRoute,
     private sanitizer: DomSanitizer
   ) {
-    // Sanera HTML-strängen
+    // Sanera HTML-strängen för att kunna skriva HTML-taggar i strängar databasen
     this.safeDescription = this.sanitizer.bypassSecurityTrustHtml(
       this.description
     );
   }
-  
+
   //Komponentens livscykelstart - körs vid initiering av komponenten
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       //Hämtar ID från URL:en
       const id = params['id'];
-      
+
       //Kontrollerar om ID är giltigt & inte är NaN
       if (id && !isNaN(+id)) {
         //Sparar ID i listing_id
@@ -153,7 +154,7 @@ export class ListingDetailsComponent implements OnInit {
       next: (listings) => {
         //Hämtar annonsdata från databasen
         const listing = listings.find((l) => l.id === this.listing_id);
-        
+
         //Kontrollerar om annonsdata finns
         if (listing) {
           //Sparar annonsdata i currentListing
