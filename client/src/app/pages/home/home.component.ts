@@ -1,15 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ListingGridComponent } from '../../components/common/listings/listing-grid/listing-grid.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule],
-  template: `
-    <div class="container mx-auto px-4">
-      <!-- Här placeras allt innehåll för startsidan -->
-    </div>
-  `,
-  styles: []
+  imports: [CommonModule, ListingGridComponent],
+  templateUrl: './home.component.html',
+  // styleUrls: ['./home.component.css'],
 })
-export class HomeComponent {} 
+export class HomeComponent {}
