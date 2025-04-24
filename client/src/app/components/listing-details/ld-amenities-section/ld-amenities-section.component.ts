@@ -17,6 +17,7 @@ export class LdAmenitiesSectionComponent {
 
   visibleAmenitiesCount: number = 5; // Initialvärde, så den är alltid definierad
 
+  // Kollar om skärmen är större än lg (1024px) och sätter antalet synliga objekt
   constructor() {
     this.updateVisibleAmenitiesCount();
   }

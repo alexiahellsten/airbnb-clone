@@ -1,0 +1,17 @@
+<section class="max-w-7xl px-6 md:px-10 lg:px-20">
+  <div class="flex flex-row justify-between items-center mb-4">
+    <h1>Alla annonser</h1>
+    <ul class="flex flex-row gap-4">
+      <li>
+        <app-icon-button><i class="bi bi-search"></i></app-icon-button>
+      </li>
+
+      <li>
+        <app-icon-button><i class="bi bi-plus-lg"></i></app-icon-button>
+      </li>
+    </ul>
+  </div>
+  <div>
+    <app-admin-listing-grid [listings]="listings"></app-admin-listing-grid>
+  </div>
+</section>
