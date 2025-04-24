@@ -19,13 +19,12 @@ const config: Config = {
           success: '#4BB543', // Success green
           light: '#FFFFFF', // Light text color
           textLight: '#6a6a6a', // Light text color
+          borderGray: '#8c8c8c', // Border gray
         },
       },
     },
   },
-  plugins: [
-    require('tailwind-scrollbar-hide'),
-  ],
+  plugins: [require('tailwind-scrollbar-hide')],
 };
 
 export default config;
