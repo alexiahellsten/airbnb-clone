@@ -1,0 +1,11 @@
+<h1 class="mb-8">Vilken av dessa beskriver bäst ditt boende?</h1>
+<div class="grid grid-cols-2 gap-3 md:grid-cols-3">
+  <app-toggle-card-sm
+    *ngFor="let type of types"
+    [icon]="type.icon"
+    [title]="type.title"
+    [mode]="'radio'"
+    [isSelected]="selectedType === type.title"
+    (isSelectedChange)="onSelectType(type.title)"
+  ></app-toggle-card-sm>
+</div>

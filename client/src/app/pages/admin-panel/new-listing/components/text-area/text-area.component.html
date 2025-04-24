@@ -1,0 +1,11 @@
+<div class="w-full">
+  <textarea
+    [(ngModel)]="description"
+    [maxLength]="maxLength"
+    class="w-full border rounded-lg p-3 pr-16 resize-none text-xl flex flex-col border-brand-borderGray box-border"
+    rows="4"
+  ></textarea>
+  <div class="text-sm font-bold text-brand-textLight mt-4">
+    {{ description.length }}/{{ maxLength }}
+  </div>
+</div>
