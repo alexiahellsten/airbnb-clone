@@ -4,6 +4,7 @@ import { WizardFooterComponent } from './components/wizard-footer/wizard-footer.
 import { ListingTypeChapterComponent } from './chapters/listing-type-chapter/listing-type-chapter.component';
 import { AccessTypeChapterComponent } from './chapters/access-type-chapter/access-type-chapter.component';
 import { TitleChapterComponent } from './chapters/title-chapter/title-chapter.component';
+import { LocationChapterComponent } from './chapters/location-chapter/location-chapter.component';
 
 @Component({
   selector: 'app-new-listing',
@@ -12,6 +13,7 @@ import { TitleChapterComponent } from './chapters/title-chapter/title-chapter.co
     ListingTypeChapterComponent,
     AccessTypeChapterComponent,
     TitleChapterComponent,
+    LocationChapterComponent,
   ],
   templateUrl: './new-listing.component.html',
   styleUrl: './new-listing.component.css',

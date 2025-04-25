@@ -1,9 +1,17 @@
 .input-container {
-  @apply flex flex-col relative  w-fit border border-[#8c8c8c] focus:border-2 rounded-lg box-border;
+  @apply flex flex-col relative w-fit border border-[#8c8c8c] focus:border-2 rounded-lg box-border;
+}
+
+.input-container.full-width {
+  @apply w-full;
 }
 
 .form-input {
   @apply text-[#222] text-base leading-6 pt-6 pb-2 px-3 w-fit bg-transparent rounded-lg border-none;
+}
+
+.form-input.full-width {
+  @apply w-full;
 }
 
 .floating-label {

@@ -23,6 +23,7 @@ import {
 export class TextInputComponent implements ControlValueAccessor {
   @Input() inputType: 'text' | 'password' | 'number' | 'email' = 'text';
   @Input() label: string = '';
+  @Input() fullWidth: boolean = false;
 
   value: string = '';
   isFocused: boolean = false;
