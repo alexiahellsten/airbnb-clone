@@ -1,0 +1,34 @@
+<section class="mx-auto w-full">
+  <h1>Bekräfta din adress</h1>
+  <p class="text-brand-textLight mb-10 text-lg">
+    Din adress delas inte med gäster förrän de har bokat.
+  </p>
+
+  <div class="flex flex-col gap-4">
+    <app-text-input
+      [label]="'Land'"
+      [inputType]="'text'"
+      [fullWidth]="true"
+    ></app-text-input>
+
+    <app-text-input
+      [label]="'Gatuadress'"
+      [inputType]="'text'"
+      [fullWidth]="true"
+    ></app-text-input>
+
+    <app-text-input
+      [label]="'Stad'"
+      [inputType]="'text'"
+      [fullWidth]="true"
+    ></app-text-input>
+  </div>
+
+  <div class="h-[1px] bg-brand-shadowGray my-8"></div>
+  <h2>Visa din specifika plats</h2>
+  <p class="text-brand-textLight mb-8 text-md">
+    Gör det tydligt för gäster vart ditt boende ligger. Vi kommer inte att dela
+    din adress förrän de har bokat. <span class="underline">Läs mer</span>
+  </p>
+  <img src="images/map.webp" alt="Map" />
+</section>

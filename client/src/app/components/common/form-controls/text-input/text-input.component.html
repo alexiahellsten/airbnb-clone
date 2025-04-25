@@ -1,10 +1,14 @@
-<div class="input-container" [class.focused]="isFocused || value">
+<div
+  class="input-container"
+  [class.focused]="isFocused || value"
+  [class.full-width]="fullWidth"
+>
   <label for="input" class="floating-label">{{ label }}</label>
   <input
     id="input"
     type="{{ inputType }}"
     [(ngModel)]="value"
-    [ngClass]="inputClasses"
+    [ngClass]="[inputClasses, fullWidth ? 'full-width' : '']"
     (focus)="onFocus()"
     (blur)="onBlur()"
   />
