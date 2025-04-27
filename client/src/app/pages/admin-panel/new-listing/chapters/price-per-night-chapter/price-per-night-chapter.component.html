@@ -3,15 +3,36 @@
   <p class="text-brand-textLight mb-8 text-lg">
     Du kan när som helst ändra detta.
   </p>
-  <app-text-input></app-text-input>
+
+  <div
+    class="flex justify-center w-full transform transition-transform duration-200 focus-within:scale-105"
+  >
+    <div class="flex items-baseline">
+      <span class="text-7xl font-bold text-brand-black leading-none">kr</span>
+      <input
+        type="number"
+        class="text-7xl font-bold text-brand-black leading-none focus:outline-none focus:ring-0 placeholder-gray-400 w-[150px] text-left pl-1"
+        placeholder="0"
+        [value]="price"
+        (input)="onPriceChange($event)"
+      />
+    </div>
+  </div>
+
   <p class="text-brand-textLight mb-8 mt-8 text-lg text-center">
-    Gästens pris 836 SEK.
-  </p>
-  <div class="flex flex-col items-center justify-center gap-4">
-    <app-button [buttonType]="'pill'">
-      <i class="bi bi-geo-alt-fill text-brand-red"></i>
-      Liknande boenden 638 SEK-914 SEK</app-button
+    Gästens pris {{ totalPrice }} SEK.
+    <span class="block text-sm mt-2"
+      >(Inklusive {{ bookingFeePercentage }}% bokningsavgift)</span
     >
+  </p>
+  <div class="flex flex-col items-center justify-center gap-4 mt-10">
+    <app-button
+      [buttonType]="'pill'"
+      class="bg-white rounded-full shadow-md shadow-gray-200 hover:shadow-gray-300 transition-all duration-200"
+    >
+      <i class="bi bi-geo-alt-fill text-brand-red"></i>
+      Liknande boenden 638 SEK-914 SEK
+    </app-button>
 
     <p class="text-brand-textLight underline text-center">
       Läs mer om prissättning
