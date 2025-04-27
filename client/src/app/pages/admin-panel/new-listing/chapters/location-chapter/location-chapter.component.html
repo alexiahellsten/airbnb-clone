@@ -25,10 +25,23 @@
   </div>
 
   <div class="h-[1px] bg-brand-shadowGray my-8"></div>
-  <h2>Visa din specifika plats</h2>
-  <p class="text-brand-textLight mb-8 text-md">
-    Gör det tydligt för gäster vart ditt boende ligger. Vi kommer inte att dela
-    din adress förrän de har bokat. <span class="underline">Läs mer</span>
-  </p>
-  <img src="images/map.webp" alt="Map" />
+
+  <article class="flex flex-col justify-between">
+    <h2 class="p-0 m-0">Visa din specifika plats</h2>
+    <div class="flex justify-between items-start mb-8">
+      <p class="text-brand-textLight text-sm">
+        Gör det tydligt för gäster vart ditt boende ligger. Vi kommer inte att
+        dela din adress förrän de har bokat.
+        <span class="underline">Läs mer</span>
+      </p>
+
+      <label class="inline-flex items-center cursor-pointer ml-4">
+        <input type="checkbox" value="" class="sr-only peer" />
+        <div
+          class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600 dark:peer-checked:bg-blue-600"
+        ></div>
+      </label>
+    </div>
+    <img src="images/map.webp" alt="Map" />
+  </article>
 </section>
