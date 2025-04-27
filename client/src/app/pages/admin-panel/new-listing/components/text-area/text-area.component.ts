@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -10,5 +10,6 @@ import { FormsModule } from '@angular/forms';
 })
 export class TextAreaComponent {
   description: string = '';
-  maxLength: number = 32;
+  @Input() placeholder: string = '';
+  @Input() maxLength: number = 32;
 }

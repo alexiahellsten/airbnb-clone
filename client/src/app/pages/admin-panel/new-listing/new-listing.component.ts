@@ -5,6 +5,7 @@ import { ListingTypeChapterComponent } from './chapters/listing-type-chapter/lis
 import { AccessTypeChapterComponent } from './chapters/access-type-chapter/access-type-chapter.component';
 import { TitleChapterComponent } from './chapters/title-chapter/title-chapter.component';
 import { LocationChapterComponent } from './chapters/location-chapter/location-chapter.component';
+import { DescriptionChapterComponent } from './chapters/description-chapter/description-chapter.component';
 
 @Component({
   selector: 'app-new-listing',
@@ -14,6 +15,7 @@ import { LocationChapterComponent } from './chapters/location-chapter/location-c
     AccessTypeChapterComponent,
     TitleChapterComponent,
     LocationChapterComponent,
+    DescriptionChapterComponent,
   ],
   templateUrl: './new-listing.component.html',
   styleUrl: './new-listing.component.css',
