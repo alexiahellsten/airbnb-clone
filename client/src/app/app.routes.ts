@@ -40,4 +40,11 @@ export const routes: Routes = [
         (m) => m.NewListingComponent
       ),
   },
+  {
+    path: 'booking',
+    loadComponent: () =>
+      import('./pages/booking/booking-cart/booking-cart.component').then(
+        (m) => m.BookingCartComponent
+      ),
+  },
 ];
