@@ -1,0 +1,29 @@
+<div class="w-96 relative" [id]="uniqueId">
+  <div
+    class="relative rounded-lg border border-brand-black cursor-pointer"
+    (click)="toggleDropdown()"
+    [class.focused]="isFocused || value"
+  >
+    <div
+      class="absolute flex items-center right-3 h-full text-brnaborder-brand-black"
+    >
+      <i class="bi bi-chevron-down h-fit" [class.rotate-180]="isOpen"></i>
+    </div>
+    <div class="ml-3">
+      <label
+        for="select"
+        class="label text-xs font-bold uppercase text-brnaborder-brand-black"
+        >{{ label }}</label
+      >
+    </div>
+
+    <div class="ml-3 pb-2 text-sm">{{ summary }}</div>
+  </div>
+  <div
+    *ngIf="isOpen"
+    class="dropdown bg-white absolute w-full rounded-lg border border-[#e5e5e5] z-50"
+  >
+    <!-- När dropdownen är öppen, visa counter-option komponenterna -->
+    <ng-content></ng-content>
+  </div>
+</div>
