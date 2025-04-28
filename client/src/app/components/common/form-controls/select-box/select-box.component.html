@@ -2,7 +2,7 @@
   <div
     class="relative rounded-lg border border-brand-black cursor-pointer"
     (click)="toggleDropdown()"
-    [class.focused]="isFocused || value"
+    [class.focused]="isFocused"
   >
     <!-- Labeln ligger nu ovanför inputen -->
     <div class="label ml-3 text-xs font-bold uppercase text-brand-black pt-1">
@@ -23,13 +23,13 @@
   <!-- Dropdownen som öppnas när användaren klickar på fältet -->
   <div
     *ngIf="isOpen"
-    class="dropdown bg-white absolute w-full rounded-lg border border-[#e5e5e5] z-50 mt-1"
+    class="shadow-lg bg-white absolute w-full rounded-lg border z-50 mt-1"
   >
     <!-- Visa alternativen -->
     <div
       *ngFor="let option of options"
       (click)="selectOption(option)"
-      class="option p-2 hover:bg-gray-200 cursor-pointer"
+      class="p-3 hover:bg-brand-lightGray cursor-pointer"
     >
       {{ option }}
     </div>

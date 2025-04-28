@@ -47,12 +47,12 @@ export class SelectBoxComponent implements ControlValueAccessor {
   }
 
   onFocus(): void {
-    this.isFocused = true;
+    this.isFocused = true; // Sätt isFocused till true när fältet är i fokus
   }
 
   onBlur(): void {
-    this.isFocused = false;
-    this.onTouched();
+    this.isFocused = false; // Sätt isFocused till false när fältet förlorar fokus
+    this.onTouched(); // Trigga onTouched
   }
 
   toggleDropdown() {
