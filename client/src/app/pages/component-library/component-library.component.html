@@ -35,7 +35,10 @@
     </div>
 
     <h2>Select box with counter options</h2>
-    <app-select-box label="Gäster" [uniqueId]="'Number of Guests'">
+    <app-select-box-counter-option
+      label="Gäster"
+      [uniqueId]="'Number of Guests'"
+    >
       <app-counter-option
         label="Vuxna"
         description="13 år och äldre"
@@ -56,7 +59,7 @@
         [value]="0"
         description="Tar du med ett tjänstdjur?"
       ></app-counter-option>
-    </app-select-box>
+    </app-select-box-counter-option>
 
     <h2>Filter pill</h2>
     <app-filter-pill></app-filter-pill>
