@@ -96,7 +96,14 @@ CREATE TABLE reviews (
   FOREIGN KEY (listing_id) REFERENCES listings(id)  -- Foreign key reference to the listings table
 );
 
-
+CREATE TABLE bedrooms (
+  id SERIAL PRIMARY KEY,
+  listing_id INTEGER NOT NULL REFERENCES listings(id) ON DELETE CASCADE,
+  name VARCHAR(255), -- t.ex. "Sovrum 1"
+  single_beds INTEGER DEFAULT 0, -- antal enkelsängar
+  double_beds INTEGER DEFAULT 0, -- antal dubbelsängar
+  created_at TIMESTAMP DEFAULT NOW()
+);
 -- users table stores user information. Each user can be either a regular user or a host (is_host flag).
 
 -- listings table stores details about each listing, including the host (host_id as a foreign key to the users table).
@@ -465,3 +472,57 @@ INSERT INTO listing_images (id, listing_id, image_url) VALUES
 (78, 16, 'https://cdn.pixabay.com/photo/2020/01/15/08/46/house-4768264_1280.jpg'),
 (79, 16, 'https://cdn.pixabay.com/photo/2018/09/07/20/19/home-3663222_1280.jpg'),
 (80, 16, 'https://cdn.pixabay.com/photo/2018/09/07/20/19/home-3663222_1280.jpg');
+
+
+INSERT INTO bedrooms (listing_id, name, single_beds, double_beds) VALUES
+(1, 'Sovrum 1', 2, 0),
+
+(2, 'Sovrum 1', 1, 0),
+(2, 'Sovrum 2', 0, 1),
+
+(3, 'Sovrum 1', 1, 1),
+
+(4, 'Sovrum 1', 2, 0),
+(4, 'Sovrum 2', 0, 1),
+
+(5, 'Sovrum 1', 2, 1),
+(5, 'Sovrum 2', 1, 0),
+
+(6, 'Sovrum 1', 0, 1),
+(6, 'Sovrum 2', 1, 1),
+
+(7, 'Sovrum 1', 2, 0),
+(7, 'Sovrum 2', 0, 1),
+
+(8, 'Sovrum 1', 1, 1),
+(8, 'Sovrum 2', 0, 1),
+
+(9, 'Sovrum 1', 2, 0),
+(9, 'Sovrum 2', 1, 1),
+
+(10, 'Sovrum 1', 1, 1),
+(10, 'Sovrum 2', 0, 1),
+
+(11, 'Sovrum 1', 2, 0),
+(11, 'Sovrum 2', 0, 1),
+(11, 'Sovrum 3', 1, 1),
+
+(12, 'Sovrum 1', 1, 1),
+(12, 'Sovrum 2', 2, 0),
+
+(13, 'Sovrum 1', 1, 1),
+(13, 'Sovrum 2', 2, 0),
+(13, 'Sovrum 3', 0, 1),
+(13, 'Sovrum 4', 1, 1),
+
+(14, 'Sovrum 1', 0, 1),
+(14, 'Sovrum 2', 2, 0),
+
+(15, 'Sovrum 1', 1, 1),
+(15, 'Sovrum 2', 1, 0),
+(15, 'Sovrum 3', 0, 1),
+
+(16, 'Sovrum 1', 1, 1),
+(16, 'Sovrum 2', 2, 0),
+(16, 'Sovrum 3', 0, 1),
+(16, 'Sovrum 4', 1, 1);

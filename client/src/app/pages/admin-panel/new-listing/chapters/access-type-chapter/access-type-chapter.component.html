@@ -1,0 +1,12 @@
+<h1 class="mb-8">Vilken typ av boende har gäster tillgång till?</h1>
+<div class="flex flex-col gap-3">
+  <app-toggle-card-lg
+    *ngFor="let type of types"
+    [icon]="type.icon"
+    [title]="type.title"
+    [description]="type.description"
+    [mode]="'radio'"
+    [isSelected]="selectedType === type.title"
+    (isSelectedChange)="onSelectType(type.title)"
+  ></app-toggle-card-lg>
+</div>

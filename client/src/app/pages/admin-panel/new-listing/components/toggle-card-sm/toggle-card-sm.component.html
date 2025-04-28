@@ -1,0 +1,10 @@
+<div
+  (click)="toggleSelection()"
+  class="flex flex-col gap-2 p-4 text-sm rounded-xl text-brand-black cursor-pointer border border-brand-mediumGray"
+  [ngClass]="{
+    'outline outline-2 outline-brand-black bg-brand-lightGray': isSelected
+  }"
+>
+  <i [class]="'text-3xl bi bi-' + icon"></i>
+  <div class="font-semibold text-base">{{ title }}</div>
+</div>

@@ -1,4 +1,4 @@
-<div class="max-w-7xl px-6 md:px-10 lg:px-20">
+<div class="container mx-auto px-4 py-8 max-w-[1400px]">
   <!-- Visas om innehållet laddas -->
   <div *ngIf="isLoading" class="animate-pulse">
     <div class="h-8 bg-gray-200 rounded w-3/4 mb-4"></div>
@@ -11,25 +11,41 @@
     </div>
   </div>
 
-  <!-- Visas om innehållet laddas -->
+  <!-- Annonsinnehåll -->
   <ng-container *ngIf="!isLoading && currentListing">
-    <app-ld-header-section [listing_id]="listing_id" [headerData]="headerData">
-    </app-ld-header-section>
+    <div class="flex justify-center">
+      <div class="w-full max-w-[1200px]">
+        <app-ld-header-section
+          [listing_id]="listing_id"
+          [headerData]="headerData"
+        >
+        </app-ld-header-section>
 
-    <app-ld-description-section
-      [description]="description"
-    ></app-ld-description-section>
+        <div class="mt-8">
+          <div class="h-[1px] bg-brand-shadowGray"></div>
+          <app-ld-bedroom-section></app-ld-bedroom-section>
+        </div>
 
-    <div class="h-[1px] bg-brand-shadowGray my-8"></div>
-    <app-ld-bedroom-section></app-ld-bedroom-section>
+        <div class="mt-8">
+          <div class="h-[1px] bg-brand-shadowGray"></div>
+          <app-ld-amenities-section
+            [amenities]="amenities"
+          ></app-ld-amenities-section>
+        </div>
 
-    <div class="h-[1px] bg-brand-shadowGray"></div>
+        <div class="h-[1px] bg-brand-shadowGray my-8"></div>
 
-    <app-ld-amenities-section
-      [amenities]="amenities"
-    ></app-ld-amenities-section>
+        <app-ld-location-section
+          [listing]="currentListing"
+        ></app-ld-location-section>
+        <div class="h-[1px] bg-brand-shadowGray my-8"></div>
 
-    <div class="h-[1px] bg-brand-shadowGray"></div>
+        <app-ld-host-section></app-ld-host-section>
+
+        <div class="h-[1px] bg-brand-shadowGray my-8"></div>
+
+        <app-ld-information-section></app-ld-information-section>
+      </div>
+    </div>
   </ng-container>
 </div>
-<div class="h-[1px] bg-brand-shadowGray"></div>

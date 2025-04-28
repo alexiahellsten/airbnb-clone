@@ -32,4 +32,12 @@ export const routes: Routes = [
         (m) => m.AdminPanelComponent
       ),
   },
+
+  {
+    path: 'admin/new-listing',
+    loadComponent: () =>
+      import('./pages/admin-panel/new-listing/new-listing.component').then(
+        (m) => m.NewListingComponent
+      ),
+  },
 ];
