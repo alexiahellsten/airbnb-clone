@@ -1,0 +1,66 @@
+<section>
+  <h1>Dina bokningar</h1>
+
+  <div class="flex flex-row gap-16">
+    <div class="listing-details w-1/2">
+      <div>
+        <h2>Namn på boende</h2>
+        <div class="listing-details-section">
+          <div>
+            <h3>Datum</h3>
+            <div>6-11 maj</div>
+          </div>
+          <app-link linkType="secondary">Redigera</app-link>
+        </div>
+        <div class="listing-details-section">
+          <div>
+            <h3>Gäster</h3>
+            <div>1 gäst</div>
+          </div>
+          <app-link linkType="secondary">Redigera</app-link>
+        </div>
+      </div>
+      <div>
+        <h2>Namn på boende</h2>
+        <div class="listing-details-section">
+          <div>
+            <h3>Datum</h3>
+            <div>6-11 maj</div>
+          </div>
+          <app-link linkType="secondary">Redigera</app-link>
+        </div>
+        <div class="listing-details-section">
+          <div>
+            <h3>Gäster</h3>
+            <div>1 gäst</div>
+          </div>
+          <app-link linkType="secondary">Redigera</app-link>
+        </div>
+      </div>
+    </div>
+    <aside class="border border-brand-mediumGray rounded-2xl w-1/2 p-6 h-fit">
+      <h2 class="mt-0 mb-0">Prissummering</h2>
+      2 boende
+      <div class="h-[1px] bg-brand-shadowGray mb-8 mt-4"></div>
+
+      <div>
+        <h3>Namn på boende</h3>
+        <div>1 500SEK</div>
+      </div>
+      <div>
+        <h3>Namn på boende</h3>
+        <div>1 500SEK</div>
+      </div>
+      <div class="h-[1px] bg-brand-shadowGray my-8"></div>
+
+      <h3>Totalt</h3>
+      <div class="font-semibold">3 000SEK</div>
+    </aside>
+  </div>
+  <div class="flex flex-row justify-between pt-8 items-center">
+    <app-link linkType="secondary">Avbryt</app-link>
+    <app-button buttonType="primary" [destination]="'/checkout'"
+      >Vidare till betalning</app-button
+    >
+  </div>
+</section>

@@ -2,24 +2,15 @@ import {
   Component,
   Input,
   forwardRef,
-  ContentChildren,
-  QueryList,
-  AfterContentInit,
-  ElementRef,
   HostListener,
+  ElementRef,
 } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import {
-  ControlValueAccessor,
-  NG_VALUE_ACCESSOR,
-  FormsModule,
-} from '@angular/forms';
-import { CounterOptionComponent } from './counter-option/counter-option.component';
 
 @Component({
   selector: 'app-select-box',
-  standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule],
   templateUrl: './select-box.component.html',
   styleUrls: ['./select-box.component.css'],
   providers: [
@@ -30,22 +21,21 @@ import { CounterOptionComponent } from './counter-option/counter-option.componen
     },
   ],
 })
-export class SelectBoxComponent
-  implements ControlValueAccessor, AfterContentInit
-{
+export class SelectBoxComponent implements ControlValueAccessor {
   @Input() label: string = '';
   @Input() placeholder: string = 'Select an option';
+  @Input() options: string[] = []; // Lista med alternativ för dropdownen
   @Input() uniqueId: string = ''; // Lägg till en unik identifierare för varje instans
 
   value: string = '';
   isFocused: boolean = false;
-  isOpen: boolean = false; // Stänger dropdownen vid initialisering
+  isOpen: boolean = false;
 
   onChange: (value: string) => void = () => {};
   onTouched: () => void = () => {};
 
   writeValue(value: string): void {
-    this.value = value;
+    this.value = value || ''; // Gör så att värdet sätts korrekt
   }
 
   registerOnChange(fn: (value: string) => void): void {
@@ -57,61 +47,41 @@ export class SelectBoxComponent
   }
 
   onFocus(): void {
-    this.isFocused = true;
+    this.isFocused = true; // Sätt isFocused till true när fältet är i fokus
   }
 
   onBlur(): void {
-    this.isFocused = false;
-    this.onTouched();
+    this.isFocused = false; // Sätt isFocused till false när fältet förlorar fokus
+    this.onTouched(); // Trigga onTouched
   }
 
   toggleDropdown() {
-    this.isOpen = !this.isOpen; // Växlar mellan öppet och stängt läge
+    this.isOpen = !this.isOpen; // Växla mellan öppen och stängd dropdown
+  }
+
+  selectOption(option: string) {
+    this.value = option;
+    this.onChange(option); // Uppdatera ngModel när alternativet väljs
+    this.closeDropdown();
   }
 
   closeDropdown() {
-    this.isOpen = false; // Stänger dropdownen
-  }
-
-  @ContentChildren(CounterOptionComponent)
-  counterOptions!: QueryList<CounterOptionComponent>;
-
-  ngAfterContentInit() {
-    this.counterOptions.changes.subscribe(() => this.updateSummary());
-    this.updateSummary();
-  }
-
-  get totalGuests(): number {
-    if (!this.counterOptions) return 0;
-    return this.counterOptions
-      .toArray()
-      .reduce((sum, option) => sum + option.value, 0);
-  }
-
-  get summary(): string {
-    const total = this.totalGuests;
-    return total === 1 ? '1 gäst' : `${total} gäster`;
-  }
-
-  updateSummary() {
-    // Trigger change detection om du behöver det i framtiden
+    this.isOpen = false; // Stäng dropdownen
   }
 
   constructor(private _eref: ElementRef) {}
 
-  // Filtrera på en unik identifierare för att undvika krock med andra komponenter
+  // Hantera klick utanför för att stänga dropdownen
   @HostListener('document:click', ['$event'])
   onClickOutside(event: MouseEvent) {
-    // Kollar om klicket är utanför den aktuella select-boxen med hjälp av den unika id:n
     const isDropdownClicked = this._eref.nativeElement.contains(event.target);
     const isDifferentSelectBox =
       event.target instanceof HTMLElement &&
       event.target.closest('.select-box')?.id !== this.uniqueId;
 
     if (!isDropdownClicked && isDifferentSelectBox) {
-      // Om dropdownen är öppen, stäng den
       if (this.isOpen) {
-        this.isOpen = false;
+        this.isOpen = false; // Stäng dropdown om vi klickar utanför
       }
     }
   }

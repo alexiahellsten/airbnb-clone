@@ -1,27 +1,37 @@
-<div class="w-96 relative" [id]="uniqueId">
+<div class="relative" [id]="uniqueId">
   <div
-    class="relative rounded-lg border border-[#222] cursor-pointer"
+    class="relative rounded-lg border border-brand-black cursor-pointer"
     (click)="toggleDropdown()"
-    [class.focused]="isFocused || value"
+    [class.focused]="isFocused"
   >
-    <div class="absolute flex items-center right-3 h-full text-[#222]">
-      <i class="bi bi-chevron-down h-fit" [class.rotate-180]="isOpen"></i>
-    </div>
-    <div class="ml-3">
-      <label
-        for="select"
-        class="label text-xs font-bold uppercase text-[#222]"
-        >{{ label }}</label
-      >
+    <!-- Labeln ligger nu ovanför inputen -->
+    <div class="label ml-3 text-xs font-bold uppercase text-brand-black pt-1">
+      {{ label }}
     </div>
 
-    <div class="ml-3 pb-2 text-sm">{{ summary }}</div>
+    <!-- Värdet eller placeholder -->
+    <div class="ml-3 pt-0.5 pb-2.5 text-sm">{{ value || placeholder }}</div>
+
+    <!-- Pilen som roterar när dropdownen är öppen -->
+    <div
+      class="absolute flex items-center right-3 top-1/2 transform -translate-y-1/2 text-brand-black"
+    >
+      <i class="bi bi-chevron-down h-fit" [class.rotate-180]="isOpen"></i>
+    </div>
   </div>
+
+  <!-- Dropdownen som öppnas när användaren klickar på fältet -->
   <div
     *ngIf="isOpen"
-    class="dropdown bg-white absolute w-full rounded-lg border border-[#e5e5e5] z-50"
+    class="shadow-lg bg-white absolute w-full rounded-lg border z-50 mt-1"
   >
-    <!-- När dropdownen är öppen, visa counter-option komponenterna -->
-    <ng-content></ng-content>
+    <!-- Visa alternativen -->
+    <div
+      *ngFor="let option of options"
+      (click)="selectOption(option)"
+      class="p-3 hover:bg-brand-lightGray cursor-pointer"
+    >
+      {{ option }}
+    </div>
   </div>
 </div>

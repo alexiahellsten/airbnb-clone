@@ -1,0 +1,11 @@
+.listing-details {
+  h2 {
+    @apply mb-0;
+  }
+  .listing-details-section {
+    @apply flex flex-row py-2 justify-between;
+  }
+  h3 {
+    @apply mt-0;
+  }
+}
