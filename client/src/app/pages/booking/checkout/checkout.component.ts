@@ -19,9 +19,12 @@ import { LinkComponent } from '../../../components/common/link/link.component';
   styleUrl: './checkout.component.css',
 })
 export class CheckOutComponent {
-  name: string = ''; // Om du fortfarande använder denna
+  name: string = '';
   cardNumber: string = '';
   expiryDate: string = '';
   cvv: string = '';
-  selectedValue: string = ''; // Denna kommer hålla reda på det valda alternativet från SelectBox
+
+  // Separata variabler för varje select-box
+  paymentTime: string = ''; // För "Välj hur du vill betala"
+  paymentMethod: string = ''; // För "Betala med"
 }

@@ -6,10 +6,10 @@
       <h2>Välj hur du vill betala</h2>
       <app-select-box
         label="Alternativ"
-        placeholder="Betala hela summan nu"
-        [options]="['Betala hela summan nu', 'Betala senare']"
-        [(ngModel)]="selectedValue"
-        [uniqueId]="'payment-method-select'"
+        placeholder="Betala hela summan direkt"
+        [options]="['Betala hela summan direkt', 'Betala senare']"
+        [(ngModel)]="paymentTime"
+        [uniqueId]="'payment-time-select'"
       >
       </app-select-box>
     </section>
@@ -20,7 +20,7 @@
           label="Välj betalningsmetod"
           placeholder="Kredit- eller betalkort"
           [options]="['Kredit- eller betalkort', 'PayPal', 'Google Pay']"
-          [(ngModel)]="selectedValue"
+          [(ngModel)]="paymentMethod"
           [uniqueId]="'payment-method-select'"
         >
         </app-select-box>
@@ -45,7 +45,7 @@
         </div>
       </div>
     </section>
-    <section>
+    <section class="flex gap-3">
       <h2>Krävs för din resa</h2>
       <div class="flex flex-row gap-4 max-w-xl">
         <div>
