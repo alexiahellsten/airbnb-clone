@@ -47,4 +47,11 @@ export const routes: Routes = [
         (m) => m.BookingCartComponent
       ),
   },
+  {
+    path: 'checkout',
+    loadComponent: () =>
+      import('./pages/booking/checkout/checkout.component').then(
+        (m) => m.CheckOutComponent
+      ),
+  },
 ];

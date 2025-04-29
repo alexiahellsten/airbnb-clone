@@ -5,7 +5,8 @@ import { ButtonComponent } from '../../components/common/button/button.component
 import { LinkComponent } from '../../components/common/link/link.component';
 import { TextInputComponent } from '../../components/common/form-controls/text-input/text-input.component';
 import { SelectBoxComponent } from '../../components/common/form-controls/select-box/select-box.component';
-import { CounterOptionComponent } from '../../components/common/form-controls/select-box/counter-option/counter-option.component';
+import { SelectBoxCounterOptionComponent } from '../../components/common/form-controls/select-box-counter-option/select-box-counter-option.component';
+import { CounterOptionComponent } from '../../components/common/form-controls/select-box-counter-option/counter-option/counter-option.component';
 import { FilterPillComponent } from '../../components/common/form-controls/filter-pill/filter-pill.component';
 import { TabBarComponent } from '../../components/common/tab-bar/tab-bar.component';
 import { CheckboxComponent } from '../../components/common/form-controls/checkbox/checkbox.component';
@@ -23,19 +24,20 @@ import { ModalSmComponent } from '../../components/common/modal-sm/modal-sm.comp
     LinkComponent,
     TextInputComponent,
     SelectBoxComponent,
+    SelectBoxCounterOptionComponent,
     CounterOptionComponent,
     FilterPillComponent,
     TabBarComponent,
     CheckboxComponent,
     ListingBadgeComponent,
     ModalLgComponent,
-    ModalSmComponent
+    ModalSmComponent,
   ],
-  templateUrl: './component-library.component.html'
+  templateUrl: './component-library.component.html',
 })
 export class ComponentLibraryComponent {
   name: string = '';
-  
+
   @ViewChild('modalLg') modalLg!: ModalLgComponent;
   @ViewChild('modalSm') modalSm!: ModalSmComponent;
 
@@ -46,4 +48,4 @@ export class ComponentLibraryComponent {
   openSmallModal() {
     this.modalSm.open();
   }
-} 
+}

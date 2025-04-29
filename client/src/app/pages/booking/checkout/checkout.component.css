@@ -1,0 +1,7 @@
+h2 {
+  @apply mb-2;
+}
+
+section {
+  @apply flex flex-col mb-4;
+}

@@ -1,0 +1,7 @@
+.label {
+  font-size-adjust: ex-height 0.4;
+}
+
+.dropdown {
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 6px;
+}

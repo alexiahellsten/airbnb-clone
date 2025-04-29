@@ -1,7 +1,26 @@
+/* Pilen som roterar vid dropdownens öppning */
+.bi-chevron-down {
+  transition: transform 0.2s ease-in-out;
+}
+
+.bi-chevron-down.rotate-180 {
+  transform: rotate(180deg); /* Vrid pilen när dropdownen är öppen */
+}
+
 .label {
   font-size-adjust: ex-height 0.4;
 }
+.option:hover {
+  @apply bg-brand-lightGray;
+}
 
-.dropdown {
-  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 6px;
+/* När dropdownen är fokuserad, markera inputfältet */
+/* Lägg till denna stil för att hantera fokus */
+.relative.focused {
+  background-color: #d1fae5; /* Grön bakgrund (bg-green-200) */
+  border-color: #10b981; /* Valfritt, för att ändra gränsen till en grön färg vid fokus */
+}
+
+.transform {
+  transform: translateY(-50%);
 }
