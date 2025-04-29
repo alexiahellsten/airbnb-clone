@@ -376,7 +376,7 @@ export class CheckOutComponent {
 
     if (isValid) {
       console.log('Form is valid, navigating to home...');
-      this.router.navigate(['/home']).then(
+      this.router.navigate(['/admin']).then(
         (success) => console.log('Navigation successful:', success),
         (error) => console.error('Navigation failed:', error)
       );
@@ -391,5 +391,91 @@ export class CheckOutComponent {
 
   onPaymentMethodChange() {
     this.validatePaymentMethod();
+  }
+
+  onFirstNameInput(event: any) {
+    this.firstName = event.target.value;
+    this.hasInteractedWithFirstName = true;
+    this.validateFirstName();
+  }
+
+  onFirstNameBlur() {
+    this.hasInteractedWithFirstName = true;
+    this.validateFirstName();
+  }
+
+  onLastNameInput(event: any) {
+    this.lastName = event.target.value;
+    this.hasInteractedWithLastName = true;
+    this.validateLastName();
+  }
+
+  onLastNameBlur() {
+    this.hasInteractedWithLastName = true;
+    this.validateLastName();
+  }
+
+  onEmailInput(event: any) {
+    this.email = event.target.value;
+    this.hasInteractedWithEmail = true;
+    this.validateEmail();
+  }
+
+  onEmailBlur() {
+    this.hasInteractedWithEmail = true;
+    this.validateEmail();
+  }
+
+  onPhoneNumberBlur() {
+    this.hasInteractedWithPhoneNumber = true;
+    this.validatePhoneNumber();
+  }
+
+  onPostalCodeBlur() {
+    this.hasInteractedWithPostalCode = true;
+    this.validatePostalCode();
+  }
+
+  onStreetAddressInput(event: any) {
+    this.streetAddress = event.target.value;
+    this.hasInteractedWithStreetAddress = true;
+    this.validateStreetAddress();
+  }
+
+  onStreetAddressBlur() {
+    this.hasInteractedWithStreetAddress = true;
+    this.validateStreetAddress();
+  }
+
+  onCityInput(event: any) {
+    this.city = event.target.value;
+    this.hasInteractedWithCity = true;
+    this.validateCity();
+  }
+
+  onCityBlur() {
+    this.hasInteractedWithCity = true;
+    this.validateCity();
+  }
+
+  onCountryInput(event: any) {
+    this.country = event.target.value;
+    this.hasInteractedWithCountry = true;
+    this.validateCountry();
+  }
+
+  onCountryBlur() {
+    this.hasInteractedWithCountry = true;
+    this.validateCountry();
+  }
+
+  onExpiryDateBlur() {
+    this.hasInteractedWithExpiryDate = true;
+    this.validateExpiryDate();
+  }
+
+  onCVVBlur() {
+    this.hasInteractedWithCVV = true;
+    this.validateCVV();
   }
 }
