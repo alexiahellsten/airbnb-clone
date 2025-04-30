@@ -25,7 +25,7 @@ router.get('/listings', (req, res) => {
           WHERE listing_id = listings.id 
           LIMIT 1
         ) as image_url
-      FROM listings;
+      FROM listings;w
     `;
 
     const listings = db.prepare(query).all();
@@ -59,6 +59,41 @@ router.get('/listing-images', (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: 'Misslyckades med att hämta bilder' });
+  }
+});
+
+// Hämta en enskild listing via id
+router.get('/listings/:id', (req, res) => {
+  const { id } = req.params;
+  try {
+    const query = `
+      SELECT 
+        id, 
+        title, 
+        description, 
+        address, 
+        city, 
+        country, 
+        price_per_night, 
+        max_guests, 
+        bedrooms, 
+        bathrooms, 
+        host_id, 
+        created_at, 
+        updated_at
+      FROM listings
+      WHERE id = ?
+    `;
+    const listing = db.prepare(query).get(id);
+
+    if (!listing) {
+      return res.status(404).json({ message: 'Listing not found' });
+    }
+
+    res.json(listing);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Misslyckades med att hämta listing' });
   }
 });
 

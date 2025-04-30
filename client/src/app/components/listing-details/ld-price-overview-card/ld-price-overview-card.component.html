@@ -1,0 +1,70 @@
+<div class="border border-brand-textlight rounded-xl shadow-md p-6">
+  <h2>
+    1 288 SEK <span class="text-base text-brand-textLight">per natt</span>
+  </h2>
+  <div class="flex flex-col gap-4">
+    <app-text-input
+      [inputType]="'text'"
+      [label]="'Incheckning'"
+    ></app-text-input>
+    <app-text-input
+      [inputType]="'text'"
+      [label]="'Utcheckning'"
+    ></app-text-input>
+    <app-select-box-counter-option
+      label="Gäster"
+      [uniqueId]="'Number of Guests'"
+    >
+      <app-counter-option
+        label="Vuxna"
+        description="13 år och äldre"
+        [value]="1"
+      ></app-counter-option>
+      <app-counter-option
+        label="Barn"
+        description="2-12 år"
+        [value]="0"
+      ></app-counter-option>
+      <app-counter-option
+        label="Spädbarn"
+        description="Under 2 år"
+        [value]="0"
+      ></app-counter-option>
+      <app-counter-option
+        label="Husdjur"
+        [value]="0"
+        description="Tar du med ett tjänstdjur?"
+      ></app-counter-option>
+    </app-select-box-counter-option>
+    <app-button [buttonType]="'primary'" size="full">Reservera</app-button>
+    <p class="text-sm text-brand-textLight">Du debiteras inte än</p>
+    <div class="flex flex-col gap-2">
+      <div class="flex flex-row justify-between">
+        <div>
+          <div>{{ pricePerNight }} SEK</div>
+          <div class="text-sm text-brand-textLight font-semibold">
+            x {{ nights }} nätter
+          </div>
+        </div>
+        <div>
+          <div>{{ totalPriceForNights }} SEK</div>
+        </div>
+      </div>
+
+      <div class="flex flex-row justify-between">
+        <div>Städavgift</div>
+        <div>{{ cleaningFee }} SEK</div>
+      </div>
+      <div class="flex flex-row justify-between">
+        <div>Airbnbs serviceavgift</div>
+        <div>{{ airbnbServiceFee }} SEK</div>
+      </div>
+
+      <div class="h-[1px] bg-brand-shadowGray my-4"></div>
+      <div class="flex flex-row justify-between font-bold">
+        <div>Totalt</div>
+        <div>{{ totalAmount }} SEK</div>
+      </div>
+    </div>
+  </div>
+</div>

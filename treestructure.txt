@@ -4,32 +4,35 @@
 │   ├── package.json
 │   ├── postcss.config.ts
 │   ├── public/
-│   │   ├── favicon.ico
-│   │   └── icons/
-│   │       ├── accessible.webp
-│   │       ├── bandb.webp
-│   │       ├── barn.webp
-│   │       ├── beach.webp
-│   │       ├── big-mansion.webp
-│   │       ├── cabin.webp
-│   │       ├── camping.webp
-│   │       ├── castle.webp
-│   │       ├── city.webp
-│   │       ├── countryside.webp
-│   │       ├── design.webp
-│   │       ├── fantastic-pools.webp
-│   │       ├── fantastic-view.webp
-│   │       ├── farm.webp
-│   │       ├── golf.webp
-│   │       ├── islands.webp
-│   │       ├── lake.webp
-│   │       ├── pist.webp
-│   │       ├── popular.webp
-│   │       ├── room.webp
-│   │       ├── surf.webp
-│   │       ├── tiny.webp
-│   │       ├── treehouse.webp
-│   │       └── wow.webp
+│   │   ├── airbnb-favicon.png
+│   │   ├── icons/
+│   │   │   ├── accessible.webp
+│   │   │   ├── bandb.webp
+│   │   │   ├── barn.webp
+│   │   │   ├── beach.webp
+│   │   │   ├── big-mansion.webp
+│   │   │   ├── cabin.webp
+│   │   │   ├── camping.webp
+│   │   │   ├── castle.webp
+│   │   │   ├── city.webp
+│   │   │   ├── countryside.webp
+│   │   │   ├── design.webp
+│   │   │   ├── fantastic-pools.webp
+│   │   │   ├── fantastic-view.webp
+│   │   │   ├── farm.webp
+│   │   │   ├── golf.webp
+│   │   │   ├── islands.webp
+│   │   │   ├── lake.webp
+│   │   │   ├── pist.webp
+│   │   │   ├── popular.webp
+│   │   │   ├── room.webp
+│   │   │   ├── surf.webp
+│   │   │   ├── tiny.webp
+│   │   │   ├── treehouse.webp
+│   │   │   └── wow.webp
+│   │   ├── images/
+│   │   │   └── map.webp
+│   │   └── logo.svg
 │   ├── README.md
 │   ├── src/
 │   │   ├── app/
@@ -48,7 +51,6 @@
 │   │   │   │   ├── common/
 │   │   │   │   │   ├── accordion/
 │   │   │   │   │   │   └── accordion.component.ts
-│   │   │   │   │   ├── badge/
 │   │   │   │   │   ├── button/
 │   │   │   │   │   │   ├── button.component.css
 │   │   │   │   │   │   ├── button.component.html
@@ -70,6 +72,11 @@
 │   │   │   │   │   │   ├── footer.component.spec.ts
 │   │   │   │   │   │   └── footer.component.ts
 │   │   │   │   │   ├── form-controls/
+│   │   │   │   │   │   ├── capacity-counter-option/
+│   │   │   │   │   │   │   ├── capacity-counter-option.component.css
+│   │   │   │   │   │   │   ├── capacity-counter-option.component.html
+│   │   │   │   │   │   │   ├── capacity-counter-option.component.spec.ts
+│   │   │   │   │   │   │   └── capacity-counter-option.component.ts
 │   │   │   │   │   │   ├── checkbox/
 │   │   │   │   │   │   │   ├── checkbox.component.css
 │   │   │   │   │   │   │   ├── checkbox.component.html
@@ -81,15 +88,20 @@
 │   │   │   │   │   │   │   ├── filter-pill.component.spec.ts
 │   │   │   │   │   │   │   └── filter-pill.component.ts
 │   │   │   │   │   │   ├── select-box/
+│   │   │   │   │   │   │   ├── select-box.component.css
+│   │   │   │   │   │   │   ├── select-box.component.html
+│   │   │   │   │   │   │   ├── select-box.component.spec.ts
+│   │   │   │   │   │   │   └── select-box.component.ts
+│   │   │   │   │   │   ├── select-box-counter-option/
 │   │   │   │   │   │   │   ├── counter-option/
 │   │   │   │   │   │   │   │   ├── counter-option.component.css
 │   │   │   │   │   │   │   │   ├── counter-option.component.html
 │   │   │   │   │   │   │   │   ├── counter-option.component.spec.ts
 │   │   │   │   │   │   │   │   └── counter-option.component.ts
-│   │   │   │   │   │   │   ├── select-box.component.css
-│   │   │   │   │   │   │   ├── select-box.component.html
-│   │   │   │   │   │   │   ├── select-box.component.spec.ts
-│   │   │   │   │   │   │   └── select-box.component.ts
+│   │   │   │   │   │   │   ├── select-box-counter-option.component.css
+│   │   │   │   │   │   │   ├── select-box-counter-option.component.html
+│   │   │   │   │   │   │   ├── select-box-counter-option.component.spec.ts
+│   │   │   │   │   │   │   └── select-box-counter-option.component.ts
 │   │   │   │   │   │   └── text-input/
 │   │   │   │   │   │       ├── text-input.component.css
 │   │   │   │   │   │       ├── text-input.component.html
@@ -141,72 +153,208 @@
 │   │   │   │   │       ├── tab-bar.component.html
 │   │   │   │   │       ├── tab-bar.component.spec.ts
 │   │   │   │   │       └── tab-bar.component.ts
-│   │   │   │   ├── listing-details/
-│   │   │   │   │   ├── ld-amenities-section/
-│   │   │   │   │   │   ├── ld-amenities-section.component.css
-│   │   │   │   │   │   ├── ld-amenities-section.component.html
-│   │   │   │   │   │   ├── ld-amenities-section.component.spec.ts
-│   │   │   │   │   │   └── ld-amenities-section.component.ts
-│   │   │   │   │   └── ld-bedroom-section/
-│   │   │   │   │       ├── ld-bedroom-section.component.css
-│   │   │   │   │       ├── ld-bedroom-section.component.html
-│   │   │   │   │       ├── ld-bedroom-section.component.spec.ts
-│   │   │   │   │       └── ld-bedroom-section.component.ts
-│   │   │   │   └── logo/
-│   │   │   │       ├── logo.component.css
-│   │   │   │       ├── logo.component.html
-│   │   │   │       └── logo.component.ts
+│   │   │   │   └── listing-details/
+│   │   │   │       ├── ld-amenities-section/
+│   │   │   │       │   ├── ld-amenities-section.component.css
+│   │   │   │       │   ├── ld-amenities-section.component.html
+│   │   │   │       │   ├── ld-amenities-section.component.spec.ts
+│   │   │   │       │   └── ld-amenities-section.component.ts
+│   │   │   │       ├── ld-bedroom-section/
+│   │   │   │       │   ├── ld-bedroom-section.component.css
+│   │   │   │       │   ├── ld-bedroom-section.component.html
+│   │   │   │       │   ├── ld-bedroom-section.component.spec.ts
+│   │   │   │       │   └── ld-bedroom-section.component.ts
+│   │   │   │       ├── ld-description-section/
+│   │   │   │       │   ├── ld-description-section.component.css
+│   │   │   │       │   ├── ld-description-section.component.html
+│   │   │   │       │   ├── ld-description-section.component.spec.ts
+│   │   │   │       │   └── ld-description-section.component.ts
+│   │   │   │       ├── ld-header-section/
+│   │   │   │       │   ├── ld-header-section.component.css
+│   │   │   │       │   ├── ld-header-section.component.html
+│   │   │   │       │   ├── ld-header-section.component.spec.ts
+│   │   │   │       │   └── ld-header-section.component.ts
+│   │   │   │       ├── ld-host-section/
+│   │   │   │       │   ├── ld-host-section.component.css
+│   │   │   │       │   ├── ld-host-section.component.html
+│   │   │   │       │   ├── ld-host-section.component.spec.ts
+│   │   │   │       │   └── ld-host-section.component.ts
+│   │   │   │       ├── ld-information-section/
+│   │   │   │       │   ├── ld-information-section.component.css
+│   │   │   │       │   ├── ld-information-section.component.html
+│   │   │   │       │   ├── ld-information-section.component.spec.ts
+│   │   │   │       │   └── ld-information-section.component.ts
+│   │   │   │       ├── ld-location-section/
+│   │   │   │       │   ├── ld-location-section.component.css
+│   │   │   │       │   ├── ld-location-section.component.html
+│   │   │   │       │   ├── ld-location-section.component.spec.ts
+│   │   │   │       │   └── ld-location-section.component.ts
+│   │   │   │       └── ld-price-overview-card/
+│   │   │   │           ├── ld-price-overview-card.component.css
+│   │   │   │           ├── ld-price-overview-card.component.html
+│   │   │   │           ├── ld-price-overview-card.component.spec.ts
+│   │   │   │           └── ld-price-overview-card.component.ts
 │   │   │   ├── header/
 │   │   │   │   ├── header.component.css
 │   │   │   │   ├── header.component.html
 │   │   │   │   ├── header.component.spec.ts
-│   │   │   │   └── header.component.ts
+│   │   │   │   ├── header.component.ts
+│   │   │   │   ├── logo/
+│   │   │   │   │   ├── logo.component.css
+│   │   │   │   │   ├── logo.component.html
+│   │   │   │   │   └── logo.component.ts
+│   │   │   │   └── search-bar/
+│   │   │   │       ├── search-bar.component.css
+│   │   │   │       ├── search-bar.component.html
+│   │   │   │       ├── search-bar.component.spec.ts
+│   │   │   │       └── search-bar.component.ts
 │   │   │   ├── pages/
+│   │   │   │   ├── admin-panel/
+│   │   │   │   │   ├── admin-listing-card/
+│   │   │   │   │   │   ├── admin-listing-card.component.css
+│   │   │   │   │   │   ├── admin-listing-card.component.html
+│   │   │   │   │   │   ├── admin-listing-card.component.spec.ts
+│   │   │   │   │   │   └── admin-listing-card.component.ts
+│   │   │   │   │   ├── admin-listing-grid/
+│   │   │   │   │   │   ├── admin-listing-grid.component.css
+│   │   │   │   │   │   ├── admin-listing-grid.component.html
+│   │   │   │   │   │   ├── admin-listing-grid.component.spec.ts
+│   │   │   │   │   │   └── admin-listing-grid.component.ts
+│   │   │   │   │   ├── admin-panel.component.css
+│   │   │   │   │   ├── admin-panel.component.html
+│   │   │   │   │   ├── admin-panel.component.spec.ts
+│   │   │   │   │   ├── admin-panel.component.ts
+│   │   │   │   │   ├── icon-button/
+│   │   │   │   │   │   ├── icon-button.component.css
+│   │   │   │   │   │   ├── icon-button.component.html
+│   │   │   │   │   │   ├── icon-button.component.spec.ts
+│   │   │   │   │   │   └── icon-button.component.ts
+│   │   │   │   │   └── new-listing/
+│   │   │   │   │       ├── chapters/
+│   │   │   │   │       │   ├── access-type-chapter/
+│   │   │   │   │       │   │   ├── access-type-chapter.component.css
+│   │   │   │   │       │   │   ├── access-type-chapter.component.html
+│   │   │   │   │       │   │   ├── access-type-chapter.component.spec.ts
+│   │   │   │   │       │   │   └── access-type-chapter.component.ts
+│   │   │   │   │       │   ├── amenities-chapter/
+│   │   │   │   │       │   │   ├── amenities-chapter.component.css
+│   │   │   │   │       │   │   ├── amenities-chapter.component.html
+│   │   │   │   │       │   │   ├── amenities-chapter.component.spec.ts
+│   │   │   │   │       │   │   └── amenities-chapter.component.ts
+│   │   │   │   │       │   ├── capacity-chapter/
+│   │   │   │   │       │   │   ├── capacity-chapter.component.css
+│   │   │   │   │       │   │   ├── capacity-chapter.component.html
+│   │   │   │   │       │   │   ├── capacity-chapter.component.spec.ts
+│   │   │   │   │       │   │   └── capacity-chapter.component.ts
+│   │   │   │   │       │   ├── description-chapter/
+│   │   │   │   │       │   │   ├── description-chapter.component.css
+│   │   │   │   │       │   │   ├── description-chapter.component.html
+│   │   │   │   │       │   │   ├── description-chapter.component.spec.ts
+│   │   │   │   │       │   │   └── description-chapter.component.ts
+│   │   │   │   │       │   ├── images-chapter/
+│   │   │   │   │       │   │   ├── images-chapter.component.css
+│   │   │   │   │       │   │   ├── images-chapter.component.html
+│   │   │   │   │       │   │   ├── images-chapter.component.spec.ts
+│   │   │   │   │       │   │   └── images-chapter.component.ts
+│   │   │   │   │       │   ├── listing-type-chapter/
+│   │   │   │   │       │   │   ├── listing-type-chapter.component.css
+│   │   │   │   │       │   │   ├── listing-type-chapter.component.html
+│   │   │   │   │       │   │   ├── listing-type-chapter.component.spec.ts
+│   │   │   │   │       │   │   └── listing-type-chapter.component.ts
+│   │   │   │   │       │   ├── location-chapter/
+│   │   │   │   │       │   │   ├── location-chapter.component.css
+│   │   │   │   │       │   │   ├── location-chapter.component.html
+│   │   │   │   │       │   │   ├── location-chapter.component.spec.ts
+│   │   │   │   │       │   │   └── location-chapter.component.ts
+│   │   │   │   │       │   ├── price-per-night-chapter/
+│   │   │   │   │       │   │   ├── price-per-night-chapter.component.css
+│   │   │   │   │       │   │   ├── price-per-night-chapter.component.html
+│   │   │   │   │       │   │   ├── price-per-night-chapter.component.spec.ts
+│   │   │   │   │       │   │   └── price-per-night-chapter.component.ts
+│   │   │   │   │       │   └── title-chapter/
+│   │   │   │   │       │       ├── title-chapter.component.css
+│   │   │   │   │       │       ├── title-chapter.component.html
+│   │   │   │   │       │       ├── title-chapter.component.spec.ts
+│   │   │   │   │       │       └── title-chapter.component.ts
+│   │   │   │   │       ├── components/
+│   │   │   │   │       │   ├── text-area/
+│   │   │   │   │       │   │   ├── text-area.component.css
+│   │   │   │   │       │   │   ├── text-area.component.html
+│   │   │   │   │       │   │   ├── text-area.component.spec.ts
+│   │   │   │   │       │   │   └── text-area.component.ts
+│   │   │   │   │       │   ├── toggle-card-lg/
+│   │   │   │   │       │   │   ├── toggle-card-lg.component.css
+│   │   │   │   │       │   │   ├── toggle-card-lg.component.html
+│   │   │   │   │       │   │   ├── toggle-card-lg.component.spec.ts
+│   │   │   │   │       │   │   └── toggle-card-lg.component.ts
+│   │   │   │   │       │   ├── toggle-card-sm/
+│   │   │   │   │       │   │   ├── toggle-card-sm.component.css
+│   │   │   │   │       │   │   ├── toggle-card-sm.component.html
+│   │   │   │   │       │   │   ├── toggle-card-sm.component.spec.ts
+│   │   │   │   │       │   │   └── toggle-card-sm.component.ts
+│   │   │   │   │       │   └── wizard-footer/
+│   │   │   │   │       │       ├── wizard-footer.component.css
+│   │   │   │   │       │       ├── wizard-footer.component.html
+│   │   │   │   │       │       ├── wizard-footer.component.spec.ts
+│   │   │   │   │       │       └── wizard-footer.component.ts
+│   │   │   │   │       ├── new-listing.component.css
+│   │   │   │   │       ├── new-listing.component.html
+│   │   │   │   │       ├── new-listing.component.spec.ts
+│   │   │   │   │       └── new-listing.component.ts
+│   │   │   │   ├── booking/
+│   │   │   │   │   ├── booking-cart/
+│   │   │   │   │   │   ├── booking-cart.component.css
+│   │   │   │   │   │   ├── booking-cart.component.html
+│   │   │   │   │   │   ├── booking-cart.component.spec.ts
+│   │   │   │   │   │   └── booking-cart.component.ts
+│   │   │   │   │   └── checkout/
+│   │   │   │   │       ├── checkout.component.css
+│   │   │   │   │       ├── checkout.component.html
+│   │   │   │   │       ├── checkout.component.spec.ts
+│   │   │   │   │       └── checkout.component.ts
 │   │   │   │   ├── component-library/
 │   │   │   │   │   ├── component-library.component.html
 │   │   │   │   │   └── component-library.component.ts
 │   │   │   │   ├── home/
+│   │   │   │   │   ├── home.component.html
 │   │   │   │   │   └── home.component.ts
 │   │   │   │   └── listing-details/
 │   │   │   │       ├── listing-details.component.css
 │   │   │   │       ├── listing-details.component.html
 │   │   │   │       ├── listing-details.component.spec.ts
 │   │   │   │       └── listing-details.component.ts
-│   │   │   ├── search-bar/
-│   │   │   │   ├── search-bar.component.css
-│   │   │   │   ├── search-bar.component.html
-│   │   │   │   ├── search-bar.component.spec.ts
-│   │   │   │   └── search-bar.component.ts
 │   │   │   └── services/
 │   │   │       └── database.service.ts
 │   │   ├── assets/
-│   │   │   └── icons/
-│   │   │       ├── accessible.webp
-│   │   │       ├── bandb.webp
-│   │   │       ├── barn.webp
-│   │   │       ├── beach.webp
-│   │   │       ├── big-mansion.webp
-│   │   │       ├── cabin.webp
-│   │   │       ├── camping.webp
-│   │   │       ├── castle.webp
-│   │   │       ├── city.webp
-│   │   │       ├── countryside.webp
-│   │   │       ├── design.webp
-│   │   │       ├── fantastic-pools.webp
-│   │   │       ├── fantastic-view.webp
-│   │   │       ├── farm.webp
-│   │   │       ├── golf.webp
-│   │   │       ├── islands.webp
-│   │   │       ├── lake.webp
-│   │   │       ├── luxe.webp
-│   │   │       ├── nationalparks.webp
-│   │   │       ├── pist.webp
-│   │   │       ├── popular.webp
-│   │   │       ├── room.webp
-│   │   │       ├── surf.webp
-│   │   │       ├── tiny.webp
-│   │   │       ├── treehouse.webp
-│   │   │       └── wow.webp
+│   │   │   ├── icons/
+│   │   │   │   ├── accessible.webp
+│   │   │   │   ├── bandb.webp
+│   │   │   │   ├── barn.webp
+│   │   │   │   ├── beach.webp
+│   │   │   │   ├── big-mansion.webp
+│   │   │   │   ├── cabin.webp
+│   │   │   │   ├── camping.webp
+│   │   │   │   ├── castle.webp
+│   │   │   │   ├── city.webp
+│   │   │   │   ├── countryside.webp
+│   │   │   │   ├── design.webp
+│   │   │   │   ├── fantastic-pools.webp
+│   │   │   │   ├── fantastic-view.webp
+│   │   │   │   ├── farm.webp
+│   │   │   │   ├── golf.webp
+│   │   │   │   ├── islands.webp
+│   │   │   │   ├── lake.webp
+│   │   │   │   ├── luxe.webp
+│   │   │   │   ├── nationalparks.webp
+│   │   │   │   ├── pist.webp
+│   │   │   │   ├── popular.webp
+│   │   │   │   ├── room.webp
+│   │   │   │   ├── surf.webp
+│   │   │   │   ├── tiny.webp
+│   │   │   │   ├── treehouse.webp
+│   │   │   │   └── wow.webp
+│   │   │   ├── images/
+│   │   │   └── logo.svg
 │   │   ├── index.html
 │   │   ├── main.ts
 │   │   ├── proxy.conf.json
@@ -227,6 +375,7 @@
 │   ├── package.json
 │   └── src/
 │       ├── routes/
-│       │   └── categories.js
+│       │   ├── categories.js
+│       │   └── listings.js
 │       └── server.js
 └── treestructure.txt

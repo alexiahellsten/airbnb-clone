@@ -41,9 +41,8 @@ export interface ListingImage {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
 export class DatabaseService {
   private apiUrl = '/api';
 
@@ -52,13 +51,18 @@ export class DatabaseService {
   getListings(): Observable<Listing[]> {
     return this.http.get<Listing[]>(`${this.apiUrl}/listings`);
   }
+  getListingById(id: number): Observable<Listing> {
+    return this.http.get<Listing>(`${this.apiUrl}/listings/${id}`);
+  }
 
   getListingImages(): Observable<ListingImage[]> {
     return this.http.get<ListingImage[]>(`${this.apiUrl}/listing-images`);
   }
 
   getListingImagesById(listing_id: number): Observable<ListingImage[]> {
-    return this.http.get<ListingImage[]>(`${this.apiUrl}/listing-images?listing_id=${listing_id}`);
+    return this.http.get<ListingImage[]>(
+      `${this.apiUrl}/listing-images?listing_id=${listing_id}`
+    );
   }
 
   getAmenities(): Observable<Amenity[]> {
@@ -68,4 +72,4 @@ export class DatabaseService {
   getCategories(): Observable<Category[]> {
     return this.http.get<Category[]>(`${this.apiUrl}/categories`);
   }
-} 
+}
