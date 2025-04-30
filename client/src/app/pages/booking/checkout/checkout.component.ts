@@ -44,7 +44,6 @@ export class CheckOutComponent {
   city: string = 'Stockholm';
   country: string = 'Sverige';
   email: string = 'anna.svensson@example.com';
-  phoneNumber: string = '0701 - 23 45 67';
 
   // Validation states
   isCardNumberValid: boolean = true;
@@ -53,7 +52,6 @@ export class CheckOutComponent {
   isFirstNameValid: boolean = true;
   isLastNameValid: boolean = true;
   isEmailValid: boolean = true;
-  isPhoneNumberValid: boolean = true;
   isPostalCodeValid: boolean = true;
   isStreetAddressValid: boolean = true;
   isCityValid: boolean = true;
@@ -68,7 +66,6 @@ export class CheckOutComponent {
   hasInteractedWithFirstName: boolean = false;
   hasInteractedWithLastName: boolean = false;
   hasInteractedWithEmail: boolean = false;
-  hasInteractedWithPhoneNumber: boolean = false;
   hasInteractedWithPostalCode: boolean = false;
   hasInteractedWithStreetAddress: boolean = false;
   hasInteractedWithCity: boolean = false;
@@ -178,40 +175,6 @@ export class CheckOutComponent {
     });
   }
 
-  onPhoneNumberInput(event: any) {
-    const newValue = event.target.value.replace(/\D/g, '');
-    let formattedValue = newValue;
-    if (newValue.length > 10) {
-      formattedValue = newValue.substring(0, 10);
-    }
-    if (newValue.length > 4) {
-      formattedValue =
-        newValue.substring(0, 4) +
-        ' - ' +
-        newValue.substring(4, 6) +
-        ' ' +
-        newValue.substring(6, 8) +
-        ' ' +
-        newValue.substring(8, 10);
-    }
-    this.phoneNumber = formattedValue;
-    // Only validate format without showing error message
-    const cleanNumber = this.phoneNumber.replace(/\D/g, '');
-    this.isPhoneNumberValid = cleanNumber.length === 10;
-  }
-
-  validatePhoneNumber() {
-    this.hasInteractedWithPhoneNumber = true;
-    const cleanNumber = this.phoneNumber.replace(/\D/g, '');
-    this.isPhoneNumberValid =
-      cleanNumber.length === 10 && /^\d+$/.test(cleanNumber);
-    console.log('Phone Number Validation:', {
-      value: this.phoneNumber,
-      cleanNumber,
-      isValid: this.isPhoneNumberValid,
-    });
-  }
-
   validateFirstName() {
     this.hasInteractedWithFirstName = true;
     this.isFirstNameValid = this.firstName?.trim().length > 0;
@@ -294,7 +257,6 @@ export class CheckOutComponent {
     this.validateFirstName();
     this.validateLastName();
     this.validateEmail();
-    this.validatePhoneNumber();
     this.validatePostalCode();
     this.validateStreetAddress();
     this.validateCity();
@@ -309,7 +271,6 @@ export class CheckOutComponent {
       this.isFirstNameValid &&
       this.isLastNameValid &&
       this.isEmailValid &&
-      this.isPhoneNumberValid &&
       this.isPostalCodeValid &&
       this.isStreetAddressValid &&
       this.isCityValid &&
@@ -324,7 +285,6 @@ export class CheckOutComponent {
       firstName: this.isFirstNameValid,
       lastName: this.isLastNameValid,
       email: this.isEmailValid,
-      phoneNumber: this.isPhoneNumberValid,
       postalCode: this.isPostalCodeValid,
       streetAddress: this.isStreetAddressValid,
       city: this.isCityValid,
@@ -346,7 +306,6 @@ export class CheckOutComponent {
       firstName: this.firstName,
       lastName: this.lastName,
       email: this.email,
-      phoneNumber: this.phoneNumber,
       postalCode: this.postalCode,
       streetAddress: this.streetAddress,
       city: this.city,
@@ -362,7 +321,6 @@ export class CheckOutComponent {
     this.hasInteractedWithFirstName = true;
     this.hasInteractedWithLastName = true;
     this.hasInteractedWithEmail = true;
-    this.hasInteractedWithPhoneNumber = true;
     this.hasInteractedWithPostalCode = true;
     this.hasInteractedWithStreetAddress = true;
     this.hasInteractedWithCity = true;
@@ -424,11 +382,6 @@ export class CheckOutComponent {
   onEmailBlur() {
     this.hasInteractedWithEmail = true;
     this.validateEmail();
-  }
-
-  onPhoneNumberBlur() {
-    this.hasInteractedWithPhoneNumber = true;
-    this.validatePhoneNumber();
   }
 
   onPostalCodeBlur() {

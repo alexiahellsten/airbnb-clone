@@ -223,23 +223,6 @@
       >
         Ange en giltig e-postadress.
       </div>
-
-      <app-text-input
-        [inputType]="'text'"
-        [label]="'Telefonnummer'"
-        [(ngModel)]="phoneNumber"
-        (input)="onPhoneNumberInput($event)"
-        (blur)="validatePhoneNumber()"
-        [ngClass]="{
-          'is-invalid': !isPhoneNumberValid && hasInteractedWithPhoneNumber
-        }"
-      ></app-text-input>
-      <div
-        *ngIf="!isPhoneNumberValid && hasInteractedWithPhoneNumber"
-        class="text-red-500 text-sm"
-      >
-        Telefonnumret får endast innehålla siffror och måste vara 10 siffror.
-      </div>
     </section>
     <app-link linkType="secondary">Läs villkoren</app-link>
     <section class="flex gap-3">
