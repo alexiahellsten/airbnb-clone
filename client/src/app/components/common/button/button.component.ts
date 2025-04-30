@@ -35,7 +35,7 @@ export class ButtonComponent {
       case 'pill':
         return `${widthClass} text-gray-950 border border-gray-400 rounded-full font-semibold leading-5 py-3.5 px-6 cursor-pointer`;
       case 'icon':
-        return `${widthClass} text-white bg-[#FF385C] hover:bg-[#DE1163] rounded-full w-12 h-12 py-0 px-0 text-center font-semibold leading-5 cursor-pointer`;
+        return ` text-white bg-[#FF385C] hover:bg-[#DE1163] rounded-full w-12 h-12 py-0 px-0 text-center font-semibold leading-5 cursor-pointer`;
       default:
         return widthClass;
     }
