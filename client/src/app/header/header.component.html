@@ -34,6 +34,9 @@
         <lucide-icon name="globe" class="w-5"></lucide-icon>
       </div>
       <div class="relative hidden md:block">
+        <button [routerLink]="['/booking']" class="pr-5">
+          <lucide-icon name="shopping-bag" class="w-5 h-5"></lucide-icon>
+        </button>
         <app-button buttonType="pill" (click)="modalSm.toggle()">
           <div class="flex justify-between items-center gap-2">
             <lucide-icon name="menu" class="w-5 h-5"></lucide-icon>
