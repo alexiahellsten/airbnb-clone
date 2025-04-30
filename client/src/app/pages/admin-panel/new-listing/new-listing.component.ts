@@ -9,6 +9,7 @@ import { PricePerNightChapterComponent } from './chapters/price-per-night-chapte
 import { DescriptionChapterComponent } from './chapters/description-chapter/description-chapter.component';
 import { ImagesChapterComponent } from './chapters/images-chapter/images-chapter.component';
 import { CapacityChapterComponent } from './chapters/capacity-chapter/capacity-chapter.component';
+import { AmenitiesChapterComponent } from './chapters/amenities-chapter/amenities-chapter.component';
 
 @Component({
   selector: 'app-new-listing',
@@ -22,6 +23,7 @@ import { CapacityChapterComponent } from './chapters/capacity-chapter/capacity-c
     DescriptionChapterComponent,
     ImagesChapterComponent,
     CapacityChapterComponent,
+    AmenitiesChapterComponent,
   ],
   templateUrl: './new-listing.component.html',
   styleUrl: './new-listing.component.css',
