@@ -20,33 +20,28 @@
           [headerData]="headerData"
         >
         </app-ld-header-section>
-        <div class="flex flex-row gap-16">
-          <div class="w-2/3">
+        <div class="flex flex-row">
+          <div class="w-2/3 pr-20">
             <app-ld-description-section
               [rawDescription]="currentListing?.description || ''"
               [description]="getSafeHtml(currentListing?.description || '')"
             ></app-ld-description-section>
-            <div class="mt-8">
-              <div class="h-[1px] bg-brand-shadowGray"></div>
 
-              <!-- Bedroom section -->
-              <app-ld-bedroom-section></app-ld-bedroom-section>
-            </div>
+            <div class="h-[1px] bg-brand-shadowGray"></div>
 
-            <div class="h-[1px] bg-brand-shadowGray my-8"></div>
+            <!-- Bedroom section -->
+            <app-ld-bedroom-section></app-ld-bedroom-section>
+
+            <div class="h-[1px] bg-brand-shadowGray"></div>
 
             <!-- Amenities section -->
-            <div class="mt-8">
-              <div class="h-[1px] bg-brand-shadowGray"></div>
-              <app-ld-amenities-section
-                [amenities]="amenities"
-              ></app-ld-amenities-section>
-            </div>
+            <app-ld-amenities-section
+              [amenities]="amenities"
+            ></app-ld-amenities-section>
           </div>
           <div class="w-1/3">
             <app-ld-price-overview-card></app-ld-price-overview-card>
           </div>
-          <div class="h-[1px] bg-brand-shadowGray my-8"></div>
         </div>
         <!-- Location section -->
         <app-ld-location-section

@@ -41,26 +41,30 @@
     <div class="flex flex-col gap-2">
       <div class="flex flex-row justify-between">
         <div>
-          <div>1 288 SEK</div>
-          <div class="text-sm text-brand-textLight font-bold">x 7 nätter</div>
+          <div>{{ pricePerNight }} SEK</div>
+          <div class="text-sm text-brand-textLight font-semibold">
+            x {{ nights }} nätter
+          </div>
         </div>
         <div>
-          <div>9 016 SEK</div>
+          <div>{{ totalPriceForNights }} SEK</div>
         </div>
       </div>
+
       <div class="flex flex-row justify-between">
         <div>Städavgift</div>
-        <div>1 200 SEK</div>
+        <div>{{ cleaningFee }} SEK</div>
       </div>
       <div class="flex flex-row justify-between">
         <div>Airbnbs serviceavgift</div>
-        <div>1 944 SEK</div>
+        <div>{{ airbnbServiceFee }} SEK</div>
       </div>
-    </div>
-    <div class="h-[1px] bg-brand-shadowGray my-4"></div>
-    <div class="flex flex-row justify-between font-bold">
-      <div>Totalt</div>
-      <div>1 944 SEK</div>
+
+      <div class="h-[1px] bg-brand-shadowGray my-4"></div>
+      <div class="flex flex-row justify-between font-bold">
+        <div>Totalt</div>
+        <div>{{ totalAmount }} SEK</div>
+      </div>
     </div>
   </div>
 </div>
