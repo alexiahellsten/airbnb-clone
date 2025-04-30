@@ -15,19 +15,23 @@
   />
 
   <!-- Vänsterpil -->
+  <!-- preventDefault stoppar standardbeteende, stopPropagation gör att man inte navigerar till listings/:id vid klick på pilen -->
   <button
     *ngIf="currentIndex > 0"
-    (click)="goToPrevious()"
+    (click)="goToPrevious(); $event.preventDefault(); $event.stopPropagation()"
     class="arrow-button left-4"
+    type="button"
   >
     <i class="bi bi-chevron-left text-sm"></i>
   </button>
 
   <!-- Högerpil -->
+  <!-- preventDefault stoppar standardbeteende, stopPropagation gör att man inte navigerar till listings/:id vid klick på pilen -->
   <button
     *ngIf="currentIndex < images.length - 1"
-    (click)="goToNext()"
+    (click)="goToNext(); $event.preventDefault(); $event.stopPropagation()"
     class="arrow-button right-4"
+    type="button"
   >
     <i class="bi bi-chevron-right text-sm"></i>
   </button>
