@@ -6,6 +6,9 @@ import { AccessTypeChapterComponent } from './chapters/access-type-chapter/acces
 import { TitleChapterComponent } from './chapters/title-chapter/title-chapter.component';
 import { LocationChapterComponent } from './chapters/location-chapter/location-chapter.component';
 import { PricePerNightChapterComponent } from './chapters/price-per-night-chapter/price-per-night-chapter.component';
+import { DescriptionChapterComponent } from './chapters/description-chapter/description-chapter.component';
+
+
 @Component({
   selector: 'app-new-listing',
   imports: [
@@ -15,6 +18,7 @@ import { PricePerNightChapterComponent } from './chapters/price-per-night-chapte
     TitleChapterComponent,
     LocationChapterComponent,
     PricePerNightChapterComponent,
+    DescriptionChapterComponent,
   ],
   templateUrl: './new-listing.component.html',
   styleUrl: './new-listing.component.css',
