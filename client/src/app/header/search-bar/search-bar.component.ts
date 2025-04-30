@@ -9,9 +9,8 @@ import { LucideAngularModule, Search } from 'lucide-angular';
   standalone: true,
   imports: [CommonModule, ButtonComponent, FormsModule, LucideAngularModule],
   templateUrl: './search-bar.component.html',
-  styleUrl: './search-bar.component.css'
+  styleUrl: './search-bar.component.css',
 })
-
 export class SearchBarComponent {
   readonly Search = Search;
 
@@ -27,6 +26,5 @@ export class SearchBarComponent {
       checkOut: this.checkOut,
       guests: this.guests,
     });
-
   }
 }
