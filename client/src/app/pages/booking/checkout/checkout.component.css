@@ -5,3 +5,8 @@ h2 {
 section {
   @apply flex flex-col mb-4;
 }
+
+.is-invalid {
+  @apply  bg-red-100 rounded-lg;
+
+}
