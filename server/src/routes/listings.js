@@ -25,7 +25,7 @@ router.get('/listings', (req, res) => {
           WHERE listing_id = listings.id 
           LIMIT 1
         ) as image_url
-      FROM listings;w
+      FROM listings;
     `;
 
     const listings = db.prepare(query).all();
