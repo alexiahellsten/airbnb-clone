@@ -1,11 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ListingCardComponent } from '../listing-card/listing-card.component';
-import { CommonModule } from '@angular/common'; // Importera CommonModule
+import { CommonModule } from '@angular/common';
 import {
   DatabaseService,
   Listing,
   ListingImage,
 } from '../../../../services/database.service';
+import { ListingCardComponent } from '../listing-card/listing-card.component';
 
 @Component({
   selector: 'app-listing-grid',
@@ -14,38 +14,40 @@ import {
   templateUrl: './listing-grid.component.html',
   styleUrl: './listing-grid.component.css',
 })
+
 export class ListingGridComponent implements OnInit {
+
+  //Input-array för listings
   @Input() listings: any[] = [];
 
   constructor(private dbService: DatabaseService) {}
 
   ngOnInit(): void {
-    //Hämtar listings
-    this.dbService.getListings().subscribe((listings: any[]) => {
-      // Om listings är tom, sätt listings till en tom array
+    // Hämtar alla annonser från databasen
+    this.dbService.getListings().subscribe((listings: Listing[]) => {
+       // Temporär array för att lagra formaterade annonser
       const listingArray: any[] = [];
 
+      // Går igenom varje listing och hämtar bilderna för aktuella annonsen
       listings.forEach((listing) => {
-        this.dbService
-          .getListingImagesById(listing.id) // Hämtar bilder för varje listing
-          .subscribe((images: ListingImage[]) => {
-            const listingImages = images.map((img) => img.image_url); // Skapa en array med bild-URL:er
+        this.dbService.getListingImagesById(listing.id).subscribe((images: ListingImage[]) => {
 
-            listingArray.push({
-              id: listing.id,
-              images: listingImages,
-              location: `${listing.city}, ${listing.country}`,
-              date: new Date(listing.created_at).toLocaleDateString(),
-              price: `${listing.price_per_night} kr/natt`,
-              rating: (Math.random() * 2 + 3).toFixed(2),
-              hasBadge: Math.random() > 0.5,
-            });
-
-            // När alla listings är inlästa – uppdatera komponentens listings-array
-            if (listingArray.length === listings.length) {
-              this.listings = listingArray;
-            }
+          // Lägger till formaterad listing med bilder (kompletta objekt krävs för bildgalleriet)
+          listingArray.push({
+            id: listing.id,
+            images: images, // skickar hela bildobjekten så komponenten kan använda image.image_url
+            location: `${listing.city}, ${listing.country}`, // Kombinerar stad och land
+            date: new Date(listing.created_at).toLocaleDateString(), // Formaterar datum
+            price: `${listing.price_per_night} kr/natt`, // Lägger till pris med "kr/natt"
+            rating: (Math.random() * 2 + 3).toFixed(2), // Skapar ett slumpmässigt betyg (3.00 - 5.00)
+            hasBadge: Math.random() > 0.5, // Slumpmässigt om listing har "gästfavorit"-badge
           });
+
+          // När alla listings är färdigladdade uppdateras listings-arrayen
+          if (listingArray.length === listings.length) {
+            this.listings = listingArray;
+          }
+        });
       });
     });
   }
