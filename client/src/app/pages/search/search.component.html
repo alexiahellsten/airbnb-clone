@@ -1,0 +1,35 @@
+<div class="container mx-auto px-4 py-8">
+  <!-- Laddningsindikator -->
+  <div *ngIf="isLoading" class="animate-pulse">
+    <div class="h-8 bg-gray-200 rounded w-3/4 mb-4"></div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div class="bg-gray-200 h-64 rounded"></div>
+      <div class="bg-gray-200 h-64 rounded"></div>
+      <div class="bg-gray-200 h-64 rounded"></div>
+    </div>
+  </div>
+
+  <!-- Sökresultat -->
+  <div *ngIf="!isLoading">
+    <h1 class="text-2xl font-semibold mb-4">
+      {{
+        searchQuery
+          ? "Boenden som matchar: " + capitalizedSearchQuery
+          : "Boenden"
+      }}
+    </h1>
+
+    <div
+      *ngIf="searchResults.length === 0 && searchQuery"
+      class="text-center py-8"
+    >
+      <p class="text-brand-textLight">
+        Inga boenden hittades för "{{ capitalizedSearchQuery }}"
+      </p>
+    </div>
+
+    <div *ngIf="searchResults.length > 0">
+      <app-listing-grid [listings]="searchResults"></app-listing-grid>
+    </div>
+  </div>
+</div>
