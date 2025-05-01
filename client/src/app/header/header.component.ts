@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { ButtonComponent } from '../components/common/button/button.component';
 import { SearchBarComponent } from '../header/search-bar/search-bar.component';
 import { ModalSmComponent } from '../components/common/modal-sm/modal-sm.component';
@@ -11,16 +12,16 @@ import { LogoComponent } from '../header/logo/logo.component';
   standalone: true,
   imports: [
     CommonModule,
+    RouterModule,
     ButtonComponent,
     SearchBarComponent,
     ModalSmComponent,
     LucideAngularModule,
-    LogoComponent
+    LogoComponent,
   ],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
+  styleUrl: './header.component.css',
 })
-
 export class HeaderComponent {
   readonly Menu = Menu;
   readonly Globe = Globe;

@@ -1,0 +1,40 @@
+<h1>Låt gästerna veta vad till boendet har att erbjuda</h1>
+<p class="text-brand-textLight mb-8 text-lg">
+  Du kan lägga till fler bekvämligheter när du publicerat.
+</p>
+
+<h2>Finns några av dessa gästfavoriter?</h2>
+<div class="grid grid-cols-2 gap-3 md:grid-cols-3">
+  <app-toggle-card-sm
+    *ngFor="let type of favoriteTypes"
+    [icon]="type.icon"
+    [title]="type.title"
+    [mode]="'radio'"
+    [isSelected]="selectedTypes.includes(type.title)"
+    (isSelectedChange)="onSelectTypes(type.title)"
+  ></app-toggle-card-sm>
+</div>
+
+<h2>Har du några bekvämligheter som sticker ut från mängden?</h2>
+<div class="grid grid-cols-2 gap-3 md:grid-cols-3">
+  <app-toggle-card-sm
+    *ngFor="let type of uniqeTypes"
+    [icon]="type.icon"
+    [title]="type.title"
+    [mode]="'radio'"
+    [isSelected]="selectedTypes.includes(type.title)"
+    (isSelectedChange)="onSelectTypes(type.title)"
+  ></app-toggle-card-sm>
+</div>
+
+<h2>Har du någon av dessa säkerhetsutrustningar?</h2>
+<div class="grid grid-cols-2 gap-3 md:grid-cols-3">
+  <app-toggle-card-sm
+    *ngFor="let type of securityTypes"
+    [icon]="type.icon"
+    [title]="type.title"
+    [mode]="'radio'"
+    [isSelected]="selectedTypes.includes(type.title)"
+    (isSelectedChange)="onSelectTypes(type.title)"
+  ></app-toggle-card-sm>
+</div>

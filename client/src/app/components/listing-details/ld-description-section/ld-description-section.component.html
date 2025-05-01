@@ -3,7 +3,7 @@
   <p
     class="description pb-4"
     [class.open]="isModalOpen"
-    [innerHTML]="limitedDescription"
+    [innerHTML]="getSafeHtml(limitedDescription)"
   ></p>
   <!-- Visa mer länk som öppnar modalen -->
   <app-link linkType="secondary" (click)="openModal()" class="cursor-pointer">
@@ -16,11 +16,8 @@
   #modalDescription
   (close)="closeModal()"
   [heading]="'Om detta boende'"
-  [description]="description"
 >
-  <!-- Modalens innehåll ska nu använda innerHTML för korrekt rendering -->
   <div class="modal-content">
     <p [innerHTML]="description"></p>
-    <!-- Visar hela texten här med HTML -->
   </div>
 </app-modal-lg>

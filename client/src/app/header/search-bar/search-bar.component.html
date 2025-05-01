@@ -1,5 +1,5 @@
 <!-- Mobilvy -->
-<div class="w-full px-4 md:hidden">
+<div class="w-full md:hidden">
   <div class="w-full mx-auto relative">
     <input
       type="text"
@@ -16,45 +16,51 @@
 
 <div class="hidden md:block">
   <div
-    class="w-full max-w-4xl mx-auto rounded-full shadow-lg border flex items-center divide-x bg-white overflow-hidden"
+    class="w-full max-w-4xl mx-auto rounded-full shadow-lg border flex bg-white overflow-hidden"
   >
-    <div class="flex-1 px-4 py-3">
-      <label class="block text-xs font-semibold text-gray-500 mb-1">Var</label>
-      <input
-        type="text"
-        [(ngModel)]="destination"
-        placeholder="Sök destinationer"
-        class="w-full outline-none text-sm"
-      />
-    </div>
-    <div class="flex-1 px-4 py-3">
-      <label class="block text-xs font-semibold text-gray-500 mb-1"
-        >Incheckning</label
-      >
-      <input
-        type="date"
-        [(ngModel)]="checkIn"
-        class="w-full outline-none text-sm"
-      />
-    </div>
-    <div class="flex-1 px-4 py-3">
-      <label class="block text-xs font-semibold text-gray-500 mb-1"
-        >Utcheckning</label
-      >
-      <input
-        type="date"
-        [(ngModel)]="checkOut"
-        class="w-full outline-none text-sm"
-      />
-    </div>
-    <div class="flex-1 px-4 py-3 relative">
-      <label class="block text-xs font-semibold text-gray-500 mb-1">Vem</label>
-      <input
-        type="number"
-        [(ngModel)]="guests"
-        min="1"
-        class="w-full outline-none text-sm"
-      />
+    <div class="divide-x flex flex-row items-center w-full">
+      <div class="flex-1 pl-8 py-3">
+        <label class="block text-xs font-semibold text-gray-500 mb-1"
+          >Var</label
+        >
+        <input
+          type="text"
+          [(ngModel)]="destination"
+          placeholder="Sök destinationer"
+          class="w-full outline-none text-sm"
+        />
+      </div>
+      <div class="flex-1 px-4 py-1">
+        <label class="block text-xs font-semibold text-gray-500 mb-1"
+          >Incheckning</label
+        >
+        <input
+          type="date"
+          [(ngModel)]="checkIn"
+          class="w-full outline-none text-sm"
+        />
+      </div>
+      <div class="flex-1 px-4 py-1">
+        <label class="block text-xs font-semibold text-gray-500 mb-1"
+          >Utcheckning</label
+        >
+        <input
+          type="date"
+          [(ngModel)]="checkOut"
+          class="w-full outline-none text-sm"
+        />
+      </div>
+      <div class="flex-1 px-4 py-1 relative">
+        <label class="block text-xs font-semibold text-gray-500 mb-1"
+          >Vem</label
+        >
+        <input
+          type="number"
+          [(ngModel)]="guests"
+          min="1"
+          class="w-full outline-none text-sm"
+        />
+      </div>
     </div>
 
     <div class="px-4 py-3">
