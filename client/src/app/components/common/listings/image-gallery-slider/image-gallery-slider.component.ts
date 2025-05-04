@@ -9,6 +9,7 @@ import { ListingBadgeComponent } from '../listing-badge/listing-badge.component'
   templateUrl: './image-gallery-slider.component.html',
   styleUrls: ['./image-gallery-slider.component.css']
 })
+
 export class ImageGallerySliderComponent implements OnChanges {
   @Input() images: any[] = [];
   @Input() hasBadge: boolean = false;
@@ -19,8 +20,9 @@ export class ImageGallerySliderComponent implements OnChanges {
   
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['images'] && this.images && this.images.length > 0) {
-      this.imageUrls = this.images.map(img => img.image_url);
-      console.log('Processed image URLs:', this.imageUrls);
+      this.imageUrls = this.images.map(img => 
+        typeof img === 'string' ? img : img.image_url
+      );
     }
   }
   
