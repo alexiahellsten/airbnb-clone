@@ -97,4 +97,59 @@ router.get('/listings/:id', (req, res) => {
   }
 });
 
+router.get('/search', (req, res) => {
+  const { q } = req.query;
+
+  if (!q) {
+    return res.status(400).json({ message: 'Sökterm saknas' });
+  }
+
+  try {
+    const searchQuery = `%${q}%`;
+    const query = `
+      SELECT 
+        listings.id, 
+        listings.title, 
+        listings.description,
+        listings.address, 
+        listings.city, 
+        listings.country, 
+        listings.price_per_night, 
+        listings.max_guests, 
+        listings.bedrooms, 
+        listings.bathrooms, 
+        listings.created_at, 
+        listings.updated_at
+      FROM listings
+      WHERE 
+        listings.city LIKE ? OR
+        listings.country LIKE ? OR
+        listings.title LIKE ? OR
+        listings.description LIKE ?
+    `;
+
+    //Söker efter annonser baserat på sökfrasen ur 4 parametrar - city, country, title, description
+    const listings = db.prepare(query).all(searchQuery, searchQuery, searchQuery, searchQuery);
+    
+    // Hämtar bilder för varje annons
+    const listingsWithImages = listings.map(listing => {
+      const imagesQuery = `
+        SELECT image_url
+        FROM listing_images
+        WHERE listing_id = ?
+      `;
+      const images = db.prepare(imagesQuery).all(listing.id);
+      return {
+        ...listing,
+        images: images.map(img => img.image_url)
+      };
+    });
+
+    res.json(listingsWithImages);
+  } catch (err) {
+    console.error('Sökfel:', err);
+    res.status(500).json({ message: 'Misslyckades med att söka efter annonser' });
+  }
+});
+
 export default router;
