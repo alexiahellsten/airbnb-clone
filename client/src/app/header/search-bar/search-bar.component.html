@@ -3,13 +3,15 @@
   <div class="w-full mx-auto relative">
     <input
       type="text"
+      [(ngModel)]="destination"
       placeholder="Påbörja din sökning"
       class="w-full h-12 rounded-full border border-gray-300 px-4 py-3 text-sm pl-12 shadow-md transition-all duration-200"
+      (keyup.enter)="handleKeyPress($event)"
     />
     <div
       class="absolute left-3 top-1/2 transform -translate-y-1/2 flex items-center justify-center"
     >
-      <lucide-icon name="search" class="w-5 h-5 text-gray-700"></lucide-icon>
+      <i class="bi bi-search w-5 h-5 text-gray-700"></i>
     </div>
   </div>
 </div>
@@ -28,6 +30,7 @@
           [(ngModel)]="destination"
           placeholder="Sök destinationer"
           class="w-full outline-none text-sm"
+          (keyup.enter)="handleKeyPress($event)"
         />
       </div>
       <div class="flex-1 px-4 py-1">
@@ -64,9 +67,9 @@
     </div>
 
     <div class="px-4 py-3">
-      <app-button buttonType="icon" (click)="search()"
-        ><i class="bi bi-search"></i
-      ></app-button>
+      <app-button buttonType="icon" (click)="search()">
+        <i class="bi bi-search"></i>
+      </app-button>
     </div>
   </div>
 </div>
