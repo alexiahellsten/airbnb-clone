@@ -53,6 +53,13 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'booking-confirmation/:id',
+    loadComponent: () =>
+      import('./pages/booking/booking-confirmation/booking-confirmation.component').then(
+        (m) => m.BookingConfirmationComponent
+      ),
+  },
+  {
     path: 'checkout',
     loadComponent: () =>
       import('./pages/booking/checkout/checkout.component').then(

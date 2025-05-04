@@ -526,3 +526,16 @@ INSERT INTO bedrooms (listing_id, name, single_beds, double_beds) VALUES
 (16, 'Sovrum 2', 2, 0),
 (16, 'Sovrum 3', 0, 1),
 (16, 'Sovrum 4', 1, 1);
+
+-- UPDATE bookings status
+-- First, drop the existing constraint
+ALTER TABLE bookings DROP CONSTRAINT IF EXISTS bookings_status_check;
+
+-- Then add the new constraint with Swedish values
+ALTER TABLE bookings ADD CONSTRAINT bookings_status_check 
+CHECK (status IN ('Väntar på bekräftelse', 'Bekräftad', 'Avbruten'));
+
+-- Update existing records to use Swedish values
+UPDATE bookings SET status = 'Väntar på bekräftelse' WHERE status = 'pending';
+UPDATE bookings SET status = 'Bekräftad' WHERE status = 'confirmed';
+UPDATE bookings SET status = 'Avbruten' WHERE status = 'cancelled'; 
