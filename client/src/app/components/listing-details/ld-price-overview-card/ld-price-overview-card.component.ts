@@ -20,7 +20,7 @@ import { DatabaseService } from '../../../services/database.service';
     ButtonComponent,
   ],
   templateUrl: './ld-price-overview-card.component.html',
-  styleUrl: './ld-price-overview-card.component.css',
+  styleUrls: ['./ld-price-overview-card.component.css'],
 })
 export class LdPriceOverviewCardComponent implements OnInit {
   // Hämtar boendeinformation från databasen
@@ -41,8 +41,6 @@ export class LdPriceOverviewCardComponent implements OnInit {
   private _pricePerNight: number = 1400;
 
   // Definiera värdena
-  @Input() pricePerNight: number = 0; // Pris per natt
-  nights: number = 1; // Antal nätter
   checkInDate: string = '';
   checkOutDate: string = '';
   cleaningFee: number = 1200; // Städavgift
@@ -53,10 +51,6 @@ export class LdPriceOverviewCardComponent implements OnInit {
   children: number = 0;
   infants: number = 0;
   pets: number = 0;
-
-  // Datumvärden
-  checkInDate: string = '';
-  checkOutDate: string = '';
 
   // Beräkna totaler
   get totalGuests(): number {
@@ -70,21 +64,6 @@ export class LdPriceOverviewCardComponent implements OnInit {
   get totalAmount(): number {
     return this.totalPriceForNights + this.cleaningFee + this.airbnbServiceFee;
   }
-  get nights(): number {
-    if (this.checkInDate && this.checkOutDate) {
-      const inDate = new Date(this.checkInDate);
-      const outDate = new Date(this.checkOutDate);
-      const diff = outDate.getTime() - inDate.getTime();
-      return Math.max(1, Math.round(diff / (1000 * 60 * 60 * 24)));
-    }
-    return 1;
-  }
-
-
-
- 
-
-
 
   // Validera datumformat och logik
   private validateDates(): boolean {
@@ -121,12 +100,23 @@ export class LdPriceOverviewCardComponent implements OnInit {
       return false;
     }
 
-    // Beräkna antal nätter
+    // Beräkna antal nätter utan att tilldela till nights
     const diffTime = Math.abs(checkOut.getTime() - checkIn.getTime());
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    this.nights = diffDays;
+    // Om du behöver lagra antalet nätter, kan du skapa en ny variabel
+    // this._nights = diffDays; // Om du skapar en privat variabel
 
     return true;
+  }
+
+  get nights(): number {
+    if (this.checkInDate && this.checkOutDate) {
+      const inDate = new Date(this.checkInDate);
+      const outDate = new Date(this.checkOutDate);
+      const diff = outDate.getTime() - inDate.getTime();
+      return Math.max(1, Math.round(diff / (1000 * 60 * 60 * 24)));
+    }
+    return 1; // Returnera 1 om inga datum är angivna
   }
 
   constructor(
@@ -141,7 +131,7 @@ export class LdPriceOverviewCardComponent implements OnInit {
     const plus7 = new Date();
     plus7.setDate(today.getDate() + 7);
     this.checkOutDate = plus7.toISOString().slice(0, 10);
-  }}
+  }
 
   onGuestsChange(guests: { adults: number; children: number; infants: number; pets: number }): void {
     this.adults = guests.adults;
