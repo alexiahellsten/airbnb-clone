@@ -57,8 +57,51 @@ export class BookingCartComponent implements OnInit {
   infants: number = 0;
   pets: number = 0;
 
-  openGuestModal() {
+  // Aktuell bokning som redigeras
+  currentBooking: Booking | null = null;
+  // Temporära värden för att spåra ändringar
+  private tempGuestValues: GuestCount | null = null;
+
+  openGuestModal(booking: Booking) {
+    this.currentBooking = booking;
+    // Sätt initiala värden från den aktuella bokningen
+    this.adults = booking.guest_details.adults;
+    this.children = booking.guest_details.children;
+    this.infants = booking.guest_details.infants;
+    this.pets = booking.guest_details.pets;
+    // Spara de ursprungliga värdena
+    this.tempGuestValues = { ...booking.guest_details };
     this.guestModal.open();
+  }
+
+  // Hantera när modalen stängs
+  onGuestModalClose() {
+    if (this.currentBooking) {
+      // Kontrollera om värdena har ändrats
+      const hasChanges = 
+        this.adults !== this.tempGuestValues?.adults ||
+        this.children !== this.tempGuestValues?.children ||
+        this.infants !== this.tempGuestValues?.infants ||
+        this.pets !== this.tempGuestValues?.pets;
+
+      if (hasChanges) {
+        // Uppdatera gästinformationen i den aktuella bokningen
+        this.currentBooking.guest_details = {
+          adults: this.adults,
+          children: this.children,
+          infants: this.infants,
+          pets: this.pets
+        };
+        // Uppdatera totalt antal gäster
+        this.currentBooking.guests = this.adults + this.children + this.infants;
+        // Spara den uppdaterade bokningen
+        this.bookingCartService.setBookingData(this.currentBooking);
+        // Uppdatera bokningslistan
+        this.loadBookings();
+      }
+    }
+    // Återställ temporära värden
+    this.tempGuestValues = null;
   }
 
   openDateModal() {
@@ -75,11 +118,32 @@ export class BookingCartComponent implements OnInit {
   }
 
   saveGuests() {
-    // Här kan du lägga till logik för att spara gäster
+    if (this.currentBooking) {
+      // Uppdatera gästinformationen i den aktuella bokningen
+      this.currentBooking.guest_details = {
+        adults: this.adults,
+        children: this.children,
+        infants: this.infants,
+        pets: this.pets
+      };
+      // Uppdatera totalt antal gäster
+      this.currentBooking.guests = this.adults + this.children + this.infants;
+      // Spara den uppdaterade bokningen
+      this.bookingCartService.setBookingData(this.currentBooking);
+      // Uppdatera bokningslistan
+      this.loadBookings();
+    }
     this.guestModal.close();
   }
 
   cancelGuests() {
+    // Återställ till ursprungliga värden
+    if (this.tempGuestValues) {
+      this.adults = this.tempGuestValues.adults;
+      this.children = this.tempGuestValues.children;
+      this.infants = this.tempGuestValues.infants;
+      this.pets = this.tempGuestValues.pets;
+    }
     this.guestModal.close();
   }
 
