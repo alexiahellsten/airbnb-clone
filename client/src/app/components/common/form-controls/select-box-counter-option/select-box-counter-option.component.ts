@@ -7,19 +7,31 @@ import {
   AfterContentInit,
   ElementRef,
   HostListener,
+  Output,
+  EventEmitter
 } from '@angular/core';
+
 import { CommonModule } from '@angular/common';
+
 import {
   ControlValueAccessor,
   NG_VALUE_ACCESSOR,
   FormsModule,
 } from '@angular/forms';
+
 import { CounterOptionComponent } from './counter-option/counter-option.component';
+
+interface GuestCount {
+  adults: number;
+  children: number;
+  infants: number;
+  pets: number;
+}
 
 @Component({
   selector: 'app-select-box-counter-option',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, CounterOptionComponent],
   templateUrl: './select-box-counter-option.component.html',
   styleUrls: ['./select-box-counter-option.component.css'],
   providers: [
@@ -30,25 +42,28 @@ import { CounterOptionComponent } from './counter-option/counter-option.componen
     },
   ],
 })
+
 export class SelectBoxCounterOptionComponent
   implements ControlValueAccessor, AfterContentInit
 {
+  // Inputs
   @Input() label: string = '';
-  @Input() placeholder: string = 'Select an option';
-  @Input() uniqueId: string = ''; // Lägg till en unik identifierare för varje instans
+  @Input() placeholder: string = 'Välj ett alternativ';
+  @Input() uniqueId: string = '';
+  @Input() value: GuestCount = { adults: 0, children: 0, infants: 0, pets: 0 };
+  @Output() valueChange = new EventEmitter<GuestCount>();
 
-  value: string = '';
   isFocused: boolean = false;
-  isOpen: boolean = false; // Stänger dropdownen vid initialisering
+  isOpen: boolean = false;
 
-  onChange: (value: string) => void = () => {};
+  onChange: (value: GuestCount) => void = () => {};
   onTouched: () => void = () => {};
 
-  writeValue(value: string): void {
+  writeValue(value: GuestCount): void {
     this.value = value;
   }
 
-  registerOnChange(fn: (value: string) => void): void {
+  registerOnChange(fn: (value: GuestCount) => void): void {
     this.onChange = fn;
   }
 
@@ -66,11 +81,11 @@ export class SelectBoxCounterOptionComponent
   }
 
   toggleDropdown() {
-    this.isOpen = !this.isOpen; // Växlar mellan öppet och stängt läge
+    this.isOpen = !this.isOpen;
   }
 
   closeDropdown() {
-    this.isOpen = false; // Stänger dropdownen
+    this.isOpen = false;
   }
 
   @ContentChildren(CounterOptionComponent)
@@ -82,10 +97,7 @@ export class SelectBoxCounterOptionComponent
   }
 
   get totalGuests(): number {
-    if (!this.counterOptions) return 0;
-    return this.counterOptions
-      .toArray()
-      .reduce((sum, option) => sum + option.value, 0);
+    return this.value.adults + this.value.children + this.value.infants;
   }
 
   get summary(): string {
@@ -94,22 +106,48 @@ export class SelectBoxCounterOptionComponent
   }
 
   updateSummary() {
-    // Trigger change detection om du behöver det i framtiden
+    // Uppdatera värdet baserat på alternativen
+    if (this.counterOptions) {
+      const newValue: GuestCount = {
+        adults: 0,
+        children: 0,
+        infants: 0,
+        pets: 0
+      };
+
+      this.counterOptions.forEach(option => {
+        switch(option.label.toLowerCase()) {
+          case 'vuxna':
+            newValue.adults = option.value;
+            break;
+          case 'barn':
+            newValue.children = option.value;
+            break;
+          case 'spädbarn':
+            newValue.infants = option.value;
+            break;
+          case 'husdjur':
+            newValue.pets = option.value;
+            break;
+        }
+      });
+
+      this.value = newValue;
+      this.valueChange.emit(newValue);
+      this.onChange(newValue);
+    }
   }
 
   constructor(private _eref: ElementRef) {}
 
-  // Filtrera på en unik identifierare för att undvika krock med andra komponenter
   @HostListener('document:click', ['$event'])
   onClickOutside(event: MouseEvent) {
-    // Kollar om klicket är utanför den aktuella select-boxen med hjälp av den unika id:n
     const isDropdownClicked = this._eref.nativeElement.contains(event.target);
     const isDifferentSelectBoxCounterOption =
       event.target instanceof HTMLElement &&
       event.target.closest('.select-box-counter-option')?.id !== this.uniqueId;
 
     if (!isDropdownClicked && isDifferentSelectBoxCounterOption) {
-      // Om dropdownen är öppen, stäng den
       if (this.isOpen) {
         this.isOpen = false;
       }
