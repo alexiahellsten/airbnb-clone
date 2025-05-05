@@ -9,13 +9,27 @@
     <p class="sub-paragraph">This is a sub paragraph</p>
     ---------------------
     <h1>Component library</h1>
-    <h2>Text input</h2>
-    <app-text-input
-      [inputType]="'text'"
-      [label]="'Telefonnummer'"
-      [(ngModel)]="name"
-    ></app-text-input>
 
+    <h2>Text input</h2>
+    <div class="space-x-2">
+      <app-text-input
+        [inputType]="'text'"
+        [label]="'Telefonnummer'"
+        [(ngModel)]="name"
+      ></app-text-input>
+      <app-text-input
+        label="Incheckning"
+        inputType="date"
+        placeholderType="today"
+        section1
+      ></app-text-input>
+      <app-text-input
+        label="Utcheckning"
+        inputType="date"
+        placeholderType="plus7"
+        section1
+      ></app-text-input>
+    </div>
     <h2>Buttons</h2>
     <h3>Primary button</h3>
     <app-button buttonType="primary">Reservera</app-button>
