@@ -1,4 +1,4 @@
-import { Component, Input, forwardRef } from '@angular/core';
+import { Component, Input, Output, EventEmitter, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
@@ -20,27 +20,35 @@ export class CounterOptionComponent implements ControlValueAccessor {
   @Input() label: string = ''; // Här deklareras label som Input
   @Input() description: string = ''; // Här deklareras description som Input
   @Input() isOpen: boolean = false; // Här deklareras isOpen som Input
-  @Input() value: number = 1; // Här används Input för att sätta value dynamiskt
+  
+  private _value: number = 0;
+  @Input() set value(val: number) {
+    this._value = val;
+    this.onChange(this._value);
+  }
+  get value(): number {
+    return this._value;
+  }
 
   onChange: (value: number) => void = () => {};
   onTouched: () => void = () => {};
 
   // Funktioner för att hantera tvåvägsbindning
   increase() {
-    this.value++;
-    this.onChange(this.value); // Notifiera att värdet ändrats
+    this._value++;
+    this.onChange(this._value); // Notifiera att värdet ändrats
   }
 
   decrease() {
-    if (this.value > 0) {
-      this.value--;
-      this.onChange(this.value); // Notifiera att värdet ändrats
+    if (this._value > 0) {
+      this._value--;
+      this.onChange(this._value); // Notifiera att värdet ändrats
     }
   }
 
   writeValue(value: number): void {
     if (value !== undefined) {
-      this.value = value;
+      this._value = value;
     }
   }
 
