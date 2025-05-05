@@ -27,5 +27,6 @@
     (blur)="onBlur()"
     (click)="inputType === 'date' ? openDatePicker(dateInput) : null"
     (keydown)="inputType === 'date' ? $event.preventDefault() : null"
+    (ngModelChange)="onInput($event)"
   />
 </div>

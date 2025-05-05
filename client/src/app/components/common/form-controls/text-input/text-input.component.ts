@@ -54,6 +54,7 @@ export class TextInputComponent implements ControlValueAccessor, OnInit {
 
   writeValue(value: string): void {
     this.value = value;
+    // Trigger change detection if needed
   }
 
   registerOnChange(fn: (value: string) => void): void {
@@ -77,10 +78,10 @@ export class TextInputComponent implements ControlValueAccessor, OnInit {
     this.onTouched();
   }
 
-  onInput(event: Event) {
-    const value = (event.target as HTMLInputElement).value;
+  onInput(value: string) {
     this.value = value;
     this.onChange(value);
+    this.onTouched();
   }
 
   get inputClasses(): string {
