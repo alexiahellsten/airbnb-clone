@@ -51,6 +51,10 @@ export class LdPriceOverviewCardComponent implements OnInit {
   infants: number = 0;
   pets: number = 0;
 
+  // Datumvärden
+  checkInDate: string = '';
+  checkOutDate: string = '';
+
   // Beräkna totaler
   get totalGuests(): number {
     return this.adults + this.children + this.infants;
@@ -62,6 +66,49 @@ export class LdPriceOverviewCardComponent implements OnInit {
 
   get totalAmount(): number {
     return this.totalPriceForNights + this.cleaningFee + this.airbnbServiceFee;
+  }
+
+  // Validera datumformat och logik
+  private validateDates(): boolean {
+    console.log('Validating dates:', {
+      checkInDate: this.checkInDate,
+      checkOutDate: this.checkOutDate,
+      checkInType: typeof this.checkInDate,
+      checkOutType: typeof this.checkOutDate
+    });
+
+    if (!this.checkInDate || !this.checkOutDate) {
+      console.error('Vänligen välj in- och utcheckningsdatum');
+      return false;
+    }
+
+    const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+    if (!dateRegex.test(this.checkInDate) || !dateRegex.test(this.checkOutDate)) {
+      console.error('Felaktigt datumformat. Använd formatet ÅÅÅÅ-MM-DD');
+      return false;
+    }
+
+    const checkIn = new Date(this.checkInDate);
+    const checkOut = new Date(this.checkOutDate);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    if (checkIn < today) {
+      console.error('Incheckningsdatumet kan inte vara i det förflutna');
+      return false;
+    }
+
+    if (checkOut <= checkIn) {
+      console.error('Utcheckningsdatumet måste vara efter incheckningsdatumet');
+      return false;
+    }
+
+    // Beräkna antal nätter
+    const diffTime = Math.abs(checkOut.getTime() - checkIn.getTime());
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    this.nights = diffDays;
+
+    return true;
   }
 
   constructor(
@@ -79,21 +126,26 @@ export class LdPriceOverviewCardComponent implements OnInit {
     this.pets = guests.pets;
   }
 
+  // Funktion för att navigera till bokningssidan
   proceedToBooking(): void {
     if (!this.listingId) {
       console.error('Inget boende-ID kunde hämtas');
       return;
     }
 
-    // Hämta listing-detaljer från databasen
+    if (!this.validateDates()) {
+      return;
+    }
+
+    // Hämta information om boendet från databasen
     this.databaseService.getListingById(this.listingId).subscribe({
       next: (listing) => {
         // Sparar initiala bokningsdata
         const bookingData = {
           user_id: 1, 
           listing_id: this.listingId,
-          start_date: '', // Kommer att ställas in i booking-komponenten
-          end_date: '', // Kommer att ställas in i booking-komponenten
+          start_date: this.checkInDate,
+          end_date: this.checkOutDate,
           total_price: this.totalAmount,
           guests: this.totalGuests,
           status: 'Väntar på bekräftelse',

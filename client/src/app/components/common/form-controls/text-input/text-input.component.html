@@ -7,9 +7,11 @@
   <input
     id="input"
     type="{{ inputType }}"
-    [(ngModel)]="value"
+    [ngModel]="value"
+    (ngModelChange)="onInput($event)"
     [ngClass]="[inputClasses, fullWidth ? 'full-width' : '']"
     (focus)="onFocus()"
     (blur)="onBlur()"
+    [placeholder]="placeholder"
   />
 </div>

@@ -7,10 +7,12 @@
     <app-text-input
       [inputType]="'text'"
       [label]="'Incheckning'"
+      [(ngModel)]="checkInDate"
     ></app-text-input>
     <app-text-input
       [inputType]="'text'"
       [label]="'Utcheckning'"
+      [(ngModel)]="checkOutDate"
     ></app-text-input>
     <app-select-box-counter-option
       label="Gäster"

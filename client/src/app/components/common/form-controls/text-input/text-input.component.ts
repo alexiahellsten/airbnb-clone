@@ -24,6 +24,7 @@ export class TextInputComponent implements ControlValueAccessor {
   @Input() inputType: 'text' | 'password' | 'number' | 'email' = 'text';
   @Input() label: string = '';
   @Input() fullWidth: boolean = true;
+  @Input() placeholder: string = '';
 
   value: string = '';
   isFocused: boolean = false;
@@ -32,7 +33,7 @@ export class TextInputComponent implements ControlValueAccessor {
   onTouched: () => void = () => {};
 
   writeValue(value: string): void {
-    this.value = value;
+    this.value = value || '';
   }
 
   registerOnChange(fn: (value: string) => void): void {
@@ -56,8 +57,7 @@ export class TextInputComponent implements ControlValueAccessor {
     this.onTouched();
   }
 
-  onInput(event: Event) {
-    const value = (event.target as HTMLInputElement).value;
+  onInput(value: string) {
     this.value = value;
     this.onChange(value);
   }
