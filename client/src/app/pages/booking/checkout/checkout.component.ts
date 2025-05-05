@@ -26,6 +26,10 @@ import { LinkComponent } from '../../../components/common/link/link.component';
 })
 
 export class CheckOutComponent {
+  // Bokningsdata från varukorgen (booking-cart)
+  bookings: any[] = [];
+  totalPrice: number = 0;
+
   paymentTime: string = '';
   paymentMethod: string = '';
   constructor(
@@ -36,6 +40,15 @@ export class CheckOutComponent {
     // Sätter standardvärden
     this.paymentTime = 'Betala hela summan direkt';
     this.paymentMethod = 'Kredit- eller betalkort';
+
+    // Hämtar bokningsdata från varukorgen
+    this.bookings = this.bookingCartService.getBookingData();
+    this.calculateTotalPrice();
+  }
+
+  // Beräknar totalpriset för alla bokningar
+  private calculateTotalPrice() {
+    this.totalPrice = this.bookings.reduce((sum, booking) => sum + booking.total_price, 0);
   }
 
   //Värdena är förifyllda pga jobbigt att skriva in allting.. Om önskas så är det bara att tömma allt
