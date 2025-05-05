@@ -1,4 +1,4 @@
-<section>
+<section class="mx-auto px-4 py-8 max-w-[1400px]">
   <h1>Dina bokningar</h1>
 
   <div class="flex flex-row gap-16">
@@ -10,31 +10,18 @@
             <h3>Datum</h3>
             <div>6-11 maj</div>
           </div>
-          <app-link linkType="secondary">Redigera</app-link>
+          <app-link linkType="secondary" (click)="openDateModal()"
+            >Redigera</app-link
+          >
         </div>
         <div class="listing-details-section">
           <div>
             <h3>Gäster</h3>
             <div>1 gäst</div>
           </div>
-          <app-link linkType="secondary">Redigera</app-link>
-        </div>
-      </div>
-      <div>
-        <h2>Namn på boende</h2>
-        <div class="listing-details-section">
-          <div>
-            <h3>Datum</h3>
-            <div>6-11 maj</div>
-          </div>
-          <app-link linkType="secondary">Redigera</app-link>
-        </div>
-        <div class="listing-details-section">
-          <div>
-            <h3>Gäster</h3>
-            <div>1 gäst</div>
-          </div>
-          <app-link linkType="secondary">Redigera</app-link>
+          <app-link linkType="secondary" (click)="openGuestModal()"
+            >Redigera</app-link
+          >
         </div>
       </div>
     </div>
@@ -63,4 +50,19 @@
       >Vidare till betalning</app-button
     >
   </div>
+
+  <!-- Modal för gästantal -->
+  <app-modal-lg #guestModal heading="Redigera antal gäster">
+    <app-counter-option
+      label="Vuxna"
+      description="Från 13 år och uppåt"
+      [value]="1"
+      section1
+    ></app-counter-option>
+  </app-modal-lg>
+
+  <!-- Modal för datum (innehållet tomt så länge) -->
+  <app-modal-lg #dateModal heading="Redigera datum">
+    <!-- Lämnas tom tills vi bygger detta -->hej
+  </app-modal-lg>
 </section>
