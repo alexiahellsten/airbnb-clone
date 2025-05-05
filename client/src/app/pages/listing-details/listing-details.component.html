@@ -40,7 +40,10 @@
             ></app-ld-amenities-section>
           </div>
           <div class="w-1/3">
-            <app-ld-price-overview-card></app-ld-price-overview-card>
+            <app-ld-price-overview-card
+              [listingId]="listing_id || 0"
+              [pricePerNight]="currentListing?.price_per_night || 0"
+            ></app-ld-price-overview-card>
           </div>
         </div>
         <!-- Location section -->
