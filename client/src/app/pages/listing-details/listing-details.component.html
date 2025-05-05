@@ -40,7 +40,9 @@
             ></app-ld-amenities-section>
           </div>
           <div class="w-1/3">
-            <app-ld-price-overview-card></app-ld-price-overview-card>
+            <app-ld-price-overview-card
+              [pricePerNight]="headerData.price"
+            ></app-ld-price-overview-card>
           </div>
         </div>
         <!-- Location section -->

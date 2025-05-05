@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { SelectBoxCounterOptionComponent } from '../../common/form-controls/select-box-counter-option/select-box-counter-option.component';
@@ -20,7 +20,7 @@ import { ButtonComponent } from '../../common/button/button.component';
 })
 export class LdPriceOverviewCardComponent implements OnInit {
   // Definiera värdena
-  pricePerNight: number = 1400; // Pris per natt
+  @Input() pricePerNight: number = 0; // Pris per natt
   checkInDate: string = '';
   checkOutDate: string = '';
   cleaningFee: number = 1200; // Städavgift
