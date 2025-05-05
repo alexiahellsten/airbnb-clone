@@ -5,13 +5,15 @@
   </h2>
   <div class="flex flex-col gap-4">
     <app-text-input
-      [inputType]="'text'"
-      [label]="'Incheckning'"
+      label="Incheckning"
+      inputType="date"
+      placeholderType="today"
       [(ngModel)]="checkInDate"
     ></app-text-input>
     <app-text-input
-      [inputType]="'text'"
-      [label]="'Utcheckning'"
+      label="Utcheckning"
+      inputType="date"
+      placeholderType="plus7"
       [(ngModel)]="checkOutDate"
     ></app-text-input>
     <app-select-box-counter-option

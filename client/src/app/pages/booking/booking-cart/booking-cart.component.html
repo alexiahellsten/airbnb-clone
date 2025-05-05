@@ -1,4 +1,4 @@
-<section>
+<section class="mx-auto px-4 py-8 max-w-[1400px]">
   <h1>Dina bokningar</h1>
 
   <div class="flex flex-row gap-16">
@@ -12,14 +12,18 @@
               {{ formatDateRange(booking.start_date, booking.end_date) }}
             </div>
           </div>
-          <app-link linkType="secondary">Redigera</app-link>
+          <app-link linkType="secondary" (click)="openDateModal()"
+            >Redigera</app-link
+          >
         </div>
         <div class="listing-details-section">
           <div>
             <h3>Gäster</h3>
-            <div>{{ getGuestText(booking.guests) }}</div>
+            <div>1 gäst</div>
           </div>
-          <app-link linkType="secondary">Redigera</app-link>
+          <app-link linkType="secondary" (click)="openGuestModal()"
+            >Redigera</app-link
+          >
         </div>
       </div>
     </div>
@@ -55,4 +59,64 @@
       >Vidare till betalning</app-button
     >
   </div>
+
+  <!-- Modal för gästantal -->
+  <app-modal-lg #guestModal heading="Redigera antal gäster">
+    <app-counter-option
+      label="Vuxna"
+      description="Från 13 år och uppåt"
+      [(ngModel)]="adults"
+      section1
+    ></app-counter-option>
+    <app-counter-option
+      label="Barn"
+      description="Ålder 2-12"
+      [(ngModel)]="children"
+      section1
+    ></app-counter-option>
+    <app-counter-option
+      label="Spädbarn"
+      description="Under 2 år"
+      [(ngModel)]="infants"
+      section1
+    ></app-counter-option>
+    <app-counter-option
+      label="Husdjur"
+      description="Tar du med ett tjänstedjur"
+      [(ngModel)]="pets"
+      section1
+    ></app-counter-option>
+
+    <div class="flex justify-end gap-2 mt-4">
+      <app-button buttonType="secondary" (click)="cancelGuests()"
+        >Avbryt</app-button
+      >
+      <app-button buttonType="primary" (click)="saveGuests()">Spara</app-button>
+    </div>
+  </app-modal-lg>
+
+  <!-- Modal för datum -->
+  <app-modal-lg #dateModal heading="Redigera datum">
+    <app-text-input
+      label="Incheckning"
+      inputType="date"
+      [(ngModel)]="checkIn"
+      placeholderType="today"
+      section1
+    ></app-text-input>
+    <app-text-input
+      label="Utcheckning"
+      inputType="date"
+      [(ngModel)]="checkOut"
+      placeholderType="plus7"
+      section1
+    ></app-text-input>
+
+    <div class="flex justify-end gap-2 mt-4">
+      <app-button buttonType="secondary" (click)="cancelDates()"
+        >Avbryt</app-button
+      >
+      <app-button buttonType="primary" (click)="saveDates()">Spara</app-button>
+    </div>
+  </app-modal-lg>
 </section>
