@@ -56,13 +56,61 @@
     <app-counter-option
       label="Vuxna"
       description="Från 13 år och uppåt"
-      [value]="1"
+      [(ngModel)]="adults"
       section1
     ></app-counter-option>
+    <app-counter-option
+      label="Barn"
+      description="Ålder 2-12"
+      [(ngModel)]="children"
+      section1
+    ></app-counter-option>
+    <app-counter-option
+      label="Spädbarn"
+      description="Under 2 år"
+      [(ngModel)]="infants"
+      section1
+    ></app-counter-option>
+    <app-counter-option
+      label="Husdjur"
+      description="Tar du med ett tjänstedjur"
+      [(ngModel)]="pets"
+      section1
+    ></app-counter-option>
+
+    <div class="flex justify-end gap-2 mt-4">
+      <app-button buttonType="secondary" (click)="cancelGuests()"
+        >Avbryt</app-button
+      >
+      <app-button buttonType="primary" (click)="saveGuests()">Spara</app-button>
+    </div>
   </app-modal-lg>
 
-  <!-- Modal för datum (innehållet tomt så länge) -->
+  <!-- Modal för datum -->
   <app-modal-lg #dateModal heading="Redigera datum">
-    <!-- Lämnas tom tills vi bygger detta -->hej
+    <app-text-input
+      label="Incheckning"
+      inputType="date"
+      [(ngModel)]="checkIn"
+      section1
+    ></app-text-input>
+    <app-text-input
+      label="Utcheckning"
+      inputType="date"
+      [(ngModel)]="checkOut"
+      section1
+    ></app-text-input>
+    <app-text-input
+      [inputType]="'date'"
+      [label]="'Incheckning'"
+      [(ngModel)]="checkIn"
+      section1
+    ></app-text-input>
+    <div class="flex justify-end gap-2 mt-4">
+      <app-button buttonType="secondary" (click)="cancelDates()"
+        >Avbryt</app-button
+      >
+      <app-button buttonType="primary" (click)="saveDates()">Spara</app-button>
+    </div>
   </app-modal-lg>
 </section>
