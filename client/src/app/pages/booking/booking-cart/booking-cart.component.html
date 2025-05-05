@@ -19,7 +19,7 @@
         <div class="listing-details-section">
           <div>
             <h3>Gäster</h3>
-            <div>1 gäst</div>
+            <div>{{ getGuestText(booking) }}</div>
           </div>
           <app-link linkType="secondary" (click)="openGuestModal()"
             >Redigera</app-link
