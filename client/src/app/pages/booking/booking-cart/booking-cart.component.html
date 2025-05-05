@@ -92,20 +92,17 @@
       label="Incheckning"
       inputType="date"
       [(ngModel)]="checkIn"
+      placeholderType="today"
       section1
     ></app-text-input>
     <app-text-input
       label="Utcheckning"
       inputType="date"
       [(ngModel)]="checkOut"
+      placeholderType="plus7"
       section1
     ></app-text-input>
-    <app-text-input
-      [inputType]="'date'"
-      [label]="'Incheckning'"
-      [(ngModel)]="checkIn"
-      section1
-    ></app-text-input>
+
     <div class="flex justify-end gap-2 mt-4">
       <app-button buttonType="secondary" (click)="cancelDates()"
         >Avbryt</app-button

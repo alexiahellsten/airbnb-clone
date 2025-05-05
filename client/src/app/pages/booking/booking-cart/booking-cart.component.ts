@@ -26,8 +26,12 @@ export class BookingCartComponent {
   @ViewChild('dateModal') dateModal!: ModalLgComponent;
 
   // Datum
-  checkIn: string = '';
-  checkOut: string = '';
+  checkIn: string = new Date().toISOString().slice(0, 10);
+  checkOut: string = (() => {
+    const plus7 = new Date();
+    plus7.setDate(plus7.getDate() + 7);
+    return plus7.toISOString().slice(0, 10);
+  })();
 
   // Gäster
   adults: number = 1;
