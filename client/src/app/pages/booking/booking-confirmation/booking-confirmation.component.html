@@ -1,0 +1,52 @@
+<section class="container mx-auto px-4 py-8">
+  <div *ngIf="loading" class="text-center">
+    <p>Laddar bokningsdetaljer..</p>
+  </div>
+
+  <div *ngIf="error" class="text-center text-red-500">
+    <p>{{ error }}</p>
+  </div>
+
+  <div *ngIf="!loading && !error && booking" class="max-w-2xl mx-auto">
+    <h1 class="text-3xl mb-8 text-center">Tack för din bokning!</h1>
+
+    <div class="bg-white rounded-lg shadow-md p-6">
+      <div class="mb-6">
+        <h2>Bokningsdetaljer</h2>
+        <div class="space-y-2">
+          <p>
+            <span class="font-medium">Bokningsnummer:</span> {{ booking.id }}
+        
+          <p>
+            <span class="font-medium">Bokningsdatum:</span>
+            {{ booking.created_at | date : "yyyy-MM-dd" }}
+          </p>
+          <p>
+            <span class="font-medium">Namn på boende:</span>
+            {{ booking.listing_title }}
+          </p>
+          <p>
+            <span class="font-medium">Adress:</span>
+            {{ booking.listing_address }}
+          </p>
+          <p>
+            <span class="font-medium">Check-in:</span>
+            {{ booking.start_date | date : "yyyy-MM-dd" }}
+          </p>
+          <p>
+            <span class="font-medium">Check-out:</span>
+            {{ booking.end_date | date : "yyyy-MM-dd" }}
+          </p>
+          <p>
+            <span class="font-medium">Antal gäster:</span> {{ booking.guests }}
+          </p>
+          <p>
+            <span class="font-medium">Totalt pris:</span>
+            {{ booking.total_price }} SEK
+          </p>
+          <p><span class="font-medium">Status:</span> {{ booking.status }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
