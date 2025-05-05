@@ -27,6 +27,7 @@ export class TextInputComponent implements ControlValueAccessor, OnInit {
   @Input() fullWidth: boolean = true;
   @Input() defaultValue: string = '';
   @Input() placeholderType: 'today' | 'plus7' | '' = '';
+  @Input() placeholder: string = '';
 
   value: string = '';
   isFocused: boolean = false;
@@ -53,8 +54,7 @@ export class TextInputComponent implements ControlValueAccessor, OnInit {
   }
 
   writeValue(value: string): void {
-    this.value = value;
-    // Trigger change detection if needed
+    this.value = value || '';
   }
 
   registerOnChange(fn: (value: string) => void): void {

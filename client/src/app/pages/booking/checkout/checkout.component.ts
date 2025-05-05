@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
+import { BookingService } from '../../../services/booking.service';
+import { BookingCartService } from '../../../services/booking-cart.service';
 
 import { ButtonComponent } from '../../../components/common/button/button.component';
 import { TextInputComponent } from '../../../components/common/form-controls/text-input/text-input.component';
@@ -22,13 +24,31 @@ import { LinkComponent } from '../../../components/common/link/link.component';
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.css'],
 })
+
 export class CheckOutComponent {
+  // Bokningsdata från varukorgen (booking-cart)
+  bookings: any[] = [];
+  totalPrice: number = 0;
+
   paymentTime: string = '';
   paymentMethod: string = '';
-  constructor(private router: Router) {
-    // Set default values
+  constructor(
+    private bookingService: BookingService,
+    private bookingCartService: BookingCartService,
+    private router: Router
+  ) {
+    // Sätter standardvärden
     this.paymentTime = 'Betala hela summan direkt';
     this.paymentMethod = 'Kredit- eller betalkort';
+
+    // Hämtar bokningsdata från varukorgen
+    this.bookings = this.bookingCartService.getBookingData();
+    this.calculateTotalPrice();
+  }
+
+  // Beräknar totalpriset för alla bokningar
+  private calculateTotalPrice() {
+    this.totalPrice = this.bookings.reduce((sum, booking) => sum + booking.total_price, 0);
   }
 
   //Värdena är förifyllda pga jobbigt att skriva in allting.. Om önskas så är det bara att tömma allt
@@ -45,7 +65,7 @@ export class CheckOutComponent {
   country: string = 'Sverige';
   email: string = 'anna.svensson@example.com';
 
-  // Validation states
+  // Tillstånd för validering
   isCardNumberValid: boolean = true;
   isExpiryDateValid: boolean = true;
   isCVVValid: boolean = true;
@@ -59,7 +79,7 @@ export class CheckOutComponent {
   isPaymentTimeValid: boolean = true;
   isPaymentMethodValid: boolean = true;
 
-  // Interaction states
+  // Tillstånd för interaktion
   hasInteractedWithCardNumber: boolean = false;
   hasInteractedWithExpiryDate: boolean = false;
   hasInteractedWithCVV: boolean = false;
@@ -73,6 +93,7 @@ export class CheckOutComponent {
   hasInteractedWithPaymentTime: boolean = false;
   hasInteractedWithPaymentMethod: boolean = false;
 
+  // Funktioner för att hantera input av kortnummer
   onCardNumberInput(event: any) {
     const inputValue = event.target.value.replace(/\D/g, '');
     let formattedValue = inputValue;
@@ -88,6 +109,7 @@ export class CheckOutComponent {
     this.isCardNumberValid = cleanNumber.length === 16;
   }
 
+  // Funktioner för att validerar kortnummer
   validateCardNumber() {
     this.hasInteractedWithCardNumber = true;
     const cleanNumber = this.cardNumber.replace(/\D/g, '');
@@ -100,6 +122,7 @@ export class CheckOutComponent {
     });
   }
 
+  // Funktioner för att hantera input av utgångsdatum
   onExpiryDateInput(event: any) {
     const inputValue = event.target.value.replace(/\D/g, '');
     let formattedValue = inputValue;
@@ -116,6 +139,7 @@ export class CheckOutComponent {
     this.isExpiryDateValid = cleanDate.length === 4;
   }
 
+  // Funktioner för att validerar utgångsdatum
   validateExpiryDate() {
     this.hasInteractedWithExpiryDate = true;
     const cleanDate = this.expiryDate.replace(/\D/g, '');
@@ -127,6 +151,7 @@ export class CheckOutComponent {
     });
   }
 
+  // Funktioner för att hantera input av CVV
   onCVVInput(event: any) {
     const newValue = event.target.value.replace(/\D/g, '');
     if (newValue.length > 3) {
@@ -134,10 +159,11 @@ export class CheckOutComponent {
     } else {
       this.cvv = newValue;
     }
-    // Only validate format without showing error message
+    // Validerar utan att visa felmeddelande
     this.isCVVValid = this.cvv.length === 3 && /^\d+$/.test(this.cvv);
   }
 
+  // Funktioner för att validera CVV
   validateCVV() {
     this.hasInteractedWithCVV = true;
     this.isCVVValid = this.cvv.length === 3 && /^\d+$/.test(this.cvv);
@@ -147,6 +173,7 @@ export class CheckOutComponent {
     });
   }
 
+  // Funktioner för att hantera input av postnummer
   onPostalCodeInput(event: any) {
     const newValue = event.target.value.replace(/\D/g, '');
     let formattedValue = newValue;
@@ -158,11 +185,12 @@ export class CheckOutComponent {
         newValue.substring(0, 3) + ' ' + newValue.substring(3, 5);
     }
     this.postalCode = formattedValue;
-    // Only validate format without showing error message
+    // Validerar utan att visa felmeddelande
     const cleanPostalCode = this.postalCode.replace(/\D/g, '');
     this.isPostalCodeValid = cleanPostalCode.length === 5;
   }
 
+  // Funktioner för att validera postnummer
   validatePostalCode() {
     this.hasInteractedWithPostalCode = true;
     const cleanPostalCode = this.postalCode.replace(/\D/g, '');
@@ -175,6 +203,7 @@ export class CheckOutComponent {
     });
   }
 
+  // Funktioner för att validera förnamn
   validateFirstName() {
     this.hasInteractedWithFirstName = true;
     this.isFirstNameValid = this.firstName?.trim().length > 0;
@@ -184,6 +213,7 @@ export class CheckOutComponent {
     });
   }
 
+  // Funktioner för att validera efternamn
   validateLastName() {
     this.hasInteractedWithLastName = true;
     this.isLastNameValid = this.lastName?.trim().length > 0;
@@ -193,6 +223,7 @@ export class CheckOutComponent {
     });
   }
 
+  // Funktioner för att validera email
   validateEmail() {
     this.hasInteractedWithEmail = true;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -204,6 +235,7 @@ export class CheckOutComponent {
     });
   }
 
+  // Funktioner för att validera gatuadress
   validateStreetAddress() {
     this.hasInteractedWithStreetAddress = true;
     this.isStreetAddressValid = this.streetAddress?.trim().length > 0;
@@ -213,6 +245,7 @@ export class CheckOutComponent {
     });
   }
 
+  // Funktioner för att validera stad
   validateCity() {
     this.hasInteractedWithCity = true;
     this.isCityValid = this.city?.trim().length > 0;
@@ -222,6 +255,7 @@ export class CheckOutComponent {
     });
   }
 
+  // Funktioner för att validera land
   validateCountry() {
     this.hasInteractedWithCountry = true;
     this.isCountryValid = this.country?.trim().length > 0;
@@ -231,6 +265,7 @@ export class CheckOutComponent {
     });
   }
 
+  // Funktioner för att validera betalningstid
   validatePaymentTime() {
     this.hasInteractedWithPaymentTime = true;
     this.isPaymentTimeValid = this.paymentTime !== '';
@@ -240,6 +275,7 @@ export class CheckOutComponent {
     });
   }
 
+  // Funktioner för att validera betalningsmetod
   validatePaymentMethod() {
     this.hasInteractedWithPaymentMethod = true;
     this.isPaymentMethodValid = this.paymentMethod !== '';
@@ -249,8 +285,8 @@ export class CheckOutComponent {
     });
   }
 
+  // Funktioner för att validera formuläret
   isFormValid(): boolean {
-    // First validate all fields
     this.validateCardNumber();
     this.validateExpiryDate();
     this.validateCVV();
@@ -278,7 +314,7 @@ export class CheckOutComponent {
       this.isPaymentTimeValid &&
       this.isPaymentMethodValid;
 
-    console.log('Form Validation Result:', {
+    console.log('Formulärvalideringsresultat:', {
       cardNumber: this.isCardNumberValid,
       expiryDate: this.isExpiryDateValid,
       cvv: this.isCVVValid,
@@ -297,49 +333,33 @@ export class CheckOutComponent {
     return isValid;
   }
 
-  onSubmit() {
-    console.log('Form submission started');
-    console.log('Form Values:', {
-      cardNumber: this.cardNumber,
-      expiryDate: this.expiryDate,
-      cvv: this.cvv,
-      firstName: this.firstName,
-      lastName: this.lastName,
-      email: this.email,
-      postalCode: this.postalCode,
-      streetAddress: this.streetAddress,
-      city: this.city,
-      country: this.country,
-      paymentTime: this.paymentTime,
-      paymentMethod: this.paymentMethod,
-    });
+  // Funktioner för att skapa en bokning
+  async onSubmit() {
+    try {
+      const bookingData = this.bookingCartService.getBookingData()[0]; // Get first booking
+      if (!bookingData) {
+        console.error('Inga bokningsdata hittades');
+        return;
+      }
 
-    // Mark all fields as interacted with to show validation messages
-    this.hasInteractedWithCardNumber = true;
-    this.hasInteractedWithExpiryDate = true;
-    this.hasInteractedWithCVV = true;
-    this.hasInteractedWithFirstName = true;
-    this.hasInteractedWithLastName = true;
-    this.hasInteractedWithEmail = true;
-    this.hasInteractedWithPostalCode = true;
-    this.hasInteractedWithStreetAddress = true;
-    this.hasInteractedWithCity = true;
-    this.hasInteractedWithCountry = true;
-    this.hasInteractedWithPaymentTime = true;
-    this.hasInteractedWithPaymentMethod = true;
+      // Skapa bokning
+      const booking = await this.bookingService.createBooking({
+        user_id: bookingData.user_id,
+        listing_id: bookingData.listing_id,
+        start_date: bookingData.start_date,
+        end_date: bookingData.end_date,
+        total_price: bookingData.total_price,
+        guests: bookingData.guests,
+        status: 'Väntar på bekräftelse' as const
+      });
 
-    console.log('Running form validation...');
-    const isValid = this.isFormValid();
-    console.log('Form validation result:', isValid);
+      // Rensa kartan
+      this.bookingCartService.clearBookings();
 
-    if (isValid) {
-      console.log('Form is valid, navigating to home...');
-      this.router.navigate(['/admin']).then(
-        (success) => console.log('Navigation successful:', success),
-        (error) => console.error('Navigation failed:', error)
-      );
-    } else {
-      console.log('Form is invalid, showing validation messages');
+      // Navigera till booking-confirmation
+      this.router.navigate(['/booking-confirmation', booking.id]);
+    } catch (error) {
+      console.error('Fel vid skapande av bokning:', error);
     }
   }
 
@@ -347,86 +367,102 @@ export class CheckOutComponent {
     this.validatePaymentTime();
   }
 
+  // Funktioner för att hantera ändring av betalningstid
   onPaymentMethodChange() {
     this.validatePaymentMethod();
   }
 
+  // Funktioner för att hantera input av förnamn
   onFirstNameInput(event: any) {
     this.firstName = event.target.value;
     this.hasInteractedWithFirstName = true;
     this.validateFirstName();
   }
 
+  // Funktioner för att hantera blur av förnamn
   onFirstNameBlur() {
     this.hasInteractedWithFirstName = true;
     this.validateFirstName();
   }
 
+  // Funktioner för att hantera input av efternamn
   onLastNameInput(event: any) {
     this.lastName = event.target.value;
     this.hasInteractedWithLastName = true;
     this.validateLastName();
   }
 
+  // Funktioner för att hantera blur av efternamn
   onLastNameBlur() {
     this.hasInteractedWithLastName = true;
     this.validateLastName();
   }
 
+  // Funktioner för att hantera input av email
   onEmailInput(event: any) {
     this.email = event.target.value;
     this.hasInteractedWithEmail = true;
     this.validateEmail();
   }
 
+  // Funktioner för att hantera blur av email
   onEmailBlur() {
     this.hasInteractedWithEmail = true;
     this.validateEmail();
   }
 
+  // Funktioner för att hantera blur av postnummer
   onPostalCodeBlur() {
     this.hasInteractedWithPostalCode = true;
     this.validatePostalCode();
   }
 
+  // Funktioner för att hantera input av gatuadress
   onStreetAddressInput(event: any) {
     this.streetAddress = event.target.value;
     this.hasInteractedWithStreetAddress = true;
     this.validateStreetAddress();
   }
 
+  // Funktioner för att hantera blur av gatuadress
   onStreetAddressBlur() {
     this.hasInteractedWithStreetAddress = true;
     this.validateStreetAddress();
   }
 
+  // Funktioner för att hantera input av stad
   onCityInput(event: any) {
     this.city = event.target.value;
     this.hasInteractedWithCity = true;
     this.validateCity();
   }
 
+  // Funktioner för att hantera blur av stad
   onCityBlur() {
     this.hasInteractedWithCity = true;
     this.validateCity();
   }
 
+  // Funktioner för att hantera input av land
   onCountryInput(event: any) {
     this.country = event.target.value;
     this.hasInteractedWithCountry = true;
     this.validateCountry();
   }
 
+  // Funktioner för att hantera blur av land
   onCountryBlur() {
     this.hasInteractedWithCountry = true;
     this.validateCountry();
   }
 
+  // Funktioner för att hantera blur av utgångsdatum
   onExpiryDateBlur() {
     this.hasInteractedWithExpiryDate = true;
     this.validateExpiryDate();
   }
 
+  // Funktioner för att hantera blur av CVV
   onCVVBlur() {
     this.hasInteractedWithCVV = true;
     this.validateCVV();
