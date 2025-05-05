@@ -1,5 +1,4 @@
 <div class="container mx-auto px-4 py-8 max-w-[1400px]">
-  <!-- Visas om innehållet laddas -->
   <div *ngIf="isLoading" class="animate-pulse">
     <div class="h-8 bg-gray-200 rounded w-3/4 mb-4"></div>
     <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
@@ -11,7 +10,6 @@
     </div>
   </div>
 
-  <!-- Annonsinnehåll -->
   <ng-container *ngIf="!isLoading && currentListing">
     <div class="flex justify-center">
       <div class="w-full max-w-[1200px]">
@@ -29,12 +27,10 @@
 
             <div class="h-[1px] bg-brand-shadowGray"></div>
 
-            <!-- Bedroom section -->
             <app-ld-bedroom-section></app-ld-bedroom-section>
 
             <div class="h-[1px] bg-brand-shadowGray"></div>
 
-            <!-- Amenities section -->
             <app-ld-amenities-section
               [amenities]="amenities"
             ></app-ld-amenities-section>
@@ -46,19 +42,17 @@
             ></app-ld-price-overview-card>
           </div>
         </div>
-        <!-- Location section -->
+
         <app-ld-location-section
           [listing]="currentListing"
         ></app-ld-location-section>
 
         <div class="h-[1px] bg-brand-shadowGray my-8"></div>
 
-        <!-- Host section -->
         <app-ld-host-section></app-ld-host-section>
 
         <div class="h-[1px] bg-brand-shadowGray my-8"></div>
 
-        <!-- Information section -->
         <app-ld-information-section></app-ld-information-section>
       </div>
     </div>
