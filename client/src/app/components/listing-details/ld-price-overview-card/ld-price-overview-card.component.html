@@ -4,12 +4,14 @@
   </h2>
   <div class="flex flex-col gap-4">
     <app-text-input
-      [inputType]="'text'"
-      [label]="'Incheckning'"
+      label="Incheckning"
+      inputType="date"
+      placeholderType="today"
     ></app-text-input>
     <app-text-input
-      [inputType]="'text'"
-      [label]="'Utcheckning'"
+      label="Utcheckning"
+      inputType="date"
+      placeholderType="plus7"
     ></app-text-input>
     <app-select-box-counter-option
       label="Gäster"
@@ -33,7 +35,7 @@
       <app-counter-option
         label="Husdjur"
         [value]="0"
-        description="Tar du med ett tjänstdjur?"
+        description="Tar du med ett tjänstedjur"
       ></app-counter-option>
     </app-select-box-counter-option>
     <app-button [buttonType]="'primary'" size="full">Reservera</app-button>

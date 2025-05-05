@@ -1,5 +1,5 @@
 .input-container {
-  @apply flex flex-col relative w-fit border border-[#8c8c8c] focus:border-2 rounded-lg box-border;
+  @apply flex flex-col relative w-fit border border-brand-borderGray focus:border-2 rounded-lg box-border;
 }
 
 .input-container.full-width {
@@ -7,7 +7,7 @@
 }
 
 .form-input {
-  @apply text-[#222] text-base leading-6 pt-6 pb-2 px-3 w-fit bg-transparent rounded-lg border-none;
+  @apply text-brand-black text-base leading-6 pt-6 pb-2 px-3 w-fit bg-transparent rounded-lg border-none;
 }
 
 .form-input.full-width {
@@ -19,7 +19,7 @@
 }
 
 .input-container.focused .floating-label {
-  @apply top-[8px] text-xs text-[#6a6a6a];
+  @apply top-2 text-xs text-brand-textLight;
 }
 
 input[type="number"]::-webkit-inner-spin-button,
@@ -30,4 +30,8 @@ input[type="number"]::-webkit-outer-spin-button {
 
 input[type="number"] {
   -moz-appearance: textfield;
+}
+
+input[type="date"].form-input {
+  @apply pt-3.5 pb-4;
 }
