@@ -1,6 +1,7 @@
 <div class="border border-brand-textlight rounded-xl shadow-md p-6">
   <h2>
-    1 288 SEK <span class="text-base text-brand-textLight">per natt</span>
+    {{ pricePerNight }} SEK
+    <span class="text-base text-brand-textLight">per natt</span>
   </h2>
   <div class="flex flex-col gap-4">
     <app-text-input
@@ -13,30 +14,42 @@
     ></app-text-input>
     <app-select-box-counter-option
       label="Gäster"
-      [uniqueId]="'Number of Guests'"
+      [uniqueId]="'Antal Gäster'"
+      [value]="{
+        adults: adults,
+        children: children,
+        infants: infants,
+        pets: pets
+      }"
+      (valueChange)="onGuestsChange($event)"
     >
       <app-counter-option
         label="Vuxna"
         description="13 år och äldre"
-        [value]="1"
+        [value]="adults"
       ></app-counter-option>
       <app-counter-option
         label="Barn"
         description="2-12 år"
-        [value]="0"
+        [value]="children"
       ></app-counter-option>
       <app-counter-option
         label="Spädbarn"
         description="Under 2 år"
-        [value]="0"
+        [value]="infants"
       ></app-counter-option>
       <app-counter-option
         label="Husdjur"
-        [value]="0"
+        [value]="pets"
         description="Tar du med ett tjänstdjur?"
       ></app-counter-option>
     </app-select-box-counter-option>
-    <app-button [buttonType]="'primary'" size="full">Reservera</app-button>
+    <app-button
+      [buttonType]="'primary'"
+      size="full"
+      (click)="proceedToBooking()"
+      >Reservera</app-button
+    >
     <p class="text-sm text-brand-textLight">Du debiteras inte än</p>
     <div class="flex flex-col gap-2">
       <div class="flex flex-row justify-between">
