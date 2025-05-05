@@ -21,16 +21,37 @@ import { ButtonComponent } from '../../common/button/button.component';
 export class LdPriceOverviewCardComponent implements OnInit {
   // Definiera värdena
   pricePerNight: number = 1400; // Pris per natt
-  nights: number = 7; // Antal nätter
+  checkInDate: string = '';
+  checkOutDate: string = '';
   cleaningFee: number = 1200; // Städavgift
   airbnbServiceFee: number = 1944; // Airbnb serviceavgift
 
-  // Beräkna totaler
-  totalPriceForNights: number = this.pricePerNight * this.nights;
-  totalAmount: number =
-    this.totalPriceForNights + this.cleaningFee + this.airbnbServiceFee;
+  get nights(): number {
+    if (this.checkInDate && this.checkOutDate) {
+      const inDate = new Date(this.checkInDate);
+      const outDate = new Date(this.checkOutDate);
+      const diff = outDate.getTime() - inDate.getTime();
+      return Math.max(1, Math.round(diff / (1000 * 60 * 60 * 24)));
+    }
+    return 1;
+  }
+
+  get totalPriceForNights(): number {
+    return this.pricePerNight * this.nights;
+  }
+
+  get totalAmount(): number {
+    return this.totalPriceForNights + this.cleaningFee + this.airbnbServiceFee;
+  }
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // Sätt defaultdatum
+    const today = new Date();
+    this.checkInDate = today.toISOString().slice(0, 10);
+    const plus7 = new Date();
+    plus7.setDate(today.getDate() + 7);
+    this.checkOutDate = plus7.toISOString().slice(0, 10);
+  }
 }

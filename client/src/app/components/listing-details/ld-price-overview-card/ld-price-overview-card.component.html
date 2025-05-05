@@ -7,11 +7,15 @@
       label="Incheckning"
       inputType="date"
       placeholderType="today"
+      [(ngModel)]="checkInDate"
+      (ngModelChange)="checkInDate = $event"
     ></app-text-input>
     <app-text-input
       label="Utcheckning"
       inputType="date"
       placeholderType="plus7"
+      [(ngModel)]="checkOutDate"
+      (ngModelChange)="checkOutDate = $event"
     ></app-text-input>
     <app-select-box-counter-option
       label="Gäster"
