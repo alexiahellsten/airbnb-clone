@@ -28,8 +28,10 @@
       </h3>
 
       <!-- Sektion 1 -->
-      <div *ngIf="section1Title" class="border-b pb-4 mb-2">
-        <h4 class="text-lg font-semibold mb-2">{{ section1Title }}</h4>
+      <div class="border-b pb-4 mb-2">
+        <ng-container *ngIf="section1Title">
+          <h4 class="text-lg font-semibold mb-2">{{ section1Title }}</h4>
+        </ng-container>
         <ng-content select="[section1]"></ng-content>
       </div>
 

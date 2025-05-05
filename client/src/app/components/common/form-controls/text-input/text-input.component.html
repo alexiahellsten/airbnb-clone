@@ -1,10 +1,24 @@
+<!-- Klassisk label för date utanför border -->
+<label
+  *ngIf="inputType === 'date'"
+  for="input"
+  class="block mb-1 text-base text-brand-black"
+>
+  {{ label }}
+</label>
+
 <div
   class="input-container"
   [class.focused]="isFocused || value"
   [class.full-width]="fullWidth"
 >
-  <label for="input" class="floating-label">{{ label }}</label>
+  <!-- Floating label för övriga typer -->
+  <label *ngIf="inputType !== 'date'" for="input" class="floating-label">{{
+    label
+  }}</label>
+
   <input
+    #dateInput
     id="input"
     type="{{ inputType }}"
     [ngModel]="value"
@@ -13,5 +27,7 @@
     (focus)="onFocus()"
     (blur)="onBlur()"
     [placeholder]="placeholder"
+    (click)="inputType === 'date' ? openDatePicker(dateInput) : null"
+    (keydown)="inputType === 'date' ? $event.preventDefault() : null"
   />
 </div>
