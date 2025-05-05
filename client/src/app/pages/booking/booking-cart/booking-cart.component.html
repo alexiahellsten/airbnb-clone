@@ -3,12 +3,14 @@
 
   <div class="flex flex-row gap-16">
     <div class="listing-details w-1/2">
-      <div>
-        <h2>Namn på boende</h2>
+      <div *ngFor="let booking of bookings">
+        <h2>{{ booking.listing_name || "Namn på boende" }}</h2>
         <div class="listing-details-section">
           <div>
             <h3>Datum</h3>
-            <div>6-11 maj</div>
+            <div>
+              {{ formatDateRange(booking.start_date, booking.end_date) }}
+            </div>
           </div>
           <app-link linkType="secondary" (click)="openDateModal()"
             >Redigera</app-link
@@ -27,26 +29,33 @@
     </div>
     <aside class="border border-brand-mediumGray rounded-2xl w-1/2 p-6 h-fit">
       <h2 class="mt-0 mb-0">Prissummering</h2>
-      2 boende
+      <p>
+        Pris för {{ bookings.length }}
+        {{ bookings.length === 1 ? "boende" : "boenden" }}
+      </p>
       <div class="h-[1px] bg-brand-shadowGray mb-8 mt-4"></div>
 
-      <div>
-        <h3>Namn på boende</h3>
-        <div>1 500SEK</div>
-      </div>
-      <div>
-        <h3>Namn på boende</h3>
-        <div>1 500SEK</div>
+      <div *ngFor="let booking of bookings">
+        <h3>{{ booking.listing_name || "Namn på boende" }}</h3>
+        <div class="flex justify-between items-center">
+          <p>{{ booking.total_price }} SEK</p>
+          <button
+            (click)="deleteBooking(booking.listing_id)"
+            class="text-brand-redHoverLight hover:text-brand-redHoverDark"
+          >
+            <i class="bi bi-trash"></i>
+          </button>
+        </div>
       </div>
       <div class="h-[1px] bg-brand-shadowGray my-8"></div>
 
       <h3>Totalt</h3>
-      <div class="font-semibold">3 000SEK</div>
+      <p class="font-semibold">{{ totalPrice }} SEK</p>
     </aside>
   </div>
   <div class="flex flex-row justify-between pt-8 items-center">
-    <app-link linkType="secondary">Avbryt</app-link>
-    <app-button buttonType="primary" [destination]="'/checkout'"
+    <app-link linkType="secondary" (click)="onCancel()">Avbryt</app-link>
+    <app-button buttonType="primary" (click)="onBook()"
       >Vidare till betalning</app-button
     >
   </div>

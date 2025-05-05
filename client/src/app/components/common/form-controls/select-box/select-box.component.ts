@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-select-box',
+  standalone: true,
   imports: [CommonModule],
   templateUrl: './select-box.component.html',
   styleUrls: ['./select-box.component.css'],

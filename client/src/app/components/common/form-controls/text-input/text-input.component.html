@@ -21,11 +21,13 @@
     #dateInput
     id="input"
     type="{{ inputType }}"
-    [(ngModel)]="value"
+    [ngModel]="value"
+    (ngModelChange)="onInput($event)"
     [ngClass]="[inputClasses, fullWidth ? 'full-width' : '']"
     (focus)="onFocus()"
     (blur)="onBlur()"
     (click)="inputType === 'date' ? openDatePicker(dateInput) : null"
     (keydown)="inputType === 'date' ? $event.preventDefault() : null"
+    [placeholder]="placeholder"
   />
 </div>

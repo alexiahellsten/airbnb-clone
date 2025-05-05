@@ -279,21 +279,18 @@
     </section>
     <aside class="border border-brand-mediumGray rounded-2xl w-1/2 p-6 h-fit">
       <h2 class="mt-0 mb-0">Summering</h2>
-      2 boende
+      {{ bookings.length }} {{ bookings.length === 1 ? "boende" : "boenden" }}
       <div class="h-[1px] bg-brand-shadowGray mb-8 mt-4"></div>
 
-      <div>
-        <h3>Namn på boende</h3>
-        <div>1 500SEK</div>
+      <div *ngFor="let booking of bookings">
+        <h3>{{ booking.listing_name || "Namn på boende" }}</h3>
+        <div>{{ booking.total_price }} SEK</div>
       </div>
-      <div>
-        <h3>Namn på boende</h3>
-        <div>1 500SEK</div>
-      </div>
+
       <div class="h-[1px] bg-brand-shadowGray my-8"></div>
 
       <h3>Totalt</h3>
-      <div class="font-semibold">3 000SEK</div>
+      <div class="font-semibold">{{ totalPrice }} SEK</div>
     </aside>
   </div>
   <div class="flex flex-row justify-between pt-8 items-center">
