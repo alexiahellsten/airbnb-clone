@@ -37,7 +37,6 @@ export class AmenitiesChapterComponent implements OnInit {
 
   getAmenities(): void {
     this.dbService.getAmenities().subscribe((amenities: Amenity[]) => {
-      console.log('Hämtade amenities:', amenities); // <-- Lägg till denna
       this.favoriteTypes = amenities.filter((a) => a.category === 'favorite');
       this.uniqeTypes = amenities.filter((a) => a.category === 'uniqe');
       this.securityTypes = amenities.filter((a) => a.category === 'security');
