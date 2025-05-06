@@ -227,23 +227,38 @@ ALTER TABLE amenities ADD COLUMN description TEXT;
 ALTER TABLE amenities ADD COLUMN icon TEXT;
 ALTER TABLE amenities RENAME COLUMN amenity TO name;
 
-INSERT INTO amenities (name, description, icon) VALUES
-('WiFi', 'Snabbt och tillförlitligt trådlöst internet', 'wifi'),
-('Parkering', 'Gratis parkering på plats', 'local_parking'),
-('Diskmaskin', 'Fullstor diskmaskin i köket', 'dishwasher'),
-('Tvättmaskin', 'Privat tvättmaskin tillgänglig', 'washing_machine'),
-('Torktumlare', 'Torktumlare för kläder finns', 'dryer'),
-('TV', 'Smart-TV med streamingtjänster', 'tv'),
-('Balkong', 'Privat balkong med utsikt', 'balcony'),
-('Luftkonditionering', 'Kylning under varma sommardagar', 'ac_unit'),
-('Uppvärmning', 'Centralvärme eller golvvärme', 'thermostat'),
-('Pool', 'Utomhuspool tillgänglig för gäster', 'pool'),
-('Bastu', 'Privat bastu finns i bostaden', 'sauna'),
-('Grill', 'Grillmöjligheter i trädgården', 'outdoor_grill'),
-('Barnsäng', 'Barnsäng tillgänglig vid behov', 'crib'),
-('Arbetsyta', 'Ett skrivbord eller arbetsbord finns', 'desk'),
-('Kaffe-/tekokare', 'Kaffebryggare och vattenkokare ingår', 'coffee'),
-('Djurvänligt', 'Husdjur är välkomna', 'pets');
+
+INSERT INTO amenities (name, description, icon, category) VALUES
+('WiFi', 'Snabbt och tillförlitligt trådlöst internet', 'wifi', 'favorite'),
+('TV', 'Stort utbud av TV-kanaler och streamingtjänster', 'tv', 'favorite'),
+('Kök', 'Fullt utrustat kök för matlagning och måltider', 'cup-hot', 'favorite'),
+('Tvättmaskin', 'Tillgång till tvättmaskin för att tvätta kläder', 'textarea-t', 'favorite'),
+('Kaffe-/tekokare', 'Enkelt att koka kaffe eller te för en god start på dagen', 'cup-hot', 'favorite'),
+('Gratis parkering inkluderad', 'Parkering ingår utan extra kostnad', 'car-front-fill', 'favorite'),
+('Betald parkering på tomten', 'Möjlighet till parkering på tomten mot betalning', 'cash-coin', 'favorite'),
+('Luftkonditionering', 'Kyl ner rummet under varma dagar', 'snow', 'favorite'),
+('Dedikerad arbetsyta', 'En specifik plats för att arbeta eller studera', 'laptop', 'favorite'),
+('Uppvärmning', 'Effektiv uppvärmning för kalla dagar', 'fire', 'favorite'),
+('Pool', 'Tillgång till en uppfriskande utomhuspool', 'water', 'uniqe'),
+('Bastu', 'Möjlighet att koppla av i en bastu', 'cloud-fog2', 'uniqe'),
+('Badtunna', 'Upplev avkoppling i en bubbelpool utomhus', 'droplet-half', 'uniqe'),
+('Uteplats', 'En trevlig uteplats för avkoppling och umgänge', 'flower1', 'uniqe'),
+('Grillplats', 'En plats för att grilla och njuta av utomhusmatlagning', 'fire', 'uniqe'),
+('Matplats utomhus', 'Njut av måltider utomhus med en vacker utsikt', 'sun', 'uniqe'),
+('Öppen eld utomhus', 'Möjlighet att tända en öppen eld för värme och stämning', 'fire', 'uniqe'),
+('Biljardbord', 'Njut av en omgång biljard med vänner eller familj', 'dice-5', 'uniqe'),
+('Öppen spis', 'Värme och mysighet med en traditionell öppen spis', 'fire', 'uniqe'),
+('Piano', 'Ett piano för musikälskare som vill spela', 'music-note-beamed', 'uniqe'),
+('Träningsredskap', 'Tillgång till träningsutrustning för en aktiv livsstil', 'suit-heart', 'uniqe'),
+('Tillgång till sjön', 'Möjlighet att bada, fiska eller vistas vid sjön', 'water', 'uniqe'),
+('Tillgång till strand', 'Direkt tillgång till närliggande strand för avkoppling', 'tsunami', 'uniqe'),
+('Nära pisten', 'Bara en kort väg till skidbackarna', 'snow', 'uniqe'),
+('Utedusch', 'Frisk utomhusdusch för sommarbruk', 'cloud-rain', 'uniqe'),
+('Brandvarnare', 'Säkerhet med brandvarnare i hela boendet', 'bell-fill', 'security'),
+('Förbandslåda', 'Första hjälpen-kit för akuta situationer', 'bandaid', 'security'),
+('Brandsläckare', 'Brandsläckare finns på plats för säkerhet', 'box2-heart', 'security'),
+('Kolmonoxidlarm', 'Larm för att upptäcka kolmonoxid och skydda dig', 'shield-exclamation', 'security');
+
 
 -- listing_amenities
 -- Sample data for listing_amenities (many-to-many relationship)
