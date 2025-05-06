@@ -1,4 +1,6 @@
-<div class="border border-brand-textlight rounded-xl shadow-md p-6">
+<div
+  class="border border-brand-textlight rounded-xl shadow-md p-6 hidden md:block"
+>
   <h2>
     {{ pricePerNight }} SEK
     <span class="text-base text-brand-textLight">per natt</span>
@@ -80,5 +82,21 @@
         <div>{{ totalAmount }} SEK</div>
       </div>
     </div>
+  </div>
+</div>
+<div
+  class="border-t border-brand-textlight bg-white p-6 md:hidden flex flex-row justify-between items-center"
+>
+  <h2 class="mt-0 mb-0">
+    {{ pricePerNight }} SEK
+    <span class="text-base text-brand-textLight">per natt</span>
+  </h2>
+  <div class="flex flex-row gap-4">
+    <app-button
+      [buttonType]="'primary'"
+      size="full"
+      (click)="proceedToBooking()"
+      >Reservera</app-button
+    >
   </div>
 </div>
