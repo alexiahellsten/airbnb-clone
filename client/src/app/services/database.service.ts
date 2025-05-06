@@ -32,6 +32,7 @@ export interface Listing {
   created_at: string;
   updated_at: string;
   image_url?: string;
+  images?: string[];
 }
 
 export interface ListingImage {
@@ -51,6 +52,11 @@ export class DatabaseService {
   getListings(): Observable<Listing[]> {
     return this.http.get<Listing[]>(`${this.apiUrl}/listings`);
   }
+
+  searchListings(query: string): Observable<Listing[]> {
+    return this.http.get<Listing[]>(`${this.apiUrl}/search?q=${encodeURIComponent(query)}`);
+  }
+
   getListingById(id: number): Observable<Listing> {
     return this.http.get<Listing>(`${this.apiUrl}/listings/${id}`);
   }

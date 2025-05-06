@@ -1,0 +1,44 @@
+<div class="max-w-7xl px-6 md:px-10 lg:px-20">
+  <!-- Felstatus -->
+  <div *ngIf="error" class="text-center py-8">
+    <p class="text-red-500">{{ error }}</p>
+  </div>
+
+  <!-- Laddningsstatus -->
+  <div
+    *ngIf="isLoading"
+    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+  >
+    <div *ngFor="let i of [1, 2, 3, 4]" class="animate-pulse">
+      <div class="bg-gray-200 h-64 rounded"></div>
+      <div class="h-4 bg-gray-200 rounded mt-2 w-3/4"></div>
+      <div class="h-4 bg-gray-200 rounded mt-2 w-1/2"></div>
+    </div>
+  </div>
+
+  <!-- Resultatgrid -->
+  <div
+    *ngIf="!isLoading && !error"
+    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+  >
+    <app-listing-card
+      *ngFor="let listing of processedListings"
+      [id]="listing.id"
+      [images]="listing.images"
+      [location]="listing.location"
+      [hostType]="listing.hostType"
+      [date]="listing.date"
+      [price]="listing.price"
+      [rating]="listing.rating"
+      [hasBadge]="listing.hasBadge"
+    ></app-listing-card>
+  </div>
+
+  <!-- Om det inte finns några resultat -->
+  <div
+    *ngIf="!isLoading && !error && processedListings.length === 0"
+    class="text-center py-8"
+  >
+    <p class="text-brand-textLight">Inga annonser hittades</p>
+  </div>
+</div>

@@ -1,10 +1,12 @@
 <div
   *ngIf="isOpen"
   class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
+  (click)="close()"
 >
   <div
     class="bg-white rounded-3xl w-full max-w-3xl relative overflow-y-auto max-h-[90vh] scrollbar-hide"
     [ngClass]="{ 'shadow-lg': shadow }"
+    (click)="$event.stopPropagation()"
   >
     <!-- Sidhuvud -->
     <div class="relative" [ngClass]="{ 'border-b pb-4 mb-2': divider }">
@@ -28,8 +30,10 @@
       </h3>
 
       <!-- Sektion 1 -->
-      <div *ngIf="section1Title" class="border-b pb-4 mb-2">
-        <h4 class="text-lg font-semibold mb-2">{{ section1Title }}</h4>
+      <div class="border-b pb-4 mb-2">
+        <ng-container *ngIf="section1Title">
+          <h4 class="text-lg font-semibold mb-2">{{ section1Title }}</h4>
+        </ng-container>
         <ng-content select="[section1]"></ng-content>
       </div>
 

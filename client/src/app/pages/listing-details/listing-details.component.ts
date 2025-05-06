@@ -140,8 +140,6 @@ export class ListingDetailsComponent implements OnInit {
         this.databaseService.getListingById(id).subscribe({
           next: (listing) => {
             this.currentListing = listing;
-            // Debug:
-            console.log('currentListing:', this.currentListing);
             this.updateHeaderData(listing);
             this.safeDescription = this.sanitizer.bypassSecurityTrustHtml(
               listing.description
@@ -150,7 +148,7 @@ export class ListingDetailsComponent implements OnInit {
           },
           error: () => {
             this.isLoading = false;
-          }
+          },
         });
       } else {
         this.isLoading = false;

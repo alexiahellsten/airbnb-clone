@@ -2,6 +2,7 @@ import express from "express";
 import db from "../db/db.js";
 import categoryRoutes from "./routes/categories.js";
 import listingRoutes from "./routes/listings.js";
+import bookingRoutes from "./routes/bookings.js";
 
 const port = 8000;
 const app = express();
@@ -10,6 +11,7 @@ app.use(express.json());
 
 app.use("/api", categoryRoutes);
 app.use("/api", listingRoutes);
+app.use("/api/bookings", bookingRoutes);
 
 app.get("/api/users", (req, res) => {
   const users = db.prepare("SELECT * FROM users").all(); 

@@ -11,16 +11,25 @@
 
   <!-- Sökresultat -->
   <div *ngIf="!isLoading">
-    <h1 class="text-2xl font-semibold mb-4">
+    <h1 class="text-2xl font-semibold mb-4 text-center">
       {{
         searchQuery
-          ? "Boenden som matchar: " + capitalizedSearchQuery
-          : "Boenden"
+          ? "Hittade" +
+            " " +
+            searchResults.length +
+            " " +
+            "boenden som matchar" +
+            " " +
+            capitalizedSearchQuery
+          : "Ange en sökfras"
       }}
     </h1>
 
     <div
-      *ngIf="searchResults.length === 0 && searchQuery"
+      *ngIf="
+        searchResults.length === 0 ||
+        (searchResults.length === undefined && searchQuery)
+      "
       class="text-center py-8"
     >
       <p class="text-brand-textLight">
@@ -29,7 +38,9 @@
     </div>
 
     <div *ngIf="searchResults.length > 0">
-      <app-listing-grid [listings]="searchResults"></app-listing-grid>
+      <app-search-results-grid
+        [listings]="searchResults"
+      ></app-search-results-grid>
     </div>
   </div>
 </div>

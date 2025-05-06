@@ -1,4 +1,4 @@
-import { Component, Input, forwardRef } from '@angular/core';
+import { Component, Input, forwardRef, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   ControlValueAccessor,
@@ -20,10 +20,14 @@ import {
     },
   ],
 })
-export class TextInputComponent implements ControlValueAccessor {
-  @Input() inputType: 'text' | 'password' | 'number' | 'email' = 'text';
+export class TextInputComponent implements ControlValueAccessor, OnInit {
+  @Input() inputType: 'text' | 'password' | 'number' | 'email' | 'date' =
+    'text';
   @Input() label: string = '';
   @Input() fullWidth: boolean = true;
+  @Input() defaultValue: string = '';
+  @Input() placeholderType: 'today' | 'plus7' | '' = '';
+  @Input() placeholder: string = '';
 
   value: string = '';
   isFocused: boolean = false;
@@ -31,8 +35,26 @@ export class TextInputComponent implements ControlValueAccessor {
   onChange: (value: string) => void = () => {};
   onTouched: () => void = () => {};
 
+  ngOnInit() {
+    if (!this.value && !this.defaultValue && this.inputType === 'date') {
+      if (this.placeholderType === 'today') {
+        const today = new Date();
+        this.value = today.toISOString().slice(0, 10);
+        this.onChange(this.value);
+      } else if (this.placeholderType === 'plus7') {
+        const plus7 = new Date();
+        plus7.setDate(plus7.getDate() + 7);
+        this.value = plus7.toISOString().slice(0, 10);
+        this.onChange(this.value);
+      }
+    } else if (!this.value && this.defaultValue) {
+      this.value = this.defaultValue;
+      this.onChange(this.value);
+    }
+  }
+
   writeValue(value: string): void {
-    this.value = value;
+    this.value = value || '';
   }
 
   registerOnChange(fn: (value: string) => void): void {
@@ -56,10 +78,10 @@ export class TextInputComponent implements ControlValueAccessor {
     this.onTouched();
   }
 
-  onInput(event: Event) {
-    const value = (event.target as HTMLInputElement).value;
+  onInput(value: string) {
     this.value = value;
     this.onChange(value);
+    this.onTouched();
   }
 
   get inputClasses(): string {
@@ -72,8 +94,19 @@ export class TextInputComponent implements ControlValueAccessor {
         return 'form-input';
       case 'email':
         return 'form-input';
+      case 'date':
+        return 'form-input';
       default:
         return '';
+    }
+  }
+
+  openDatePicker(input: HTMLInputElement) {
+    if (this.inputType === 'date') {
+      input.focus();
+      if ((input as any).showPicker) {
+        (input as any).showPicker();
+      }
     }
   }
 }

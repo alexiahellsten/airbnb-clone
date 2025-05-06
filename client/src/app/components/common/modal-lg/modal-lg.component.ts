@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ButtonComponent } from '../button/button.component';
 import { LucideAngularModule, X } from 'lucide-angular';
@@ -53,6 +53,8 @@ export class ModalLgComponent {
   @Input() divider: boolean = true;
   @Input() shadow: boolean = true;
 
+  @Output() modalClose = new EventEmitter<void>();
+
   isOpen: boolean = false;
 
   open() {
@@ -61,9 +63,13 @@ export class ModalLgComponent {
 
   close() {
     this.isOpen = false;
+    this.modalClose.emit();
   }
 
   toggle() {
     this.isOpen = !this.isOpen;
+    if (!this.isOpen) {
+      this.modalClose.emit();
+    }
   }
 }
