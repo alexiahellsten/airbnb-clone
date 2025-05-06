@@ -64,7 +64,11 @@
   <app-modal-lg
     #guestModal
     heading="Redigera antal gäster"
+    primaryButtonText="Avbryt"
+    secondaryButtonText="Spara"
     (modalClose)="onGuestModalClose()"
+    (primaryButtonClick)="cancelGuests()"
+    (secondaryButtonClick)="saveGuests(); guestModal.close()"
   >
     <app-counter-option
       label="Vuxna"
@@ -90,13 +94,6 @@
       [(ngModel)]="pets"
       section1
     ></app-counter-option>
-
-    <div class="flex justify-end gap-2 mt-4">
-      <app-button buttonType="secondary" (click)="cancelGuests()"
-        >Avbryt</app-button
-      >
-      <app-button buttonType="primary" (click)="saveGuests()">Spara</app-button>
-    </div>
   </app-modal-lg>
 
   <!-- Modal för datum -->
