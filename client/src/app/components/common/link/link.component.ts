@@ -14,13 +14,13 @@ export class LinkComponent {
   get linkClasses(): string {
     switch (this.linkType) {
       case 'default':
-        return 'underline';
+        return 'underline cursor-pointer';
       case 'secondary':
-        return 'underline font-semibold';
+        return 'underline font-semibold cursor-pointer';
       case 'icon':
-        return 'text-sm underline font-bold';
+        return 'text-sm underline font-bold cursor-pointer';
       case 'report':
-        return 'underline text-sm font-bold text-brand-textLight';
+        return 'underline text-sm font-bold text-brand-textLight cursor-pointer';
       default:
         return '';
     }
