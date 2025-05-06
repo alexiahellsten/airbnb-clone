@@ -1,6 +1,6 @@
 <div>
   <div
-    class="bg-gray-200 w-full aspect-square rounded-3xl flex items-center justify-center"
+    class="relative bg-gray-200 w-full aspect-square rounded-3xl flex items-center justify-center"
   >
     <img
       *ngIf="listing.image_url"
@@ -8,6 +8,12 @@
       class="w-full h-full object-cover rounded-3xl"
       (error)="listing.image_url = undefined"
     />
+    <div
+      class="absolute top-0 right-0 m-4 bg-white w-9 h-9 pt-1 pl-2 rounded-full hover:bg-brand-shadowGray cursor-pointer"
+    >
+      <i class="bi bi-trash text-lg"></i>
+    </div>
+
     <div *ngIf="!listing.image_url" class="text-gray-400">
       <i class="bi bi-image text-4xl"></i>
     </div>
