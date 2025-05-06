@@ -14,27 +14,31 @@
   <div class="h-[1px] bg-brand-shadowGray"></div>
 
   <app-capacity-counter-option
+    label="Badrum"
+    [min]="0"
+    [max]="30"
+    [(value)]="bathroomCount"
+  ></app-capacity-counter-option>
+
+  <div class="h-[1px] bg-brand-shadowGray"></div>
+
+  <app-capacity-counter-option
     label="Sovrum"
     [min]="0"
     [max]="30"
     [(value)]="bedroomCount"
   ></app-capacity-counter-option>
 
-  <div class="h-[1px] bg-brand-shadowGray"></div>
+  <div class="bg-brand-lightGray">
+    <ng-container *ngFor="let count of bedCounts; let i = index">
+      <div class="h-[1px] bg-brand-shadowGray"></div>
 
-  <app-capacity-counter-option
-    label="Sängar"
-    [min]="0"
-    [max]="30"
-    [(value)]="bedCount"
-  ></app-capacity-counter-option>
-
-  <div class="h-[1px] bg-brand-shadowGray"></div>
-
-  <app-capacity-counter-option
-    label="Badrum"
-    [min]="0"
-    [max]="30"
-    [(value)]="bathroomCount"
-  ></app-capacity-counter-option>
+      <app-capacity-counter-option
+        [label]="'Sängar i Sovrum ' + (i + 1)"
+        [min]="0"
+        [max]="10"
+        [(value)]="bedCounts[i]"
+      ></app-capacity-counter-option>
+    </ng-container>
+  </div>
 </div>

@@ -7,18 +7,30 @@ import { CapacityCounterOptionComponent } from '../../../../../components/common
 @Component({
   selector: 'app-capacity-chapter',
   standalone: true,
-  imports: [
-    CommonModule,
-    FormsModule,
-    CapacityCounterOptionComponent
-  ],
+  imports: [CommonModule, FormsModule, CapacityCounterOptionComponent],
   templateUrl: './capacity-chapter.component.html',
-  styleUrl: './capacity-chapter.component.css'
+  styleUrl: './capacity-chapter.component.css',
 })
-
 export class CapacityChapterComponent {
   guestCount: number = 1;
-  bedroomCount: number = 0;
-  bedCount: number = 0;
+  private _bedroomCount: number = 0;
+  bedCounts: number[] = [];
   bathroomCount: number = 0;
+
+  get bedroomCount(): number {
+    return this._bedroomCount;
+  }
+
+  set bedroomCount(value: number) {
+    this._bedroomCount = value;
+
+    // Justera längden på bedCounts baserat på nya bedroomCount
+    const diff = value - this.bedCounts.length;
+
+    if (diff > 0) {
+      this.bedCounts.push(...Array(diff).fill(0));
+    } else if (diff < 0) {
+      this.bedCounts.splice(value);
+    }
+  }
 }
