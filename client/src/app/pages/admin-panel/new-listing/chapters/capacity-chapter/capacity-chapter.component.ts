@@ -3,6 +3,10 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { CapacityCounterOptionComponent } from '../../../../../components/common/form-controls/capacity-counter-option/capacity-counter-option.component';
+type BedroomBeds = {
+  single: number;
+  double: number;
+};
 
 @Component({
   selector: 'app-capacity-chapter',
@@ -14,7 +18,7 @@ import { CapacityCounterOptionComponent } from '../../../../../components/common
 export class CapacityChapterComponent {
   guestCount: number = 1;
   private _bedroomCount: number = 0;
-  bedCounts: number[] = [];
+  bedroomBeds: BedroomBeds[] = [];
   bathroomCount: number = 0;
 
   get bedroomCount(): number {
@@ -24,13 +28,16 @@ export class CapacityChapterComponent {
   set bedroomCount(value: number) {
     this._bedroomCount = value;
 
-    // Justera längden på bedCounts baserat på nya bedroomCount
-    const diff = value - this.bedCounts.length;
+    const diff = value - this.bedroomBeds.length;
 
     if (diff > 0) {
-      this.bedCounts.push(...Array(diff).fill(0));
+      this.bedroomBeds.push(
+        ...Array(diff)
+          .fill(null)
+          .map(() => ({ single: 0, double: 0 }))
+      );
     } else if (diff < 0) {
-      this.bedCounts.splice(value);
+      this.bedroomBeds.splice(value);
     }
   }
 }
