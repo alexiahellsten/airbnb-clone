@@ -210,5 +210,18 @@ router.delete('/listings/:id', (req, res) => {
     res.status(500).send({ error: 'Failed to delete listing' });
   }
 });
+// Hämta alla bekvämligheter (amenities)
+router.get('/amenities', (req, res) => {
+  try {
+    const query = `SELECT name, icon, category FROM amenities`;
+    const amenities = db.prepare(query).all();
+    res.json(amenities);
+  } catch (err) {
+    console.error(err);
+    res
+      .status(500)
+      .json({ message: 'Misslyckades med att hämta bekvämligheter' });
+  }
+});
 
 export default router;

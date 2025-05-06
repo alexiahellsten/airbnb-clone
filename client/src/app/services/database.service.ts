@@ -72,6 +72,7 @@ export class DatabaseService {
       `${this.apiUrl}/listing-images?listing_id=${listing_id}`
     );
   }
+  // Hämta alla bekvämligheter
 
   getAmenities(): Observable<Amenity[]> {
     return this.http.get<Amenity[]>(`${this.apiUrl}/amenities`);
