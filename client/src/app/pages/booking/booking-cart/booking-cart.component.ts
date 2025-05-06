@@ -61,6 +61,7 @@ export class BookingCartComponent implements OnInit {
   currentBooking: Booking | null = null;
   // Temporära värden för att spåra ändringar
   private tempGuestValues: GuestCount | null = null;
+  private tempDateValues: { start_date: string; end_date: string } | null = null;
 
   openGuestModal(booking: Booking) {
     this.currentBooking = booking;
@@ -104,17 +105,54 @@ export class BookingCartComponent implements OnInit {
     this.tempGuestValues = null;
   }
 
-  openDateModal() {
+  openDateModal(booking: Booking) {
+    this.currentBooking = booking;
+    // Sätt initiala värden från den aktuella bokningen
+    this.checkIn = booking.start_date;
+    this.checkOut = booking.end_date;
+    // Spara de ursprungliga värdena
+    this.tempDateValues = {
+      start_date: booking.start_date,
+      end_date: booking.end_date
+    };
     this.dateModal.open();
   }
 
   saveDates() {
-    // Här kan du lägga till logik för att spara datumen
+    if (this.currentBooking) {
+      // Kontrollera om värdena har ändrats
+      const hasChanges = 
+        this.checkIn !== this.tempDateValues?.start_date ||
+        this.checkOut !== this.tempDateValues?.end_date;
+
+      if (hasChanges) {
+        // Uppdatera datum i den aktuella bokningen
+        this.currentBooking.start_date = this.checkIn;
+        this.currentBooking.end_date = this.checkOut;
+        // Spara den uppdaterade bokningen
+        this.bookingCartService.setBookingData(this.currentBooking);
+        // Uppdatera bokningslistan
+        this.loadBookings();
+      }
+    }
+    // Återställ temporära värden
+    this.tempDateValues = null;
+    // Stäng modalen
     this.dateModal.close();
   }
 
   cancelDates() {
+    // Återställ till ursprungliga värden
+    if (this.tempDateValues) {
+      this.checkIn = this.tempDateValues.start_date;
+      this.checkOut = this.tempDateValues.end_date;
+    }
     this.dateModal.close();
+  }
+
+  onDateModalClose() {
+    // När modalen stängs via X eller utanför, spara ändringarna
+    this.saveDates();
   }
 
   saveGuests() {
