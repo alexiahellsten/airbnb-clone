@@ -54,7 +54,9 @@ export class DatabaseService {
   }
 
   searchListings(query: string): Observable<Listing[]> {
-    return this.http.get<Listing[]>(`${this.apiUrl}/search?q=${encodeURIComponent(query)}`);
+    return this.http.get<Listing[]>(
+      `${this.apiUrl}/search?q=${encodeURIComponent(query)}`
+    );
   }
 
   getListingById(id: number): Observable<Listing> {
@@ -77,5 +79,9 @@ export class DatabaseService {
 
   getCategories(): Observable<Category[]> {
     return this.http.get<Category[]>(`${this.apiUrl}/categories`);
+  }
+
+  deleteListing(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/listings/${id}`);
   }
 }
