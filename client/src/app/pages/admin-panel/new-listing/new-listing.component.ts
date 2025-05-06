@@ -11,6 +11,8 @@ import { ImagesChapterComponent } from './chapters/images-chapter/images-chapter
 import { CapacityChapterComponent } from './chapters/capacity-chapter/capacity-chapter.component';
 import { AmenitiesChapterComponent } from './chapters/amenities-chapter/amenities-chapter.component';
 
+import { ButtonComponent } from '../../../components/common/button/button.component';
+
 @Component({
   selector: 'app-new-listing',
   imports: [
@@ -24,6 +26,7 @@ import { AmenitiesChapterComponent } from './chapters/amenities-chapter/amenitie
     ImagesChapterComponent,
     CapacityChapterComponent,
     AmenitiesChapterComponent,
+    ButtonComponent,
   ],
   templateUrl: './new-listing.component.html',
   styleUrl: './new-listing.component.css',

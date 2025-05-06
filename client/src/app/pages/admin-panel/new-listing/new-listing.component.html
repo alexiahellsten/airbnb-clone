@@ -1,5 +1,8 @@
-<div class="max-w-5xl mx-auto px-20 pb-10">
-  <h1 class="my-8">Skapa ett boende</h1>
+<section class="max-w-5xl mx-auto px-20 pb-10">
+  <div class="flex flex-row items-baseline justify-between">
+    <h1 class="my-8">Skapa ett boende</h1>
+    <app-button buttonType="dark">Skapa boende</app-button>
+  </div>
   <div class="flex flex-col gap-20">
     <app-listing-type-chapter></app-listing-type-chapter>
     <app-access-type-chapter></app-access-type-chapter>
@@ -12,4 +15,7 @@
     <app-capacity-chapter></app-capacity-chapter>
     <app-amenities-chapter></app-amenities-chapter>
   </div>
-</div>
+  <div class="flex mt-8 justify-end w-full">
+    <app-button buttonType="dark">Skapa boende</app-button>
+  </div>
+</section>
