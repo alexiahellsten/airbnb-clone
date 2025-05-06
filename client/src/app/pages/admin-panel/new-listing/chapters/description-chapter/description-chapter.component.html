@@ -4,6 +4,8 @@
     Dela med dig av vad som är speciellt med ditt boende.
   </p>
   <app-text-area
+    [(ngModel)]="description"
+    (ngModelChange)="onDescriptionChange($event)"
     [maxLength]="500"
     [placeholder]="'Ha kul med hela familjen på detta eleganta ställe.'"
   ></app-text-area>

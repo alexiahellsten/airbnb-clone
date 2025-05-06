@@ -176,7 +176,7 @@ router.delete('/listings/:id', (req, res) => {
     deleteBookingsQuery.run(listingId);
 
     const deleteBedroomsQuery = db.prepare(
-      'DELETE FROM listing_bedrooms WHERE listing_id = ?'
+      'DELETE FROM bedrooms WHERE listing_id = ?'
     );
     deleteBedroomsQuery.run(listingId);
 
@@ -221,6 +221,217 @@ router.get('/amenities', (req, res) => {
     res
       .status(500)
       .json({ message: 'Misslyckades med att hämta bekvämligheter' });
+  }
+});
+
+// Skapa en ny listing
+router.post('/listings', (req, res) => {
+  try {
+    const {
+      title,
+      description,
+      address,
+      city,
+      country,
+      price_per_night,
+      max_guests,
+      bedrooms,
+      bathrooms,
+      host_id,
+      images,
+      bedroom_details,
+      amenities
+    } = req.body;
+
+    // Starta en transaktion
+    db.prepare('BEGIN TRANSACTION').run();
+
+    try {
+      // Infoga huvudlistingen
+      const insertListingQuery = `
+        INSERT INTO listings (
+          title, description, address, city, country,
+          price_per_night, max_guests, bedrooms, bathrooms, host_id
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+      `;
+
+      const result = db.prepare(insertListingQuery).run(
+        title,
+        description,
+        address,
+        city,
+        country,
+        price_per_night,
+        max_guests,
+        bedrooms,
+        bathrooms,
+        host_id
+      );
+
+      const listingId = result.lastInsertRowid;
+
+      // Infoga bilder om de finns
+      if (images && images.length > 0) {
+        const insertImageQuery = `
+          INSERT INTO listing_images (listing_id, image_url)
+          VALUES (?, ?)
+        `;
+        const insertImage = db.prepare(insertImageQuery);
+        images.forEach(imageUrl => {
+          insertImage.run(listingId, imageUrl);
+        });
+      }
+
+      // Infoga sovrumsdetaljer om de finns
+      if (bedroom_details && bedroom_details.length > 0) {
+        const insertBedroomQuery = `
+          INSERT INTO bedrooms (listing_id, name, single_beds, double_beds)
+          VALUES (?, ?, ?, ?)
+        `;
+        const insertBedroom = db.prepare(insertBedroomQuery);
+        bedroom_details.forEach(bedroom => {
+          insertBedroom.run(
+            listingId,
+            bedroom.name,
+            bedroom.single_beds || 0,
+            bedroom.double_beds || 0
+          );
+        });
+      }
+
+      // Infoga bekvämligheter om de finns
+      if (amenities && amenities.length > 0) {
+        const insertAmenityQuery = `
+          INSERT INTO listing_amenities (listing_id, amenity_name)
+          VALUES (?, ?)
+        `;
+        const insertAmenity = db.prepare(insertAmenityQuery);
+        amenities.forEach(amenityName => {
+          insertAmenity.run(listingId, amenityName);
+        });
+      }
+
+      // Bekräfta transaktionen
+      db.prepare('COMMIT').run();
+
+      res.status(201).json({
+        message: 'Listing created successfully',
+        listingId: listingId
+      });
+    } catch (error) {
+      // Återställ transaktionen vid fel
+      db.prepare('ROLLBACK').run();
+      throw error;
+    }
+  } catch (err) {
+    console.error('Error creating listing:', err);
+    res.status(500).json({ message: 'Failed to create listing' });
+  }
+});
+
+// Lägg till sovrum till en listing
+router.post('/bedrooms', (req, res) => {
+  console.log('Full request body:', req.body);
+  const { listing_id, name, single_beds, double_beds } = req.body;
+  console.log('Parsed bedroom data:', { listing_id, name, single_beds, double_beds });
+
+  if (!listing_id || !name) {
+    console.log('Missing required fields:', { listing_id, name });
+    return res.status(400).json({ 
+      message: 'listing_id och name krävs',
+      received: { listing_id, name, single_beds, double_beds }
+    });
+  }
+
+  try {
+    // Kontrollera först om listingen finns
+    const listingExists = db.prepare('SELECT id FROM listings WHERE id = ?').get(listing_id);
+    if (!listingExists) {
+      console.log('Listing not found:', listing_id);
+      return res.status(404).json({ message: 'Listingen hittades inte' });
+    }
+
+    // Infoga i sovrumstabellen med rätt kolumner
+    const insertBedroomQuery = `
+      INSERT INTO bedrooms (listing_id, name, single_beds, double_beds)
+      VALUES (?, ?, ?, ?)
+    `;
+    
+    console.log('Executing query:', insertBedroomQuery);
+    console.log('With values:', { listing_id, name, single_beds: single_beds || 0, double_beds: double_beds || 0 });
+
+    const result = db.prepare(insertBedroomQuery).run(
+      listing_id,
+      name,
+      single_beds || 0,
+      double_beds || 0
+    );
+
+    console.log('Insert result:', result);
+    res.status(201).json({ 
+      message: 'Sovrum tillagt',
+      id: result.lastInsertRowid 
+    });
+  } catch (err) {
+    console.error('Error adding bedroom:', err);
+    console.error('Error details:', err.stack);
+    console.error('Error message:', err.message);
+    console.error('Error code:', err.code);
+    res.status(500).json({ 
+      message: 'Kunde inte lägga till sovrum',
+      error: err.message,
+      code: err.code
+    });
+  }
+});
+
+// Lägg till bekvämlighet till en listing
+router.post('/listing-amenities', (req, res) => {
+  console.log('Full request body:', req.body);
+  const { listing_id, amenity_name } = req.body;
+  console.log('Parsed amenity data:', { listing_id, amenity_name });
+
+  if (!listing_id || !amenity_name) {
+    console.log('Missing required fields:', { listing_id, amenity_name });
+    return res.status(400).json({ 
+      message: 'listing_id och amenity_name krävs',
+      received: { listing_id, amenity_name }
+    });
+  }
+
+  try {
+    // Hämta först amenity_id från amenities-tabellen
+    const getAmenityIdQuery = `
+      SELECT id FROM amenities WHERE name = ?
+    `;
+    console.log('Looking up amenity:', amenity_name);
+    const amenity = db.prepare(getAmenityIdQuery).get(amenity_name);
+
+    if (!amenity) {
+      console.log('Amenity not found:', amenity_name);
+      return res.status(400).json({ 
+        message: 'Bekvämligheten hittades inte',
+        received: { listing_id, amenity_name }
+      });
+    }
+
+    console.log('Found amenity:', amenity);
+
+    // Infoga sedan i listing_amenities
+    const query = `
+      INSERT INTO listing_amenities (listing_id, amenity_id)
+      VALUES (?, ?)
+    `;
+    const result = db.prepare(query).run(listing_id, amenity.id);
+    console.log('Inserted amenity:', { listing_id, amenity_id: amenity.id });
+    res.status(201).json({ id: result.lastInsertRowid });
+  } catch (err) {
+    console.error('Error adding amenity:', err);
+    res.status(500).json({ 
+      message: 'Kunde inte lägga till bekvämlighet till listingen',
+      error: err.message,
+      details: { listing_id, amenity_name }
+    });
   }
 });
 

@@ -97,12 +97,13 @@ CREATE TABLE reviews (
 );
 
 CREATE TABLE bedrooms (
-  id SERIAL PRIMARY KEY,
-  listing_id INTEGER NOT NULL REFERENCES listings(id) ON DELETE CASCADE,
-  name VARCHAR(255), -- t.ex. "Sovrum 1"
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  listing_id INTEGER NOT NULL,
+  name TEXT, -- t.ex. "Sovrum 1"
   single_beds INTEGER DEFAULT 0, -- antal enkelsängar
   double_beds INTEGER DEFAULT 0, -- antal dubbelsängar
-  created_at TIMESTAMP DEFAULT NOW()
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (listing_id) REFERENCES listings(id) ON DELETE CASCADE
 );
 -- users table stores user information. Each user can be either a regular user or a host (is_host flag).
 
@@ -211,7 +212,7 @@ INSERT INTO listings (title, description, address, city, country, price_per_nigh
 <br><br>Sovrummet är rymligt och smakfullt inrett, med en stor dubbelsäng som ger en plats för avkoppling efter en hektisk dag. Fönstren ger dig en fin utsikt över staden, och den moderna designen med minimalistiska detaljer ger en rogivande känsla, vilket gör det till en perfekt plats att hämta energi och vila ut.
 <br><br>Badrummet är också toppmodernt, utrustat med dusch, tvättställ och toalett. Här finns även tvättmaskin och torktumlare, vilket gör att du enkelt kan hålla ordning på tvätten utan att behöva lämna lägenheten.
 <br><br>Läget kan inte bli bättre – här bor du precis där allt händer. Med gångavstånd till både Uppsala slott, Botaniska trädgården och stadens alla kaféer, butiker och restauranger har du verkligen det bästa av både stadens puls och lugnet. Uppsala universitet och kollektivtrafikförbindelser finns också bara ett stenkast bort, vilket gör det här till ett perfekt boende för både studenter, unga professionella och alla som söker bekvämlighet och läge.
-<br><br>Sammanfattningsvis är denna lägenhet en fantastisk möjlighet för den som vill bo i ett modernt och funktionellt hem i centrala Uppsala. Här får du både stil och komfort, och framför allt ett läge som gör det enkelt att ta del av allt vad staden har att erbjuda.', 'Studentgatan 7', 'Uppsala', 'Sverige', 1700.00, 4, 2, 1, 10, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+<br><br>Sammanfattningsvis är denna lägenhet en fantastisk möjlighet för den som vill bo i ett modernt och funktionellt hem i centrala Uppsala. Här får du både stil och komfort, och framför allt ett läge som gör det enkelt att ta del av allt vad staden har att erbjuda.', 'Studentgatan 7', 'Uppsala', 'Sverige', 1700.00, 4, 2, 1, 10, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 ('Traditionell fjällstuga i Åre', 'Välkommen till denna traditionella fjällstuga i Åre, där charm möter komfort och naturen bjuder på en oslagbar upplevelse. Belägen mitt i det svenska fjällandskapet, erbjuder denna stuga ett unikt tillfälle att bo på en plats som kombinerar det bästa av både vinteräventyr och avkoppling i en rustik och hemtrevlig miljö. Denna 80 kvadratmeter stora stuga ger dig alla de bekvämligheter du kan önska, samtidigt som den behåller den genuina fjällkänslan.
 <br><br>När du stiger in i stugan slås du av den varma och inbjudande atmosfären. Med sina träväggar och den öppna spisen som står i centrum, känns det som att vara i en riktig fjälloas. Vardagsrummet är både mysigt och funktionellt, med plats för att samlas med vänner och familj efter en lång dag på backarna eller vandringsstigarna. Här kan du koppla av med en kopp varm choklad, eller kanske tända en brasa och njuta av lugnet.
 <br><br>Köket, som är både rustikt och modernt, ger dig möjlighet att laga både enkla måltider och festliga middagar. Med alla bekvämligheter du behöver, från spis till kylskåp, kommer du känna dig som hemma, även om du bara är på fjällsemester. Det finns gott om arbetsyta för att förbereda dina favoriträtter, och en stor matplats för att njuta av dem tillsammans.
