@@ -11,7 +11,6 @@
     <h3 class="text-lg font-medium py-2">
       {{ listing?.city }}, {{ listing?.country }}
     </h3>
-    <p class="py-2">{{ listing?.description }}</p>
   </div>
   <button
     (click)="openLocationModal()"
@@ -29,7 +28,6 @@
   [section4Title]="'Natur och omgivning'"
 >
   <div section1>
-    <p class="mb-4">{{ listing?.description }}</p>
     <div class="aspect-video bg-gray-200 rounded-xl">
       <img
         [src]="'/images/map.webp'"
