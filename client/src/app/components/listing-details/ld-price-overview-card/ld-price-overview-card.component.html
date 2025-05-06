@@ -9,42 +9,39 @@
       inputType="date"
       placeholderType="today"
       [(ngModel)]="checkInDate"
+      (ngModelChange)="checkInDate = $event"
     ></app-text-input>
     <app-text-input
       label="Utcheckning"
       inputType="date"
       placeholderType="plus7"
       [(ngModel)]="checkOutDate"
+      (ngModelChange)="checkOutDate = $event"
     ></app-text-input>
     <app-select-box-counter-option
       label="Gäster"
       [uniqueId]="'Antal Gäster'"
-      [value]="{
-        adults: adults,
-        children: children,
-        infants: infants,
-        pets: pets
-      }"
+      [(ngModel)]="guestCount"
       (valueChange)="onGuestsChange($event)"
     >
       <app-counter-option
         label="Vuxna"
         description="13 år och äldre"
-        [value]="adults"
+        [value]="guestCount.adults"
       ></app-counter-option>
       <app-counter-option
         label="Barn"
         description="2-12 år"
-        [value]="children"
+        [value]="guestCount.children"
       ></app-counter-option>
       <app-counter-option
         label="Spädbarn"
         description="Under 2 år"
-        [value]="infants"
+        [value]="guestCount.infants"
       ></app-counter-option>
       <app-counter-option
         label="Husdjur"
-        [value]="pets"
+        [value]="guestCount.pets"
         description="Tar du med ett tjänstdjur?"
       ></app-counter-option>
     </app-select-box-counter-option>

@@ -29,5 +29,6 @@
     (click)="inputType === 'date' ? openDatePicker(dateInput) : null"
     (keydown)="inputType === 'date' ? $event.preventDefault() : null"
     [placeholder]="placeholder"
+    (ngModelChange)="onInput($event)"
   />
 </div>

@@ -1,5 +1,14 @@
 import { Injectable } from '@angular/core';
 
+// Interface för gästantal
+export interface GuestCount {
+  adults: number;
+  children: number;
+  infants: number;
+  pets: number;
+}
+
+// Interface för bokningsdata
 export interface Booking {
   user_id: number;
   listing_id: number;
@@ -7,6 +16,7 @@ export interface Booking {
   end_date: string;
   total_price: number;
   guests: number;
+  guest_details: GuestCount;
   status: string;
   listing_name?: string;
 }
@@ -30,10 +40,10 @@ export class BookingCartService {
   // Sätter bokningsdata
   setBookingData(booking: Booking) {
     // Kontrollera om bokning för annonsen redan finns
-    const existingIndex = this.bookings.findIndex(b => b.listing_id === booking.listing_id);
+    const existingIndex = this.bookings.findIndex(booking => booking.listing_id === booking.listing_id);
     
     if (existingIndex >= 0) {
-     // Uppdatera befintlig bokning
+      // Uppdatera befintlig bokning
       this.bookings[existingIndex] = booking;
     } else {
       // Lägg till ny bokning
@@ -49,12 +59,18 @@ export class BookingCartService {
     return this.bookings;
   }
 
-  removeBooking(listingId: number) {
-    this.bookings = this.bookings.filter(b => b.listing_id !== listingId);
-    this.saveToLocalStorage();
+  // Hämtar specifik bokning baserat på listing_id
+  getBookingByListingId(listingId: number): Booking | undefined {
+    return this.bookings.find(booking => booking.listing_id === listingId);
   }
 
   // Tar bort bokningsdata
+  removeBooking(listingId: number) {
+    this.bookings = this.bookings.filter(booking => booking.listing_id !== listingId);
+    this.saveToLocalStorage();
+  }
+
+  // Tar bort alla bokningar
   clearBookings() {
     this.bookings = [];
     this.saveToLocalStorage();

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -20,10 +20,9 @@ import { DatabaseService } from '../../../services/database.service';
     ButtonComponent,
   ],
   templateUrl: './ld-price-overview-card.component.html',
-  styleUrl: './ld-price-overview-card.component.css',
+  styleUrls: ['./ld-price-overview-card.component.css'],
 })
 export class LdPriceOverviewCardComponent implements OnInit {
-  // Hämtar boendeinformation från databasen
   @Input() set listingId(value: number | null) {
     this._listingId = value || 0;
   }
@@ -41,23 +40,30 @@ export class LdPriceOverviewCardComponent implements OnInit {
   private _pricePerNight: number = 1400;
 
   // Definiera värdena
-  nights: number = 1; // Antal nätter
+  checkInDate: string = '';
+  checkOutDate: string = '';
   cleaningFee: number = 1200; // Städavgift
   airbnbServiceFee: number = 1944; // Airbnb serviceavgift
   
   // Värden för gästerna
-  adults: number = 1;
-  children: number = 0;
-  infants: number = 0;
-  pets: number = 0;
+  private _guestCount = {
+    adults: 1,
+    children: 0,
+    infants: 0,
+    pets: 0
+  };
 
-  // Datumvärden
-  checkInDate: string = '';
-  checkOutDate: string = '';
+  get guestCount() {
+    return this._guestCount;
+  }
+
+  set guestCount(value: { adults: number; children: number; infants: number; pets: number }) {
+    this._guestCount = value;
+  }
 
   // Beräkna totaler
   get totalGuests(): number {
-    return this.adults + this.children + this.infants;
+    return this._guestCount.adults + this._guestCount.children + this._guestCount.infants;
   }
 
   get totalPriceForNights(): number {
@@ -70,13 +76,6 @@ export class LdPriceOverviewCardComponent implements OnInit {
 
   // Validera datumformat och logik
   private validateDates(): boolean {
-    console.log('Validating dates:', {
-      checkInDate: this.checkInDate,
-      checkOutDate: this.checkOutDate,
-      checkInType: typeof this.checkInDate,
-      checkOutType: typeof this.checkOutDate
-    });
-
     if (!this.checkInDate || !this.checkOutDate) {
       console.error('Vänligen välj in- och utcheckningsdatum');
       return false;
@@ -103,12 +102,17 @@ export class LdPriceOverviewCardComponent implements OnInit {
       return false;
     }
 
-    // Beräkna antal nätter
-    const diffTime = Math.abs(checkOut.getTime() - checkIn.getTime());
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    this.nights = diffDays;
-
     return true;
+  }
+
+  get nights(): number {
+    if (this.checkInDate && this.checkOutDate) {
+      const inDate = new Date(this.checkInDate);
+      const outDate = new Date(this.checkOutDate);
+      const diff = outDate.getTime() - inDate.getTime();
+      return Math.max(1, Math.round(diff / (1000 * 60 * 60 * 24)));
+    }
+    return 1;
   }
 
   constructor(
@@ -117,16 +121,18 @@ export class LdPriceOverviewCardComponent implements OnInit {
     private databaseService: DatabaseService
   ) {}
 
-  ngOnInit(): void {}
-
-  onGuestsChange(guests: { adults: number; children: number; infants: number; pets: number }): void {
-    this.adults = guests.adults;
-    this.children = guests.children;
-    this.infants = guests.infants;
-    this.pets = guests.pets;
+  ngOnInit(): void {
+    const today = new Date();
+    this.checkInDate = today.toISOString().slice(0, 10);
+    const plus7 = new Date();
+    plus7.setDate(today.getDate() + 7);
+    this.checkOutDate = plus7.toISOString().slice(0, 10);
   }
 
-  // Funktion för att navigera till bokningssidan
+  onGuestsChange(guests: { adults: number; children: number; infants: number; pets: number }): void {
+    this._guestCount = guests;
+  }
+
   proceedToBooking(): void {
     if (!this.listingId) {
       console.error('Inget boende-ID kunde hämtas');
@@ -137,10 +143,8 @@ export class LdPriceOverviewCardComponent implements OnInit {
       return;
     }
 
-    // Hämta information om boendet från databasen
     this.databaseService.getListingById(this.listingId).subscribe({
       next: (listing) => {
-        // Sparar initiala bokningsdata
         const bookingData = {
           user_id: 1, 
           listing_id: this.listingId,
@@ -148,13 +152,12 @@ export class LdPriceOverviewCardComponent implements OnInit {
           end_date: this.checkOutDate,
           total_price: this.totalAmount,
           guests: this.totalGuests,
+          guest_details: this._guestCount,
           status: 'Väntar på bekräftelse',
           listing_name: listing.title
         };
         
         this.bookingCartService.setBookingData(bookingData);
-
-        // Navigera till varukorgen
         this.router.navigate(['/booking-cart']);
       },
       error: (error) => {

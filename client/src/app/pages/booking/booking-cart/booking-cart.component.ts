@@ -8,7 +8,7 @@ import { ButtonComponent } from '../../../components/common/button/button.compon
 import { ModalLgComponent } from '../../../components/common/modal-lg/modal-lg.component';
 import { CounterOptionComponent } from '../../../components/common/form-controls/select-box-counter-option/counter-option/counter-option.component';
 import { TextInputComponent } from '../../../components/common/form-controls/text-input/text-input.component';
-import { BookingCartService } from '../../../services/booking-cart.service';
+import { BookingCartService, GuestCount } from '../../../services/booking-cart.service';
 import { DatabaseService } from '../../../services/database.service';
 
 interface Booking {
@@ -18,6 +18,7 @@ interface Booking {
   end_date: string;
   total_price: number;
   guests: number;
+  guest_details: GuestCount;
   status: string;
   listing_name?: string;
 }
@@ -56,8 +57,51 @@ export class BookingCartComponent implements OnInit {
   infants: number = 0;
   pets: number = 0;
 
-  openGuestModal() {
+  // Aktuell bokning som redigeras
+  currentBooking: Booking | null = null;
+  // Temporära värden för att spåra ändringar
+  private tempGuestValues: GuestCount | null = null;
+
+  openGuestModal(booking: Booking) {
+    this.currentBooking = booking;
+    // Sätt initiala värden från den aktuella bokningen
+    this.adults = booking.guest_details.adults;
+    this.children = booking.guest_details.children;
+    this.infants = booking.guest_details.infants;
+    this.pets = booking.guest_details.pets;
+    // Spara de ursprungliga värdena
+    this.tempGuestValues = { ...booking.guest_details };
     this.guestModal.open();
+  }
+
+  // Hantera när modalen stängs
+  onGuestModalClose() {
+    if (this.currentBooking) {
+      // Kontrollera om värdena har ändrats
+      const hasChanges = 
+        this.adults !== this.tempGuestValues?.adults ||
+        this.children !== this.tempGuestValues?.children ||
+        this.infants !== this.tempGuestValues?.infants ||
+        this.pets !== this.tempGuestValues?.pets;
+
+      if (hasChanges) {
+        // Uppdatera gästinformationen i den aktuella bokningen
+        this.currentBooking.guest_details = {
+          adults: this.adults,
+          children: this.children,
+          infants: this.infants,
+          pets: this.pets
+        };
+        // Uppdatera totalt antal gäster
+        this.currentBooking.guests = this.adults + this.children + this.infants;
+        // Spara den uppdaterade bokningen
+        this.bookingCartService.setBookingData(this.currentBooking);
+        // Uppdatera bokningslistan
+        this.loadBookings();
+      }
+    }
+    // Återställ temporära värden
+    this.tempGuestValues = null;
   }
 
   openDateModal() {
@@ -74,11 +118,32 @@ export class BookingCartComponent implements OnInit {
   }
 
   saveGuests() {
-    // Här kan du lägga till logik för att spara gäster
+    if (this.currentBooking) {
+      // Uppdatera gästinformationen i den aktuella bokningen
+      this.currentBooking.guest_details = {
+        adults: this.adults,
+        children: this.children,
+        infants: this.infants,
+        pets: this.pets
+      };
+      // Uppdatera totalt antal gäster
+      this.currentBooking.guests = this.adults + this.children + this.infants;
+      // Spara den uppdaterade bokningen
+      this.bookingCartService.setBookingData(this.currentBooking);
+      // Uppdatera bokningslistan
+      this.loadBookings();
+    }
     this.guestModal.close();
   }
 
   cancelGuests() {
+    // Återställ till ursprungliga värden
+    if (this.tempGuestValues) {
+      this.adults = this.tempGuestValues.adults;
+      this.children = this.tempGuestValues.children;
+      this.infants = this.tempGuestValues.infants;
+      this.pets = this.tempGuestValues.pets;
+    }
     this.guestModal.close();
   }
 
@@ -112,6 +177,12 @@ export class BookingCartComponent implements OnInit {
               end_date: '', // Kommer att ställas in av användaren
               total_price: listing.price_per_night,
               guests: 1,
+              guest_details: {
+                adults: 1,
+                children: 0,
+                infants: 0,
+                pets: 0
+              },
               status: 'Väntar på bekräftelse',
               listing_name: listing.title,
             };
@@ -179,9 +250,29 @@ export class BookingCartComponent implements OnInit {
     )}`;
   }
 
-  // Formaterar antalet gäster
-  getGuestText(guests: number): string {
-    return guests === 1 ? '1 gäst' : `${guests} gäster`;
+  // Formaterar gästinformation
+  getGuestText(booking: Booking): string {
+    const details = booking.guest_details;
+    const total = details.adults + details.children + details.infants;
+    let text = total === 1 ? '1 gäst' : `${total} gäster`;
+    
+    // Lägg till detaljer om barn och spädbarn om de finns
+    const detailsText = [];
+    if (details.children > 0) {
+      detailsText.push(`${details.children} barn`);
+    }
+    if (details.infants > 0) {
+      detailsText.push(`${details.infants} spädbarn`);
+    }
+    if (details.pets > 0) {
+      detailsText.push(`${details.pets} husdjur`);
+    }
+    
+    if (detailsText.length > 0) {
+      text += ` (${detailsText.join(', ')})`;
+    }
+    
+    return text;
   }
 
   // Tar bort bokningen från varukorgen

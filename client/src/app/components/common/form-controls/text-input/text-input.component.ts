@@ -81,6 +81,7 @@ export class TextInputComponent implements ControlValueAccessor, OnInit {
   onInput(value: string) {
     this.value = value;
     this.onChange(value);
+    this.onTouched();
   }
 
   get inputClasses(): string {

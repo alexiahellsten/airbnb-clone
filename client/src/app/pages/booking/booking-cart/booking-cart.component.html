@@ -19,9 +19,9 @@
         <div class="listing-details-section">
           <div>
             <h3>Gäster</h3>
-            <div>1 gäst</div>
+            <div>{{ getGuestText(booking) }}</div>
           </div>
-          <app-link linkType="secondary" (click)="openGuestModal()"
+          <app-link linkType="secondary" (click)="openGuestModal(booking)"
             >Redigera</app-link
           >
         </div>
@@ -61,7 +61,11 @@
   </div>
 
   <!-- Modal för gästantal -->
-  <app-modal-lg #guestModal heading="Redigera antal gäster">
+  <app-modal-lg
+    #guestModal
+    heading="Redigera antal gäster"
+    (modalClose)="onGuestModalClose()"
+  >
     <app-counter-option
       label="Vuxna"
       description="Från 13 år och uppåt"
