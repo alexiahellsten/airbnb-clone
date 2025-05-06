@@ -9,18 +9,24 @@
       [label]="'Gatuadress'"
       [inputType]="'text'"
       [fullWidth]="true"
+      [(ngModel)]="address"
+      (ngModelChange)="onAddressChange($event)"
     ></app-text-input>
 
     <app-text-input
       [label]="'Stad'"
       [inputType]="'text'"
       [fullWidth]="true"
+      [(ngModel)]="city"
+      (ngModelChange)="onCityChange($event)"
     ></app-text-input>
 
     <app-text-input
       [label]="'Land'"
       [inputType]="'text'"
       [fullWidth]="true"
+      [(ngModel)]="country"
+      (ngModelChange)="onCountryChange($event)"
     ></app-text-input>
   </div>
 
