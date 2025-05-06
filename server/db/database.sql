@@ -298,86 +298,85 @@ INSERT INTO listing_categories (listing_id, category_id) VALUES
 
 -- listing_images
 INSERT INTO listing_images (listing_id, image_url) VALUES
-(1, 'https://example.com/images/listing1_1.jpg'),   -- Mysig studio i Göteborg
-(1, 'https://example.com/images/listing1_2.jpg'),   -- Mysig studio i Göteborg
-(1, 'https://example.com/images/listing1_3.jpg'),   -- Mysig studio i Göteborg
-(1, 'https://example.com/images/listing1_4.jpg'),   -- Mysig studio i Göteborg
-(1, 'https://example.com/images/listing1_5.jpg'),   -- Mysig studio i Göteborg
-(2, 'https://example.com/images/listing2_1.jpg'),   -- Lyxig 2-rumslägenhet
-(2, 'https://example.com/images/listing2_2.jpg'),   -- Lyxig 2-rumslägenhet
-(2, 'https://example.com/images/listing2_3.jpg'),   -- Lyxig 2-rumslägenhet
-(2, 'https://example.com/images/listing2_4.jpg'),   -- Lyxig 2-rumslägenhet
-(2, 'https://example.com/images/listing2_5.jpg'),   -- Lyxig 2-rumslägenhet
-(3, 'https://example.com/images/listing3_1.jpg'),   -- Charmig stuga
-(3, 'https://example.com/images/listing3_2.jpg'),   -- Charmig stuga
-(3, 'https://example.com/images/listing3_3.jpg'),   -- Charmig stuga
-(3, 'https://example.com/images/listing3_4.jpg'),   -- Charmig stuga
-(3, 'https://example.com/images/listing3_5.jpg'),   -- Charmig stuga
-(4, 'https://example.com/images/listing4_1.jpg'),   -- Modern loft
-(4, 'https://example.com/images/listing4_2.jpg'),   -- Modern loft
-(4, 'https://example.com/images/listing4_3.jpg'),   -- Modern loft
-(4, 'https://example.com/images/listing4_4.jpg'),   -- Modern loft
-(4, 'https://example.com/images/listing4_5.jpg'),   -- Modern loft
-(5, 'https://example.com/images/listing5_1.jpg'),   -- Stilig studio
-(5, 'https://example.com/images/listing5_2.jpg'),   -- Stilig studio
-(5, 'https://example.com/images/listing5_3.jpg'),   -- Stilig studio
-(5, 'https://example.com/images/listing5_4.jpg'),   -- Stilig studio
-(5, 'https://example.com/images/listing5_5.jpg'),   -- Stilig studio
-(6, 'https://example.com/images/listing6_1.jpg'),   -- Trädgårdslägenhet
-(6, 'https://example.com/images/listing6_2.jpg'),   -- Trädgårdslägenhet
-(6, 'https://example.com/images/listing6_3.jpg'),   -- Trädgårdslägenhet
-(6, 'https://example.com/images/listing6_4.jpg'),   -- Trädgårdslägenhet
-(6, 'https://example.com/images/listing6_5.jpg'),   -- Trädgårdslägenhet
-(7, 'https://example.com/images/listing7_1.jpg'),   -- Rustik stuga
-(7, 'https://example.com/images/listing7_2.jpg'),   -- Rustik stuga
-(7, 'https://example.com/images/listing7_3.jpg'),   -- Rustik stuga
-(7, 'https://example.com/images/listing7_4.jpg'),   -- Rustik stuga
-(7, 'https://example.com/images/listing7_5.jpg'),   -- Rustik stuga
-(8, 'https://example.com/images/listing8_1.jpg'),   -- Takvåning
-(8, 'https://example.com/images/listing8_2.jpg'),   -- Takvåning
-(8, 'https://example.com/images/listing8_3.jpg'),   -- Takvåning
-(8, 'https://example.com/images/listing8_4.jpg'),   -- Takvåning
-(8, 'https://example.com/images/listing8_5.jpg'),   -- Takvåning
-(9, 'https://example.com/images/listing9_1.jpg'),   -- Lägenhet nära stranden
-(9, 'https://example.com/images/listing9_2.jpg'),   -- Lägenhet nära stranden
-(9, 'https://example.com/images/listing9_3.jpg'),   -- Lägenhet nära stranden
-(9, 'https://example.com/images/listing9_4.jpg'),   -- Lägenhet nära stranden
-(9, 'https://example.com/images/listing9_5.jpg'),   -- Lägenhet nära stranden
-(10, 'https://example.com/images/listing10_1.jpg'), -- Förortshus
-(10, 'https://example.com/images/listing10_2.jpg'), -- Förortshus
-(10, 'https://example.com/images/listing10_3.jpg'), -- Förortshus
-(10, 'https://example.com/images/listing10_4.jpg'), -- Förortshus
-(10, 'https://example.com/images/listing10_5.jpg'), -- Förortshus
-(11, 'https://example.com/images/listing11_1.jpg'), -- Lägenhet i historiskt område
-(11, 'https://example.com/images/listing11_2.jpg'), -- Lägenhet i historiskt område
-(11, 'https://example.com/images/listing11_3.jpg'), -- Lägenhet i historiskt område
-(11, 'https://example.com/images/listing11_4.jpg'), -- Lägenhet i historiskt område
-(11, 'https://example.com/images/listing11_5.jpg'), -- Lägenhet i historiskt område
-(12, 'https://example.com/images/listing12_1.jpg'), -- 1-rumslägenhet
-(12, 'https://example.com/images/listing12_2.jpg'), -- 1-rumslägenhet
-(12, 'https://example.com/images/listing12_3.jpg'), -- 1-rumslägenhet
-(12, 'https://example.com/images/listing12_4.jpg'), -- 1-rumslägenhet
-(12, 'https://example.com/images/listing12_5.jpg'), -- 1-rumslägenhet
-(13, 'https://example.com/images/listing13_1.jpg'), -- Familjevilla med pool
-(13, 'https://example.com/images/listing13_2.jpg'), -- Familjevilla med pool
-(13, 'https://example.com/images/listing13_3.jpg'), -- Familjevilla med pool
-(13, 'https://example.com/images/listing13_4.jpg'), -- Familjevilla med pool
-(13, 'https://example.com/images/listing13_5.jpg'), -- Familjevilla med pool
-(14, 'https://example.com/images/listing14_1.jpg'), -- Loft i trendigt område
-(14, 'https://example.com/images/listing14_2.jpg'), -- Loft i trendigt område
-(14, 'https://example.com/images/listing14_3.jpg'), -- Loft i trendigt område
-(14, 'https://example.com/images/listing14_4.jpg'), -- Loft i trendigt område
-(14, 'https://example.com/images/listing14_5.jpg'), -- Loft i trendigt område
-(15, 'https://example.com/images/listing15_1.jpg'), -- Modern lägenhet i Uppsala
-(15, 'https://example.com/images/listing15_2.jpg'), -- Modern lägenhet i Uppsala
-(15, 'https://example.com/images/listing15_3.jpg'), -- Modern lägenhet i Uppsala
-(15, 'https://example.com/images/listing15_4.jpg'), -- Modern lägenhet i Uppsala
-(15, 'https://example.com/images/listing15_5.jpg'), -- Modern lägenhet i Uppsala
-(16, 'https://example.com/images/listing16_1.jpg'), -- Fjällstuga i Åre
-(16, 'https://example.com/images/listing16_2.jpg'), -- Fjällstuga i Åre
-(16, 'https://example.com/images/listing16_3.jpg'), -- Fjällstuga i Åre
-(16, 'https://example.com/images/listing16_4.jpg'), -- Fjällstuga i Åre
-(16, 'https://example.com/images/listing16_5.jpg'); -- Fjällstuga i Åre
+(1, 'https://a0.muscache.com/im/pictures/miso/Hosting-1089862741359752524/original/7b4a94a5-9916-4f8a-a088-81ebb4d8c528.jpeg?im_w=1200'),
+(1, 'https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTA4OTg2Mjc0MTM1OTc1MjUyNA%3D%3D/original/01330d1b-fdb7-4c54-a97c-f4f265e2b8a8.jpeg?im_w=720'),
+(1, 'https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTA4OTg2Mjc0MTM1OTc1MjUyNA%3D%3D/original/c7e07a43-c97c-421f-90eb-0fb2f56e7df0.jpeg?im_w=720'),
+(1, 'https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTA4OTg2Mjc0MTM1OTc1MjUyNA%3D%3D/original/e66085fc-dfab-4490-974a-093c46ac50ba.jpeg?im_w=1200'),
+(1, 'https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTA4OTg2Mjc0MTM1OTc1MjUyNA%3D%3D/original/841800d8-e36b-46f1-9513-70731114eb54.jpeg?im_w=720'),
+(2, 'https://a0.muscache.com/im/pictures/miso/Hosting-1158556028025061561/original/b19a046c-0ebc-448b-9097-1c6ae938ff81.jpeg?im_w=1200'),
+(2, 'https://a0.muscache.com/im/pictures/miso/Hosting-1158556028025061561/original/57ed1bf3-4272-42a6-9d0b-0533a7dff9f9.jpeg?im_w=720'),
+(2, 'https://a0.muscache.com/im/pictures/miso/Hosting-1158556028025061561/original/864d5b92-d461-4410-93cc-aea1f5a0ba61.jpeg?im_w=720'),
+(2, 'https://a0.muscache.com/im/pictures/miso/Hosting-1158556028025061561/original/f27ab671-058e-4d74-9b23-dfd75c02e9f1.jpeg?im_w=1200'),
+(2, 'https://a0.muscache.com/im/pictures/miso/Hosting-1158556028025061561/original/1d64d087-39ea-4adf-814f-33b342c5924d.jpeg?im_w=1200'),
+(3, 'https://a0.muscache.com/im/pictures/hosting/Hosting-1219623557531328954/original/5f03c59c-5a01-4e3d-bdb0-2579d73d5e75.jpeg?im_w=720'),
+(3, 'https://a0.muscache.com/im/pictures/hosting/Hosting-1219623557531328954/original/370673e1-b770-464a-a03c-c0a58afd6ce5.jpeg?im_w=720'),
+(3, 'https://a0.muscache.com/im/pictures/hosting/Hosting-1219623557531328954/original/b0987a72-bb03-498b-8c9c-9da8cf6a6aef.jpeg?im_w=1200'),
+(3, 'https://a0.muscache.com/im/pictures/hosting/Hosting-1219623557531328954/original/d22ac386-8bda-4518-8ba2-d4cddd851af9.jpeg?im_w=720'),
+(3, 'https://a0.muscache.com/im/pictures/hosting/Hosting-1219623557531328954/original/e5101e37-af63-4b66-9e78-babf004cc201.jpeg?im_w=720'),
+(4, 'https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTMxMDI1MDIyNzI3MjU5Nzk3NQ%3D%3D/original/bc9daf05-079b-4498-af97-b57ddf64b287.jpeg?im_w=1200'),
+(4, 'https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTMxMDI1MDIyNzI3MjU5Nzk3NQ%3D%3D/original/1668aafa-56b7-45ba-ad10-0a6ec8e8886d.jpeg?im_w=720'),
+(4, 'https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTMxMDI1MDIyNzI3MjU5Nzk3NQ%3D%3D/original/10f8fb69-8336-40a0-8609-baaa5ec09911.jpeg?im_w=1200'),
+(4, 'https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTMxMDI1MDIyNzI3MjU5Nzk3NQ%3D%3D/original/f4efc511-3c27-43f8-811a-430d439855d3.jpeg?im_w=1200'),
+(5, 'https://a0.muscache.com/im/pictures/miso/Hosting-720700873019787215/original/f7378a42-10b2-4b74-b634-4c4e376817bc.jpeg?im_w=1200'),
+(5, 'https://a0.muscache.com/im/pictures/miso/Hosting-720700873019787215/original/c8d2cfd4-66bf-4010-b316-fda0cda3781c.jpeg?im_w=720'),
+(5, 'https://a0.muscache.com/im/pictures/hosting/Hosting-720700873019787215/original/c33f8f5b-e7b0-4ff0-bdf7-082cbedb3987.jpeg?im_w=1200'),
+(5, 'https://a0.muscache.com/im/pictures/miso/Hosting-720700873019787215/original/9eb4caaa-4495-4605-8b5e-30b59bc84390.jpeg?im_w=720'),
+(5, 'https://a0.muscache.com/im/pictures/miso/Hosting-720700873019787215/original/0749bbf9-cade-463d-953f-bb865b27b988.jpeg?im_w=720'),
+(6, 'https://a0.muscache.com/im/ml/photo_enhancement/pictures/400a0acd-e860-455d-9508-c7cf89e8dab5.jpg?im_w=1200'),
+(6, 'https://a0.muscache.com/im/pictures/9b353852-3f7c-4cf5-9df3-95e07816c27a.jpg?im_w=1200'),
+(6, 'https://a0.muscache.com/im/ml/photo_enhancement/pictures/0bb8f0fa-80c6-467c-8cb5-ee1ae1d10202.jpg?im_w=1200'),
+(6, 'https://a0.muscache.com/im/pictures/cb225f41-cce1-4b23-b747-39d15cbf4895.jpg?im_w=1200'),
+(6, 'https://a0.muscache.com/im/ml/photo_enhancement/pictures/6e0b854f-be6d-42c1-8cc6-63fe88631606.jpg?im_w=720'),
+(7, 'https://a0.muscache.com/im/pictures/miso/Hosting-1152347777782537222/original/6bc4a9d8-5b09-4c26-a739-84d13b0d6c9c.jpeg?im_w=1200'),
+(7, 'https://a0.muscache.com/im/pictures/miso/Hosting-1152347777782537222/original/06f39fbb-bc97-43d5-8777-d4b5728815f2.jpeg?im_w=1200'),
+(7, 'https://a0.muscache.com/im/pictures/miso/Hosting-1152347777782537222/original/a0b1b1a6-f5bc-4647-bf90-836620319f1f.jpeg?im_w=1200'),
+(7, 'https://a0.muscache.com/im/pictures/miso/Hosting-1152347777782537222/original/f85e4533-8fbc-4e72-96ab-f402a2a8ca48.jpeg?im_w=1200'),
+(7, 'https://a0.muscache.com/im/pictures/miso/Hosting-1152347777782537222/original/0a78e2e4-b6d4-44cc-a5db-6288f0d5c2fe.jpeg?im_w=1200');
+(8, 'https://a0.muscache.com/im/pictures/miso/Hosting-1354928306901400480/original/650cc171-37d4-41b0-9da7-7716e4d893b6.jpeg?im_w=1200'),
+(8, 'https://a0.muscache.com/im/pictures/miso/Hosting-1354928306901400480/original/739723f6-a84b-4e98-b19f-91cbbb29fde3.jpeg?im_w=720'),
+(8, 'https://a0.muscache.com/im/pictures/miso/Hosting-1354928306901400480/original/09feb52b-8845-403e-853a-528424d127d9.jpeg?im_w=720'),
+(8, 'https://a0.muscache.com/im/pictures/miso/Hosting-1354928306901400480/original/a92e4759-740c-493f-b921-cb2714bf2f8f.jpeg?im_w=1200'),
+(8, 'https://a0.muscache.com/im/pictures/miso/Hosting-1354928306901400480/original/160b6334-7c33-42cd-b93e-503f3baa34bb.jpeg?im_w=1200'),
+(9, 'https://a0.muscache.com/im/pictures/hosting/Hosting-53457905/original/27ef10d2-cc66-46cd-9031-58b8edd50953.jpeg?im_w=720'),
+(9, 'https://a0.muscache.com/im/pictures/1b8defe5-8725-4ca5-88ae-6a2f2326c05f.jpg?im_w=720'),
+(9, 'https://a0.muscache.com/im/pictures/b386f0ce-b07b-4b18-94c9-2add3ab186db.jpg?im_w=720'),
+(9, 'https://a0.muscache.com/im/pictures/hosting/Hosting-53457905/original/2177bdc6-a716-4292-a970-bb89468c05cf.jpeg?im_w=720'),
+(9, 'https://a0.muscache.com/im/pictures/hosting/Hosting-53457905/original/1d83a00b-8e78-4c2b-afb4-4337e09115e1.jpeg?im_w=720'),
+(10, 'https://a0.muscache.com/im/pictures/miso/Hosting-604080496069004430/original/00b82c84-aa13-490b-b5e9-0fe9a24fab28.jpeg?im_w=1200'),
+(10, 'https://a0.muscache.com/im/pictures/miso/Hosting-604080496069004430/original/8e1a67e1-9027-4b69-930d-a2a3b46a4020.jpeg?im_w=720'),
+(10, 'https://a0.muscache.com/im/pictures/miso/Hosting-604080496069004430/original/6c7ecfef-faf1-49e3-99ab-622750b169f9.jpeg?im_w=1200'),
+(10, 'https://a0.muscache.com/im/pictures/miso/Hosting-604080496069004430/original/c8f2235a-65c8-47b0-8e7f-3883cd0c871a.jpeg?im_w=720'),
+(10, 'https://a0.muscache.com/im/pictures/miso/Hosting-604080496069004430/original/dcd1998f-d525-4d02-98ec-5564899826f7.jpeg?im_w=1200'),
+(11, 'https://a0.muscache.com/im/pictures/hosting/Hosting-1144823261738499645/original/cb9a67a1-a1ca-4cc0-aa08-2375e9afdbf4.jpeg?im_w=720'),
+(11, 'https://a0.muscache.com/im/pictures/hosting/Hosting-1144823261738499645/original/9377767b-c9a4-4dde-8444-08a814c67bb2.jpeg?im_w=720'),
+(11, 'https://a0.muscache.com/im/pictures/hosting/Hosting-1144823261738499645/original/f5665db3-88c1-479e-bc7c-8d255aa0e3ca.jpeg?im_w=720'),
+(11, 'https://a0.muscache.com/im/pictures/hosting/Hosting-1144823261738499645/original/d0852fdb-eaa2-42c9-b4c5-8b7fe02cba1e.jpeg?im_w=720'),
+(11, 'https://a0.muscache.com/im/pictures/hosting/Hosting-1144823261738499645/original/ff389d39-72d2-40c4-b058-9003163de7e8.jpeg?im_w=1200'),
+(12, 'https://a0.muscache.com/im/pictures/hosting/Hosting-1251660308589517767/original/dd985b37-092b-4d7a-83cd-f42b9762416b.jpeg?im_w=1200'),
+(12, 'https://a0.muscache.com/im/pictures/hosting/Hosting-1251660308589517767/original/1666b4f5-b6a4-4e6b-ac4e-f36fb95515d7.jpeg?im_w=1200'),
+(12, 'https://a0.muscache.com/im/pictures/hosting/Hosting-1251660308589517767/original/dbdda293-0dad-46ab-8f64-7fde1d402dc4.jpeg?im_w=720'),
+(12, 'https://a0.muscache.com/im/pictures/hosting/Hosting-1251660308589517767/original/77c92928-9584-4745-87cf-9cb15c9cb5fe.jpeg?im_w=1200'),
+(12, 'https://a0.muscache.com/im/pictures/hosting/Hosting-1251660308589517767/original/02b4d9e2-077f-4c00-8a34-36f2014db19d.jpeg?im_w=1200'),
+(13, 'https://a0.muscache.com/im/pictures/d2a0545d-9c50-4d99-932e-8b549be0c9ef.jpg?im_w=1200'),
+(13, 'https://a0.muscache.com/im/pictures/eb77c4b0-eabb-4274-8acc-78d16958ddf8.jpg?im_w=720'),
+(13, 'https://a0.muscache.com/im/pictures/b37ddae8-a3b4-4261-8a07-adc753cf4574.jpg?im_w=720'),
+(13, 'https://a0.muscache.com/im/pictures/d707740c-acda-4e94-a5f5-a4f31e1f85cd.jpg?im_w=1200'),
+(13, 'https://a0.muscache.com/im/pictures/miso/Hosting-50110042/original/dc925e50-5465-42bc-b572-520e8d83e5f9.jpeg?im_w=720'),
+(14, 'https://a0.muscache.com/im/ml/photo_enhancement/pictures/miso/Hosting-962964073239766335/original/c089acc4-fc58-406e-bdaf-b3d2cfad4a64.jpeg?im_w=720'),
+(14, 'https://a0.muscache.com/im/pictures/miso/Hosting-962964073239766335/original/9197e378-487a-4e0b-bd72-8fe3106f22fc.jpeg?im_w=720'),
+(14, 'https://a0.muscache.com/im/ml/photo_enhancement/pictures/miso/Hosting-962964073239766335/original/e373c14a-4c21-407f-ae3e-83ff790a1e29.jpeg?im_w=720'),
+(14, 'https://a0.muscache.com/im/pictures/miso/Hosting-962964073239766335/original/bdfe572b-faaa-42ea-8da7-7ef824486c83.jpeg?im_w=1200'),
+(14, 'https://a0.muscache.com/im/pictures/miso/Hosting-962964073239766335/original/8e0cf112-7e63-4dbb-880f-daace44ebd4e.jpeg?im_w=720'),
+(15, 'https://a0.muscache.com/im/pictures/hosting/Hosting-1210876186167670325/original/e3f94659-ea27-4aea-95fc-f42dcd95f6d6.jpeg?im_w=1200'),
+(15, 'https://a0.muscache.com/im/pictures/hosting/Hosting-1210876186167670325/original/aefedfe2-246e-417a-a2f1-795c0040dfe6.jpeg?im_w=1200'),
+(15, 'https://a0.muscache.com/im/pictures/hosting/Hosting-1210876186167670325/original/4a1784c2-7bc7-496b-a406-1589eb0f98b9.jpeg?im_w=1200'),
+(15, 'https://a0.muscache.com/im/pictures/hosting/Hosting-1210876186167670325/original/5e1a9962-f521-4bc3-bbaf-559ce0d059ea.jpeg?im_w=720'),
+(15, 'https://a0.muscache.com/im/pictures/hosting/Hosting-1210876186167670325/original/7461e99d-a505-49f3-afc7-e4687c927b32.jpeg?im_w=720'),
+(16, 'https://a0.muscache.com/im/pictures/hosting/Hosting-1350854302466392780/original/7eb439fc-e280-4ef4-8fb5-78d91f7276c4.jpeg?im_w=1200'),
+(16, 'https://a0.muscache.com/im/pictures/hosting/Hosting-1350854302466392780/original/6e0d3010-137a-42d0-884a-0222513776d4.jpeg?im_w=1200'),
+(16, 'https://a0.muscache.com/im/pictures/hosting/Hosting-1350854302466392780/original/eb65412f-4cab-4322-8d4c-1a849d69e524.jpeg?im_w=1200'),
+(16, 'https://a0.muscache.com/im/pictures/hosting/Hosting-1350854302466392780/original/ec2e982e-8e4e-4281-bb1c-74b8b44806d3.jpeg?im_w=720'),
+(16, 'https://a0.muscache.com/im/pictures/hosting/Hosting-1350854302466392780/original/90b7fd29-80c6-4295-8cac-6dd1d9d9c2db.jpeg?im_w=1200');
 
 -- bookings
 INSERT INTO bookings (user_id, listing_id, start_date, end_date, total_price, guests, status, created_at) VALUES
