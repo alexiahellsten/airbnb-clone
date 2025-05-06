@@ -336,28 +336,37 @@ export class CheckOutComponent {
   // Funktioner för att skapa en bokning
   async onSubmit() {
     try {
-      const bookingData = this.bookingCartService.getBookingData()[0]; // Get first booking
-      if (!bookingData) {
+      const bookingData = this.bookingCartService.getBookingData();
+      if (!bookingData.length) {
         console.error('Inga bokningsdata hittades');
         return;
       }
 
-      // Skapa bokning
-      const booking = await this.bookingService.createBooking({
-        user_id: bookingData.user_id,
-        listing_id: bookingData.listing_id,
-        start_date: bookingData.start_date,
-        end_date: bookingData.end_date,
-        total_price: bookingData.total_price,
-        guests: bookingData.guests,
-        status: 'Väntar på bekräftelse' as const
-      });
+      // Skapar alla bokningar
+      const createdBookings = await Promise.all(
+        bookingData.map(booking => 
+          this.bookingService.createBooking({
+            user_id: booking.user_id,
+            listing_id: booking.listing_id,
+            start_date: booking.start_date,
+            end_date: booking.end_date,
+            total_price: booking.total_price,
+            guests: booking.guests,
+            status: 'Väntar på bekräftelse' as const
+          })
+        )
+      );
 
-      // Rensa kartan
+      // Hämtar alla boknings-ID:n
+      const bookingIds = createdBookings.map(booking => booking.id);
+
+      // Rensa varukorgen
       this.bookingCartService.clearBookings();
 
-      // Navigera till booking-confirmation
-      this.router.navigate(['/booking-confirmation', booking.id]);
+      // Navigera till booking-confirmation med alla boknings-ID:n
+      this.router.navigate(['/booking-confirmation'], { 
+        queryParams: { ids: bookingIds.join(',') }
+      });
     } catch (error) {
       console.error('Fel vid skapande av bokning:', error);
     }

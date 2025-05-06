@@ -59,7 +59,7 @@ export const routes: Routes = [
       ),
   },
   {
-    path: 'booking-confirmation/:id',
+    path: 'booking-confirmation',
     loadComponent: () =>
       import('./pages/booking/booking-confirmation/booking-confirmation.component').then(
         (m) => m.BookingConfirmationComponent
