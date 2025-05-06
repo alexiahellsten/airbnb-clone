@@ -207,26 +207,31 @@ export class BookingCartComponent implements OnInit {
         // Hämtar boendet från databasen
         this.databaseService.getListingById(listingId).subscribe({
           next: (listing) => {
-            // Skapar initiala bokningsdata
-            const booking: Booking = {
-              user_id: 1,
-              listing_id: listing.id,
-              start_date: '', // Kommer att ställas in av användaren
-              end_date: '', // Kommer att ställas in av användaren
-              total_price: listing.price_per_night,
-              guests: 1,
-              guest_details: {
-                adults: 1,
-                children: 0,
-                infants: 0,
-                pets: 0
-              },
-              status: 'Väntar på bekräftelse',
-              listing_name: listing.title,
-            };
+            // Kontrollera om boendet redan finns i varukorgen
+            const existingBooking = this.bookingCartService.getBookingByListingId(listingId);
+            
+            if (!existingBooking) {
+              // Skapar initiala bokningsdata
+              const booking: Booking = {
+                user_id: 1,
+                listing_id: listing.id,
+                start_date: '', // Kommer att ställas in av användaren
+                end_date: '', // Kommer att ställas in av användaren
+                total_price: listing.price_per_night,
+                guests: 1,
+                guest_details: {
+                  adults: 1,
+                  children: 0,
+                  infants: 0,
+                  pets: 0
+                },
+                status: 'Väntar på bekräftelse',
+                listing_name: listing.title,
+              };
 
-            // Lägger till i varukorgen
-            this.bookingCartService.setBookingData(booking);
+              // Lägger till i varukorgen
+              this.bookingCartService.setBookingData(booking);
+            }
             this.loadBookings();
           },
           error: () => {
@@ -263,7 +268,16 @@ export class BookingCartComponent implements OnInit {
 
   calculateTotalPrice() {
     this.totalPrice = this.bookings.reduce(
-      (sum, booking) => sum + booking.total_price,
+      (sum, booking) => {
+        // Beräkna antal nätter
+        if (booking.start_date && booking.end_date) {
+          const start = new Date(booking.start_date);
+          const end = new Date(booking.end_date);
+          const nights = Math.ceil((end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24));
+          return sum + (booking.total_price * nights);
+        }
+        return sum + booking.total_price;
+      },
       0
     );
   }

@@ -40,7 +40,7 @@ export class BookingCartService {
   // Sätter bokningsdata
   setBookingData(booking: Booking) {
     // Kontrollera om bokning för annonsen redan finns
-    const existingIndex = this.bookings.findIndex(booking => booking.listing_id === booking.listing_id);
+    const existingIndex = this.bookings.findIndex(b => b.listing_id === booking.listing_id);
     
     if (existingIndex >= 0) {
       // Uppdatera befintlig bokning
