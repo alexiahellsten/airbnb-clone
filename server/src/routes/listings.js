@@ -176,7 +176,7 @@ router.delete('/listings/:id', (req, res) => {
     deleteBookingsQuery.run(listingId);
 
     const deleteBedroomsQuery = db.prepare(
-      'DELETE FROM bedrooms WHERE listing_id = ?'
+      'DELETE FROM listing_bedrooms WHERE listing_id = ?'
     );
     deleteBedroomsQuery.run(listingId);
 
@@ -225,6 +225,7 @@ router.get('/amenities', (req, res) => {
 });
 
 // Skapa en ny listing
+// Skapa en ny listing
 router.post('/listings', (req, res) => {
   try {
     const {
@@ -238,9 +239,9 @@ router.post('/listings', (req, res) => {
       bedrooms,
       bathrooms,
       host_id,
-      images,
+      images, // Mottar bilder som en array med URL:er
       bedroom_details,
-      amenities
+      amenities,
     } = req.body;
 
     // Starta en transaktion
@@ -255,18 +256,20 @@ router.post('/listings', (req, res) => {
         ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
       `;
 
-      const result = db.prepare(insertListingQuery).run(
-        title,
-        description,
-        address,
-        city,
-        country,
-        price_per_night,
-        max_guests,
-        bedrooms,
-        bathrooms,
-        host_id
-      );
+      const result = db
+        .prepare(insertListingQuery)
+        .run(
+          title,
+          description,
+          address,
+          city,
+          country,
+          price_per_night,
+          max_guests,
+          bedrooms,
+          bathrooms,
+          host_id
+        );
 
       const listingId = result.lastInsertRowid;
 
@@ -277,7 +280,7 @@ router.post('/listings', (req, res) => {
           VALUES (?, ?)
         `;
         const insertImage = db.prepare(insertImageQuery);
-        images.forEach(imageUrl => {
+        images.forEach((imageUrl) => {
           insertImage.run(listingId, imageUrl);
         });
       }
@@ -285,11 +288,11 @@ router.post('/listings', (req, res) => {
       // Infoga sovrumsdetaljer om de finns
       if (bedroom_details && bedroom_details.length > 0) {
         const insertBedroomQuery = `
-          INSERT INTO bedrooms (listing_id, name, single_beds, double_beds)
+          INSERT INTO listing_bedrooms (listing_id, name, single_beds, double_beds)
           VALUES (?, ?, ?, ?)
         `;
         const insertBedroom = db.prepare(insertBedroomQuery);
-        bedroom_details.forEach(bedroom => {
+        bedroom_details.forEach((bedroom) => {
           insertBedroom.run(
             listingId,
             bedroom.name,
@@ -306,7 +309,7 @@ router.post('/listings', (req, res) => {
           VALUES (?, ?)
         `;
         const insertAmenity = db.prepare(insertAmenityQuery);
-        amenities.forEach(amenityName => {
+        amenities.forEach((amenityName) => {
           insertAmenity.run(listingId, amenityName);
         });
       }
@@ -316,7 +319,7 @@ router.post('/listings', (req, res) => {
 
       res.status(201).json({
         message: 'Listing created successfully',
-        listingId: listingId
+        listingId: listingId,
       });
     } catch (error) {
       // Återställ transaktionen vid fel
@@ -333,19 +336,26 @@ router.post('/listings', (req, res) => {
 router.post('/bedrooms', (req, res) => {
   console.log('Full request body:', req.body);
   const { listing_id, name, single_beds, double_beds } = req.body;
-  console.log('Parsed bedroom data:', { listing_id, name, single_beds, double_beds });
+  console.log('Parsed bedroom data:', {
+    listing_id,
+    name,
+    single_beds,
+    double_beds,
+  });
 
   if (!listing_id || !name) {
     console.log('Missing required fields:', { listing_id, name });
-    return res.status(400).json({ 
+    return res.status(400).json({
       message: 'listing_id och name krävs',
-      received: { listing_id, name, single_beds, double_beds }
+      received: { listing_id, name, single_beds, double_beds },
     });
   }
 
   try {
     // Kontrollera först om listingen finns
-    const listingExists = db.prepare('SELECT id FROM listings WHERE id = ?').get(listing_id);
+    const listingExists = db
+      .prepare('SELECT id FROM listings WHERE id = ?')
+      .get(listing_id);
     if (!listingExists) {
       console.log('Listing not found:', listing_id);
       return res.status(404).json({ message: 'Listingen hittades inte' });
@@ -353,34 +363,36 @@ router.post('/bedrooms', (req, res) => {
 
     // Infoga i sovrumstabellen med rätt kolumner
     const insertBedroomQuery = `
-      INSERT INTO bedrooms (listing_id, name, single_beds, double_beds)
+      INSERT INTO listing_bedrooms (listing_id, name, single_beds, double_beds)
       VALUES (?, ?, ?, ?)
     `;
-    
-    console.log('Executing query:', insertBedroomQuery);
-    console.log('With values:', { listing_id, name, single_beds: single_beds || 0, double_beds: double_beds || 0 });
 
-    const result = db.prepare(insertBedroomQuery).run(
+    console.log('Executing query:', insertBedroomQuery);
+    console.log('With values:', {
       listing_id,
       name,
-      single_beds || 0,
-      double_beds || 0
-    );
+      single_beds: single_beds || 0,
+      double_beds: double_beds || 0,
+    });
+
+    const result = db
+      .prepare(insertBedroomQuery)
+      .run(listing_id, name, single_beds || 0, double_beds || 0);
 
     console.log('Insert result:', result);
-    res.status(201).json({ 
+    res.status(201).json({
       message: 'Sovrum tillagt',
-      id: result.lastInsertRowid 
+      id: result.lastInsertRowid,
     });
   } catch (err) {
     console.error('Error adding bedroom:', err);
     console.error('Error details:', err.stack);
     console.error('Error message:', err.message);
     console.error('Error code:', err.code);
-    res.status(500).json({ 
+    res.status(500).json({
       message: 'Kunde inte lägga till sovrum',
       error: err.message,
-      code: err.code
+      code: err.code,
     });
   }
 });
@@ -393,9 +405,9 @@ router.post('/listing-amenities', (req, res) => {
 
   if (!listing_id || !amenity_name) {
     console.log('Missing required fields:', { listing_id, amenity_name });
-    return res.status(400).json({ 
+    return res.status(400).json({
       message: 'listing_id och amenity_name krävs',
-      received: { listing_id, amenity_name }
+      received: { listing_id, amenity_name },
     });
   }
 
@@ -409,9 +421,9 @@ router.post('/listing-amenities', (req, res) => {
 
     if (!amenity) {
       console.log('Amenity not found:', amenity_name);
-      return res.status(400).json({ 
+      return res.status(400).json({
         message: 'Bekvämligheten hittades inte',
-        received: { listing_id, amenity_name }
+        received: { listing_id, amenity_name },
       });
     }
 
@@ -427,10 +439,10 @@ router.post('/listing-amenities', (req, res) => {
     res.status(201).json({ id: result.lastInsertRowid });
   } catch (err) {
     console.error('Error adding amenity:', err);
-    res.status(500).json({ 
+    res.status(500).json({
       message: 'Kunde inte lägga till bekvämlighet till listingen',
       error: err.message,
-      details: { listing_id, amenity_name }
+      details: { listing_id, amenity_name },
     });
   }
 });

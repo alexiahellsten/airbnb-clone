@@ -96,7 +96,7 @@ CREATE TABLE reviews (
   FOREIGN KEY (listing_id) REFERENCES listings(id)  -- Foreign key reference to the listings table
 );
 
-CREATE TABLE bedrooms (
+CREATE TABLE listing_bedrooms (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   listing_id INTEGER NOT NULL,
   name TEXT, -- t.ex. "Sovrum 1"
@@ -572,7 +572,7 @@ INSERT INTO listing_images (id, listing_id, image_url) VALUES
 (80, 16, 'https://cdn.pixabay.com/photo/2018/09/07/20/19/home-3663222_1280.jpg');
 
 
-INSERT INTO bedrooms (listing_id, name, single_beds, double_beds) VALUES
+INSERT INTO listing_bedrooms (listing_id, name, single_beds, double_beds) VALUES
 (1, 'Sovrum 1', 2, 0),
 
 (2, 'Sovrum 1', 1, 0),

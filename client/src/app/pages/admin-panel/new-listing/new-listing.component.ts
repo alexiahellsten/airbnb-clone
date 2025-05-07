@@ -2,7 +2,13 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { WizardFooterComponent } from './components/wizard-footer/wizard-footer.component';
-import { DatabaseService, Listing, Bedroom, ListingAmenity } from '../../../services/database.service';
+import {
+  DatabaseService,
+  Listing,
+  Bedroom,
+  ListingAmenity,
+} from '../../../services/database.service';
+import { HttpClient } from '@angular/common/http';
 
 import { ListingTypeChapterComponent } from './chapters/listing-type-chapter/listing-type-chapter.component';
 import { AccessTypeChapterComponent } from './chapters/access-type-chapter/access-type-chapter.component';
@@ -13,7 +19,6 @@ import { DescriptionChapterComponent } from './chapters/description-chapter/desc
 import { ImagesChapterComponent } from './chapters/images-chapter/images-chapter.component';
 import { CapacityChapterComponent } from './chapters/capacity-chapter/capacity-chapter.component';
 import { AmenitiesChapterComponent } from './chapters/amenities-chapter/amenities-chapter.component';
-
 import { ButtonComponent } from '../../../components/common/button/button.component';
 
 @Component({
@@ -47,17 +52,21 @@ export class NewListingComponent {
     max_guests: 0,
     bedrooms: 0,
     bathrooms: 0,
-    host_id: 1, 
+    host_id: 1,
   };
 
-  bedroomDetails: { name: string; single_beds: number; double_beds: number }[] = [];
+  bedroomDetails: { name: string; single_beds: number; double_beds: number }[] =
+    [];
   selectedAmenities: string[] = [];
   isSubmitting = false;
   errorMessage = '';
+  images: File[] = [];
+  imageUrls: string[] = [];
 
   constructor(
     private databaseService: DatabaseService,
-    private router: Router
+    private router: Router,
+    private http: HttpClient // Lägg till HttpClient
   ) {}
 
   onTitleChange(title: string) {
@@ -96,12 +105,49 @@ export class NewListingComponent {
     this.listing.bedrooms = bedrooms;
   }
 
-  onBedroomDetailsChange(bedroomDetails: { name: string; single_beds: number; double_beds: number }[]) {
+  onBedroomDetailsChange(
+    bedroomDetails: { name: string; single_beds: number; double_beds: number }[]
+  ) {
     this.bedroomDetails = bedroomDetails;
   }
 
   onSelectedAmenitiesChange(amenities: string[]) {
     this.selectedAmenities = amenities;
+  }
+
+  // Metod för att hantera filval
+  onFileSelected(event: any) {
+    const files = event.target.files;
+    if (files) {
+      this.images = Array.from(files); // Sätt de valda bilderna
+      console.log('Valda bilder:', this.images); // Lägg till denna logg för att kontrollera bilderna
+    }
+  }
+  // Lägg till en metod för att ladda upp bilder när användaren klickar på "Skapa boende"
+  uploadImages(files: File[], listingId: number): void {
+    const formData = new FormData();
+
+    // Lägg till bilderna till FormData
+    files.forEach((file) => formData.append('images', file));
+    formData.append('listingId', listingId.toString()); // Skicka med listingId
+
+    // Logga FormData för att se om bilderna verkligen är där
+    console.log('Skickar FormData med bilder:', formData);
+    files.forEach((file) => {
+      console.log('Fil som ska skickas:', file);
+    });
+    console.log('Antal valda filer:', files.length);
+
+    this.http
+      .post('http://localhost:8000/api/images/uploads', formData)
+      .subscribe({
+        next: (response) => {
+          console.log('Bilder uppladdade:', response);
+        },
+        error: (error) => {
+          console.error('Fel vid uppladdning av bilder:', error);
+        },
+      });
   }
 
   onSubmit() {
@@ -110,8 +156,14 @@ export class NewListingComponent {
     this.errorMessage = '';
 
     // Validera obligatoriska fält
-    if (!this.listing.title || !this.listing.description || !this.listing.address || 
-        !this.listing.city || !this.listing.country || !this.listing.price_per_night) {
+    if (
+      !this.listing.title ||
+      !this.listing.description ||
+      !this.listing.address ||
+      !this.listing.city ||
+      !this.listing.country ||
+      !this.listing.price_per_night
+    ) {
       this.errorMessage = 'Vänligen fyll i alla obligatoriska fält';
       this.isSubmitting = false;
       return;
@@ -125,7 +177,7 @@ export class NewListingComponent {
     this.databaseService.createListing(this.listing).subscribe({
       next: (createdListing) => {
         console.log('Listing skapad:', createdListing);
-        
+
         if (!createdListing.listingId) {
           console.error('Inget listingId mottaget från servern');
           this.errorMessage = 'Fel: Inget listing-ID mottaget från servern';
@@ -135,21 +187,24 @@ export class NewListingComponent {
 
         const listingId = createdListing.listingId; // Nu vet TypeScript att detta är ett nummer
 
+        // Ladda upp bilder innan listningen skapas
+        this.uploadImages(this.images, listingId); // Kalla på uppladdningen av bilder här
+
         // Skapa sedan sovrumsdetaljerna
-        const bedroomPromises = this.bedroomDetails.map(bedroom => {
+        const bedroomPromises = this.bedroomDetails.map((bedroom) => {
           const bedroomData: Bedroom = {
             ...bedroom,
-            listing_id: listingId
+            listing_id: listingId,
           };
           console.log('Skapar sovrum:', bedroomData);
           return this.databaseService.createBedroom(bedroomData);
         });
 
         // Skapa listing_amenities poster
-        const amenityPromises = this.selectedAmenities.map(amenityName => {
+        const amenityPromises = this.selectedAmenities.map((amenityName) => {
           const amenityData: ListingAmenity = {
             listing_id: listingId,
-            amenity_name: amenityName
+            amenity_name: amenityName,
           };
           console.log('Skapar bekvämlighet:', amenityData);
           return this.databaseService.createListingAmenity(amenityData);
@@ -161,17 +216,19 @@ export class NewListingComponent {
             // Navigera till admin-panelen
             this.router.navigate(['/admin']);
           })
-          .catch(error => {
+          .catch((error) => {
             console.error('Fel vid skapande av detaljer:', error);
-            this.errorMessage = 'Fel vid skapande av listingdetaljer. Försök igen.';
+            this.errorMessage =
+              'Fel vid skapande av listingdetaljer. Försök igen.';
             this.isSubmitting = false;
           });
       },
       error: (error) => {
         console.error('Fel vid skapande av listing:', error);
-        this.errorMessage = error.message || 'Fel vid skapande av listing. Försök igen.';
+        this.errorMessage =
+          error.message || 'Fel vid skapande av listing. Försök igen.';
         this.isSubmitting = false;
-      }
+      },
     });
   }
 }
