@@ -4,19 +4,32 @@
     Du behöver fem foton för att komma igång. Du kan lägga till fler eller göra
     ändringar senare.
   </p>
-  <div class="mt-6">
-    <app-text-input [inputType]="'text'" [label]="'Bildlänk'"></app-text-input>
-  </div>
-  <div class="mt-6">
-    <app-text-input [inputType]="'text'" [label]="'Bildlänk'"></app-text-input>
-  </div>
-  <div class="mt-6">
-    <app-text-input [inputType]="'text'" [label]="'Bildlänk'"></app-text-input>
-  </div>
-  <div class="mt-6">
-    <app-text-input [inputType]="'text'" [label]="'Bildlänk'"></app-text-input>
-  </div>
-  <div class="mt-6">
-    <app-text-input [inputType]="'text'" [label]="'Bildlänk'"></app-text-input>
+
+  <div class="mt-6 flex flex-col gap-4">
+    <app-text-input
+      [inputType]="'text'"
+      [label]="'Bildlänk 1'"
+      [(ngModel)]="imageUrls[0]"
+    ></app-text-input>
+    <app-text-input
+      [inputType]="'text'"
+      [label]="'Bildlänk 2'"
+      [(ngModel)]="imageUrls[1]"
+    ></app-text-input>
+    <app-text-input
+      [inputType]="'text'"
+      [label]="'Bildlänk 3'"
+      [(ngModel)]="imageUrls[2]"
+    ></app-text-input>
+    <app-text-input
+      [inputType]="'text'"
+      [label]="'Bildlänk 4'"
+      [(ngModel)]="imageUrls[3]"
+    ></app-text-input>
+    <app-text-input
+      [inputType]="'text'"
+      [label]="'Bildlänk 5'"
+      [(ngModel)]="imageUrls[4]"
+    ></app-text-input>
   </div>
 </section>

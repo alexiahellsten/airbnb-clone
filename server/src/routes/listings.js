@@ -446,5 +446,66 @@ router.post('/listing-amenities', (req, res) => {
     });
   }
 });
+// Lägg till en bild till listing_images
+router.post('/listing-images', (req, res) => {
+  const { listing_id, image_url } = req.body;
+
+  if (!listing_id || !image_url) {
+    return res.status(400).json({ message: 'listing_id och image_url krävs.' });
+  }
+
+  try {
+    // Infoga i tabellen listing_images
+    const insertImageQuery = `
+      INSERT INTO listing_images (listing_id, image_url)
+      VALUES (?, ?)
+    `;
+    const result = db.prepare(insertImageQuery).run(listing_id, image_url);
+
+    // Svara med den infogade bilden (kan inkludera ID och de infogade värdena)
+    res.status(201).json({
+      message: 'Bild tillagd framgångsrikt.',
+      image: {
+        id: result.lastInsertRowid,
+        listing_id,
+        image_url,
+      },
+    });
+  } catch (err) {
+    console.error('Error inserting image into database:', err);
+    res.status(500).json({ error: 'Något gick fel vid bildinläggningen' });
+  }
+});
+
+// Lägg till en bild till listing_images
+router.post('/listing-images', (req, res) => {
+  const { listing_id, image_url } = req.body;
+
+  if (!listing_id || !image_url) {
+    return res.status(400).json({ message: 'listing_id och image_url krävs.' });
+  }
+
+  try {
+    // Infoga i tabellen listing_images
+    const insertImageQuery = `
+      INSERT INTO listing_images (listing_id, image_url)
+      VALUES (?, ?)
+    `;
+    const result = db.prepare(insertImageQuery).run(listing_id, image_url);
+
+    // Svara med den infogade bilden (kan inkludera ID och de infogade värdena)
+    res.status(201).json({
+      message: 'Bild tillagd framgångsrikt.',
+      image: {
+        id: result.lastInsertRowid,
+        listing_id,
+        image_url,
+      },
+    });
+  } catch (err) {
+    console.error('Error inserting image into database:', err);
+    res.status(500).json({ error: 'Något gick fel vid bildinläggningen' });
+  }
+});
 
 export default router;

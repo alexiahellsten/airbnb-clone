@@ -147,4 +147,14 @@ export class DatabaseService {
         .pipe(catchError(this.handleError))
     );
   }
+
+  // Lägg till en metod för att skapa en bild i listing_images
+  createListingImage(imageData: {
+    listing_id: number;
+    image_url: string;
+  }): Observable<any> {
+    return this.http
+      .post(`${this.apiUrl}/listing-images`, imageData)
+      .pipe(catchError(this.handleError));
+  }
 }
