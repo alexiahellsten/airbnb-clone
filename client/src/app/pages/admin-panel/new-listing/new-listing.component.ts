@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { WizardFooterComponent } from './components/wizard-footer/wizard-footer.component';
@@ -42,6 +42,8 @@ import { ButtonComponent } from '../../../components/common/button/button.compon
   styleUrl: './new-listing.component.css',
 })
 export class NewListingComponent {
+  @ViewChild(ImagesChapterComponent) imagesChapterComponent!: ImagesChapterComponent;
+
   listing: Partial<Listing> = {
     title: '',
     description: '',
@@ -66,7 +68,7 @@ export class NewListingComponent {
   constructor(
     private databaseService: DatabaseService,
     private router: Router,
-    private http: HttpClient // Lägg till HttpClient
+    private http: HttpClient
   ) {}
 
   onTitleChange(title: string) {
@@ -123,32 +125,6 @@ export class NewListingComponent {
       console.log('Valda bilder:', this.images); // Lägg till denna logg för att kontrollera bilderna
     }
   }
-  // Lägg till en metod för att ladda upp bilder när användaren klickar på "Skapa boende"
-  uploadImages(files: File[], listingId: number): void {
-    const formData = new FormData();
-
-    // Lägg till bilderna till FormData
-    files.forEach((file) => formData.append('images', file));
-    formData.append('listingId', listingId.toString()); // Skicka med listingId
-
-    // Logga FormData för att se om bilderna verkligen är där
-    console.log('Skickar FormData med bilder:', formData);
-    files.forEach((file) => {
-      console.log('Fil som ska skickas:', file);
-    });
-    console.log('Antal valda filer:', files.length);
-
-    this.http
-      .post('http://localhost:8000/api/images/uploads', formData)
-      .subscribe({
-        next: (response) => {
-          console.log('Bilder uppladdade:', response);
-        },
-        error: (error) => {
-          console.error('Fel vid uppladdning av bilder:', error);
-        },
-      });
-  }
 
   onSubmit() {
     if (this.isSubmitting) return;
@@ -185,10 +161,10 @@ export class NewListingComponent {
           return;
         }
 
-        const listingId = createdListing.listingId; // Nu vet TypeScript att detta är ett nummer
+        const listingId = createdListing.listingId;
 
-        // Ladda upp bilder innan listningen skapas
-        this.uploadImages(this.images, listingId); // Kalla på uppladdningen av bilder här
+        // Anropa onCreateListing för att spara bilder
+        this.imagesChapterComponent.onCreateListing(listingId);
 
         // Skapa sedan sovrumsdetaljerna
         const bedroomPromises = this.bedroomDetails.map((bedroom) => {
