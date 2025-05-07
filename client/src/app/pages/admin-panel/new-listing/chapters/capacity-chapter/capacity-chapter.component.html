@@ -1,4 +1,4 @@
-<h1>Dela lite grundläggande information om ditt boende</h1>
+<h2>Dela lite grundläggande information om ditt boende</h2>
 <p class="text-brand-textLight mb-8 text-lg">
   Du kan lägga till fler uppgifter senare, t.ex. typ av säng.
 </p>
@@ -9,6 +9,17 @@
     [min]="1"
     [max]="16"
     [(value)]="guestCount"
+    (valueChange)="onGuestCountChange($event)"
+  ></app-capacity-counter-option>
+
+  <div class="h-[1px] bg-brand-shadowGray"></div>
+
+  <app-capacity-counter-option
+    label="Badrum"
+    [min]="0"
+    [max]="30"
+    [(value)]="bathroomCount"
+    (valueChange)="onBathroomCountChange($event)"
   ></app-capacity-counter-option>
 
   <div class="h-[1px] bg-brand-shadowGray"></div>
@@ -20,21 +31,27 @@
     [(value)]="bedroomCount"
   ></app-capacity-counter-option>
 
-  <div class="h-[1px] bg-brand-shadowGray"></div>
+  <div class="bg-brand-lightGray">
+    <ng-container *ngFor="let bed of bedroomBeds; let i = index">
+      <div class="h-[1px] bg-brand-shadowGray"></div>
 
-  <app-capacity-counter-option
-    label="Sängar"
-    [min]="0"
-    [max]="30"
-    [(value)]="bedCount"
-  ></app-capacity-counter-option>
+      <app-capacity-counter-option
+        [label]="'Singelsängar i sovrum ' + (i + 1)"
+        [min]="0"
+        [max]="10"
+        [(value)]="bedroomBeds[i].single"
+        (valueChange)="onBedroomBedsChange()"
+      ></app-capacity-counter-option>
 
-  <div class="h-[1px] bg-brand-shadowGray"></div>
+      <div class="h-[1px] bg-brand-shadowGray"></div>
 
-  <app-capacity-counter-option
-    label="Badrum"
-    [min]="0"
-    [max]="30"
-    [(value)]="bathroomCount"
-  ></app-capacity-counter-option>
+      <app-capacity-counter-option
+        [label]="'Dubbelsängar i sovrum ' + (i + 1)"
+        [min]="0"
+        [max]="10"
+        [(value)]="bedroomBeds[i].double"
+        (valueChange)="onBedroomBedsChange()"
+      ></app-capacity-counter-option>
+    </ng-container>
+  </div>
 </div>

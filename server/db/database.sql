@@ -96,13 +96,14 @@ CREATE TABLE reviews (
   FOREIGN KEY (listing_id) REFERENCES listings(id)  -- Foreign key reference to the listings table
 );
 
-CREATE TABLE bedrooms (
-  id SERIAL PRIMARY KEY,
-  listing_id INTEGER NOT NULL REFERENCES listings(id) ON DELETE CASCADE,
-  name VARCHAR(255), -- t.ex. "Sovrum 1"
+CREATE TABLE listing_bedrooms (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  listing_id INTEGER NOT NULL,
+  name TEXT, -- t.ex. "Sovrum 1"
   single_beds INTEGER DEFAULT 0, -- antal enkelsängar
   double_beds INTEGER DEFAULT 0, -- antal dubbelsängar
-  created_at TIMESTAMP DEFAULT NOW()
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (listing_id) REFERENCES listings(id) ON DELETE CASCADE
 );
 -- users table stores user information. Each user can be either a regular user or a host (is_host flag).
 
@@ -211,7 +212,7 @@ INSERT INTO listings (title, description, address, city, country, price_per_nigh
 <br><br>Sovrummet är rymligt och smakfullt inrett, med en stor dubbelsäng som ger en plats för avkoppling efter en hektisk dag. Fönstren ger dig en fin utsikt över staden, och den moderna designen med minimalistiska detaljer ger en rogivande känsla, vilket gör det till en perfekt plats att hämta energi och vila ut.
 <br><br>Badrummet är också toppmodernt, utrustat med dusch, tvättställ och toalett. Här finns även tvättmaskin och torktumlare, vilket gör att du enkelt kan hålla ordning på tvätten utan att behöva lämna lägenheten.
 <br><br>Läget kan inte bli bättre – här bor du precis där allt händer. Med gångavstånd till både Uppsala slott, Botaniska trädgården och stadens alla kaféer, butiker och restauranger har du verkligen det bästa av både stadens puls och lugnet. Uppsala universitet och kollektivtrafikförbindelser finns också bara ett stenkast bort, vilket gör det här till ett perfekt boende för både studenter, unga professionella och alla som söker bekvämlighet och läge.
-<br><br>Sammanfattningsvis är denna lägenhet en fantastisk möjlighet för den som vill bo i ett modernt och funktionellt hem i centrala Uppsala. Här får du både stil och komfort, och framför allt ett läge som gör det enkelt att ta del av allt vad staden har att erbjuda.', 'Studentgatan 7', 'Uppsala', 'Sverige', 1700.00, 4, 2, 1, 10, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+<br><br>Sammanfattningsvis är denna lägenhet en fantastisk möjlighet för den som vill bo i ett modernt och funktionellt hem i centrala Uppsala. Här får du både stil och komfort, och framför allt ett läge som gör det enkelt att ta del av allt vad staden har att erbjuda.', 'Studentgatan 7', 'Uppsala', 'Sverige', 1700.00, 4, 2, 1, 10, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 ('Traditionell fjällstuga i Åre', 'Välkommen till denna traditionella fjällstuga i Åre, där charm möter komfort och naturen bjuder på en oslagbar upplevelse. Belägen mitt i det svenska fjällandskapet, erbjuder denna stuga ett unikt tillfälle att bo på en plats som kombinerar det bästa av både vinteräventyr och avkoppling i en rustik och hemtrevlig miljö. Denna 80 kvadratmeter stora stuga ger dig alla de bekvämligheter du kan önska, samtidigt som den behåller den genuina fjällkänslan.
 <br><br>När du stiger in i stugan slås du av den varma och inbjudande atmosfären. Med sina träväggar och den öppna spisen som står i centrum, känns det som att vara i en riktig fjälloas. Vardagsrummet är både mysigt och funktionellt, med plats för att samlas med vänner och familj efter en lång dag på backarna eller vandringsstigarna. Här kan du koppla av med en kopp varm choklad, eller kanske tända en brasa och njuta av lugnet.
 <br><br>Köket, som är både rustikt och modernt, ger dig möjlighet att laga både enkla måltider och festliga middagar. Med alla bekvämligheter du behöver, från spis till kylskåp, kommer du känna dig som hemma, även om du bara är på fjällsemester. Det finns gott om arbetsyta för att förbereda dina favoriträtter, och en stor matplats för att njuta av dem tillsammans.
@@ -227,23 +228,38 @@ ALTER TABLE amenities ADD COLUMN description TEXT;
 ALTER TABLE amenities ADD COLUMN icon TEXT;
 ALTER TABLE amenities RENAME COLUMN amenity TO name;
 
-INSERT INTO amenities (name, description, icon) VALUES
-('WiFi', 'Snabbt och tillförlitligt trådlöst internet', 'wifi'),
-('Parkering', 'Gratis parkering på plats', 'local_parking'),
-('Diskmaskin', 'Fullstor diskmaskin i köket', 'dishwasher'),
-('Tvättmaskin', 'Privat tvättmaskin tillgänglig', 'washing_machine'),
-('Torktumlare', 'Torktumlare för kläder finns', 'dryer'),
-('TV', 'Smart-TV med streamingtjänster', 'tv'),
-('Balkong', 'Privat balkong med utsikt', 'balcony'),
-('Luftkonditionering', 'Kylning under varma sommardagar', 'ac_unit'),
-('Uppvärmning', 'Centralvärme eller golvvärme', 'thermostat'),
-('Pool', 'Utomhuspool tillgänglig för gäster', 'pool'),
-('Bastu', 'Privat bastu finns i bostaden', 'sauna'),
-('Grill', 'Grillmöjligheter i trädgården', 'outdoor_grill'),
-('Barnsäng', 'Barnsäng tillgänglig vid behov', 'crib'),
-('Arbetsyta', 'Ett skrivbord eller arbetsbord finns', 'desk'),
-('Kaffe-/tekokare', 'Kaffebryggare och vattenkokare ingår', 'coffee'),
-('Djurvänligt', 'Husdjur är välkomna', 'pets');
+
+INSERT INTO amenities (name, description, icon, category) VALUES
+('WiFi', 'Snabbt och tillförlitligt trådlöst internet', 'wifi', 'favorite'),
+('TV', 'Stort utbud av TV-kanaler och streamingtjänster', 'tv', 'favorite'),
+('Kök', 'Fullt utrustat kök för matlagning och måltider', 'cup-hot', 'favorite'),
+('Tvättmaskin', 'Tillgång till tvättmaskin för att tvätta kläder', 'textarea-t', 'favorite'),
+('Kaffe-/tekokare', 'Enkelt att koka kaffe eller te för en god start på dagen', 'cup-hot', 'favorite'),
+('Gratis parkering inkluderad', 'Parkering ingår utan extra kostnad', 'car-front-fill', 'favorite'),
+('Betald parkering på tomten', 'Möjlighet till parkering på tomten mot betalning', 'cash-coin', 'favorite'),
+('Luftkonditionering', 'Kyl ner rummet under varma dagar', 'snow', 'favorite'),
+('Dedikerad arbetsyta', 'En specifik plats för att arbeta eller studera', 'laptop', 'favorite'),
+('Uppvärmning', 'Effektiv uppvärmning för kalla dagar', 'fire', 'favorite'),
+('Pool', 'Tillgång till en uppfriskande utomhuspool', 'water', 'uniqe'),
+('Bastu', 'Möjlighet att koppla av i en bastu', 'cloud-fog2', 'uniqe'),
+('Badtunna', 'Upplev avkoppling i en bubbelpool utomhus', 'droplet-half', 'uniqe'),
+('Uteplats', 'En trevlig uteplats för avkoppling och umgänge', 'flower1', 'uniqe'),
+('Grillplats', 'En plats för att grilla och njuta av utomhusmatlagning', 'fire', 'uniqe'),
+('Matplats utomhus', 'Njut av måltider utomhus med en vacker utsikt', 'sun', 'uniqe'),
+('Öppen eld utomhus', 'Möjlighet att tända en öppen eld för värme och stämning', 'fire', 'uniqe'),
+('Biljardbord', 'Njut av en omgång biljard med vänner eller familj', 'dice-5', 'uniqe'),
+('Öppen spis', 'Värme och mysighet med en traditionell öppen spis', 'fire', 'uniqe'),
+('Piano', 'Ett piano för musikälskare som vill spela', 'music-note-beamed', 'uniqe'),
+('Träningsredskap', 'Tillgång till träningsutrustning för en aktiv livsstil', 'suit-heart', 'uniqe'),
+('Tillgång till sjön', 'Möjlighet att bada, fiska eller vistas vid sjön', 'water', 'uniqe'),
+('Tillgång till strand', 'Direkt tillgång till närliggande strand för avkoppling', 'tsunami', 'uniqe'),
+('Nära pisten', 'Bara en kort väg till skidbackarna', 'snow', 'uniqe'),
+('Utedusch', 'Frisk utomhusdusch för sommarbruk', 'cloud-rain', 'uniqe'),
+('Brandvarnare', 'Säkerhet med brandvarnare i hela boendet', 'bell-fill', 'security'),
+('Förbandslåda', 'Första hjälpen-kit för akuta situationer', 'bandaid', 'security'),
+('Brandsläckare', 'Brandsläckare finns på plats för säkerhet', 'box2-heart', 'security'),
+('Kolmonoxidlarm', 'Larm för att upptäcka kolmonoxid och skydda dig', 'shield-exclamation', 'security');
+
 
 -- listing_amenities
 -- Sample data for listing_amenities (many-to-many relationship)
@@ -556,7 +572,7 @@ INSERT INTO listing_images (id, listing_id, image_url) VALUES
 (80, 16, 'https://cdn.pixabay.com/photo/2018/09/07/20/19/home-3663222_1280.jpg');
 
 
-INSERT INTO bedrooms (listing_id, name, single_beds, double_beds) VALUES
+INSERT INTO listing_bedrooms (listing_id, name, single_beds, double_beds) VALUES
 (1, 'Sovrum 1', 2, 0),
 
 (2, 'Sovrum 1', 1, 0),

@@ -1,9 +1,11 @@
 <section class="mt-8">
-  <h1>Skapa din beskrivning</h1>
+  <h2>Skapa din beskrivning</h2>
   <p class="text-brand-textLight mb-8 text-lg">
     Dela med dig av vad som är speciellt med ditt boende.
   </p>
   <app-text-area
+    [(ngModel)]="description"
+    (ngModelChange)="onDescriptionChange($event)"
     [maxLength]="500"
     [placeholder]="'Ha kul med hela familjen på detta eleganta ställe.'"
   ></app-text-area>

@@ -1,9 +1,11 @@
 <div class="w-full">
   <textarea
-    [(ngModel)]="description"
+    [value]="description"
+    (input)="onInput($any($event.target).value)"
     [maxLength]="maxLength"
     [placeholder]="placeholder"
-    class="w-full border rounded-lg p-3 pr-16 resize-none text-lg flex flex-col border-brand-borderGray box-border"
+    [disabled]="disabled"
+    class="w-full h-32 p-4 border border-gray-300 rounded-lg resize-none text-lg flex flex-col border-brand-borderGray box-border"
     rows="4"
   ></textarea>
   <div class="text-sm font-bold text-brand-textLight mt-4">

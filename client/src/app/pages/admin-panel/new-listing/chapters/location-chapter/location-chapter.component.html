@@ -1,26 +1,32 @@
 <section class="mx-auto w-full">
-  <h1>Bekräfta din adress</h1>
+  <h2>Bekräfta din adress</h2>
   <p class="text-brand-textLight mb-10 text-lg">
     Din adress delas inte med gäster förrän de har bokat.
   </p>
 
   <div class="flex flex-col gap-4">
     <app-text-input
-      [label]="'Land'"
-      [inputType]="'text'"
-      [fullWidth]="true"
-    ></app-text-input>
-
-    <app-text-input
       [label]="'Gatuadress'"
       [inputType]="'text'"
       [fullWidth]="true"
+      [(ngModel)]="address"
+      (ngModelChange)="onAddressChange($event)"
     ></app-text-input>
 
     <app-text-input
       [label]="'Stad'"
       [inputType]="'text'"
       [fullWidth]="true"
+      [(ngModel)]="city"
+      (ngModelChange)="onCityChange($event)"
+    ></app-text-input>
+
+    <app-text-input
+      [label]="'Land'"
+      [inputType]="'text'"
+      [fullWidth]="true"
+      [(ngModel)]="country"
+      (ngModelChange)="onCountryChange($event)"
     ></app-text-input>
   </div>
 

@@ -21,6 +21,7 @@ export class AdminListingCardComponent {
       this.db.deleteListing(this.listing.id).subscribe({
         next: () => {
           alert('Listning borttagen!');
+          this.deleted.emit(this.listing.id); // Emit the ID of the deleted listing
         },
         error: () => alert('Något gick fel vid borttagning!'),
       });

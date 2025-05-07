@@ -1,5 +1,10 @@
-<h1>Då var det dags att ge ditt boende ett namn</h1>
+<h2>Då var det dags att ge ditt boende ett namn</h2>
 <p class="text-brand-textLight mb-8 text-lg">
   Korta titlar fungerar bäst. Oroa dig inte, du kan alltid ändra den senare.
 </p>
-<app-text-area></app-text-area>
+<app-text-area
+  [(ngModel)]="title"
+  (ngModelChange)="onTitleChange($event)"
+  [placeholder]="'T.ex. Mysig lägenhet i centrala Göteborg'"
+  [maxLength]="100"
+></app-text-area>
