@@ -4,75 +4,19 @@
     Du behöver fem foton för att komma igång. Du kan lägga till fler eller göra
     ändringar senare.
   </p>
-
-  <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mb-8">
-    <!-- Grid för existerande bilder -->
-    <div
-      *ngFor="let image of images; let i = index"
-      class="relative overflow-hidden rounded-xl border border-gray-200 shadow-sm"
-    >
-      <button
-        (click)="removeImage(i)"
-        class="absolute top-2 right-2 bg-white rounded-full shadow-md hover:bg-gray-100 w-6 h-6 flex items-center justify-center"
-      >
-        <i class="bi bi-x text-sm"></i>
-      </button>
-    </div>
+  <div class="mt-6">
+    <app-text-input [inputType]="'text'" [label]="'Bildlänk'"></app-text-input>
+  </div>
+  <div class="mt-6">
+    <app-text-input [inputType]="'text'" [label]="'Bildlänk'"></app-text-input>
+  </div>
+  <div class="mt-6">
+    <app-text-input [inputType]="'text'" [label]="'Bildlänk'"></app-text-input>
+  </div>
+  <div class="mt-6">
+    <app-text-input [inputType]="'text'" [label]="'Bildlänk'"></app-text-input>
+  </div>
+  <div class="mt-6">
+    <app-text-input [inputType]="'text'" [label]="'Bildlänk'"></app-text-input>
   </div>
 </section>
-
-<div>
-  <div class="flex flex-col items-center justify-center p-12">
-    <div class="w-full max-w-2xl space-y-8">
-      <!-- Bild-input-->
-      <div class="text-center space-y-6">
-        <div
-          class="flex flex-col items-center justify-center border border-dashed border-gray-300 rounded-xl cursor-pointer text-gray-500 hover:border-gray-400 hover:text-gray-700 shadow-sm aspect-[4/3]"
-        >
-          <i class="bi bi-image text-6xl text-brand-black"></i>
-          <h2 class="text-brand-black text-xl m-1">Dra och släpp</h2>
-          <span class="text-gray-500 text-md">eller bläddra efter foton</span>
-          <label
-            class="inline-block px-4 py-2 mt-4 bg-brand-black text-white rounded-lg cursor-pointer hover:bg-brand-black/90 text-xl font-medium"
-          >
-            Bläddra
-            <input
-              type="file"
-              multiple
-              accept="image/*"
-              class="hidden"
-              (change)="onFileSelected($event)"
-            />
-          </label>
-        </div>
-
-        <!-- Ta bort förhandsvisning av valda bilder -->
-        <div *ngIf="images.length > 0" class="mt-12">
-          <div class="flex justify-between items-center mb-6">
-            <h3 class="text-xl font-medium">
-              Valda foton ({{ images.length }})
-            </h3>
-            <button
-              (click)="images = []; imageUrls = []"
-              class="text-base text-gray-500 hover:text-gray-700"
-            >
-              Rensa alla
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Lägg till en knapp för att skicka bilderna till servern -->
-<button
-  (click)="uploadImages()"
-  class="bg-blue-500 text-white py-2 px-4 rounded-lg"
->
-  Ladda upp bilder
-</button>
-
-<div *ngFor="let imageUrl of imageUrls; let i = index">
-  <img [src]="imageUrl" alt="Förhandsvisning" width="100" height="100" />
-  <button (click)="removeImage(i)">Ta bort</button>
-</div>
