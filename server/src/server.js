@@ -103,7 +103,7 @@ const __dirname = dirname(__filename);
 app.use(
   cors({
     origin: 'http://localhost:4200',
-    methods: ['GET', 'POST'],
+    methods: ['GET', 'POST', 'DELETE', 'PUT'], // Tillåt DELETE-metoden
     credentials: true,
   })
 );
