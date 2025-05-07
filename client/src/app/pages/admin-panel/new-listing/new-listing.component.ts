@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { WizardFooterComponent } from './components/wizard-footer/wizard-footer.component';
@@ -42,6 +42,8 @@ import { ButtonComponent } from '../../../components/common/button/button.compon
   styleUrl: './new-listing.component.css',
 })
 export class NewListingComponent {
+  @ViewChild(ImagesChapterComponent) imagesChapterComponent!: ImagesChapterComponent;
+
   listing: Partial<Listing> = {
     title: '',
     description: '',
@@ -66,7 +68,7 @@ export class NewListingComponent {
   constructor(
     private databaseService: DatabaseService,
     private router: Router,
-    private http: HttpClient // Lägg till HttpClient
+    private http: HttpClient
   ) {}
 
   onTitleChange(title: string) {
@@ -159,7 +161,10 @@ export class NewListingComponent {
           return;
         }
 
-        const listingId = createdListing.listingId; // Nu vet TypeScript att detta är ett nummer
+        const listingId = createdListing.listingId;
+
+        // Anropa onCreateListing för att spara bilder
+        this.imagesChapterComponent.onCreateListing(listingId);
 
         // Skapa sedan sovrumsdetaljerna
         const bedroomPromises = this.bedroomDetails.map((bedroom) => {
