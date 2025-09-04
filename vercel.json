@@ -5,14 +5,14 @@
       "src": "client/package.json",
       "use": "@vercel/static-build",
       "config": {
-        "distDir": "dist/client/airbnb-clone"
+        "distDir": "client/dist/client/airbnb-clone/browser"
       }
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "client/dist/client/airbnb-clone/index.html"
+      "dest": "client/dist/client/airbnb-clone/browser/index.html"
     }
   ]
 }
